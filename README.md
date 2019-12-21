@@ -1,8 +1,7 @@
 # Charts
 
 
-[![Build Status](https://travis-ci.org/slothsoft/charts
-.svg?branch=master)](https://travis-ci.org/slothsoft/charts)
+[![Build Status](https://travis-ci.org/slothsoft/charts.svg?branch=master)](https://travis-ci.org/slothsoft/charts)
 
 - **Author:** [Stef Schulz](mailto:s.schulz@slothsoft.de)
 - **Repository:** <https://github.com/slothsoft/charts>
