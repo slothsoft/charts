@@ -9,7 +9,7 @@
 - **Wiki:** <https://github.com/slothsoft/charts/wiki>
 
 
-A framework for creating charts. For my musings before even string see the [Preliminary Considerations](https://github.com/slothsoft/charts/wiki/Preliminary-Considerations).
+A framework for creating charts. For my musings before even beginning see the [Preliminary Considerations](https://github.com/slothsoft/charts/wiki/Preliminary-Considerations).
 
 ## Getting Started
 
