@@ -90,7 +90,9 @@ public interface GraphicContext {
 	 * @param y2 - end point y
 	 */
 
-	void drawLine(double x1, double y1, double x2, double y2);
+	default void drawLine(double x1, double y1, double x2, double y2) {
+		drawPolygon(new double[]{x1, x2}, new double[]{y1, y2});
+	}
 
 	/**
 	 * Paints a filled rectangle.
@@ -98,8 +100,8 @@ public interface GraphicContext {
 	 * @param rect - the rectangle's coordinates
 	 */
 
-	default void fillRectangle(Rectangle rect) {
-		fillRectangle(rect.x, rect.y, rect.width, rect.height);
+	default void fillRectangle(Area rect) {
+		fillRectangle(rect.startX, rect.startY, rect.endX - rect.startX, rect.endY - rect.startY);
 	}
 
 	/**

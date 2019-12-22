@@ -1,5 +1,6 @@
 package de.slothsoft.charts.linechart;
 
+import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Drawable;
 
 /**
@@ -15,9 +16,27 @@ import de.slothsoft.charts.Drawable;
 
 public abstract class Line implements Drawable {
 
+	protected static final int DEFAULT_START_X = 0;
+	protected static final int DEFAULT_START_Y = 0;
+	protected static final int DEFAULT_END_X = 10;
+	protected static final int DEFAULT_END_Y = 10;
+
+	protected static final Area createDefaultArea() {
+		return new Area(DEFAULT_START_X, DEFAULT_START_Y, DEFAULT_END_X, DEFAULT_END_Y);
+	}
+
 	// TODO: for all lines, make it so they are only drawn inside the graph area
 
 	int color = 0xFF0000FF;
+
+	/**
+	 * Calculates the preferred area this line wants to be displayed in. You can use
+	 * {@link Line#createDefaultArea()} for a default area.
+	 *
+	 * @return an area; never null
+	 */
+
+	protected abstract Area calculatePreferredArea();
 
 	/**
 	 * Returns the color as ARGB int, e.g. red is <code>0xFFFF0000</code> and blue is

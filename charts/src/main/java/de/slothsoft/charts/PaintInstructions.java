@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class PaintInstructions {
 
-	Rectangle area;
+	Area area;
 
 	/**
 	 * Default constructor. Only the area is really needed.
@@ -19,7 +19,7 @@ public class PaintInstructions {
 	 * @param area - the area to draw on; cannot be null
 	 */
 
-	public PaintInstructions(Rectangle area) {
+	public PaintInstructions(Area area) {
 		this.area = Objects.requireNonNull(area);
 	}
 
@@ -29,7 +29,7 @@ public class PaintInstructions {
 	 * @return the area to draw on; never null
 	 */
 
-	public Rectangle getArea() {
+	public Area getArea() {
 		return this.area;
 	}
 
@@ -40,7 +40,7 @@ public class PaintInstructions {
 	 * @return this instance
 	 */
 
-	public PaintInstructions area(Rectangle newArea) {
+	public PaintInstructions area(Area newArea) {
 		setArea(newArea);
 		return this;
 	}
@@ -51,7 +51,7 @@ public class PaintInstructions {
 	 * @param area - the area to draw on; cannot be null
 	 */
 
-	public void setArea(Rectangle area) {
+	public void setArea(Area area) {
 		this.area = Objects.requireNonNull(area);
 	}
 
@@ -64,7 +64,7 @@ public class PaintInstructions {
 
 	/**
 	 * Creates a copy of this class.
-	 * 
+	 *
 	 * @return an equal copy
 	 */
 

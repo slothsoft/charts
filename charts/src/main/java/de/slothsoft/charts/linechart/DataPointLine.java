@@ -1,12 +1,13 @@
 package de.slothsoft.charts.linechart;
 
 import java.awt.Color;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
+import de.slothsoft.charts.Area;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
-import de.slothsoft.charts.Rectangle;
 
 /**
  * A {@link Line} that is based on data points, i.e. x and y coordinates.
@@ -47,12 +48,21 @@ public class DataPointLine extends Line {
 	}
 
 	@Override
+	protected Area calculatePreferredArea() {
+		final double minX = Arrays.stream(this.x).min().orElse(DEFAULT_START_X);
+		final double maxX = Arrays.stream(this.x).max().orElse(DEFAULT_END_X);
+		final double minY = Arrays.stream(this.y).min().orElse(DEFAULT_START_Y);
+		final double maxY = Arrays.stream(this.y).max().orElse(DEFAULT_END_Y);
+		return new Area(Math.min(minX, 0), Math.min(minY, 0), maxX, maxY);
+	}
+
+	@Override
 	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
-		final Rectangle rect = instructions.getArea();
+		final Area rect = instructions.getArea();
 		gc.setColor(Color.red.getRGB());
-		gc.drawLine(0, 0, rect.getWidth(), 0);
+		gc.drawLine(0, 0, rect.getEndX(), 0);
 		gc.setColor(Color.blue.getRGB());
-		gc.drawLine(0, 0, 0, rect.getHeight());
+		gc.drawLine(0, 0, 0, rect.getEndY());
 		gc.setColor(this.color);
 		gc.drawPolygon(this.x, this.y);
 	}

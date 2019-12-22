@@ -38,7 +38,7 @@ public class ChartControl extends Canvas {
 
 	private void paintControl(PaintEvent e) {
 		final Rectangle rect = getClientArea();
-		e.gc.setForeground(getDisplay().getSystemColor(SWT.COLOR_RED));
+		e.gc.setAntialias(SWT.ON);
 
 		if (this.model != null) {
 			if (this.graphicContext == null) {
@@ -48,7 +48,7 @@ public class ChartControl extends Canvas {
 			}
 
 			final PaintInstructions instructions = new PaintInstructions(
-					new de.slothsoft.charts.Rectangle(rect.x, rect.y, rect.width, rect.height));
+					new de.slothsoft.charts.Area(rect.x, rect.y, rect.width, rect.height));
 			this.model.paintOn(this.graphicContext, instructions);
 		}
 	}

@@ -36,6 +36,11 @@ public class DelegatingGraphicContext implements GraphicContext {
 	}
 
 	@Override
+	public void scale(double factor) {
+		this.delegate.scale(factor);
+	}
+
+	@Override
 	public void scale(double x, double y) {
 		this.delegate.scale(x, y);
 	}

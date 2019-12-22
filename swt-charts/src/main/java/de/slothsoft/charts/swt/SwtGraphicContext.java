@@ -78,7 +78,7 @@ public class SwtGraphicContext implements GraphicContext {
 
 	@Override
 	public void scale(double x, double y) {
-		doToTransform(t -> t.scale((int) x, (int) y));
+		doToTransform(t -> t.scale((float) x, (float) y));
 	}
 
 	@Override

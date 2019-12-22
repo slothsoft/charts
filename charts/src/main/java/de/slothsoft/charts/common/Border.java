@@ -1,10 +1,10 @@
 package de.slothsoft.charts.common;
 
+import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.ChartPart;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
-import de.slothsoft.charts.Rectangle;
 
 /**
  * A border on a {@link Chart}. On default it's only empty space and not visible.
@@ -23,10 +23,10 @@ public class Border implements ChartPart {
 	}
 
 	@Override
-	public Rectangle snipNecessarySpace(Rectangle existingArea) {
-		return new Rectangle().x(existingArea.getX() + this.spaceOnLeft).y(existingArea.getY() + this.spaceOnTop)
-				.width(existingArea.getWidth() - this.spaceOnLeft - this.spaceOnRight)
-				.height(existingArea.getHeight() - this.spaceOnTop - this.spaceOnBottom);
+	public Area snipNecessarySpace(Area existingArea) {
+		return new Area().startX(existingArea.getStartX() + this.spaceOnLeft)
+				.startY(existingArea.getStartY() + this.spaceOnTop).endX(existingArea.getEndX() - this.spaceOnRight)
+				.endY(existingArea.getEndY() - this.spaceOnBottom);
 	}
 
 	/**
