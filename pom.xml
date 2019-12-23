@@ -60,7 +60,72 @@
 					<artifactId>exec-maven-plugin</artifactId>
 					<version>1.6.0</version>
 				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.1.1</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>doc</id>
+			<build>
+				<plugins>
+
+					<!-- Clear the docs folder so we don't get artefacts of deleted classes -->
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-clean-plugin</artifactId>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>docs/</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+
+					<!-- Configure the JavaDoc Plug-in so we publish it via GitHub Pages -->
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<configuration>
+							<source>8</source>
+							<show>public</show>
+							<quiet>true</quiet>
+							<locale>en</locale>
+							<sourceFileIncludes>de/slothsoft/**/*.java</sourceFileIncludes>
+							<notimestamp>true</notimestamp>
+							<reportOutputDirectory>${project.basedir}</reportOutputDirectory>
+							<destDir>docs</destDir>
+							<windowtitle>${project.name}</windowtitle>
+							<doctitle>${project.name}</doctitle>
+						</configuration>
+						<executions>
+							<execution>
+								<id>aggregate</id>
+								<phase>package</phase>
+								<goals>
+									<goal>aggregate</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<name>Slothsoft Charts</name>
 </project>

@@ -7,6 +7,7 @@
 - **Repository:** <https://github.com/slothsoft/charts>
 - **Open Issues:** <https://github.com/slothsoft/charts/issues>
 - **Wiki:** <https://github.com/slothsoft/charts/wiki>
+- **JavaDoc:** <https://slothsoft.github.io/charts>
 
 
 A framework for creating charts. For my musings before even beginning see the [Preliminary Considerations](https://github.com/slothsoft/charts/wiki/Preliminary-Considerations).
