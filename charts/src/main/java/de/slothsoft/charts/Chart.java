@@ -34,11 +34,26 @@ public abstract class Chart {
 		gc.setColor(this.backgroundColor);
 		gc.fillRectangle(instructions.area);
 
+		// paint all the parts that make up the chart
+
+		Area chartArea = instructions.getArea();
 		for (final ChartPart part : fetchChartParts()) {
-			part.paintOn(gc, instructions);
-			instructions.setArea(part.snipNecessarySpace(instructions.getArea()));
+			part.paintOn(gc, instructions.area(chartArea));
+			chartArea = part.snipNecessarySpace(chartArea);
 		}
-		paintGraph(gc, instructions);
+
+		// now paint the actual graph
+
+		final Area graphArea = chartArea;
+		try {
+			gc.clip(graphArea);
+			gc.translate(graphArea.getStartX(), graphArea.getStartY());
+
+			paintGraph(gc, instructions.area(chartArea.copy().startX(0).startY(0)));
+		} finally {
+			gc.translate(-graphArea.getStartX(), -graphArea.getEndY());
+			gc.clip(null);
+		}
 	}
 
 	/**

@@ -36,6 +36,7 @@ public class FunctionLine extends Line {
 
 	final Function function;
 	private Area preferredArea;
+	private double stepSize = 0.5;
 
 	/**
 	 * Constructor.
@@ -68,21 +69,19 @@ public class FunctionLine extends Line {
 
 	@Override
 	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
-		// TODO: make startX, endX and step size customizable
 		final Area drawnArea = instructions.getArea();
 		final double startX = drawnArea.getStartX();
-		final double endX = drawnArea.getEndY();
-		final double step = 0.5;
+		final double endX = drawnArea.getEndX();
 
-		final int xLength = (int) ((endX - startX) / step);
+		final int xLength = (int) ((endX - startX) / this.stepSize + 1);
 		final double[] x = new double[xLength];
 		final double[] y = new double[xLength];
 		for (int i = 0; i < xLength; i++) {
-			x[i] = startX + i * step;
+			x[i] = startX + i * this.stepSize;
 			y[i] = this.function.apply(x[i]);
 		}
 		gc.setColor(this.color);
-		gc.drawPolygon(x, y);
+		gc.drawPolyline(x, y);
 	}
 
 	/**
@@ -118,6 +117,44 @@ public class FunctionLine extends Line {
 
 	public void setPreferredArea(Area preferredArea) {
 		this.preferredArea = Objects.requireNonNull(preferredArea);
+	}
+
+	/**
+	 * Returns the value that is used to determine which x values are drawn in
+	 * {@link #paintOn(GraphicContext, PaintInstructions)}, i.e. a step size of 0.5 will
+	 * draw the x values: 0, 0.5, 1, 1.5, ...
+	 *
+	 * @return the step size
+	 */
+
+	public double getStepSize() {
+		return this.stepSize;
+	}
+
+	/**
+	 * Sets the value that is used to determine which x values are drawn in
+	 * {@link #paintOn(GraphicContext, PaintInstructions)}, i.e. a step size of 0.5 will
+	 * draw the x values: 0, 0.5, 1, 1.5, ...
+	 *
+	 * @param newStepSize - the step size
+	 * @return this instance;
+	 */
+
+	public FunctionLine stepSize(double newStepSize) {
+		setStepSize(newStepSize);
+		return this;
+	}
+
+	/**
+	 * Sets the value that is used to determine which x values are drawn in
+	 * {@link #paintOn(GraphicContext, PaintInstructions)}, i.e. a step size of 0.5 will
+	 * draw the x values: 0, 0.5, 1, 1.5, ...
+	 *
+	 * @param stepSize - the step size
+	 */
+
+	public void setStepSize(double stepSize) {
+		this.stepSize = stepSize;
 	}
 
 }

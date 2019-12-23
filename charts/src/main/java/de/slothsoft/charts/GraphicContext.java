@@ -77,6 +77,15 @@ public interface GraphicContext {
 
 	void scale(double x, double y);
 
+	/**
+	 * Restricts which area of the context can be used to drawn on. Set to
+	 * <code>null</code> to remove the restriction again.
+	 *
+	 * @param rect - the clipping area
+	 */
+
+	void clip(Area rect);
+
 	// ===================
 	// STUFF TO PAINT WITH
 	// ===================
@@ -91,7 +100,7 @@ public interface GraphicContext {
 	 */
 
 	default void drawLine(double x1, double y1, double x2, double y2) {
-		drawPolygon(new double[]{x1, x2}, new double[]{y1, y2});
+		drawPolyline(new double[]{x1, x2}, new double[]{y1, y2});
 	}
 
 	/**
@@ -116,12 +125,12 @@ public interface GraphicContext {
 	void fillRectangle(double x, double y, double width, double height);
 
 	/**
-	 * Paints the outline of a polygon.
+	 * Paints the outline of a polyline.
 	 *
 	 * @param x - the polygon's x coordinates
 	 * @param y - the polygon's y coordinates
 	 */
 
-	void drawPolygon(double[] x, double[] y);
+	void drawPolyline(double[] x, double[] y);
 
 }

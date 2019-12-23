@@ -39,14 +39,19 @@ public class TestGraphicContext implements GraphicContext {
 	}
 
 	@Override
+	public void clip(Area rect) {
+		this.log.add("clip(" + rect + ")");
+	}
+
+	@Override
 	public void fillRectangle(double x, double y, double width, double height) {
 		this.log.add("fillRectangle(" + x + ", " + y + ", " + width + ", " + height + ")");
 
 	}
 
 	@Override
-	public void drawPolygon(double[] x, double[] y) {
-		this.log.add("drawPolygon(" + toString(x) + ", " + toString(y) + ")");
+	public void drawPolyline(double[] x, double[] y) {
+		this.log.add("drawPolyline(" + toString(x) + ", " + toString(y) + ")");
 	}
 
 	private static String toString(double[] array) {

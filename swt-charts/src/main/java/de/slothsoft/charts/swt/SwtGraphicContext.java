@@ -6,8 +6,10 @@ import java.util.function.Consumer;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.graphics.Transform;
 
+import de.slothsoft.charts.Area;
 import de.slothsoft.charts.GraphicContext;
 
 /**
@@ -26,6 +28,8 @@ public class SwtGraphicContext implements GraphicContext {
 	private Color color;
 
 	private Transform transform;
+	private double scaleX = 1;
+	private double scaleY = 1;
 
 	/**
 	 * Constructor.
@@ -78,27 +82,40 @@ public class SwtGraphicContext implements GraphicContext {
 
 	@Override
 	public void scale(double x, double y) {
-		doToTransform(t -> t.scale((float) x, (float) y));
+		this.scaleX *= x;
+		this.scaleY *= y;
+	}
+
+	@Override
+	public void clip(Area rect) {
+		if (rect == null) {
+			this.delegate.setClipping((Rectangle) null);
+		} else {
+			this.delegate.setClipping((int) rect.getStartX(), (int) rect.getStartY(),
+					(int) (rect.getEndX() - rect.getStartX()), (int) (rect.getEndY() - rect.getStartY()));
+		}
 	}
 
 	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
-		this.delegate.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
+		this.delegate.drawLine((int) (this.scaleX * x1), (int) (this.scaleY * y1), (int) (this.scaleX * x2),
+				(int) (this.scaleX * y2));
 	}
 
 	@Override
 	public void fillRectangle(double x, double y, double width, double height) {
-		this.delegate.fillRectangle((int) x, (int) y, (int) width, (int) height);
+		this.delegate.fillRectangle((int) (this.scaleX * x), (int) (this.scaleY * y), (int) (this.scaleX * width),
+				(int) (this.scaleY * height));
 	}
 
 	@Override
-	public void drawPolygon(double[] x, double[] y) {
+	public void drawPolyline(double[] x, double[] y) {
 		final int[] points = new int[x.length + y.length];
 		for (int i = 0; i < x.length; i++) {
-			points[2 * i] = (int) x[i];
-			points[2 * i + 1] = (int) y[i];
+			points[2 * i] = (int) (this.scaleX * x[i]);
+			points[2 * i + 1] = (int) (this.scaleY * y[i]);
 		}
-		this.delegate.drawPolygon(points);
+		this.delegate.drawPolyline(points);
 	}
 
 	/**

@@ -25,8 +25,8 @@ public class SwtExample {
 		shell.setLayout(new FillLayout());
 
 		final LineChart chart = new LineChart();
-		chart.addLine(new DataPointLine(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12));
-		chart.addLine(new FunctionLine(x -> Math.sin(x)));
+		chart.addLine(new DataPointLine(-3, -2, -1, 0, 1, 2, 2.5, 2.75, 2.82, 2.91, 2.95));
+		chart.addLine(new FunctionLine(x -> Math.cos(x)).color(0xFF00FFFF));
 
 		final ChartControl chartControl = new ChartControl(shell, SWT.BORDER);
 		chartControl.setModel(chart);

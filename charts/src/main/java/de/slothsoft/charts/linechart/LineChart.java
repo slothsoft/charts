@@ -30,8 +30,6 @@ public class LineChart extends Chart {
 	protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
 		final Area rect = instructions.getArea();
 
-		gc.translate(rect.getStartX(), rect.getEndY());
-
 		final Area graphArea = calculateDisplayedArea();
 		final double graphWidth = graphArea.getEndX() - graphArea.getStartX();
 		final double graphHeight = graphArea.getEndY() - graphArea.getStartY();
@@ -42,19 +40,29 @@ public class LineChart extends Chart {
 		final double scaleY = actualHeight / graphHeight;
 		gc.scale(scaleX, scaleY);
 
-		final PaintInstructions lineInstructions = instructions.copy().area(new Area(graphWidth, graphHeight));
+		final PaintInstructions lineInstructions = instructions.copy().area(graphArea);
 		final GraphicContext linesGc = new FlipYGraphicContext(gc);
+		// the top left corner is not where the graph origin is, so move
+		final double originX = -Math.min(graphArea.getStartX(), graphArea.getEndX()) * scaleX;
+		final double originY = Math.max(graphArea.getStartY(), graphArea.getEndY()) * scaleY;
+		gc.translate(originX, originY);
 
 		for (final Line line : this.lines) {
 			line.paintOn(linesGc, lineInstructions);
 		}
+
+		// reset everything that was done previously
+		gc.translate(-originX, -originY);
 		gc.scale(1 / scaleX, 1 / scaleY);
-		gc.translate(-rect.getStartX(), -rect.getEndY());
 	}
 
 	Area calculateDisplayedArea() {
-		if (this.displayedArea != null) return this.displayedArea;
-		if (this.lines.isEmpty()) return Line.createDefaultArea();
+		if (this.displayedArea != null) {
+			return this.displayedArea;
+		}
+		if (this.lines.isEmpty()) {
+			return Line.createDefaultArea();
+		}
 
 		Area result = new Area();
 		for (final Line line : this.lines) {
@@ -104,8 +112,9 @@ public class LineChart extends Chart {
 	}
 
 	/**
-	 * Returns the displayed area of this chart. <code>null</code> is used to indicate the
-	 * value is calculated by questioning the {@link Line}s.
+	 * Returns the displayed area of this chart, i.e. the coordinates to display.
+	 * <code>null</code> is used to indicate the value is calculated by questioning the
+	 * {@link Line}s.
 	 *
 	 * @return the displayed area
 	 */
@@ -115,8 +124,9 @@ public class LineChart extends Chart {
 	}
 
 	/**
-	 * Sets the displayed area of this chart. <code>null</code> is used to indicate the
-	 * value is calculated by questioning the {@link Line}s.
+	 * Sets the displayed area of this chart, i.e. the coordinates to display.
+	 * <code>null</code> is used to indicate the value is calculated by questioning the
+	 * {@link Line}s.
 	 *
 	 * @param newDisplayedArea - the displayed area
 	 * @return this instance
@@ -128,8 +138,9 @@ public class LineChart extends Chart {
 	}
 
 	/**
-	 * Sets the displayed area of this chart. <code>null</code> is used to indicate the
-	 * value is calculated by questioning the {@link Line}s.
+	 * Sets the displayed area of this chart, i.e. the coordinates to display.
+	 * <code>null</code> is used to indicate the value is calculated by questioning the
+	 * {@link Line}s.
 	 *
 	 * @param displayedArea - the displayed area
 	 */

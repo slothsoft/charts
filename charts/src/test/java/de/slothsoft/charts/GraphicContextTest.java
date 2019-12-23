@@ -27,7 +27,7 @@ public class GraphicContextTest {
 	public void testDrawLine() throws Exception {
 		this.graphicContext.drawLine(1.2, 3.4, 4.5, 6.7);
 
-		Assert.assertEquals(Arrays.asList("drawPolygon([1.2, 4.5], [3.4, 6.7])"), this.graphicContext.log);
+		Assert.assertEquals(Arrays.asList("drawPolyline([1.2, 4.5], [3.4, 6.7])"), this.graphicContext.log);
 	}
 
 	@Test

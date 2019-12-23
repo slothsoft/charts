@@ -1,6 +1,5 @@
 package de.slothsoft.charts.linechart;
 
-import java.awt.Color;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -40,9 +39,10 @@ public class DataPointLine extends Line {
 	 */
 
 	public DataPointLine(double[] x, double[] y) {
-		if (x.length != y.length)
+		if (x.length != y.length) {
 			throw new IllegalArgumentException(
 					"Arrays for x and y must have some length! (" + x.length + " != " + y.length + ")");
+		}
 		this.x = Objects.requireNonNull(x);
 		this.y = Objects.requireNonNull(y);
 	}
@@ -58,12 +58,7 @@ public class DataPointLine extends Line {
 
 	@Override
 	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
-		final Area rect = instructions.getArea();
-		gc.setColor(Color.red.getRGB());
-		gc.drawLine(0, 0, rect.getEndX(), 0);
-		gc.setColor(Color.blue.getRGB());
-		gc.drawLine(0, 0, 0, rect.getEndY());
 		gc.setColor(this.color);
-		gc.drawPolygon(this.x, this.y);
+		gc.drawPolyline(this.x, this.y);
 	}
 }

@@ -2,6 +2,7 @@ package de.slothsoft.charts.common;
 
 import java.util.Objects;
 
+import de.slothsoft.charts.Area;
 import de.slothsoft.charts.GraphicContext;
 
 /**
@@ -46,6 +47,11 @@ public class DelegatingGraphicContext implements GraphicContext {
 	}
 
 	@Override
+	public void clip(Area rect) {
+		this.delegate.clip(rect);
+	}
+
+	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
 		this.delegate.drawLine(x1, y1, x2, y2);
 	}
@@ -56,12 +62,12 @@ public class DelegatingGraphicContext implements GraphicContext {
 	}
 
 	@Override
-	public void drawPolygon(double[] x, double[] y) {
+	public void drawPolyline(double[] x, double[] y) {
 		final double[] otherY = new double[y.length];
 		for (int i = 0; i < otherY.length; i++) {
 			otherY[i] = -y[i];
 		}
-		this.delegate.drawPolygon(x, otherY);
+		this.delegate.drawPolyline(x, otherY);
 	}
 
 }
