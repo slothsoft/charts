@@ -30,12 +30,12 @@ public class ChartsGenerator {
 
 		// generate the table header of the wiki page
 
-		overviewPage.append("| ö ");
+		overviewPage.append("| ! ");
 		for (final ChartWriter writer : ChartWriter.ALL) {
 			overviewPage.append("| ").append(writer.displayName).append(' ');
 		}
 		overviewPage.append("|\n");
-		overviewPage.append(overviewPage.toString().replaceAll("[a-zA-Zö]", "-"));
+		overviewPage.append(overviewPage.toString().replaceAll("[a-zA-Z!]", "-"));
 		overviewPage.setCharAt(2, ' ');
 
 		// generate images and fill the table
