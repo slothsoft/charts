@@ -91,8 +91,8 @@ public class ExampleFilesGenerator {
 						.resolve(generator.displayName.toLowerCase() + "-" + writer.displayName.toLowerCase() + ".png");
 				writer.chartWriter.accept(chartPath, chart);
 				System.out.println("Generated file: " + chartPath);
-				overviewPage.append("| ![").append(generator.displayName).append("](").append(chartPath.getFileName())
-						.append(") ");
+				overviewPage.append("| ![").append(generator.displayName).append("](examples/")
+						.append(chartPath.getFileName()).append(") ");
 			}
 			overviewPage.append("|\n");
 		}
