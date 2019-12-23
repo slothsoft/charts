@@ -9,10 +9,9 @@ import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
- * This class generates example files for implementations of {@link GraphicsContext}.
+ * This class generates example files for implementations of {@link GraphicContext}.
  *
  * @author Stef Schulz
  * @since 0.1.0
