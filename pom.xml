@@ -10,6 +10,7 @@
 	<modules>
 		<module>charts</module>
 		<module>examples</module>
+		<module>examples-generator</module>
 		<module>swt-charts</module>
 	</modules>
 
@@ -30,6 +31,11 @@
 			<dependency>
 				<groupId>de.slothsoft.charts</groupId>
 				<artifactId>charts</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.slothsoft.charts</groupId>
+				<artifactId>examples</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
