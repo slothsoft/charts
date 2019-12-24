@@ -10,14 +10,14 @@ public class SwtRule implements TestRule {
 	static final boolean FORBIDDEN;
 
 	static {
-		Exception thrownException;
+		Error thrownError;
 		try {
 			Display.getDefault();
-			thrownException = null;
-		} catch (final Exception e) {
-			thrownException = e;
+			thrownError = null;
+		} catch (final Error e) {
+			thrownError = e;
 		}
-		FORBIDDEN = thrownException != null;
+		FORBIDDEN = thrownError != null;
 	}
 
 	@Override
