@@ -46,7 +46,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size in all four directions.
 	 *
-	 * @param newSpace - the space
+	 * @param newSpace the space
 	 * @return this instance
 	 */
 
@@ -58,7 +58,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size in all four directions.
 	 *
-	 * @param space - the space
+	 * @param space the space
 	 */
 
 	public void setSpace(int space) {
@@ -95,7 +95,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size on the bottom.
 	 *
-	 * @param newSpaceOnBottom - the space
+	 * @param newSpaceOnBottom the space
 	 * @return this instance
 	 */
 
@@ -107,7 +107,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size on the bottom.
 	 *
-	 * @param spaceOnBottom - the space
+	 * @param spaceOnBottom the space
 	 */
 
 	public void setSpaceOnBottom(int spaceOnBottom) {
@@ -131,7 +131,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size on the left.
 	 *
-	 * @param newSpaceOnLeft - the space
+	 * @param newSpaceOnLeft the space
 	 * @return this instance
 	 */
 
@@ -143,7 +143,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size on the left.
 	 *
-	 * @param spaceOnLeft - the space
+	 * @param spaceOnLeft the space
 	 */
 
 	public void setSpaceOnLeft(int spaceOnLeft) {
@@ -167,7 +167,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size on the right.
 	 *
-	 * @param newSpaceOnRight - the space
+	 * @param newSpaceOnRight the space
 	 * @return this instance
 	 */
 
@@ -179,7 +179,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size on the right.
 	 *
-	 * @param spaceOnRight - the space
+	 * @param spaceOnRight the space
 	 */
 
 	public void setSpaceOnRight(int spaceOnRight) {
@@ -203,7 +203,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size on the top.
 	 *
-	 * @param newSpaceOnTop - the space
+	 * @param newSpaceOnTop the space
 	 * @return this instance
 	 */
 
@@ -215,7 +215,7 @@ public class Border implements ChartPart {
 	/**
 	 * Sets the border size on the top.
 	 *
-	 * @param spaceOnTop - the space
+	 * @param spaceOnTop the space
 	 */
 
 	public void setSpaceOnTop(int spaceOnTop) {

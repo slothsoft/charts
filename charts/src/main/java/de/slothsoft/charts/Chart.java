@@ -37,8 +37,8 @@ public abstract class Chart {
 	 * what to paint. The instructions contain the area in display coordinates, starting
 	 * from the top left with 0|0 and ending bottom right with something like 800|600.
 	 *
-	 * @param gc - graphic context; coordinates are relative to the screen
-	 * @param instructions - additional instructions like the area to paint on
+	 * @param gc graphic context; coordinates are relative to the screen
+	 * @param instructions additional instructions like the area to paint on
 	 */
 
 	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
@@ -84,8 +84,8 @@ public abstract class Chart {
 	 * Considerations</a>). Coordinates are starting from the top left with 0|0 and ending
 	 * bottom right with something like 800|600.
 	 *
-	 * @param gc - graphic context; coordinates are relative to the screen
-	 * @param instructions - additional instructions like the area to paint on
+	 * @param gc graphic context; coordinates are relative to the screen
+	 * @param instructions additional instructions like the area to paint on
 	 */
 
 	protected abstract void paintGraph(GraphicContext gc, PaintInstructions instructions);
@@ -159,7 +159,7 @@ public abstract class Chart {
 	 * Sets the color as ARGB int, e.g. red is <code>0xFFFF0000</code> and blue is
 	 * <code>0xFF0000FF</code>.
 	 *
-	 * @param newBackgroundColor - the color
+	 * @param newBackgroundColor the color
 	 * @return this instance
 	 */
 
@@ -172,7 +172,7 @@ public abstract class Chart {
 	 * Sets the color as ARGB int, e.g. red is <code>0xFFFF0000</code> and blue is
 	 * <code>0xFF0000FF</code>.
 	 *
-	 * @param backgroundColor - the color
+	 * @param backgroundColor the color
 	 */
 
 	public void setBackgroundColor(int backgroundColor) {

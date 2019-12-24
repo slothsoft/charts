@@ -41,7 +41,7 @@ public class FunctionLine extends Line {
 	/**
 	 * Constructor.
 	 *
-	 * @param function - the function; cannot be null
+	 * @param function the function; cannot be null
 	 */
 
 	public FunctionLine(Function function) {
@@ -99,7 +99,7 @@ public class FunctionLine extends Line {
 	 * Sets the area this line would like to display. The line chart still has to merge
 	 * this area with the preferred area of other {@link Line}s.
 	 *
-	 * @param newPreferredArea - the preferred area; cannot be null
+	 * @param newPreferredArea the preferred area; cannot be null
 	 * @return this instance
 	 */
 
@@ -112,7 +112,7 @@ public class FunctionLine extends Line {
 	 * Sets the area this line would like to display. The line chart still has to merge
 	 * this area with the preferred area of other {@link Line}s.
 	 *
-	 * @param preferredArea - the preferred area; cannot be null
+	 * @param preferredArea the preferred area; cannot be null
 	 */
 
 	public void setPreferredArea(Area preferredArea) {
@@ -136,7 +136,7 @@ public class FunctionLine extends Line {
 	 * {@link #paintOn(GraphicContext, PaintInstructions)}, i.e. a step size of 0.5 will
 	 * draw the x values: 0, 0.5, 1, 1.5, ...
 	 *
-	 * @param newStepSize - the step size
+	 * @param newStepSize the step size
 	 * @return this instance;
 	 */
 
@@ -150,7 +150,7 @@ public class FunctionLine extends Line {
 	 * {@link #paintOn(GraphicContext, PaintInstructions)}, i.e. a step size of 0.5 will
 	 * draw the x values: 0, 0.5, 1, 1.5, ...
 	 *
-	 * @param stepSize - the step size
+	 * @param stepSize the step size
 	 */
 
 	public void setStepSize(double stepSize) {

@@ -31,7 +31,7 @@ public interface GraphicContext {
 	 * Sets the color as ARGB int, e.g. red is <code>0xFFFF0000</code> and blue is
 	 * <code>0xFF0000FF</code>.
 	 *
-	 * @param color - the color
+	 * @param color the color
 	 */
 
 	void setColor(int color);
@@ -52,8 +52,8 @@ public interface GraphicContext {
 	/**
 	 * Moves the drawing canvas's origin to the new coordinates.
 	 *
-	 * @param x - translate x
-	 * @param y - translate y
+	 * @param x translate x
+	 * @param y translate y
 	 */
 
 	void translate(double x, double y);
@@ -61,7 +61,7 @@ public interface GraphicContext {
 	/**
 	 * Scales the drawing canvas with the factor.
 	 *
-	 * @param factor - factor for both x and y
+	 * @param factor factor for both x and y
 	 */
 
 	default void scale(double factor) {
@@ -71,8 +71,8 @@ public interface GraphicContext {
 	/**
 	 * Scales the drawing canvas with the factor.
 	 *
-	 * @param x - factor x
-	 * @param y - factor y
+	 * @param x factor x
+	 * @param y factor y
 	 */
 
 	void scale(double x, double y);
@@ -81,7 +81,7 @@ public interface GraphicContext {
 	 * Restricts which area of the context can be used to drawn on. Set to
 	 * <code>null</code> to remove the restriction again.
 	 *
-	 * @param rect - the clipping area
+	 * @param rect the clipping area
 	 */
 
 	void clip(Area rect);
@@ -106,7 +106,7 @@ public interface GraphicContext {
 	/**
 	 * Paints a filled rectangle.
 	 *
-	 * @param rect - the rectangle's coordinates
+	 * @param rect the rectangle's coordinates
 	 */
 
 	default void fillRectangle(Area rect) {
@@ -116,10 +116,10 @@ public interface GraphicContext {
 	/**
 	 * Paints a filled rectangle.
 	 *
-	 * @param x - the rectangle's x
-	 * @param y - the rectangle's y
-	 * @param width - the rectangle's width
-	 * @param height - the rectangle's height
+	 * @param x the rectangle's x
+	 * @param y the rectangle's y
+	 * @param width the rectangle's width
+	 * @param height the rectangle's height
 	 */
 
 	void fillRectangle(double x, double y, double width, double height);
@@ -127,8 +127,8 @@ public interface GraphicContext {
 	/**
 	 * Paints the outline of a polyline.
 	 *
-	 * @param x - the polygon's x coordinates
-	 * @param y - the polygon's y coordinates
+	 * @param x the polygon's x coordinates
+	 * @param y the polygon's y coordinates
 	 */
 
 	void drawPolyline(double[] x, double[] y);

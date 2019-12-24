@@ -16,7 +16,7 @@ public class PaintInstructions {
 	/**
 	 * Default constructor. Only the area is really needed.
 	 *
-	 * @param area - the area to draw on; cannot be null
+	 * @param area the area to draw on; cannot be null
 	 */
 
 	public PaintInstructions(Area area) {
@@ -36,7 +36,7 @@ public class PaintInstructions {
 	/**
 	 * Sets the area to draw on.
 	 *
-	 * @param newArea - the area to draw on; cannot be null
+	 * @param newArea the area to draw on; cannot be null
 	 * @return this instance
 	 */
 
@@ -48,7 +48,7 @@ public class PaintInstructions {
 	/**
 	 * Sets the area to draw on.
 	 *
-	 * @param area - the area to draw on; cannot be null
+	 * @param area the area to draw on; cannot be null
 	 */
 
 	public void setArea(Area area) {

@@ -21,9 +21,9 @@ public final class SwtChartUtil {
 	/**
 	 * Creates an {@link Image} from a chart.
 	 *
-	 * @param chart - the chart to create an image for
-	 * @param imageWidth - the image's width
-	 * @param imageHeight - the image's height
+	 * @param chart the chart to create an image for
+	 * @param imageWidth the image's width
+	 * @param imageHeight the image's height
 	 * @return an image
 	 */
 

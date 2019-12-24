@@ -16,8 +16,8 @@ public interface Drawable {
 	 * Paints the current content onto the graphic context. Checks the instructions for
 	 * what to paint.
 	 *
-	 * @param gc - graphic context; coordinates are relative to the {@link Chart}
-	 * @param instructions - additional instructions like the area to paint on
+	 * @param gc graphic context; coordinates are relative to the {@link Chart}
+	 * @param instructions additional instructions like the area to paint on
 	 */
 
 	void paintOn(GraphicContext gc, PaintInstructions instructions);

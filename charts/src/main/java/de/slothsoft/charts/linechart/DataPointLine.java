@@ -24,7 +24,7 @@ public class DataPointLine extends Line {
 	 * Constructor with only the y values. The x coordinates will be 0, 1, ..., [length of
 	 * y].
 	 *
-	 * @param y - the values for y
+	 * @param y the values for y
 	 */
 
 	public DataPointLine(double... y) {
@@ -34,8 +34,8 @@ public class DataPointLine extends Line {
 	/**
 	 * Constructor with x and y values. Both arrays need to have the same length.
 	 *
-	 * @param x - the values for x
-	 * @param y - the values for y
+	 * @param x the values for x
+	 * @param y the values for y
 	 */
 
 	public DataPointLine(double[] x, double[] y) {

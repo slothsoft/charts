@@ -75,7 +75,7 @@ public class LineChart extends Chart {
 	/**
 	 * Adds a line to the chart.
 	 *
-	 * @param line - a line to add
+	 * @param line a line to add
 	 */
 
 	public void addLine(Line line) {
@@ -86,7 +86,7 @@ public class LineChart extends Chart {
 	/**
 	 * Adds some lines to the chart.
 	 *
-	 * @param addedLines - lines to add
+	 * @param addedLines lines to add
 	 */
 
 	public void addLines(Line... addedLines) {
@@ -97,7 +97,7 @@ public class LineChart extends Chart {
 	/**
 	 * Removes a line from the chart.
 	 *
-	 * @param line - a line to add
+	 * @param line a line to add
 	 */
 
 	public void removeLine(Line line) {
@@ -108,7 +108,7 @@ public class LineChart extends Chart {
 	/**
 	 * Removes some lines to the chart.
 	 *
-	 * @param removedLines - lines to add
+	 * @param removedLines lines to add
 	 */
 
 	public void removeLines(Line... removedLines) {
@@ -133,7 +133,7 @@ public class LineChart extends Chart {
 	 * <code>null</code> is used to indicate the value is calculated by questioning the
 	 * {@link Line}s.
 	 *
-	 * @param newDisplayedArea - the displayed area
+	 * @param newDisplayedArea the displayed area
 	 * @return this instance
 	 */
 
@@ -147,7 +147,7 @@ public class LineChart extends Chart {
 	 * <code>null</code> is used to indicate the value is calculated by questioning the
 	 * {@link Line}s.
 	 *
-	 * @param displayedArea - the displayed area
+	 * @param displayedArea the displayed area
 	 */
 
 	public void setDisplayedArea(Area displayedArea) {

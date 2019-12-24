@@ -67,7 +67,7 @@ public abstract class Line implements Drawable {
 	 * Sets the color as ARGB int, e.g. red is <code>0xFFFF0000</code> and blue is
 	 * <code>0xFF0000FF</code>.
 	 *
-	 * @param newColor - the color
+	 * @param newColor the color
 	 * @return this instance
 	 */
 
@@ -80,7 +80,7 @@ public abstract class Line implements Drawable {
 	 * Sets the color as ARGB int, e.g. red is <code>0xFFFF0000</code> and blue is
 	 * <code>0xFF0000FF</code>.
 	 *
-	 * @param color - the color
+	 * @param color the color
 	 */
 
 	public void setColor(int color) {

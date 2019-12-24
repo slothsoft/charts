@@ -25,9 +25,9 @@ public class ChartControl extends Canvas {
 	 * Constructs a new instance of this class given its parentand a style value
 	 * describing its behavior and appearance.
 	 *
-	 * @param parent - a composite control which will be the parent of the new instance
+	 * @param parent a composite control which will be the parent of the new instance
 	 *            (cannot be null)
-	 * @param style - the style of control to construct
+	 * @param style the style of control to construct
 	 */
 
 	public ChartControl(Composite parent, int style) {
@@ -66,7 +66,7 @@ public class ChartControl extends Canvas {
 	/**
 	 * Sets the {@link Chart} that gets displayed by this control.
 	 *
-	 * @param newModel - the chart
+	 * @param newModel the chart
 	 * @return this instance
 	 */
 
@@ -78,7 +78,7 @@ public class ChartControl extends Canvas {
 	/**
 	 * Sets the {@link Chart} that gets displayed by this control.
 	 *
-	 * @param model - the chart
+	 * @param model the chart
 	 */
 
 	public void setModel(Chart model) {

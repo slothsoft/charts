@@ -34,7 +34,7 @@ public class SwtGraphicContext implements GraphicContext {
 	/**
 	 * Constructor.
 	 *
-	 * @param delegate - the GC to draw on; cannot be null
+	 * @param delegate the GC to draw on; cannot be null
 	 */
 
 	public SwtGraphicContext(GC delegate) {
@@ -143,7 +143,7 @@ public class SwtGraphicContext implements GraphicContext {
 	/**
 	 * Sets the GC.
 	 *
-	 * @param newDelegate - the GC to draw on; cannot be null
+	 * @param newDelegate the GC to draw on; cannot be null
 	 * @return this instance
 	 */
 
@@ -155,7 +155,7 @@ public class SwtGraphicContext implements GraphicContext {
 	/**
 	 * Sets the GC.
 	 *
-	 * @param delegate - the GC to draw on; cannot be null
+	 * @param delegate the GC to draw on; cannot be null
 	 */
 
 	public void setDelegate(GC delegate) {

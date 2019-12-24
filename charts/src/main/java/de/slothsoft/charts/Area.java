@@ -33,7 +33,7 @@ public class Area {
 	 * Returns an area that is shared between this area and the one coming in. If there
 	 * are no points between the two areas <code>null</code> is returned.
 	 *
-	 * @param area - the area to intersect with
+	 * @param area the area to intersect with
 	 * @return the intersecting area
 	 */
 
@@ -44,7 +44,7 @@ public class Area {
 	/**
 	 * Returns an area surrounding this area and the one coming in.
 	 *
-	 * @param area - the area to unite with
+	 * @param area the area to unite with
 	 * @return the union area
 	 */
 
