@@ -25,18 +25,19 @@ public class LineChart extends Chart {
 
 	final List<Line> lines = new ArrayList<>();
 
+	private Area lastGraphArea;
 	private Area displayedArea;
 
 	@Override
 	protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
-		final Area rect = instructions.getArea();
+		this.lastGraphArea = instructions.getArea();
 
 		final Area graphArea = calculateDisplayedArea();
 		final double graphWidth = graphArea.getEndX() - graphArea.getStartX();
 		final double graphHeight = graphArea.getEndY() - graphArea.getStartY();
 
-		final double actualWidth = rect.getEndX() - rect.getStartX();
-		final double actualHeight = rect.getEndY() - rect.getStartY();
+		final double actualWidth = this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX();
+		final double actualHeight = this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY();
 		final double scaleX = actualWidth / graphWidth;
 		final double scaleY = actualHeight / graphHeight;
 		gc.scale(scaleX, scaleY);
@@ -66,7 +67,7 @@ public class LineChart extends Chart {
 	 * @see #addLines(Line[])
 	 */
 
-	public Area calculateDisplayedArea() {
+	Area calculateDisplayedArea() {
 		if (this.displayedArea != null) return this.displayedArea;
 		if (this.lines.isEmpty()) return Line.createDefaultArea();
 
@@ -164,7 +165,32 @@ public class LineChart extends Chart {
 	}
 
 	/**
-	 * Moves the displayed area of this {@link Chart}.
+	 * Moves the displayed area of this {@link Chart} by the coordinates used for the
+	 * entire chart. Let's say the chart is painted on an area 1000x1000 pixels, but the
+	 * graph only displays something between the coordinates 0 and 1. If you move
+	 * 100pixels in the chart scale, you only need to move the graph 0.1 points.
+	 *
+	 * @param xIncrement the x movement
+	 * @param yIncrement the y movement
+	 */
+
+	public void moveDisplayedAreaByChartCoordinates(double xIncrement, double yIncrement) {
+		if (this.lastGraphArea == null)
+			throw new IllegalArgumentException(
+					"You need to paint the graph at least once before you can move it with this method!");
+		final Area wantedArea = calculateDisplayedArea();
+
+		final double scaleX = (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX())
+				/ (wantedArea.getEndX() - wantedArea.getStartX());
+		final double scaleY = (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY())
+				/ (wantedArea.getEndY() - wantedArea.getStartY());
+
+		moveDisplayedArea(xIncrement / scaleX, yIncrement / scaleY);
+	}
+
+	/**
+	 * Moves the displayed area of this {@link Chart} directly, i.e. adds the movement
+	 * coordinates to the already existing ones.
 	 *
 	 * @param xIncrement the x movement
 	 * @param yIncrement the y movement

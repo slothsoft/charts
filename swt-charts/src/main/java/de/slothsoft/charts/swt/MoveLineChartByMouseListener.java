@@ -86,14 +86,7 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMoveLis
 			final int diffX = this.mouseDownX - e.x;
 			final int diffY = e.y - this.mouseDownY; // for line charts y is flipped
 
-			final Area wantedArea = this.chart.calculateDisplayedArea();
-
-			final double scaleX = (actualArea.getEndX() - actualArea.getStartX())
-					/ (wantedArea.getEndX() - wantedArea.getStartX());
-			final double scaleY = (actualArea.getEndY() - actualArea.getStartY())
-					/ (wantedArea.getEndY() - wantedArea.getStartY());
-
-			this.chart.moveDisplayedArea(diffX / scaleX, diffY / scaleY);
+			this.chart.moveDisplayedAreaByChartCoordinates(diffX, diffY);
 
 			this.mouseDownX = e.x;
 			this.mouseDownY = e.y;
