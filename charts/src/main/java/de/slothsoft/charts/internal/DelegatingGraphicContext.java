@@ -1,4 +1,4 @@
-package de.slothsoft.charts.common;
+package de.slothsoft.charts.internal;
 
 import java.util.Objects;
 

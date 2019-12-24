@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import de.slothsoft.charts.common.Border;
+import de.slothsoft.charts.internal.RefreshListeners;
 
 /**
  * This is the base class this library is for. It represents an abstract chart of some
@@ -20,6 +21,16 @@ public abstract class Chart {
 
 	private final Border border = new Border();
 	private int backgroundColor = 0xFFFFFFFF;
+
+	RefreshListeners refreshListeners = new RefreshListeners(this);
+
+	public Chart() {
+		hookRefreshListenersToChartParts();
+	}
+
+	private void hookRefreshListenersToChartParts() {
+		fetchChartParts().forEach(part -> part.addRefreshListener(e -> fireRefreshNeeded()));
+	}
 
 	/**
 	 * Paints the current content onto the graphic context. Checks the instructions for
@@ -80,6 +91,46 @@ public abstract class Chart {
 	protected abstract void paintGraph(GraphicContext gc, PaintInstructions instructions);
 
 	/**
+	 * Fires a default event for the {@link RefreshListener}s of this chart.
+	 */
+
+	protected void fireRefreshNeeded() {
+		fireRefreshNeeded(new RefreshListener.Event(this));
+	}
+
+	/**
+	 * Fires an event for the {@link RefreshListener}s of this chart.
+	 *
+	 * @param event the event to be fired
+	 */
+
+	protected void fireRefreshNeeded(RefreshListener.Event event) {
+		this.refreshListeners.fireRefreshNeeded(event);
+	}
+
+	/**
+	 * Adds a refresh listener that is called whenever this {@link Chart} needs to be
+	 * redrawn by the GUI.
+	 *
+	 * @param listener a listener
+	 */
+
+	public void addRefreshListener(RefreshListener listener) {
+		this.refreshListeners.addRefreshListener(listener);
+	}
+
+	/**
+	 * Removes a refresh listener that was called whenever this {@link Chart} needed to be
+	 * redrawn by the GUI. Does nothing if the listener was never added.
+	 *
+	 * @param listener a listener
+	 */
+
+	public void removeRefreshListener(RefreshListener listener) {
+		this.refreshListeners.removeRefreshListener(listener);
+	}
+
+	/**
 	 * Returns the border this chart has. The border is supposed to be around everything
 	 * else like this:<br>
 	 * <img src=
@@ -125,7 +176,11 @@ public abstract class Chart {
 	 */
 
 	public void setBackgroundColor(int backgroundColor) {
+		final int oldBackgroundColor = this.backgroundColor;
 		this.backgroundColor = backgroundColor;
+		if (oldBackgroundColor != this.backgroundColor) {
+			fireRefreshNeeded();
+		}
 	}
 
 }

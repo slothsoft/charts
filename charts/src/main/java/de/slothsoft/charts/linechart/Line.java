@@ -2,6 +2,8 @@ package de.slothsoft.charts.linechart;
 
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Drawable;
+import de.slothsoft.charts.RefreshListener;
+import de.slothsoft.charts.internal.RefreshListeners;
 
 /**
  * A line inside the {@link LineChart}. Implementations are:
@@ -27,6 +29,8 @@ public abstract class Line implements Drawable {
 
 	// TODO: for all lines, make it so they are only drawn inside the graph area
 
+	RefreshListeners refreshListeners = new RefreshListeners(this);
+
 	int color = 0xFF0000FF;
 
 	/**
@@ -37,6 +41,16 @@ public abstract class Line implements Drawable {
 	 */
 
 	protected abstract Area calculatePreferredArea();
+
+	@Override
+	public void addRefreshListener(RefreshListener listener) {
+		this.refreshListeners.addRefreshListener(listener);
+	}
+
+	@Override
+	public void removeRefreshListener(RefreshListener listener) {
+		this.refreshListeners.removeRefreshListener(listener);
+	}
 
 	/**
 	 * Returns the color as ARGB int, e.g. red is <code>0xFFFF0000</code> and blue is

@@ -3,6 +3,7 @@ package de.slothsoft.charts.linechart;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Chart;
@@ -79,6 +80,7 @@ public class LineChart extends Chart {
 
 	public void addLine(Line line) {
 		this.lines.add(line);
+		fireRefreshNeeded();
 	}
 
 	/**
@@ -89,6 +91,7 @@ public class LineChart extends Chart {
 
 	public void addLines(Line... addedLines) {
 		this.lines.addAll(Arrays.asList(addedLines));
+		fireRefreshNeeded();
 	}
 
 	/**
@@ -99,6 +102,7 @@ public class LineChart extends Chart {
 
 	public void removeLine(Line line) {
 		this.lines.remove(line);
+		fireRefreshNeeded();
 	}
 
 	/**
@@ -109,6 +113,7 @@ public class LineChart extends Chart {
 
 	public void removeLines(Line... removedLines) {
 		this.lines.removeAll(Arrays.asList(removedLines));
+		fireRefreshNeeded();
 	}
 
 	/**
@@ -146,7 +151,11 @@ public class LineChart extends Chart {
 	 */
 
 	public void setDisplayedArea(Area displayedArea) {
+		final Area oldDisplayedArea = this.displayedArea;
 		this.displayedArea = displayedArea;
+		if (!Objects.equals(displayedArea, oldDisplayedArea)) {
+			fireRefreshNeeded();
+		}
 	}
 
 }

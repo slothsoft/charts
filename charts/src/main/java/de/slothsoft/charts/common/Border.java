@@ -5,12 +5,16 @@ import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.ChartPart;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.RefreshListener;
+import de.slothsoft.charts.internal.RefreshListeners;
 
 /**
  * A border on a {@link Chart}. On default it's only empty space and not visible.
  */
 
 public class Border implements ChartPart {
+
+	RefreshListeners refreshListeners = new RefreshListeners(this);
 
 	private int spaceOnTop = 10;
 	private int spaceOnLeft = 5;
@@ -20,13 +24,23 @@ public class Border implements ChartPart {
 	@Override
 	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
 		// this border is only empty space so don't draw anything
-	}
 
+	}
 	@Override
 	public Area snipNecessarySpace(Area existingArea) {
 		return new Area().startX(existingArea.getStartX() + this.spaceOnLeft)
 				.startY(existingArea.getStartY() + this.spaceOnTop).endX(existingArea.getEndX() - this.spaceOnRight)
 				.endY(existingArea.getEndY() - this.spaceOnBottom);
+	}
+
+	@Override
+	public void addRefreshListener(RefreshListener listener) {
+		this.refreshListeners.addRefreshListener(listener);
+	}
+
+	@Override
+	public void removeRefreshListener(RefreshListener listener) {
+		this.refreshListeners.removeRefreshListener(listener);
 	}
 
 	/**
@@ -48,10 +62,24 @@ public class Border implements ChartPart {
 	 */
 
 	public void setSpace(int space) {
+		final int oldSpace = hashCode(this.spaceOnBottom, this.spaceOnTop, this.spaceOnRight, this.spaceOnLeft);
 		this.spaceOnBottom = space;
 		this.spaceOnTop = space;
 		this.spaceOnRight = space;
 		this.spaceOnLeft = space;
+		final int newSpace = hashCode(this.spaceOnBottom, this.spaceOnTop, this.spaceOnRight, this.spaceOnLeft);
+		if (oldSpace != newSpace) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
+	}
+
+	private static int hashCode(int... a) {
+		int result = 1;
+		for (final long element : a) {
+			final int elementHash = (int) (element ^ (element >>> 32));
+			result = 31 * result + elementHash;
+		}
+		return result;
 	}
 
 	/**
@@ -83,7 +111,11 @@ public class Border implements ChartPart {
 	 */
 
 	public void setSpaceOnBottom(int spaceOnBottom) {
+		final int oldSpaceOnBottom = this.spaceOnBottom;
 		this.spaceOnBottom = spaceOnBottom;
+		if (oldSpaceOnBottom != this.spaceOnBottom) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
 	}
 
 	/**
@@ -115,7 +147,11 @@ public class Border implements ChartPart {
 	 */
 
 	public void setSpaceOnLeft(int spaceOnLeft) {
+		final int oldSpaceOnLeft = this.spaceOnLeft;
 		this.spaceOnLeft = spaceOnLeft;
+		if (oldSpaceOnLeft != this.spaceOnLeft) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
 	}
 
 	/**
@@ -147,7 +183,11 @@ public class Border implements ChartPart {
 	 */
 
 	public void setSpaceOnRight(int spaceOnRight) {
+		final int oldSpaceOnRight = this.spaceOnRight;
 		this.spaceOnRight = spaceOnRight;
+		if (oldSpaceOnRight != this.spaceOnRight) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
 	}
 
 	/**
@@ -179,7 +219,11 @@ public class Border implements ChartPart {
 	 */
 
 	public void setSpaceOnTop(int spaceOnTop) {
+		final int oldSpaceOnTop = this.spaceOnTop;
 		this.spaceOnTop = spaceOnTop;
+		if (oldSpaceOnTop != this.spaceOnTop) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
 	}
 
 }

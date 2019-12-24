@@ -1,7 +1,7 @@
 package de.slothsoft.charts.linechart;
 
 import de.slothsoft.charts.GraphicContext;
-import de.slothsoft.charts.common.DelegatingGraphicContext;
+import de.slothsoft.charts.internal.DelegatingGraphicContext;
 
 /**
  * On the regular screen the point 0|0 is on the top left and x gets bigger going right

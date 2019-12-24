@@ -3,11 +3,15 @@ package de.slothsoft.charts.linechart;
 import org.junit.Assert;
 import org.junit.Test;
 
+import de.slothsoft.charts.AbstractChartTest;
 import de.slothsoft.charts.Area;
 
-public class LineChartTest {
+public class LineChartTest extends AbstractChartTest<LineChart> {
 
-	private final LineChart chart = new LineChart();
+	@Override
+	protected LineChart createChart() {
+		return new LineChart();
+	}
 
 	@Test
 	public void testAddLine() throws Exception {

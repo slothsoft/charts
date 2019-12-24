@@ -22,4 +22,21 @@ public interface Drawable {
 
 	void paintOn(GraphicContext gc, PaintInstructions instructions);
 
+	/**
+	 * Adds a refresh listener that is called whenever this {@link Drawable} needs to be
+	 * redrawn by the GUI.
+	 *
+	 * @param listener a listener
+	 */
+
+	void addRefreshListener(RefreshListener listener);
+
+	/**
+	 * Removes a refresh listener that was called whenever this {@link Drawable} needed to
+	 * be redrawn by the GUI. Does nothing if the listener was never added.
+	 *
+	 * @param listener a listener
+	 */
+
+	void removeRefreshListener(RefreshListener listener);
 }
