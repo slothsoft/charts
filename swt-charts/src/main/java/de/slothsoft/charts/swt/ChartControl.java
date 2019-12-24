@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.RefreshListener;
 
 /**
  * A SWT control displaying a {@link Chart} and hooking it to the SWT framework.
@@ -20,6 +21,8 @@ public class ChartControl extends Canvas {
 
 	private Chart model;
 	private SwtGraphicContext graphicContext;
+
+	private final RefreshListener refreshListener = e -> redraw();
 
 	/**
 	 * Constructs a new instance of this class given its parentand a style value
@@ -82,7 +85,13 @@ public class ChartControl extends Canvas {
 	 */
 
 	public void setModel(Chart model) {
+		if (this.model != null) {
+			this.model.removeRefreshListener(this.refreshListener);
+		}
 		this.model = model;
+		if (this.model != null) {
+			this.model.addRefreshListener(this.refreshListener);
+		}
 		redraw();
 	}
 
@@ -90,6 +99,9 @@ public class ChartControl extends Canvas {
 	public void dispose() {
 		if (this.graphicContext != null) {
 			this.graphicContext.dispose();
+		}
+		if (this.model != null) {
+			this.model.removeRefreshListener(this.refreshListener);
 		}
 		super.dispose();
 	}
