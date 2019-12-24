@@ -18,7 +18,7 @@ A framework for creating charts. For my musings before even beginning see the [P
 
 You need at least **Java 1.8** or above to use this library. You can use Maven as a build tool, but Gradle or using plain JARs should work as well.
 
-The [.travis.yml](.travis.yml) shows which JDK this library is build against.
+The [.travis.yml](.travis.yml) shows which JDK this library is build and tested against.
 
 ### Installing
 

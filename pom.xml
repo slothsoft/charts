@@ -114,7 +114,7 @@
 							<locale>en</locale>
 							<sourceFileIncludes>de/slothsoft/**/*.java</sourceFileIncludes>
 							<notimestamp>true</notimestamp>
-							<reportOutputDirectory>${project.basedir}</reportOutputDirectory>
+							<reportOutputDirectory>${maven.multiModuleProjectDirectory}</reportOutputDirectory>
 							<destDir>docs</destDir>
 							<windowtitle>${project.name}</windowtitle>
 							<doctitle>${project.name}</doctitle>
