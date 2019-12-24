@@ -57,13 +57,18 @@ public class LineChart extends Chart {
 		gc.scale(1 / scaleX, 1 / scaleY);
 	}
 
-	Area calculateDisplayedArea() {
-		if (this.displayedArea != null) {
-			return this.displayedArea;
-		}
-		if (this.lines.isEmpty()) {
-			return Line.createDefaultArea();
-		}
+	/**
+	 * Calculates the displayed area via {@link #getDisplayedArea()} or the added lines.
+	 *
+	 * @return the displayed area
+	 * @see #getDisplayedArea()
+	 * @see #addLine(Line)
+	 * @see #addLines(Line[])
+	 */
+
+	public Area calculateDisplayedArea() {
+		if (this.displayedArea != null) return this.displayedArea;
+		if (this.lines.isEmpty()) return Line.createDefaultArea();
 
 		Area result = new Area();
 		for (final Line line : this.lines) {
@@ -156,6 +161,20 @@ public class LineChart extends Chart {
 		if (!Objects.equals(displayedArea, oldDisplayedArea)) {
 			fireRefreshNeeded();
 		}
+	}
+
+	/**
+	 * Moves the displayed area of this {@link Chart}.
+	 *
+	 * @param xIncrement the x movement
+	 * @param yIncrement the y movement
+	 */
+
+	public void moveDisplayedArea(double xIncrement, double yIncrement) {
+		if (xIncrement == 0 && yIncrement == 0) return;
+		final Area newArea = calculateDisplayedArea().copy();
+		newArea.move(xIncrement, yIncrement);
+		setDisplayedArea(newArea);
 	}
 
 }

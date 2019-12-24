@@ -24,6 +24,10 @@ public abstract class Chart {
 
 	RefreshListeners refreshListeners = new RefreshListeners(this);
 
+	/**
+	 * Default constructor.
+	 */
+
 	public Chart() {
 		hookRefreshListenersToChartParts();
 	}
@@ -65,6 +69,23 @@ public abstract class Chart {
 			gc.translate(-graphArea.getStartX(), -graphArea.getEndY());
 			gc.clip(null);
 		}
+	}
+
+	/**
+	 * Calculates the graph area by removing the {@link ChartPart}s from the entire width
+	 * and height.
+	 *
+	 * @param width the entire width
+	 * @param height the entire height
+	 * @return the graph area
+	 */
+
+	public Area calculateGraphArea(double width, double height) {
+		Area result = new Area(width, height);
+		for (final ChartPart part : fetchChartParts()) {
+			result = part.snipNecessarySpace(result);
+		}
+		return result;
 	}
 
 	/**

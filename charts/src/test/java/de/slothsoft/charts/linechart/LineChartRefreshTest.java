@@ -28,7 +28,9 @@ public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 
 				data(chart -> chart.removeLines(chart.lines.get(0)), true),
 
-				data(chart -> chart.setDisplayedArea(new Area(1, 2, 3, 4))))
+				data(chart -> chart.setDisplayedArea(new Area(1, 2, 3, 4))),
+
+				data(chart -> chart.moveDisplayedArea(1, 2), true))
 
 		);
 		return result;
@@ -38,18 +40,19 @@ public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 		return data(methodCall, false);
 	}
 
-	private static Object[] data(Consumer<LineChart> methodCall, boolean doNotCallTwice) {
-		return new Object[]{methodCall, Boolean.valueOf(doNotCallTwice)};
+	private static Object[] data(Consumer<LineChart> methodCall, boolean secondCallChangesToo) {
+		return new Object[]{methodCall, Boolean.valueOf(secondCallChangesToo)};
 	}
 
-	public LineChartRefreshTest(Consumer<LineChart> methodCall, boolean doNotCallTwice) {
-		super(methodCall, doNotCallTwice);
+	public LineChartRefreshTest(Consumer<LineChart> methodCall, boolean secondCallChangesToo) {
+		super(methodCall, secondCallChangesToo);
 	}
 
 	@Override
 	protected LineChart createChart() {
 		final LineChart result = new LineChart();
 		result.addLine(new DataPointLine(3, 4, 5));
+		result.addLine(new DataPointLine(6, 7, 8));
 		return result;
 	}
 }

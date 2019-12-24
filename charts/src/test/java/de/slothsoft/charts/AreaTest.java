@@ -40,4 +40,12 @@ public class AreaTest {
 		Assert.assertEquals(new Area(1, 2, 3, 4), area1.unite(area2));
 		Assert.assertEquals(new Area(1, 2, 3, 4), area2.unite(area1));
 	}
+
+	@Test
+	public void testMove() throws Exception {
+		final Area area = new Area(1, 2, 4, 7);
+
+		area.move(-1, -2);
+		Assert.assertEquals(new Area(0, 0, 3, 5), area);
+	}
 }

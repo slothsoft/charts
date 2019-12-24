@@ -42,18 +42,18 @@ public abstract class AbstractChartRefreshTest<C extends Chart> {
 		return data(methodCall, false);
 	}
 
-	private static Object[] data(Consumer<Chart> methodCall, boolean doNotCallTwice) {
-		return new Object[]{methodCall, Boolean.valueOf(doNotCallTwice)};
+	private static Object[] data(Consumer<Chart> methodCall, boolean secondCallChangesToo) {
+		return new Object[]{methodCall, Boolean.valueOf(secondCallChangesToo)};
 	}
 
 	private final Consumer<C> methodCall;
-	private final boolean doNotCallTwice;
+	private final boolean secondCallChangesToo;
 
 	protected C chart;
 
-	public AbstractChartRefreshTest(Consumer<C> methodCall, boolean doNotCallTwice) {
+	public AbstractChartRefreshTest(Consumer<C> methodCall, boolean secondCallChangesToo) {
 		this.methodCall = methodCall;
-		this.doNotCallTwice = doNotCallTwice;
+		this.secondCallChangesToo = secondCallChangesToo;
 	}
 
 	@Before
@@ -74,14 +74,23 @@ public abstract class AbstractChartRefreshTest<C extends Chart> {
 
 	@Test
 	public void testRefreshWasNotExecutedOnMultipleCalls() throws Exception {
-		if (this.doNotCallTwice) return;
+		if (this.secondCallChangesToo) {
+			this.methodCall.accept(this.chart);
 
-		this.methodCall.accept(this.chart);
+			final RefreshListener.Event[] called = {null};
+			this.chart.addRefreshListener(e -> called[0] = e);
 
-		final RefreshListener.Event[] called = {null};
-		this.chart.addRefreshListener(e -> called[0] = e);
+			this.methodCall.accept(this.chart);
+			Assert.assertNotNull(called[0]);
 
-		this.methodCall.accept(this.chart);
-		Assert.assertNull(called[0]);
+		} else {
+			this.methodCall.accept(this.chart);
+
+			final RefreshListener.Event[] called = {null};
+			this.chart.addRefreshListener(e -> called[0] = e);
+
+			this.methodCall.accept(this.chart);
+			Assert.assertNull(called[0]);
+		}
 	}
 }

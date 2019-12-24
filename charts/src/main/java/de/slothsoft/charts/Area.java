@@ -56,6 +56,20 @@ public class Area {
 		return new Area(minX, minY, maxX, maxY);
 	}
 
+	/**
+	 * Moves the area.
+	 *
+	 * @param xIncrement the x movement
+	 * @param yIncrement the y movement
+	 */
+
+	public void move(double xIncrement, double yIncrement) {
+		this.startX += xIncrement;
+		this.startY += yIncrement;
+		this.endX += xIncrement;
+		this.endY += yIncrement;
+	}
+
 	public double getEndX() {
 		return this.endX;
 	}

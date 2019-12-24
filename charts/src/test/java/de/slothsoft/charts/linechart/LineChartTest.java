@@ -67,4 +67,22 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 
 		Assert.assertEquals(new Area(1, 2, 3, 4), this.chart.calculateDisplayedArea());
 	}
+
+	@Test
+	public void testMoveDisplayedAreaDefault() throws Exception {
+		this.chart.setDisplayedArea(null);
+		final Area defaultArea = this.chart.calculateDisplayedArea();
+
+		this.chart.moveDisplayedArea(5, 6);
+		Assert.assertEquals(new Area(defaultArea.getStartX() + 5, defaultArea.getStartY() + 6,
+				defaultArea.getEndX() + 5, defaultArea.getEndY() + 6), this.chart.getDisplayedArea());
+	}
+
+	@Test
+	public void testMoveDisplayedArea() throws Exception {
+		this.chart.setDisplayedArea(new Area(1, 2, 4, 7));
+
+		this.chart.moveDisplayedArea(-1, -2);
+		Assert.assertEquals(new Area(0, 0, 3, 5), this.chart.getDisplayedArea());
+	}
 }

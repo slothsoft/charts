@@ -34,7 +34,7 @@ public class ChartControl extends Canvas {
 	 */
 
 	public ChartControl(Composite parent, int style) {
-		super(parent, style);
+		super(parent, style | SWT.DOUBLE_BUFFERED);
 		addPaintListener(this::paintControl);
 		addDisposeListener(e -> dispose());
 	}

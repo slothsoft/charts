@@ -15,8 +15,8 @@ public class ChartRefreshTest extends AbstractChartRefreshTest<Chart> {
 		return AbstractChartRefreshTest.createData();
 	}
 
-	public ChartRefreshTest(Consumer<Chart> methodCall, boolean doNotCallTwice) {
-		super(methodCall, doNotCallTwice);
+	public ChartRefreshTest(Consumer<Chart> methodCall, boolean secondCallChangesToo) {
+		super(methodCall, secondCallChangesToo);
 	}
 
 	@Override

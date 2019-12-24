@@ -4,20 +4,20 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.linechart.DataPointLine;
 import de.slothsoft.charts.linechart.FunctionLine;
 import de.slothsoft.charts.linechart.LineChart;
 import de.slothsoft.charts.swt.ChartControl;
+import de.slothsoft.charts.swt.MoveLineChartByMouseListener;
 
 /**
- * This example displays a simple {@link ChartControl} with a {@link Chart} set on it.
+ * This example displays a simple {@link ChartControl} with a {@link LineChart} set on it.
  *
  * @author Stef Schulz
  * @since 0.1.0
  */
 
-public class SwtExample {
+public class SwtLineChartExample {
 
 	public static void main(String[] args) {
 		final Display display = new Display();
@@ -30,7 +30,10 @@ public class SwtExample {
 
 		final ChartControl chartControl = new ChartControl(shell, SWT.BORDER);
 		chartControl.setModel(chart);
-		chartControl.redraw();
+
+		// hook some additional features to the control
+
+		MoveLineChartByMouseListener.hookToControl(chartControl, chart);
 
 		shell.pack();
 		shell.open();
