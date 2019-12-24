@@ -2,11 +2,14 @@ package de.slothsoft.charts.swt;
 
 import java.util.Objects;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.MouseMoveListener;
+import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.linechart.LineChart;
@@ -39,6 +42,8 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMoveLis
 		return result;
 	}
 
+	private static Cursor handCursor;
+
 	private final LineChart chart;
 	private boolean mouseDown;
 	private int mouseDownX;
@@ -67,13 +72,21 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMoveLis
 
 	@Override
 	public void mouseMove(MouseEvent e) {
+		final Control control = ((Control) e.widget);
+		final Point controlSize = control.getSize();
+		final Area actualArea = this.chart.calculateGraphArea(controlSize.x, controlSize.y);
+
+		if (actualArea.containsPoint(e.x, e.y)) {
+			control.setCursor(getHandCursor(control.getDisplay()));
+		} else {
+			control.setCursor(null);
+		}
+
 		if (this.mouseDown) {
 			final int diffX = this.mouseDownX - e.x;
 			final int diffY = e.y - this.mouseDownY; // for line charts y is flipped
 
 			final Area wantedArea = this.chart.calculateDisplayedArea();
-			final Point controlSize = ((Control) e.widget).getSize();
-			final Area actualArea = this.chart.calculateGraphArea(controlSize.x, controlSize.y);
 
 			final double scaleX = (actualArea.getEndX() - actualArea.getStartX())
 					/ (wantedArea.getEndX() - wantedArea.getStartX());
@@ -85,6 +98,13 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMoveLis
 			this.mouseDownX = e.x;
 			this.mouseDownY = e.y;
 		}
+	}
+
+	private static Cursor getHandCursor(Display display) {
+		if (handCursor == null) {
+			handCursor = new Cursor(display, SWT.CURSOR_HAND);
+		}
+		return handCursor;
 	}
 
 }

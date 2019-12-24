@@ -48,4 +48,21 @@ public class AreaTest {
 		area.move(-1, -2);
 		Assert.assertEquals(new Area(0, 0, 3, 5), area);
 	}
+
+	@Test
+	public void testContainsPoint() throws Exception {
+		Assert.assertTrue(new Area().containsPoint(0, 0));
+		Assert.assertTrue(new Area(1, 2).containsPoint(0.5, 1));
+		Assert.assertTrue(new Area(1, 2, 3, 4).containsPoint(1, 2));
+		Assert.assertTrue(new Area(1, 2, 3, 4).containsPoint(3, 4));
+		Assert.assertTrue(new Area(1, 2, 3, 4).containsPoint(1, 4));
+		Assert.assertTrue(new Area(1, 2, 3, 4).containsPoint(3, 2));
+	}
+
+	@Test
+	public void testContainsPointNot() throws Exception {
+		Assert.assertFalse(new Area().containsPoint(1, 2));
+		Assert.assertFalse(new Area(1, 2).containsPoint(-1, 1));
+		Assert.assertFalse(new Area(1, 2, 3, 4).containsPoint(0, 0));
+	}
 }

@@ -57,6 +57,18 @@ public class Area {
 	}
 
 	/**
+	 * Returns true, if this area contains the point.
+	 * 
+	 * @param x point's x
+	 * @param y point's y
+	 * @return
+	 */
+
+	public boolean containsPoint(double x, double y) {
+		return this.startX <= x && x <= this.endX && this.startY <= y && y <= this.endY;
+	}
+
+	/**
 	 * Moves the area.
 	 *
 	 * @param xIncrement the x movement
