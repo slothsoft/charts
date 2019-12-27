@@ -110,6 +110,9 @@
 		</pluginManagement>
 
 		<plugins>
+		
+			<!-- The next three plug-ins hook Jacoco to the test engines -->
+		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -160,6 +163,8 @@
 				</executions>
 			</plugin>
 
+			<!-- Create an aggregated JUnit report -->
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
@@ -172,6 +177,7 @@
 						</goals>
 						<configuration>
 							<aggregate>true</aggregate>
+							<outputName>index</outputName>
 						</configuration>
 					</execution>
 				</executions>
