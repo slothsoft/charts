@@ -48,6 +48,11 @@ public abstract class AbstractGraphicContextSanityTest {
 
 		this.gc.setColor(0xFF115511);
 		this.gc.drawLine(60, 50, 80, 50);
+
+		this.gc.setColor(0xFF770011);
+		this.gc.translate(60, 60);
+		this.gc.fillPolygon(new double[]{0, 20, 10}, new double[]{0, 0, 10});
+		this.gc.translate(-60, -60);
 	}
 
 	@Test

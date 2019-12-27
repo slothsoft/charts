@@ -1,7 +1,9 @@
 package de.slothsoft.charts;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import de.slothsoft.charts.common.Border;
 import de.slothsoft.charts.internal.RefreshListeners;
@@ -22,6 +24,7 @@ public abstract class Chart {
 	private final Border border = new Border();
 	private int backgroundColor = 0xFFFFFFFF;
 
+	private final List<ChartPart> chartParts = new ArrayList<>();
 	RefreshListeners refreshListeners = new RefreshListeners(this);
 
 	/**
@@ -29,11 +32,12 @@ public abstract class Chart {
 	 */
 
 	public Chart() {
-		hookRefreshListenersToChartParts();
+		addChartPart(this.border);
 	}
 
-	private void hookRefreshListenersToChartParts() {
-		fetchChartParts().forEach(part -> part.addRefreshListener(e -> fireRefreshNeeded()));
+	protected void addChartPart(ChartPart chartPart) {
+		chartPart.addRefreshListener(e -> fireRefreshNeeded());
+		this.chartParts.add(chartPart);
 	}
 
 	/**
@@ -51,20 +55,19 @@ public abstract class Chart {
 
 		// paint all the parts that make up the chart
 
-		Area chartArea = instructions.getArea();
+		Area graphArea = instructions.getArea();
 		for (final ChartPart part : fetchChartParts()) {
-			part.paintOn(gc, instructions.area(chartArea));
-			chartArea = part.snipNecessarySpace(chartArea);
+			part.paintOn(gc, instructions.area(graphArea));
+			graphArea = part.snipNecessarySpace(graphArea);
 		}
 
 		// now paint the actual graph
 
-		final Area graphArea = chartArea;
 		try {
 			gc.clip(graphArea);
 			gc.translate(graphArea.getStartX(), graphArea.getStartY());
 
-			paintGraph(gc, instructions.area(chartArea.copy().startX(0).startY(0)));
+			paintGraph(gc, instructions.area(graphArea.copy().startX(0).startY(0)));
 		} finally {
 			gc.translate(-graphArea.getStartX(), -graphArea.getEndY());
 			gc.clip(null);
@@ -95,8 +98,8 @@ public abstract class Chart {
 	 * @return a list of chart parts
 	 */
 
-	protected Collection<ChartPart> fetchChartParts() {
-		return Arrays.asList(this.border);
+	protected final Collection<ChartPart> fetchChartParts() {
+		return Collections.unmodifiableList(this.chartParts);
 	}
 
 	/**

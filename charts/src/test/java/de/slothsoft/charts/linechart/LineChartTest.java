@@ -177,11 +177,8 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 		this.chart.lastGraphArea = new Area(10, 20, 30, 50);
 
 		Assert.assertEquals(0, this.chart.convertToGraphX(10), DELTA);
-		Assert.assertEquals(60, this.chart.convertToGraphX(30), DELTA);
-		Assert.assertEquals(60, this.chart.convertToGraphX(30), DELTA);
-		Assert.assertEquals(0, this.chart.convertToGraphX(10), DELTA);
-		Assert.assertEquals(0, this.chart.convertToGraphX(10), DELTA);
 		Assert.assertEquals(30, this.chart.convertToGraphX(20), DELTA);
+		Assert.assertEquals(60, this.chart.convertToGraphX(30), DELTA);
 	}
 
 	@Test
@@ -203,11 +200,8 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 		this.chart.lastGraphArea = new Area(10, 20, 30, 50);
 
 		Assert.assertEquals(60, this.chart.convertToGraphY(20), DELTA);
-		Assert.assertEquals(60, this.chart.convertToGraphY(20), DELTA);
-		Assert.assertEquals(0, this.chart.convertToGraphY(50), DELTA);
-		Assert.assertEquals(0, this.chart.convertToGraphY(50), DELTA);
-		Assert.assertEquals(0, this.chart.convertToGraphY(50), DELTA);
 		Assert.assertEquals(40, this.chart.convertToGraphY(30), DELTA);
+		Assert.assertEquals(0, this.chart.convertToGraphY(50), DELTA);
 	}
 
 	@Test
@@ -216,11 +210,8 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 		this.chart.lastGraphArea = new Area(10, 20, 30, 50);
 
 		Assert.assertEquals(80, this.chart.convertToGraphY(20), DELTA);
-		Assert.assertEquals(80, this.chart.convertToGraphY(20), DELTA);
-		Assert.assertEquals(20, this.chart.convertToGraphY(50), DELTA);
-		Assert.assertEquals(20, this.chart.convertToGraphY(50), DELTA);
-		Assert.assertEquals(20, this.chart.convertToGraphY(50), DELTA);
 		Assert.assertEquals(60, this.chart.convertToGraphY(30), DELTA);
+		Assert.assertEquals(20, this.chart.convertToGraphY(50), DELTA);
 	}
 
 	@Test
@@ -372,4 +363,45 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 
 		Assert.assertEquals(null, this.chart.getDisplayedArea());
 	}
+
+	@Test
+	public void testConvertToChartX() throws Exception {
+		this.chart.setDisplayedArea(new Area(60, 60));
+		this.chart.lastGraphArea = new Area(10, 20, 30, 50);
+
+		Assert.assertEquals(10, this.chart.convertToChartX(0), DELTA);
+		Assert.assertEquals(20, this.chart.convertToChartX(30), DELTA);
+		Assert.assertEquals(30, this.chart.convertToChartX(60), DELTA);
+	}
+
+	@Test
+	public void testConvertToChartXMoved10x20() throws Exception {
+		this.chart.setDisplayedArea(new Area(10, 20, 70, 80));
+		this.chart.lastGraphArea = new Area(10, 20, 30, 50);
+
+		Assert.assertEquals(10, this.chart.convertToChartX(10), DELTA);
+		Assert.assertEquals(20, this.chart.convertToChartX(40), DELTA);
+		Assert.assertEquals(30, this.chart.convertToChartX(70), DELTA);
+	}
+
+	@Test
+	public void testConvertToChartY() throws Exception {
+		this.chart.setDisplayedArea(new Area(60, 60));
+		this.chart.lastGraphArea = new Area(10, 20, 30, 50);
+
+		Assert.assertEquals(20, this.chart.convertToChartY(60), DELTA);
+		Assert.assertEquals(30, this.chart.convertToChartY(40), DELTA);
+		Assert.assertEquals(50, this.chart.convertToChartY(0), DELTA);
+	}
+
+	@Test
+	public void testConvertToChartYMoved10x20() throws Exception {
+		this.chart.setDisplayedArea(new Area(10, 20, 70, 80));
+		this.chart.lastGraphArea = new Area(10, 20, 30, 50);
+
+		Assert.assertEquals(20, this.chart.convertToChartY(80), DELTA);
+		Assert.assertEquals(30, this.chart.convertToChartY(60), DELTA);
+		Assert.assertEquals(50, this.chart.convertToChartY(20), DELTA);
+	}
+
 }

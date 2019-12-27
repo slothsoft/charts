@@ -39,5 +39,7 @@ public interface ChartPart extends Drawable {
 	 * @return the area for the next parts
 	 */
 
-	Area snipNecessarySpace(Area existingArea);
+	default Area snipNecessarySpace(Area existingArea) {
+		return existingArea;
+	}
 }

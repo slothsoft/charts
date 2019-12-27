@@ -51,7 +51,47 @@ public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 				data("zoomDisplayedAreaOutByGraphCoordinates",
 						chart -> chart.zoomDisplayedAreaOutByGraphCoordinates(1, 2), true),
 
-				data("resetDisplayedArea", chart -> chart.resetDisplayedArea())
+				data("resetDisplayedArea", chart -> chart.resetDisplayedArea()),
+
+				data("XAxis.setTickSize", chart -> chart.getXAxis().setTickSize(5)),
+
+				data("XAxis.tickSize", chart -> chart.getXAxis().tickSize(5)),
+
+				data("XAxis.setBigTickSize", chart -> chart.getXAxis().setBigTickSize(5)),
+
+				data("XAxis.bigTickSize", chart -> chart.getXAxis().bigTickSize(5)),
+
+				data("YAxis.setTickSize", chart -> chart.getYAxis().setTickSize(5)),
+
+				data("YAxis.tickSize", chart -> chart.getYAxis().tickSize(5)),
+
+				data("YAxis.setBigTickSize", chart -> chart.getYAxis().setBigTickSize(5)),
+
+				data("YAxis.bigTickSize", chart -> chart.getYAxis().bigTickSize(5)),
+
+				data("XAxis.setTickSteps", chart -> chart.getXAxis().setTickSteps(5)),
+
+				data("XAxis.tickSteps", chart -> chart.getXAxis().tickSteps(5)),
+
+				data("XAxis.setBigTickSteps", chart -> chart.getXAxis().setBigTickSteps(3)),
+
+				data("XAxis.bigTickSteps", chart -> chart.getXAxis().bigTickSteps(3)),
+
+				data("XAxis.arrowSize", chart -> chart.getXAxis().arrowSize(5)),
+
+				data("XAxis.setArrowSize", chart -> chart.getXAxis().setArrowSize(5)),
+
+				data("YAxis.setTickSteps", chart -> chart.getYAxis().setTickSteps(5)),
+
+				data("YAxis.tickSteps", chart -> chart.getYAxis().tickSteps(5)),
+
+				data("YAxis.setBigTickSteps", chart -> chart.getYAxis().setBigTickSteps(3)),
+
+				data("YAxis.bigTickSteps", chart -> chart.getYAxis().bigTickSteps(3)),
+
+				data("YAxis.arrowSize", chart -> chart.getYAxis().arrowSize(5)),
+
+				data("YAxis.setArrowSize", chart -> chart.getYAxis().setArrowSize(5))
 
 		));
 		return result;

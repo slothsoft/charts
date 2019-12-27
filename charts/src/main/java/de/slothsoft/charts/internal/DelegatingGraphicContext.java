@@ -63,11 +63,11 @@ public class DelegatingGraphicContext implements GraphicContext {
 
 	@Override
 	public void drawPolyline(double[] x, double[] y) {
-		final double[] otherY = new double[y.length];
-		for (int i = 0; i < otherY.length; i++) {
-			otherY[i] = -y[i];
-		}
-		this.delegate.drawPolyline(x, otherY);
+		this.delegate.drawPolyline(x, y);
 	}
 
+	@Override
+	public void fillPolygon(double[] x, double[] y) {
+		this.delegate.fillPolygon(x, y);
+	}
 }

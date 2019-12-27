@@ -47,7 +47,7 @@ public class GraphicsGenerator {
 
 	static class AllMethodsChart extends Chart {
 
-		// Note: the same calls are in AbstractGraphicContextTest
+		// Note: the same calls are in AbstractGraphicContextSanityTest
 
 		@Override
 		protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
@@ -64,6 +64,11 @@ public class GraphicsGenerator {
 
 			gc.setColor(0xFF115511);
 			gc.drawLine(60, 50, 80, 50);
+
+			gc.setColor(0xFF770011);
+			gc.translate(60, 60);
+			gc.fillPolygon(new double[]{0, 20, 10}, new double[]{0, 0, 10});
+			gc.translate(-60, -60);
 		}
 	}
 }

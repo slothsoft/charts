@@ -71,6 +71,7 @@ public abstract class AbstractChartRefreshTest<C extends Chart> {
 
 		this.methodCall.accept(this.chart);
 		Assert.assertNotNull(called[0]);
+		Assert.assertNotNull(called[0].getSource());
 	}
 
 	@Test

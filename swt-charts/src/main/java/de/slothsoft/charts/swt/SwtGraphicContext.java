@@ -110,12 +110,21 @@ public class SwtGraphicContext implements GraphicContext {
 
 	@Override
 	public void drawPolyline(double[] x, double[] y) {
+		this.delegate.drawPolyline(convertToSwtPoints(x, y));
+	}
+
+	private int[] convertToSwtPoints(double[] x, double[] y) {
 		final int[] points = new int[x.length + y.length];
 		for (int i = 0; i < x.length; i++) {
 			points[2 * i] = (int) (this.scaleX * x[i]);
 			points[2 * i + 1] = (int) (this.scaleY * y[i]);
 		}
-		this.delegate.drawPolyline(points);
+		return points;
+	}
+
+	@Override
+	public void fillPolygon(double[] x, double[] y) {
+		this.delegate.fillPolygon(convertToSwtPoints(x, y));
 	}
 
 	/**

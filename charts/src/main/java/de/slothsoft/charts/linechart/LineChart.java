@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.ChartPart;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
 
@@ -27,13 +28,28 @@ public class LineChart extends Chart {
 
 	Area lastGraphArea;
 
+	private final XAxis xAxis = new XAxis(this);
+	private final YAxis yAxis = new YAxis(this);
+
 	private Area displayedArea;
 	private double zoomFactor = 0.25;
 
+	public LineChart() {
+		addChartPart(this.xAxis);
+		addChartPart(this.yAxis);
+	}
+
+	@Override
+	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
+		this.lastGraphArea = instructions.getArea().copy();
+		for (final ChartPart part : fetchChartParts()) {
+			this.lastGraphArea = part.snipNecessarySpace(this.lastGraphArea);
+		}
+		super.paintOn(gc, instructions);
+	}
+
 	@Override
 	protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
-		this.lastGraphArea = instructions.getArea();
-
 		final Area graphArea = calculateDisplayedArea();
 		final double graphWidth = graphArea.getEndX() - graphArea.getStartX();
 		final double graphHeight = graphArea.getEndY() - graphArea.getStartY();
@@ -313,6 +329,44 @@ public class LineChart extends Chart {
 	}
 
 	/**
+	 * Converts a graph coordinate to a chart one. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param graphX the x coordinate in the graph's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToChartY(double)
+	 */
+
+	public double convertToChartX(double graphX) {
+		requireLastGraphAreaNotNull();
+		final Area wantedArea = calculateDisplayedArea();
+
+		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())
+				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());
+		return (graphX - wantedArea.getStartX()) / scale + this.lastGraphArea.getStartX();
+	}
+
+	/**
+	 * Converts a graph coordinate to a chart one. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param graphY the y coordinate in the graph's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToChartX(double)
+	 */
+
+	public double convertToChartY(double graphY) {
+		requireLastGraphAreaNotNull();
+		final Area wantedArea = calculateDisplayedArea();
+
+		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())
+				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());
+		return (-graphY + wantedArea.getEndY()) / scale + this.lastGraphArea.getStartY();
+	}
+
+	/**
 	 * Resets the displayed area.
 	 *
 	 * @see #setDisplayedArea(Area)
@@ -411,4 +465,23 @@ public class LineChart extends Chart {
 		this.zoomFactor = zoomFactor;
 	}
 
+	/**
+	 * Returns the x axis of this line chart.
+	 *
+	 * @return the x axis
+	 */
+
+	public XAxis getXAxis() {
+		return this.xAxis;
+	}
+
+	/**
+	 * Returns the y axis of this line chart.
+	 *
+	 * @return the y axis
+	 */
+
+	public YAxis getYAxis() {
+		return this.yAxis;
+	}
 }

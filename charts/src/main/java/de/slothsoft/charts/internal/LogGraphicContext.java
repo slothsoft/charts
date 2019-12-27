@@ -69,4 +69,9 @@ public class LogGraphicContext implements GraphicContext {
 		return result.toString();
 	}
 
+	@Override
+	public void fillPolygon(double[] x, double[] y) {
+		this.log.add("fillPolygon(" + toString(x) + ", " + toString(y) + ")");
+	}
+
 }

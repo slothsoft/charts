@@ -68,7 +68,6 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMoveLis
 			this.mouseDown = true;
 			this.mouseDownX = e.x;
 			this.mouseDownY = e.y;
-			System.out.println("MoveLineChartByMouseListener.mouseDown()");
 		}
 	}
 

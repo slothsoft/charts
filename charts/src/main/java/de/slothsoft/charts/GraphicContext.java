@@ -21,7 +21,6 @@ public interface GraphicContext {
 	// TODO: these methods are missing to make the existing ones complete:
 	// void drawRectangle(Rectangle rect);
 	// void drawRectangle(double x, double y, double width, double height);
-	// void fillPolygon(double[] x, double[] y);
 
 	// ======
 	// CONFIG
@@ -129,8 +128,19 @@ public interface GraphicContext {
 	 *
 	 * @param x the polygon's x coordinates
 	 * @param y the polygon's y coordinates
+	 * @see #fillPolygon(double[], double[])
 	 */
 
 	void drawPolyline(double[] x, double[] y);
+
+	/**
+	 * Paints a filled polygon.
+	 *
+	 * @param x the polygon's x coordinates
+	 * @param y the polygon's y coordinates
+	 * @see #drawPolyline(double[], double[])
+	 */
+
+	void fillPolygon(double[] x, double[] y);
 
 }

@@ -35,4 +35,21 @@ class FlipYGraphicContext extends DelegatingGraphicContext {
 		super.fillRectangle(x, -y - height, width, height);
 	}
 
+	@Override
+	public void drawPolyline(double[] x, double[] y) {
+		super.drawPolyline(x, flipY(y));
+	}
+
+	private static double[] flipY(double[] y) {
+		final double[] otherY = new double[y.length];
+		for (int i = 0; i < otherY.length; i++) {
+			otherY[i] = -y[i];
+		}
+		return otherY;
+	}
+
+	@Override
+	public void fillPolygon(double[] x, double[] y) {
+		super.fillPolygon(x, flipY(y));
+	}
 }
