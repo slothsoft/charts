@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RefreshListeners.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.internal</a> &gt; <span class="el_source">RefreshListeners.java</span></div><h1>RefreshListeners.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.internal;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import de.slothsoft.charts.RefreshListener;
+
+/**
+ * A class that capsules all the functionality needed to get the {@link RefreshListener}
+ * to work correctly.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public class RefreshListeners {
+
+	private final Object source;
+<span class="fc" id="L19">	final List&lt;RefreshListener&gt; refreshListeners = new ArrayList&lt;&gt;();</span>
+
+	/**
+	 * Default constructor.
+	 *
+	 * @param source the source of the events; can be null
+	 */
+
+<span class="fc" id="L27">	public RefreshListeners(Object source) {</span>
+<span class="fc" id="L28">		this.source = source;</span>
+<span class="fc" id="L29">	}</span>
+
+	/**
+	 * Fires a default event for the {@link RefreshListener}s of the source.
+	 */
+
+	public void fireRefreshNeeded() {
+<span class="fc" id="L36">		fireRefreshNeeded(new RefreshListener.Event(this.source));</span>
+<span class="fc" id="L37">	}</span>
+
+	/**
+	 * Fires an event for the {@link RefreshListener}s of the source.
+	 *
+	 * @param event the event to be fired
+	 */
+
+	public void fireRefreshNeeded(RefreshListener.Event event) {
+<span class="fc bfc" id="L46" title="All 2 branches covered.">		if (this.refreshListeners.isEmpty()) return;</span>
+		for (final RefreshListener listener : this.refreshListeners
+<span class="fc bfc" id="L48" title="All 2 branches covered.">				.toArray(new RefreshListener[this.refreshListeners.size()])) {</span>
+<span class="fc" id="L49">			listener.refreshNeeded(event);</span>
+		}
+<span class="fc" id="L51">	}</span>
+
+	/**
+	 * Adds a refresh listener that is called whenever the source needs to be redrawn by
+	 * the GUI.
+	 *
+	 * @param listener a listener
+	 */
+
+	public void addRefreshListener(RefreshListener listener) {
+<span class="fc" id="L61">		this.refreshListeners.add(listener);</span>
+<span class="fc" id="L62">	}</span>
+
+	/**
+	 * Removes a refresh listener that was called whenever the source needed to be redrawn
+	 * by the GUI. Does nothing if the listener was never added.
+	 *
+	 * @param listener a listener
+	 */
+
+	public void removeRefreshListener(RefreshListener listener) {
+<span class="fc" id="L72">		this.refreshListeners.remove(listener);</span>
+<span class="fc" id="L73">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

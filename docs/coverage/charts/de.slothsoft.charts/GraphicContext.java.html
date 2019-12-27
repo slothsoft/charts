@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>GraphicContext.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts</a> &gt; <span class="el_source">GraphicContext.java</span></div><h1>GraphicContext.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts;
+
+/**
+ * Something you can draw on. This is used to have different frameworks interact with this
+ * library. Some notes:
+ *
+ * &lt;ul&gt;
+ * &lt;li&gt;&lt;code&gt;drawX&lt;/code&gt; - means that {@link #getColor()} will be used as the border of
+ * the figure X&lt;/li&gt;
+ * &lt;li&gt;&lt;code&gt;fillX&lt;/code&gt; - means that {@link #getColor()} will be used as the area of the
+ * figure X&lt;/li&gt;
+ * &lt;/ul&gt;
+ *
+ * Classes are connected like this: &lt;br&gt;
+ * &lt;img src=&quot;https://raw.githubusercontent.com/wiki/slothsoft/charts/images/UML.png&quot; alt=
+ * &quot;UML Diagram&quot;&gt;
+ */
+
+public interface GraphicContext {
+
+	// TODO: these methods are missing to make the existing ones complete:
+	// void drawRectangle(Rectangle rect);
+	// void drawRectangle(double x, double y, double width, double height);
+	// void fillPolygon(double[] x, double[] y);
+
+	// ======
+	// CONFIG
+	// ======
+
+	/**
+	 * Sets the color as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue is
+	 * &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @param color the color
+	 */
+
+	void setColor(int color);
+
+	/**
+	 * Returns the color as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue is
+	 * &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @return the color
+	 */
+
+	int getColor();
+
+	// ==============
+	// ADVANCED STUFF
+	// ==============
+
+	/**
+	 * Moves the drawing canvas's origin to the new coordinates.
+	 *
+	 * @param x translate x
+	 * @param y translate y
+	 */
+
+	void translate(double x, double y);
+
+	/**
+	 * Scales the drawing canvas with the factor.
+	 *
+	 * @param factor factor for both x and y
+	 */
+
+	default void scale(double factor) {
+<span class="fc" id="L68">		scale(factor, factor);</span>
+<span class="fc" id="L69">	}</span>
+
+	/**
+	 * Scales the drawing canvas with the factor.
+	 *
+	 * @param x factor x
+	 * @param y factor y
+	 */
+
+	void scale(double x, double y);
+
+	/**
+	 * Restricts which area of the context can be used to drawn on. Set to
+	 * &lt;code&gt;null&lt;/code&gt; to remove the restriction again.
+	 *
+	 * @param rect the clipping area
+	 */
+
+	void clip(Area rect);
+
+	// ===================
+	// STUFF TO PAINT WITH
+	// ===================
+
+	/**
+	 * Draws a simple line between two points.
+	 *
+	 * @param x1 - start point x
+	 * @param y1 - start point y
+	 * @param x2 - end point x
+	 * @param y2 - end point y
+	 */
+
+	default void drawLine(double x1, double y1, double x2, double y2) {
+<span class="fc" id="L103">		drawPolyline(new double[]{x1, x2}, new double[]{y1, y2});</span>
+<span class="fc" id="L104">	}</span>
+
+	/**
+	 * Paints a filled rectangle.
+	 *
+	 * @param rect the rectangle's coordinates
+	 */
+
+	default void fillRectangle(Area rect) {
+<span class="fc" id="L113">		fillRectangle(rect.startX, rect.startY, rect.endX - rect.startX, rect.endY - rect.startY);</span>
+<span class="fc" id="L114">	}</span>
+
+	/**
+	 * Paints a filled rectangle.
+	 *
+	 * @param x the rectangle's x
+	 * @param y the rectangle's y
+	 * @param width the rectangle's width
+	 * @param height the rectangle's height
+	 */
+
+	void fillRectangle(double x, double y, double width, double height);
+
+	/**
+	 * Paints the outline of a polyline.
+	 *
+	 * @param x the polygon's x coordinates
+	 * @param y the polygon's y coordinates
+	 */
+
+	void drawPolyline(double[] x, double[] y);
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

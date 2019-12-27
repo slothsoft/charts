@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>FlipYGraphicContext.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.linechart</a> &gt; <span class="el_source">FlipYGraphicContext.java</span></div><h1>FlipYGraphicContext.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.linechart;
+
+import de.slothsoft.charts.GraphicContext;
+import de.slothsoft.charts.internal.DelegatingGraphicContext;
+
+/**
+ * On the regular screen the point 0|0 is on the top left and x gets bigger going right
+ * while y gets bigger going down. In a line chart x is the same but y goes up. So we flip
+ * y so it's easier to draw?
+ */
+
+class FlipYGraphicContext extends DelegatingGraphicContext {
+
+	public FlipYGraphicContext(GraphicContext delegate) {
+<span class="fc" id="L15">		super(delegate);</span>
+<span class="fc" id="L16">	}</span>
+
+	@Override
+	public void translate(double x, double y) {
+<span class="nc" id="L20">		super.translate(x, -y);</span>
+<span class="nc" id="L21">	}</span>
+
+	@Override
+	public void scale(double x, double y) {
+<span class="nc" id="L25">		super.scale(x, -y);</span>
+<span class="nc" id="L26">	}</span>
+
+	@Override
+	public void drawLine(double x1, double y1, double x2, double y2) {
+<span class="nc" id="L30">		super.drawLine(x1, -y1, x2, -y2);</span>
+<span class="nc" id="L31">	}</span>
+
+	@Override
+	public void fillRectangle(double x, double y, double width, double height) {
+<span class="nc" id="L35">		super.fillRectangle(x, -y - height, width, height);</span>
+<span class="nc" id="L36">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

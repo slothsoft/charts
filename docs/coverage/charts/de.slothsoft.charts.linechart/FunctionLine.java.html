@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>FunctionLine.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.linechart</a> &gt; <span class="el_source">FunctionLine.java</span></div><h1>FunctionLine.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.linechart;
+
+import java.util.Objects;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.GraphicContext;
+import de.slothsoft.charts.PaintInstructions;
+
+/**
+ * A {@link Line} that is based on a function.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public class FunctionLine extends Line {
+
+	/**
+	 * The function a {@link FunctionLine} is based on.
+	 *
+	 * @author Stef Schulz
+	 * @since 0.1.0
+	 */
+
+	public static interface Function {
+
+		/**
+		 * Applies this function to the given argument.
+		 *
+		 * @param x the function argument
+		 * @return the function result (y)
+		 */
+
+		double apply(double x);
+	}
+
+	final Function function;
+	private Area preferredArea;
+<span class="fc" id="L39">	private double stepSize = 0.5;</span>
+
+	/**
+	 * Constructor.
+	 *
+	 * @param function the function; cannot be null
+	 */
+
+<span class="fc" id="L47">	public FunctionLine(Function function) {</span>
+<span class="fc" id="L48">		this.function = Objects.requireNonNull(function);</span>
+<span class="fc" id="L49">		this.preferredArea = calculateInitialPreferredArea();</span>
+<span class="fc" id="L50">	}</span>
+
+	private Area calculateInitialPreferredArea() {
+<span class="fc" id="L53">		double startY = this.function.apply(DEFAULT_START_X);</span>
+<span class="fc" id="L54">		double endY = startY;</span>
+
+<span class="fc bfc" id="L56" title="All 2 branches covered.">		for (int x = DEFAULT_START_X + 1; x &lt;= DEFAULT_END_X; x++) {</span>
+<span class="fc" id="L57">			final double yValue = this.function.apply(x);</span>
+<span class="fc" id="L58">			startY = Math.min(yValue, startY);</span>
+<span class="fc" id="L59">			endY = Math.max(yValue, endY);</span>
+		}
+<span class="fc" id="L61">		return new Area().startX(DEFAULT_START_X).startY(Math.min(0, startY)).endX(DEFAULT_END_X)</span>
+<span class="fc" id="L62">				.endY(Math.max(0, endY));</span>
+	}
+
+	@Override
+	protected Area calculatePreferredArea() {
+<span class="fc" id="L67">		return this.preferredArea;</span>
+	}
+
+	@Override
+	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
+<span class="nc" id="L72">		final Area drawnArea = instructions.getArea();</span>
+<span class="nc" id="L73">		final double startX = drawnArea.getStartX();</span>
+<span class="nc" id="L74">		final double endX = drawnArea.getEndX();</span>
+
+<span class="nc" id="L76">		final int xLength = (int) ((endX - startX) / this.stepSize + 1);</span>
+<span class="nc" id="L77">		final double[] x = new double[xLength];</span>
+<span class="nc" id="L78">		final double[] y = new double[xLength];</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">		for (int i = 0; i &lt; xLength; i++) {</span>
+<span class="nc" id="L80">			x[i] = startX + i * this.stepSize;</span>
+<span class="nc" id="L81">			y[i] = this.function.apply(x[i]);</span>
+		}
+<span class="nc" id="L83">		gc.setColor(this.color);</span>
+<span class="nc" id="L84">		gc.drawPolyline(x, y);</span>
+<span class="nc" id="L85">	}</span>
+
+	/**
+	 * Returns the area this line would like to display. The line chart still has to merge
+	 * this area with the preferred area of other {@link Line}s.
+	 *
+	 * @return the preferred area; never null
+	 */
+
+	public Area getPreferredArea() {
+<span class="fc" id="L95">		return this.preferredArea;</span>
+	}
+
+	/**
+	 * Sets the area this line would like to display. The line chart still has to merge
+	 * this area with the preferred area of other {@link Line}s.
+	 *
+	 * @param newPreferredArea the preferred area; cannot be null
+	 * @return this instance
+	 */
+
+	public FunctionLine preferredArea(Area newPreferredArea) {
+<span class="nc" id="L107">		setPreferredArea(newPreferredArea);</span>
+<span class="nc" id="L108">		return this;</span>
+	}
+
+	/**
+	 * Sets the area this line would like to display. The line chart still has to merge
+	 * this area with the preferred area of other {@link Line}s.
+	 *
+	 * @param preferredArea the preferred area; cannot be null
+	 */
+
+	public void setPreferredArea(Area preferredArea) {
+<span class="nc" id="L119">		this.preferredArea = Objects.requireNonNull(preferredArea);</span>
+<span class="nc" id="L120">	}</span>
+
+	/**
+	 * Returns the value that is used to determine which x values are drawn in
+	 * {@link #paintOn(GraphicContext, PaintInstructions)}, i.e. a step size of 0.5 will
+	 * draw the x values: 0, 0.5, 1, 1.5, ...
+	 *
+	 * @return the step size
+	 */
+
+	public double getStepSize() {
+<span class="nc" id="L131">		return this.stepSize;</span>
+	}
+
+	/**
+	 * Sets the value that is used to determine which x values are drawn in
+	 * {@link #paintOn(GraphicContext, PaintInstructions)}, i.e. a step size of 0.5 will
+	 * draw the x values: 0, 0.5, 1, 1.5, ...
+	 *
+	 * @param newStepSize the step size
+	 * @return this instance;
+	 */
+
+	public FunctionLine stepSize(double newStepSize) {
+<span class="nc" id="L144">		setStepSize(newStepSize);</span>
+<span class="nc" id="L145">		return this;</span>
+	}
+
+	/**
+	 * Sets the value that is used to determine which x values are drawn in
+	 * {@link #paintOn(GraphicContext, PaintInstructions)}, i.e. a step size of 0.5 will
+	 * draw the x values: 0, 0.5, 1, 1.5, ...
+	 *
+	 * @param stepSize the step size
+	 */
+
+	public void setStepSize(double stepSize) {
+<span class="nc" id="L157">		this.stepSize = stepSize;</span>
+<span class="nc" id="L158">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

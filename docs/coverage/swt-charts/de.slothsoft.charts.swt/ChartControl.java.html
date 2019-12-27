@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ChartControl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">swt-charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.swt</a> &gt; <span class="el_source">ChartControl.java</span></div><h1>ChartControl.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.swt;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.widgets.Composite;
+
+import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.RefreshListener;
+
+/**
+ * A SWT control displaying a {@link Chart} and hooking it to the SWT framework.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public class ChartControl extends Canvas {
+
+	private Chart model;
+	private SwtGraphicContext graphicContext;
+
+<span class="pc" id="L25">	private final RefreshListener refreshListener = e -&gt; redraw();</span>
+
+	/**
+	 * Constructs a new instance of this class given its parentand a style value
+	 * describing its behavior and appearance.
+	 *
+	 * @param parent a composite control which will be the parent of the new instance
+	 *            (cannot be null)
+	 * @param style the style of control to construct
+	 */
+
+	public ChartControl(Composite parent, int style) {
+<span class="fc" id="L37">		super(parent, style | SWT.DOUBLE_BUFFERED);</span>
+<span class="fc" id="L38">		addPaintListener(this::paintControl);</span>
+<span class="fc" id="L39">		addDisposeListener(e -&gt; dispose());</span>
+<span class="fc" id="L40">	}</span>
+
+	private void paintControl(PaintEvent e) {
+<span class="fc" id="L43">		final Rectangle rect = getClientArea();</span>
+<span class="fc" id="L44">		e.gc.setAntialias(SWT.ON);</span>
+
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">		if (this.model != null) {</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">			if (this.graphicContext == null) {</span>
+<span class="nc" id="L48">				this.graphicContext = new SwtGraphicContext(e.gc);</span>
+			} else {
+<span class="nc" id="L50">				this.graphicContext.delegate(e.gc);</span>
+			}
+
+<span class="nc" id="L53">			final PaintInstructions instructions = new PaintInstructions(</span>
+					new de.slothsoft.charts.Area(rect.x, rect.y, rect.width, rect.height));
+<span class="nc" id="L55">			this.model.paintOn(this.graphicContext, instructions);</span>
+		}
+<span class="fc" id="L57">	}</span>
+
+	/**
+	 * Returns the {@link Chart} that gets displayed by this control.
+	 *
+	 * @return the chart
+	 */
+
+	public Chart getModel() {
+<span class="nc" id="L66">		return this.model;</span>
+	}
+
+	/**
+	 * Sets the {@link Chart} that gets displayed by this control.
+	 *
+	 * @param newModel the chart
+	 * @return this instance
+	 */
+
+	public ChartControl model(Chart newModel) {
+<span class="nc" id="L77">		setModel(newModel);</span>
+<span class="nc" id="L78">		return this;</span>
+	}
+
+	/**
+	 * Sets the {@link Chart} that gets displayed by this control.
+	 *
+	 * @param model the chart
+	 */
+
+	public void setModel(Chart model) {
+<span class="nc bnc" id="L88" title="All 2 branches missed.">		if (this.model != null) {</span>
+<span class="nc" id="L89">			this.model.removeRefreshListener(this.refreshListener);</span>
+		}
+<span class="nc" id="L91">		this.model = model;</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">		if (this.model != null) {</span>
+<span class="nc" id="L93">			this.model.addRefreshListener(this.refreshListener);</span>
+		}
+<span class="nc" id="L95">		redraw();</span>
+<span class="nc" id="L96">	}</span>
+
+	@Override
+	public void dispose() {
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">		if (this.graphicContext != null) {</span>
+<span class="nc" id="L101">			this.graphicContext.dispose();</span>
+		}
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">		if (this.model != null) {</span>
+<span class="nc" id="L104">			this.model.removeRefreshListener(this.refreshListener);</span>
+		}
+<span class="fc" id="L106">		super.dispose();</span>
+<span class="fc" id="L107">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

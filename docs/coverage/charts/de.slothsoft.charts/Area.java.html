@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Area.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts</a> &gt; <span class="el_source">Area.java</span></div><h1>Area.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts;
+
+/**
+ * A simple class representing an area with start and end point. Nothing special here.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public class Area {
+
+	double startX;
+	double startY;
+	double endX;
+	double endY;
+
+	/**
+	 * Constructor that sets start and end points to 0|0.
+	 */
+
+	public Area() {
+<span class="fc" id="L22">		this(0, 0);</span>
+<span class="fc" id="L23">	}</span>
+
+	/**
+	 * Constructor that sets start point to 0|0.
+	 *
+	 * @param endX end point's X
+	 * @param endY end point's Y
+	 */
+
+	public Area(double endX, double endY) {
+<span class="fc" id="L33">		this(0, 0, endX, endY);</span>
+<span class="fc" id="L34">	}</span>
+
+	/**
+	 * Constructor.
+	 *
+	 * @param startX start point's X
+	 * @param startY start point's Y
+	 * @param endX end point's X
+	 * @param endY end point's Y
+	 */
+
+<span class="fc" id="L45">	public Area(double startX, double startY, double endX, double endY) {</span>
+<span class="fc" id="L46">		this.startX = startX;</span>
+<span class="fc" id="L47">		this.startY = startY;</span>
+<span class="fc" id="L48">		this.endX = endX;</span>
+<span class="fc" id="L49">		this.endY = endY;</span>
+<span class="fc" id="L50">	}</span>
+
+	/**
+	 * Returns an area that is shared between this area and the one coming in. If there
+	 * are no points between the two areas &lt;code&gt;null&lt;/code&gt; is returned.
+	 *
+	 * @param area the area to intersect with
+	 * @return the intersecting area
+	 */
+
+	public Area intersect(Area area) {
+<span class="nc" id="L61">		throw new UnsupportedOperationException(&quot;intersect() is not implemented yet&quot;);</span>
+	}
+
+	/**
+	 * Returns an area surrounding this area and the one coming in.
+	 *
+	 * @param area the area to unite with
+	 * @return the union area
+	 */
+
+	public Area unite(Area area) {
+<span class="fc" id="L72">		final double minX = Math.min(Math.min(this.startX, this.endX), Math.min(area.startX, area.endX));</span>
+<span class="fc" id="L73">		final double maxX = Math.max(Math.max(this.startX, this.endX), Math.max(area.startX, area.endX));</span>
+<span class="fc" id="L74">		final double minY = Math.min(Math.min(this.startY, this.endY), Math.min(area.startY, area.endY));</span>
+<span class="fc" id="L75">		final double maxY = Math.max(Math.max(this.startY, this.endY), Math.max(area.startY, area.endY));</span>
+<span class="fc" id="L76">		return new Area(minX, minY, maxX, maxY);</span>
+	}
+
+	/**
+	 * Returns true, if this area contains the point.
+	 *
+	 * @param x point's x
+	 * @param y point's y
+	 * @return true or false
+	 */
+
+	public boolean containsPoint(double x, double y) {
+<span class="pc bpc" id="L88" title="2 of 8 branches missed.">		return this.startX &lt;= x &amp;&amp; x &lt;= this.endX &amp;&amp; this.startY &lt;= y &amp;&amp; y &lt;= this.endY;</span>
+	}
+
+	/**
+	 * Moves the area.
+	 *
+	 * @param xIncrement the x movement
+	 * @param yIncrement the y movement
+	 */
+
+	public void move(double xIncrement, double yIncrement) {
+<span class="fc" id="L99">		this.startX += xIncrement;</span>
+<span class="fc" id="L100">		this.startY += yIncrement;</span>
+<span class="fc" id="L101">		this.endX += xIncrement;</span>
+<span class="fc" id="L102">		this.endY += yIncrement;</span>
+<span class="fc" id="L103">	}</span>
+
+	public double getEndX() {
+<span class="fc" id="L106">		return this.endX;</span>
+	}
+
+	public Area endX(double newEndX) {
+<span class="fc" id="L110">		setEndX(newEndX);</span>
+<span class="fc" id="L111">		return this;</span>
+	}
+
+	public void setEndX(double endX) {
+<span class="fc" id="L115">		this.endX = endX;</span>
+<span class="fc" id="L116">	}</span>
+
+	public double getEndY() {
+<span class="fc" id="L119">		return this.endY;</span>
+	}
+
+	public Area endY(double newEndY) {
+<span class="fc" id="L123">		setEndY(newEndY);</span>
+<span class="fc" id="L124">		return this;</span>
+	}
+
+	public void setEndY(double endY) {
+<span class="fc" id="L128">		this.endY = endY;</span>
+<span class="fc" id="L129">	}</span>
+
+	public double getStartX() {
+<span class="fc" id="L132">		return this.startX;</span>
+	}
+
+	public Area startX(double newStartX) {
+<span class="fc" id="L136">		setStartX(newStartX);</span>
+<span class="fc" id="L137">		return this;</span>
+	}
+
+	public void setStartX(double startX) {
+<span class="fc" id="L141">		this.startX = startX;</span>
+<span class="fc" id="L142">	}</span>
+
+	public double getStartY() {
+<span class="fc" id="L145">		return this.startY;</span>
+	}
+
+	public Area startY(double newStartY) {
+<span class="fc" id="L149">		setStartY(newStartY);</span>
+<span class="fc" id="L150">		return this;</span>
+	}
+
+	public void setStartY(double startY) {
+<span class="fc" id="L154">		this.startY = startY;</span>
+<span class="fc" id="L155">	}</span>
+
+	@Override
+	public String toString() {
+<span class="fc" id="L159">		return &quot;Area [startX=&quot; + this.startX + &quot;, startY=&quot; + this.startY + &quot;, endX=&quot; + this.endX + &quot;, endY=&quot; + this.endY</span>
+				+ &quot;]&quot;;
+	}
+
+	/**
+	 * Creates a copy of this class.
+	 *
+	 * @return an equal copy
+	 */
+
+	public Area copy() {
+<span class="fc" id="L170">		return new Area(this.startX, this.startY, this.endX, this.endY);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L175">		return (int) ((((this.startX * 3 + this.startY) * 5 + this.endX) * 7 + this.endY) * 13);</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="pc bpc" id="L180" title="1 of 2 branches missed.">		if (this == obj) return true;</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">		if (obj == null) return false;</span>
+<span class="pc bpc" id="L182" title="1 of 2 branches missed.">		if (getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L183">		final Area that = (Area) obj;</span>
+<span class="fc bfc" id="L184" title="All 2 branches covered.">		if (this.startX != that.startX) return false;</span>
+<span class="fc bfc" id="L185" title="All 2 branches covered.">		if (this.startY != that.startY) return false;</span>
+<span class="fc bfc" id="L186" title="All 2 branches covered.">		if (this.endX != that.endX) return false;</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">		if (this.endY != that.endY) return false;</span>
+<span class="fc" id="L188">		return true;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

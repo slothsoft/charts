@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Border.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.common</a> &gt; <span class="el_source">Border.java</span></div><h1>Border.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.common;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.ChartPart;
+import de.slothsoft.charts.GraphicContext;
+import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.RefreshListener;
+import de.slothsoft.charts.internal.RefreshListeners;
+
+/**
+ * A border on a {@link Chart}. On default it's only empty space and not visible.
+ */
+
+<span class="fc" id="L15">public class Border implements ChartPart {</span>
+
+<span class="fc" id="L17">	RefreshListeners refreshListeners = new RefreshListeners(this);</span>
+
+<span class="fc" id="L19">	private int spaceOnTop = 10;</span>
+<span class="fc" id="L20">	private int spaceOnLeft = 5;</span>
+<span class="fc" id="L21">	private int spaceOnRight = 5;</span>
+<span class="fc" id="L22">	private int spaceOnBottom = 7;</span>
+
+	@Override
+	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
+		// this border is only empty space so don't draw anything
+
+<span class="fc" id="L28">	}</span>
+	@Override
+	public Area snipNecessarySpace(Area existingArea) {
+<span class="fc" id="L31">		return new Area().startX(existingArea.getStartX() + this.spaceOnLeft)</span>
+<span class="fc" id="L32">				.startY(existingArea.getStartY() + this.spaceOnTop).endX(existingArea.getEndX() - this.spaceOnRight)</span>
+<span class="fc" id="L33">				.endY(existingArea.getEndY() - this.spaceOnBottom);</span>
+	}
+
+	@Override
+	public void addRefreshListener(RefreshListener listener) {
+<span class="fc" id="L38">		this.refreshListeners.addRefreshListener(listener);</span>
+<span class="fc" id="L39">	}</span>
+
+	@Override
+	public void removeRefreshListener(RefreshListener listener) {
+<span class="nc" id="L43">		this.refreshListeners.removeRefreshListener(listener);</span>
+<span class="nc" id="L44">	}</span>
+
+	/**
+	 * Sets the border size in all four directions.
+	 *
+	 * @param newSpace the space
+	 * @return this instance
+	 */
+
+	public Border space(int newSpace) {
+<span class="nc" id="L54">		setSpace(newSpace);</span>
+<span class="nc" id="L55">		return this;</span>
+	}
+
+	/**
+	 * Sets the border size in all four directions.
+	 *
+	 * @param space the space
+	 */
+
+	public void setSpace(int space) {
+<span class="fc" id="L65">		final int oldSpace = hashCode(this.spaceOnBottom, this.spaceOnTop, this.spaceOnRight, this.spaceOnLeft);</span>
+<span class="fc" id="L66">		this.spaceOnBottom = space;</span>
+<span class="fc" id="L67">		this.spaceOnTop = space;</span>
+<span class="fc" id="L68">		this.spaceOnRight = space;</span>
+<span class="fc" id="L69">		this.spaceOnLeft = space;</span>
+<span class="fc" id="L70">		final int newSpace = hashCode(this.spaceOnBottom, this.spaceOnTop, this.spaceOnRight, this.spaceOnLeft);</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">		if (oldSpace != newSpace) {</span>
+<span class="fc" id="L72">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L74">	}</span>
+
+	private static int hashCode(int... a) {
+<span class="fc" id="L77">		int result = 1;</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">		for (final long element : a) {</span>
+<span class="fc" id="L79">			final int elementHash = (int) (element ^ (element &gt;&gt;&gt; 32));</span>
+<span class="fc" id="L80">			result = 31 * result + elementHash;</span>
+		}
+<span class="fc" id="L82">		return result;</span>
+	}
+
+	/**
+	 * Return the border size on the bottom.
+	 *
+	 * @return the space
+	 */
+
+	public int getSpaceOnBottom() {
+<span class="nc" id="L92">		return this.spaceOnBottom;</span>
+	}
+
+	/**
+	 * Sets the border size on the bottom.
+	 *
+	 * @param newSpaceOnBottom the space
+	 * @return this instance
+	 */
+
+	public Border spaceOnBottom(int newSpaceOnBottom) {
+<span class="fc" id="L103">		setSpaceOnBottom(newSpaceOnBottom);</span>
+<span class="fc" id="L104">		return this;</span>
+	}
+
+	/**
+	 * Sets the border size on the bottom.
+	 *
+	 * @param spaceOnBottom the space
+	 */
+
+	public void setSpaceOnBottom(int spaceOnBottom) {
+<span class="fc" id="L114">		final int oldSpaceOnBottom = this.spaceOnBottom;</span>
+<span class="fc" id="L115">		this.spaceOnBottom = spaceOnBottom;</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">		if (oldSpaceOnBottom != this.spaceOnBottom) {</span>
+<span class="fc" id="L117">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L119">	}</span>
+
+	/**
+	 * Return the border size on the left.
+	 *
+	 * @return the space
+	 */
+
+	public int getSpaceOnLeft() {
+<span class="nc" id="L128">		return this.spaceOnLeft;</span>
+	}
+
+	/**
+	 * Sets the border size on the left.
+	 *
+	 * @param newSpaceOnLeft the space
+	 * @return this instance
+	 */
+
+	public Border spaceOnLeft(int newSpaceOnLeft) {
+<span class="fc" id="L139">		setSpaceOnLeft(newSpaceOnLeft);</span>
+<span class="fc" id="L140">		return this;</span>
+	}
+
+	/**
+	 * Sets the border size on the left.
+	 *
+	 * @param spaceOnLeft the space
+	 */
+
+	public void setSpaceOnLeft(int spaceOnLeft) {
+<span class="fc" id="L150">		final int oldSpaceOnLeft = this.spaceOnLeft;</span>
+<span class="fc" id="L151">		this.spaceOnLeft = spaceOnLeft;</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">		if (oldSpaceOnLeft != this.spaceOnLeft) {</span>
+<span class="fc" id="L153">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L155">	}</span>
+
+	/**
+	 * Return the border size on the right.
+	 *
+	 * @return the space
+	 */
+
+	public int getSpaceOnRight() {
+<span class="nc" id="L164">		return this.spaceOnRight;</span>
+	}
+
+	/**
+	 * Sets the border size on the right.
+	 *
+	 * @param newSpaceOnRight the space
+	 * @return this instance
+	 */
+
+	public Border spaceOnRight(int newSpaceOnRight) {
+<span class="fc" id="L175">		setSpaceOnRight(newSpaceOnRight);</span>
+<span class="fc" id="L176">		return this;</span>
+	}
+
+	/**
+	 * Sets the border size on the right.
+	 *
+	 * @param spaceOnRight the space
+	 */
+
+	public void setSpaceOnRight(int spaceOnRight) {
+<span class="fc" id="L186">		final int oldSpaceOnRight = this.spaceOnRight;</span>
+<span class="fc" id="L187">		this.spaceOnRight = spaceOnRight;</span>
+<span class="fc bfc" id="L188" title="All 2 branches covered.">		if (oldSpaceOnRight != this.spaceOnRight) {</span>
+<span class="fc" id="L189">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L191">	}</span>
+
+	/**
+	 * Return the border size on the top.
+	 *
+	 * @return the space
+	 */
+
+	public int getSpaceOnTop() {
+<span class="nc" id="L200">		return this.spaceOnTop;</span>
+	}
+
+	/**
+	 * Sets the border size on the top.
+	 *
+	 * @param newSpaceOnTop the space
+	 * @return this instance
+	 */
+
+	public Border spaceOnTop(int newSpaceOnTop) {
+<span class="fc" id="L211">		setSpaceOnTop(newSpaceOnTop);</span>
+<span class="fc" id="L212">		return this;</span>
+	}
+
+	/**
+	 * Sets the border size on the top.
+	 *
+	 * @param spaceOnTop the space
+	 */
+
+	public void setSpaceOnTop(int spaceOnTop) {
+<span class="fc" id="L222">		final int oldSpaceOnTop = this.spaceOnTop;</span>
+<span class="fc" id="L223">		this.spaceOnTop = spaceOnTop;</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">		if (oldSpaceOnTop != this.spaceOnTop) {</span>
+<span class="fc" id="L225">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L227">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,18 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Charts Coverage/charts,de.slothsoft.charts.internal,DelegatingGraphicContext,42,38,0,2,13,10,7,4,7,3
+Charts Coverage/charts,de.slothsoft.charts.internal,RefreshListeners,0,63,0,4,0,14,0,7,0,5
+Charts Coverage/charts,de.slothsoft.charts.linechart,FunctionLine,83,65,2,2,21,15,7,5,6,4
+Charts Coverage/charts,de.slothsoft.charts.linechart,FlipYGraphicContext,31,4,0,0,8,2,4,1,4,1
+Charts Coverage/charts,de.slothsoft.charts.linechart,DataPointLine,20,79,1,1,1,15,1,4,0,4
+Charts Coverage/charts,de.slothsoft.charts.linechart,Line,22,20,0,0,9,4,5,2,5,2
+Charts Coverage/charts,de.slothsoft.charts.linechart,LineChart,15,485,4,14,3,104,4,29,1,23
+Charts Coverage/charts,de.slothsoft.charts,Chart,32,147,2,4,8,37,4,14,3,12
+Charts Coverage/charts,de.slothsoft.charts,Area,9,289,4,18,1,53,5,29,1,22
+Charts Coverage/charts,de.slothsoft.charts,RefreshListener.Event,3,6,0,0,1,3,1,1,1,1
+Charts Coverage/charts,de.slothsoft.charts,PaintInstructions,18,61,3,5,1,16,4,8,1,7
+Charts Coverage/charts,de.slothsoft.charts,GraphicContext,0,45,0,0,0,6,0,3,0,3
+Charts Coverage/charts,de.slothsoft.charts.common,Border,22,236,0,12,8,54,6,20,6,14
+Charts Coverage/swt-charts,de.slothsoft.charts.swt,SwtGraphicContext,269,0,10,0,52,0,21,0,16,0
+Charts Coverage/swt-charts,de.slothsoft.charts.swt,MoveLineChartByMouseListener,181,0,16,0,46,0,20,0,12,0
+Charts Coverage/swt-charts,de.slothsoft.charts.swt,SwtChartUtil,37,0,0,0,6,0,1,0,1,0
+Charts Coverage/swt-charts,de.slothsoft.charts.swt,ChartControl,83,42,9,3,17,13,10,4,4,4

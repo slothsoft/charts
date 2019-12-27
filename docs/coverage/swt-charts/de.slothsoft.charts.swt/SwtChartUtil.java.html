@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SwtChartUtil.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">swt-charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.swt</a> &gt; <span class="el_source">SwtChartUtil.java</span></div><h1>SwtChartUtil.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.swt;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.PaintInstructions;
+
+/**
+ * Some util classes to generate stuff surrounding the {@link Chart} in SWT.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public final class SwtChartUtil {
+
+	/**
+	 * Creates an {@link Image} from a chart.
+	 *
+	 * @param chart the chart to create an image for
+	 * @param imageWidth the image's width
+	 * @param imageHeight the image's height
+	 * @return an image
+	 */
+
+	public static Image createImage(Chart chart, int imageWidth, int imageHeight) {
+<span class="nc" id="L31">		final Image image = new Image(Display.getDefault(), imageWidth, imageHeight);</span>
+<span class="nc" id="L32">		final GC gc = new GC(image);</span>
+<span class="nc" id="L33">		gc.setAntialias(SWT.ON);</span>
+		try {
+<span class="nc" id="L35">			chart.paintOn(new SwtGraphicContext(gc), new PaintInstructions(new Area(imageWidth, imageHeight)));</span>
+<span class="nc" id="L36">			return image;</span>
+		} finally {
+<span class="nc" id="L38">			gc.dispose();</span>
+		}
+	}
+
+	private SwtChartUtil() {
+		// hide util class
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

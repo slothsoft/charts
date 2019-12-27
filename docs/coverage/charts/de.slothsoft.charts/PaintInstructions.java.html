@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PaintInstructions.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts</a> &gt; <span class="el_source">PaintInstructions.java</span></div><h1>PaintInstructions.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts;
+
+import java.util.Objects;
+
+/**
+ * Additional instructions for a {@link Chart} or {@link Drawable} on what to paint
+ * .Classes are connected like this: &lt;br&gt;
+ * &lt;img src=&quot;https://raw.githubusercontent.com/wiki/slothsoft/charts/images/UML.png&quot; alt=
+ * &quot;UML Diagram&quot;&gt;
+ */
+
+public class PaintInstructions {
+
+	Area area;
+
+	/**
+	 * Default constructor. Only the area is really needed.
+	 *
+	 * @param area the area to draw on; cannot be null
+	 */
+
+<span class="fc" id="L22">	public PaintInstructions(Area area) {</span>
+<span class="fc" id="L23">		this.area = Objects.requireNonNull(area);</span>
+<span class="fc" id="L24">	}</span>
+
+	/**
+	 * Returns the area to draw on.
+	 *
+	 * @return the area to draw on; never null
+	 */
+
+	public Area getArea() {
+<span class="fc" id="L33">		return this.area;</span>
+	}
+
+	/**
+	 * Sets the area to draw on.
+	 *
+	 * @param newArea the area to draw on; cannot be null
+	 * @return this instance
+	 */
+
+	public PaintInstructions area(Area newArea) {
+<span class="fc" id="L44">		setArea(newArea);</span>
+<span class="fc" id="L45">		return this;</span>
+	}
+
+	/**
+	 * Sets the area to draw on.
+	 *
+	 * @param area the area to draw on; cannot be null
+	 */
+
+	public void setArea(Area area) {
+<span class="fc" id="L55">		this.area = Objects.requireNonNull(area);</span>
+<span class="fc" id="L56">	}</span>
+
+	// if you add any parameter, you need to change all these methods (potentially):
+
+	@Override
+	public String toString() {
+<span class="nc" id="L62">		return &quot;PaintInstructions [area=&quot; + this.area + &quot;]&quot;;</span>
+	}
+
+	/**
+	 * Creates a copy of this class.
+	 *
+	 * @return an equal copy
+	 */
+
+	public PaintInstructions copy() {
+<span class="fc" id="L72">		return new PaintInstructions(this.area.copy());</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L77">		return Objects.hash(this.area);</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">		if (this == obj) return true;</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">		if (obj == null) return false;</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">		if (getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L85">		final PaintInstructions that = (PaintInstructions) obj;</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">		if (!Objects.equals(this.area, that.area)) return false;</span>
+<span class="fc" id="L87">		return true;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

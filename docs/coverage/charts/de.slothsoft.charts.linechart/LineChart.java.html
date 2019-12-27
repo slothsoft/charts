@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>LineChart.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.linechart</a> &gt; <span class="el_source">LineChart.java</span></div><h1>LineChart.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.linechart;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.GraphicContext;
+import de.slothsoft.charts.PaintInstructions;
+
+/**
+ * This class represents a {@link Chart} that displays lines of some sort inside a
+ * coordinate system. It's structure looks like this: &lt;br&gt;
+ * &lt;img src=
+ * &quot;https://raw.githubusercontent.com/wiki/slothsoft/charts/images/line-chart-structure.png&quot;
+ * alt=&quot;structure&quot;&gt;
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+<span class="fc" id="L24">public class LineChart extends Chart {</span>
+
+<span class="fc" id="L26">	final List&lt;Line&gt; lines = new ArrayList&lt;&gt;();</span>
+
+	Area lastGraphArea;
+
+	private Area displayedArea;
+<span class="fc" id="L31">	private double zoomFactor = 0.25;</span>
+
+	@Override
+	protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
+<span class="fc" id="L35">		this.lastGraphArea = instructions.getArea();</span>
+
+<span class="fc" id="L37">		final Area graphArea = calculateDisplayedArea();</span>
+<span class="fc" id="L38">		final double graphWidth = graphArea.getEndX() - graphArea.getStartX();</span>
+<span class="fc" id="L39">		final double graphHeight = graphArea.getEndY() - graphArea.getStartY();</span>
+
+<span class="fc" id="L41">		final double actualWidth = this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX();</span>
+<span class="fc" id="L42">		final double actualHeight = this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY();</span>
+<span class="fc" id="L43">		final double scaleX = actualWidth / graphWidth;</span>
+<span class="fc" id="L44">		final double scaleY = actualHeight / graphHeight;</span>
+<span class="fc" id="L45">		gc.scale(scaleX, scaleY);</span>
+
+<span class="fc" id="L47">		final PaintInstructions lineInstructions = instructions.copy().area(graphArea);</span>
+<span class="fc" id="L48">		final GraphicContext linesGc = new FlipYGraphicContext(gc);</span>
+		// the top left corner is not where the graph origin is, so move
+<span class="fc" id="L50">		final double originX = -Math.min(graphArea.getStartX(), graphArea.getEndX()) * scaleX;</span>
+<span class="fc" id="L51">		final double originY = Math.max(graphArea.getStartY(), graphArea.getEndY()) * scaleY;</span>
+<span class="fc" id="L52">		gc.translate(originX, originY);</span>
+
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
+<span class="fc" id="L55">			line.paintOn(linesGc, lineInstructions);</span>
+<span class="fc" id="L56">		}</span>
+
+		// reset everything that was done previously
+<span class="fc" id="L59">		gc.translate(-originX, -originY);</span>
+<span class="fc" id="L60">		gc.scale(1 / scaleX, 1 / scaleY);</span>
+<span class="fc" id="L61">	}</span>
+
+	/**
+	 * Calculates the displayed area via {@link #getDisplayedArea()} or the added lines.
+	 *
+	 * @return the displayed area
+	 * @see #getDisplayedArea()
+	 * @see #addLine(Line)
+	 * @see #addLines(Line[])
+	 */
+
+	Area calculateDisplayedArea() {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (this.displayedArea != null) return this.displayedArea;</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (this.lines.isEmpty()) return Line.createDefaultArea();</span>
+
+<span class="fc" id="L76">		Area result = new Area();</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
+<span class="fc" id="L78">			result = result.unite(line.calculatePreferredArea());</span>
+<span class="fc" id="L79">		}</span>
+<span class="fc" id="L80">		return result;</span>
+	}
+
+	/**
+	 * Adds a line to the chart.
+	 *
+	 * @param line a line to add
+	 */
+
+	public void addLine(Line line) {
+<span class="fc" id="L90">		this.lines.add(line);</span>
+<span class="fc" id="L91">		fireRefreshNeeded();</span>
+<span class="fc" id="L92">	}</span>
+
+	/**
+	 * Adds some lines to the chart.
+	 *
+	 * @param addedLines lines to add
+	 */
+
+	public void addLines(Line... addedLines) {
+<span class="fc" id="L101">		this.lines.addAll(Arrays.asList(addedLines));</span>
+<span class="fc" id="L102">		fireRefreshNeeded();</span>
+<span class="fc" id="L103">	}</span>
+
+	/**
+	 * Removes a line from the chart.
+	 *
+	 * @param line a line to add
+	 */
+
+	public void removeLine(Line line) {
+<span class="fc" id="L112">		this.lines.remove(line);</span>
+<span class="fc" id="L113">		fireRefreshNeeded();</span>
+<span class="fc" id="L114">	}</span>
+
+	/**
+	 * Removes some lines to the chart.
+	 *
+	 * @param removedLines lines to add
+	 */
+
+	public void removeLines(Line... removedLines) {
+<span class="fc" id="L123">		this.lines.removeAll(Arrays.asList(removedLines));</span>
+<span class="fc" id="L124">		fireRefreshNeeded();</span>
+<span class="fc" id="L125">	}</span>
+
+	/**
+	 * Moves the displayed area of this {@link Chart} by the coordinates used for the
+	 * entire chart. Let's say the chart is painted on an area 1000x1000 pixels, but the
+	 * graph only displays something between the coordinates 0 and 1. If you move
+	 * 100pixels in the chart scale, you only need to move the graph 0.1 points.
+	 *
+	 * @param xIncrement the x movement
+	 * @param yIncrement the y movement
+	 * @exception IllegalArgumentException if graph was never painted before
+	 */
+
+	public void moveDisplayedAreaByChartCoordinates(double xIncrement, double yIncrement) {
+<span class="fc" id="L139">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L140">		final Area wantedArea = calculateDisplayedArea();</span>
+
+<span class="fc" id="L142">		final double scaleX = (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX())</span>
+<span class="fc" id="L143">				/ (wantedArea.getEndX() - wantedArea.getStartX());</span>
+<span class="fc" id="L144">		final double scaleY = (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY())</span>
+<span class="fc" id="L145">				/ (wantedArea.getEndY() - wantedArea.getStartY());</span>
+
+<span class="fc" id="L147">		moveDisplayedAreaDirectly(xIncrement / scaleX, yIncrement / scaleY);</span>
+<span class="fc" id="L148">	}</span>
+
+	private void requireLastGraphAreaNotNull() {
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">		if (this.lastGraphArea == null)</span>
+<span class="nc" id="L152">			throw new IllegalArgumentException(</span>
+					&quot;You need to paint the graph at least once before you can move it with this method!&quot;);
+<span class="fc" id="L154">	}</span>
+
+	/**
+	 * Moves the displayed area of this {@link Chart} directly, i.e. adds the movement
+	 * coordinates to the already existing ones.
+	 *
+	 * @param xIncrement the x movement
+	 * @param yIncrement the y movement
+	 * @see #moveDisplayedAreaByChartCoordinates(double, double)
+	 */
+
+	void moveDisplayedAreaDirectly(double xIncrement, double yIncrement) {
+<span class="pc bpc" id="L166" title="3 of 4 branches missed.">		if (xIncrement == 0 &amp;&amp; yIncrement == 0) return;</span>
+<span class="fc" id="L167">		final Area newArea = calculateDisplayedArea().copy();</span>
+<span class="fc" id="L168">		newArea.move(xIncrement, yIncrement);</span>
+<span class="fc" id="L169">		setDisplayedArea(newArea);</span>
+<span class="fc" id="L170">	}</span>
+
+	/**
+	 * Zooms the graph area in using the chart's coordinates.
+	 *
+	 * @param chartX the x coordinate in the chart's coordinate system
+	 * @param chartY the y coordinate in the chart's coordinate system
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 */
+
+	public void zoomDisplayedAreaInByChartCoordinates(double chartX, double chartY) {
+<span class="fc" id="L184">		zoomDisplayedAreaInByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
+<span class="fc" id="L185">	}</span>
+
+	/**
+	 * Zooms the graph area in using the graph's coordinates.
+	 *
+	 * @param graphX the x coordinate in the graph's coordinate system
+	 * @param graphY the y coordinate in the graph's coordinate system
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 * @see #zoomDisplayedAreaOutByGraphCoordinates(double, double)
+	 */
+
+	public void zoomDisplayedAreaInByGraphCoordinates(double graphX, double graphY) {
+<span class="fc" id="L199">		zoom(graphX, graphY, true);</span>
+<span class="fc" id="L200">	}</span>
+
+	private void zoom(double graphX, double graphY, boolean in) {
+<span class="fc" id="L203">		final Area wantedArea = calculateDisplayedArea();</span>
+
+<span class="fc" id="L205">		final double width = wantedArea.getEndX() - wantedArea.getStartX();</span>
+<span class="fc" id="L206">		final double height = wantedArea.getEndY() - wantedArea.getStartY();</span>
+
+<span class="fc" id="L208">		final double beforeXScale = (graphX - wantedArea.getStartX()) / width;</span>
+<span class="fc" id="L209">		final double beforeYScale = (graphY - wantedArea.getStartY()) / height;</span>
+
+<span class="fc" id="L211">		double beforeXZoom = beforeXScale * this.zoomFactor * width;</span>
+<span class="fc" id="L212">		double afterXZoom = (1 - beforeXScale) * this.zoomFactor * width;</span>
+
+<span class="fc" id="L214">		double beforeYZoom = beforeYScale * this.zoomFactor * height;</span>
+<span class="fc" id="L215">		double afterYZoom = (1 - beforeYScale) * this.zoomFactor * height;</span>
+
+<span class="fc bfc" id="L217" title="All 2 branches covered.">		if (!in) {</span>
+<span class="fc" id="L218">			beforeXZoom *= -1;</span>
+<span class="fc" id="L219">			afterXZoom *= -1;</span>
+<span class="fc" id="L220">			beforeYZoom *= -1;</span>
+<span class="fc" id="L221">			afterYZoom *= -1;</span>
+		}
+<span class="fc" id="L223">		setDisplayedArea(new Area(wantedArea.getStartX() + beforeXZoom, wantedArea.getStartY() + beforeYZoom,</span>
+<span class="fc" id="L224">				wantedArea.getEndX() - afterXZoom, wantedArea.getEndY() - afterYZoom));</span>
+<span class="fc" id="L225">	}</span>
+
+	/**
+	 * Zooms the graph area out using the chart's coordinates.
+	 *
+	 * @param chartX the x coordinate in the chart's coordinate system
+	 * @param chartY the y coordinate in the chart's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 */
+
+	public void zoomDisplayedAreaOutByChartCoordinates(double chartX, double chartY) {
+<span class="fc" id="L240">		zoomDisplayedAreaOutByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
+<span class="fc" id="L241">	}</span>
+
+	/**
+	 * Zooms the graph area out using the graph's coordinates.
+	 *
+	 * @param graphX the x coordinate in the graph's coordinate system
+	 * @param graphY the y coordinate in the graph's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 * @see #zoomDisplayedAreaInByGraphCoordinates(double, double)
+	 */
+
+	public void zoomDisplayedAreaOutByGraphCoordinates(double graphX, double graphY) {
+<span class="fc" id="L256">		zoom(graphX, graphY, false);</span>
+<span class="fc" id="L257">	}</span>
+
+	/**
+	 * Converts chart coordinates to a graph ones. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param chartX the x coordinate in the chart's coordinate system
+	 * @param chartY the y coordinate in the chart's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 */
+
+	public double[] convertToGraphCoordinates(double chartX, double chartY) {
+<span class="fc" id="L272">		return new double[]{convertToGraphX(chartX), convertToGraphY(chartY)};</span>
+	}
+
+	/**
+	 * Converts a chart coordinate to a graph one. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param chartX the x coordinate in the chart's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphY(double)
+	 */
+
+	public double convertToGraphX(double chartX) {
+<span class="fc" id="L287">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L288">		final Area wantedArea = calculateDisplayedArea();</span>
+
+<span class="fc" id="L290">		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())</span>
+<span class="fc" id="L291">				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());</span>
+<span class="fc" id="L292">		return scale * (chartX - this.lastGraphArea.getStartX()) + wantedArea.getStartX();</span>
+	}
+
+	/**
+	 * Converts a chart coordinate to a graph one. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param chartY the y coordinate in the chart's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 */
+
+	public double convertToGraphY(double chartY) {
+<span class="fc" id="L307">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L308">		final Area wantedArea = calculateDisplayedArea();</span>
+
+<span class="fc" id="L310">		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())</span>
+<span class="fc" id="L311">				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());</span>
+<span class="fc" id="L312">		return wantedArea.getEndY() - scale * (chartY - this.lastGraphArea.getStartY());</span>
+	}
+
+	/**
+	 * Returns the displayed area of this chart, i.e. the coordinates to display.
+	 * &lt;code&gt;null&lt;/code&gt; is used to indicate the value is calculated by questioning the
+	 * {@link Line}s.
+	 *
+	 * @return the displayed area
+	 */
+
+	public Area getDisplayedArea() {
+<span class="fc" id="L324">		return this.displayedArea;</span>
+	}
+
+	/**
+	 * Sets the displayed area of this chart, i.e. the coordinates to display.
+	 * &lt;code&gt;null&lt;/code&gt; is used to indicate the value is calculated by questioning the
+	 * {@link Line}s.
+	 *
+	 * @param newDisplayedArea the displayed area
+	 * @return this instance
+	 */
+
+	public LineChart displayedArea(Area newDisplayedArea) {
+<span class="nc" id="L337">		setDisplayedArea(newDisplayedArea);</span>
+<span class="nc" id="L338">		return this;</span>
+	}
+
+	/**
+	 * Sets the displayed area of this chart, i.e. the coordinates to display.
+	 * &lt;code&gt;null&lt;/code&gt; is used to indicate the value is calculated by questioning the
+	 * {@link Line}s.
+	 *
+	 * @param displayedArea the displayed area
+	 */
+
+	public void setDisplayedArea(Area displayedArea) {
+<span class="fc" id="L350">		final Area oldDisplayedArea = this.displayedArea;</span>
+<span class="fc" id="L351">		this.displayedArea = displayedArea;</span>
+<span class="fc bfc" id="L352" title="All 2 branches covered.">		if (!Objects.equals(displayedArea, oldDisplayedArea)) {</span>
+<span class="fc" id="L353">			fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L355">	}</span>
+
+	/**
+	 * Returns the factor which should be used to zoom the graph area. A value of 0.25
+	 * means it gets zoomed by 25%.
+	 *
+	 * @return the zoom factor
+	 * @see #zoomDisplayedAreaInByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaInByGraphCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByGraphCoordinates(double, double)
+	 */
+
+	public double getZoomFactor() {
+<span class="fc" id="L369">		return this.zoomFactor;</span>
+	}
+
+	/**
+	 * Sets the factor which should be used to zoom the graph area. A value of 0.25 means
+	 * it gets zoomed by 25%.
+	 *
+	 * @param newZoomFactor the zoom factor
+	 * @return this instance
+	 * @see #zoomDisplayedAreaInByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaInByGraphCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByGraphCoordinates(double, double)
+	 */
+
+	public LineChart zoomFactor(double newZoomFactor) {
+<span class="fc" id="L385">		setZoomFactor(newZoomFactor);</span>
+<span class="fc" id="L386">		return this;</span>
+	}
+
+	/**
+	 * Sets the factor which should be used to zoom the graph area. A value of 0.25 means
+	 * it gets zoomed by 25%.
+	 *
+	 * @param zoomFactor the zoom factor
+	 * @see #zoomDisplayedAreaInByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaInByGraphCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByGraphCoordinates(double, double)
+	 */
+
+	public void setZoomFactor(double zoomFactor) {
+<span class="fc" id="L401">		this.zoomFactor = zoomFactor;</span>
+<span class="fc" id="L402">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

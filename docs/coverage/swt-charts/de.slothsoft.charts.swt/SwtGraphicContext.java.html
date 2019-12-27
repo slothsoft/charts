@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SwtGraphicContext.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">swt-charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.swt</a> &gt; <span class="el_source">SwtGraphicContext.java</span></div><h1>SwtGraphicContext.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.swt;
+
+import java.util.Objects;
+import java.util.function.Consumer;
+
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.graphics.Transform;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.GraphicContext;
+
+/**
+ * A {@link GraphicContext} implementation using the SWT {@link GC} to draw on whatever
+ * you like.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public class SwtGraphicContext implements GraphicContext {
+
+	private GC delegate;
+
+	private int colorAsInt;
+	private Color color;
+
+	private Transform transform;
+<span class="nc" id="L31">	private double scaleX = 1;</span>
+<span class="nc" id="L32">	private double scaleY = 1;</span>
+
+	/**
+	 * Constructor.
+	 *
+	 * @param delegate the GC to draw on; cannot be null
+	 */
+
+<span class="nc" id="L40">	public SwtGraphicContext(GC delegate) {</span>
+<span class="nc" id="L41">		this.delegate = Objects.requireNonNull(delegate);</span>
+<span class="nc" id="L42">	}</span>
+
+	@Override
+	public void setColor(int colorAsInt) {
+<span class="nc bnc" id="L46" title="All 2 branches missed.">		if (this.color != null) {</span>
+<span class="nc" id="L47">			this.color.dispose();</span>
+		}
+
+<span class="nc" id="L50">		final int red = (colorAsInt &gt;&gt; 16) &amp; 0xFF;</span>
+<span class="nc" id="L51">		final int green = (colorAsInt &gt;&gt; 8) &amp; 0xFF;</span>
+<span class="nc" id="L52">		final int blue = colorAsInt &amp; 0xFF;</span>
+<span class="nc" id="L53">		this.color = new Color(this.delegate.getDevice(), new RGB(red, green, blue));</span>
+<span class="nc" id="L54">		this.delegate.setBackground(this.color);</span>
+<span class="nc" id="L55">		this.delegate.setForeground(this.color);</span>
+<span class="nc" id="L56">		this.colorAsInt = colorAsInt;</span>
+<span class="nc" id="L57">	}</span>
+
+	@Override
+	public int getColor() {
+<span class="nc" id="L61">		return this.colorAsInt;</span>
+	}
+
+	@Override
+	public void translate(double x, double y) {
+<span class="nc" id="L66">		doToTransform(t -&gt; t.translate((int) x, (int) y));</span>
+<span class="nc" id="L67">	}</span>
+
+	private void doToTransform(Consumer&lt;Transform&gt; transformConsumer) {
+<span class="nc" id="L70">		final Transform usedTransform = fetchTransform();</span>
+<span class="nc" id="L71">		this.delegate.getTransform(usedTransform);</span>
+<span class="nc" id="L72">		transformConsumer.accept(usedTransform);</span>
+<span class="nc" id="L73">		this.delegate.setTransform(usedTransform);</span>
+<span class="nc" id="L74">	}</span>
+
+	Transform fetchTransform() {
+<span class="nc bnc" id="L77" title="All 2 branches missed.">		if (this.transform == null) {</span>
+<span class="nc" id="L78">			this.transform = new Transform(this.delegate.getDevice());</span>
+		}
+<span class="nc" id="L80">		return this.transform;</span>
+	}
+
+	@Override
+	public void scale(double x, double y) {
+<span class="nc" id="L85">		this.scaleX *= x;</span>
+<span class="nc" id="L86">		this.scaleY *= y;</span>
+<span class="nc" id="L87">	}</span>
+
+	@Override
+	public void clip(Area rect) {
+<span class="nc bnc" id="L91" title="All 2 branches missed.">		if (rect == null) {</span>
+<span class="nc" id="L92">			this.delegate.setClipping((Rectangle) null);</span>
+		} else {
+<span class="nc" id="L94">			this.delegate.setClipping((int) rect.getStartX(), (int) rect.getStartY(),</span>
+<span class="nc" id="L95">					(int) (rect.getEndX() - rect.getStartX()), (int) (rect.getEndY() - rect.getStartY()));</span>
+		}
+<span class="nc" id="L97">	}</span>
+
+	@Override
+	public void drawLine(double x1, double y1, double x2, double y2) {
+<span class="nc" id="L101">		this.delegate.drawLine((int) (this.scaleX * x1), (int) (this.scaleY * y1), (int) (this.scaleX * x2),</span>
+				(int) (this.scaleX * y2));
+<span class="nc" id="L103">	}</span>
+
+	@Override
+	public void fillRectangle(double x, double y, double width, double height) {
+<span class="nc" id="L107">		this.delegate.fillRectangle((int) (this.scaleX * x), (int) (this.scaleY * y), (int) (this.scaleX * width),</span>
+				(int) (this.scaleY * height));
+<span class="nc" id="L109">	}</span>
+
+	@Override
+	public void drawPolyline(double[] x, double[] y) {
+<span class="nc" id="L113">		final int[] points = new int[x.length + y.length];</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">		for (int i = 0; i &lt; x.length; i++) {</span>
+<span class="nc" id="L115">			points[2 * i] = (int) (this.scaleX * x[i]);</span>
+<span class="nc" id="L116">			points[2 * i + 1] = (int) (this.scaleY * y[i]);</span>
+		}
+<span class="nc" id="L118">		this.delegate.drawPolyline(points);</span>
+<span class="nc" id="L119">	}</span>
+
+	/**
+	 * Disposes of the operating system resources associated with this resource.
+	 * Applications must dispose of all resources which they allocate. This method does
+	 * nothing if the resource is already disposed.
+	 */
+
+	public void dispose() {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">		if (this.transform != null) {</span>
+<span class="nc" id="L129">			this.transform.dispose();</span>
+		}
+<span class="nc" id="L131">	}</span>
+
+	/**
+	 * Returns the GC.
+	 *
+	 * @return the GC to draw on; never null
+	 */
+
+	public GC getDelegate() {
+<span class="nc" id="L140">		return this.delegate;</span>
+	}
+
+	/**
+	 * Sets the GC.
+	 *
+	 * @param newDelegate the GC to draw on; cannot be null
+	 * @return this instance
+	 */
+
+	public SwtGraphicContext delegate(GC newDelegate) {
+<span class="nc" id="L151">		setDelegate(newDelegate);</span>
+<span class="nc" id="L152">		return this;</span>
+	}
+
+	/**
+	 * Sets the GC.
+	 *
+	 * @param delegate the GC to draw on; cannot be null
+	 */
+
+	public void setDelegate(GC delegate) {
+<span class="nc" id="L162">		this.delegate = Objects.requireNonNull(delegate);</span>
+<span class="nc" id="L163">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

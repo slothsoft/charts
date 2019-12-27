@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Chart.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts</a> &gt; <span class="el_source">Chart.java</span></div><h1>Chart.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import de.slothsoft.charts.common.Border;
+import de.slothsoft.charts.internal.RefreshListeners;
+
+/**
+ * This is the base class this library is for. It represents an abstract chart of some
+ * sort, weather it's a line chart or something entirely different. Classes are connected
+ * like this: &lt;br&gt;
+ * &lt;img src=&quot;https://raw.githubusercontent.com/wiki/slothsoft/charts/images/UML.png&quot; alt=
+ * &quot;UML Diagram&quot;&gt;
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public abstract class Chart {
+
+<span class="fc" id="L22">	private final Border border = new Border();</span>
+<span class="fc" id="L23">	private int backgroundColor = 0xFFFFFFFF;</span>
+
+<span class="fc" id="L25">	RefreshListeners refreshListeners = new RefreshListeners(this);</span>
+
+	/**
+	 * Default constructor.
+	 */
+
+<span class="fc" id="L31">	public Chart() {</span>
+<span class="fc" id="L32">		hookRefreshListenersToChartParts();</span>
+<span class="fc" id="L33">	}</span>
+
+	private void hookRefreshListenersToChartParts() {
+<span class="fc" id="L36">		fetchChartParts().forEach(part -&gt; part.addRefreshListener(e -&gt; fireRefreshNeeded()));</span>
+<span class="fc" id="L37">	}</span>
+
+	/**
+	 * Paints the current content onto the graphic context. Checks the instructions for
+	 * what to paint. The instructions contain the area in display coordinates, starting
+	 * from the top left with 0|0 and ending bottom right with something like 800|600.
+	 *
+	 * @param gc graphic context; coordinates are relative to the screen
+	 * @param instructions additional instructions like the area to paint on
+	 */
+
+	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
+<span class="fc" id="L49">		gc.setColor(this.backgroundColor);</span>
+<span class="fc" id="L50">		gc.fillRectangle(instructions.area);</span>
+
+		// paint all the parts that make up the chart
+
+<span class="fc" id="L54">		Area chartArea = instructions.getArea();</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">		for (final ChartPart part : fetchChartParts()) {</span>
+<span class="fc" id="L56">			part.paintOn(gc, instructions.area(chartArea));</span>
+<span class="fc" id="L57">			chartArea = part.snipNecessarySpace(chartArea);</span>
+<span class="fc" id="L58">		}</span>
+
+		// now paint the actual graph
+
+<span class="fc" id="L62">		final Area graphArea = chartArea;</span>
+		try {
+<span class="fc" id="L64">			gc.clip(graphArea);</span>
+<span class="fc" id="L65">			gc.translate(graphArea.getStartX(), graphArea.getStartY());</span>
+
+<span class="fc" id="L67">			paintGraph(gc, instructions.area(chartArea.copy().startX(0).startY(0)));</span>
+		} finally {
+<span class="fc" id="L69">			gc.translate(-graphArea.getStartX(), -graphArea.getEndY());</span>
+<span class="fc" id="L70">			gc.clip(null);</span>
+		}
+<span class="fc" id="L72">	}</span>
+
+	/**
+	 * Calculates the graph area by removing the {@link ChartPart}s from the entire width
+	 * and height.
+	 *
+	 * @param width the entire width
+	 * @param height the entire height
+	 * @return the graph area
+	 */
+
+	public Area calculateGraphArea(double width, double height) {
+<span class="nc" id="L84">		Area result = new Area(width, height);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">		for (final ChartPart part : fetchChartParts()) {</span>
+<span class="nc" id="L86">			result = part.snipNecessarySpace(result);</span>
+<span class="nc" id="L87">		}</span>
+<span class="nc" id="L88">		return result;</span>
+	}
+
+	/**
+	 * Returns all the {@link ChartPart}s this chart nows about. Override this method to
+	 * add custom parts.
+	 *
+	 * @return a list of chart parts
+	 */
+
+	protected Collection&lt;ChartPart&gt; fetchChartParts() {
+<span class="fc" id="L99">		return Arrays.asList(this.border);</span>
+	}
+
+	/**
+	 * Paints the actual graph (the white part in &lt;a href=
+	 * &quot;https://github.com/slothsoft/charts/wiki/Preliminary-Considerations&quot;&gt;Preliminary
+	 * Considerations&lt;/a&gt;). Coordinates are starting from the top left with 0|0 and ending
+	 * bottom right with something like 800|600.
+	 *
+	 * @param gc graphic context; coordinates are relative to the screen
+	 * @param instructions additional instructions like the area to paint on
+	 */
+
+	protected abstract void paintGraph(GraphicContext gc, PaintInstructions instructions);
+
+	/**
+	 * Fires a default event for the {@link RefreshListener}s of this chart.
+	 */
+
+	protected void fireRefreshNeeded() {
+<span class="fc" id="L119">		fireRefreshNeeded(new RefreshListener.Event(this));</span>
+<span class="fc" id="L120">	}</span>
+
+	/**
+	 * Fires an event for the {@link RefreshListener}s of this chart.
+	 *
+	 * @param event the event to be fired
+	 */
+
+	protected void fireRefreshNeeded(RefreshListener.Event event) {
+<span class="fc" id="L129">		this.refreshListeners.fireRefreshNeeded(event);</span>
+<span class="fc" id="L130">	}</span>
+
+	/**
+	 * Adds a refresh listener that is called whenever this {@link Chart} needs to be
+	 * redrawn by the GUI.
+	 *
+	 * @param listener a listener
+	 */
+
+	public void addRefreshListener(RefreshListener listener) {
+<span class="fc" id="L140">		this.refreshListeners.addRefreshListener(listener);</span>
+<span class="fc" id="L141">	}</span>
+
+	/**
+	 * Removes a refresh listener that was called whenever this {@link Chart} needed to be
+	 * redrawn by the GUI. Does nothing if the listener was never added.
+	 *
+	 * @param listener a listener
+	 */
+
+	public void removeRefreshListener(RefreshListener listener) {
+<span class="fc" id="L151">		this.refreshListeners.removeRefreshListener(listener);</span>
+<span class="fc" id="L152">	}</span>
+
+	/**
+	 * Returns the border this chart has. The border is supposed to be around everything
+	 * else like this:&lt;br&gt;
+	 * &lt;img src=
+	 * &quot;https://raw.githubusercontent.com/wiki/slothsoft/charts/images/chart-design.png&quot;
+	 * alt=&quot;Chart Parts&quot;&gt;
+	 *
+	 * @return the border
+	 */
+
+	public Border getBorder() {
+<span class="fc" id="L165">		return this.border;</span>
+	}
+
+	/**
+	 * Returns the color as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue is
+	 * &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @return the color
+	 */
+
+	public int getBackgroundColor() {
+<span class="nc" id="L176">		return this.backgroundColor;</span>
+	}
+
+	/**
+	 * Sets the color as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue is
+	 * &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @param newBackgroundColor the color
+	 * @return this instance
+	 */
+
+	public Chart backgroundColor(int newBackgroundColor) {
+<span class="nc" id="L188">		setBackgroundColor(newBackgroundColor);</span>
+<span class="nc" id="L189">		return this;</span>
+	}
+
+	/**
+	 * Sets the color as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue is
+	 * &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @param backgroundColor the color
+	 */
+
+	public void setBackgroundColor(int backgroundColor) {
+<span class="fc" id="L200">		final int oldBackgroundColor = this.backgroundColor;</span>
+<span class="fc" id="L201">		this.backgroundColor = backgroundColor;</span>
+<span class="fc bfc" id="L202" title="All 2 branches covered.">		if (oldBackgroundColor != this.backgroundColor) {</span>
+<span class="fc" id="L203">			fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L205">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

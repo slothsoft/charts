@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>test-reports</artifactId>
+
+	<parent>
+		<groupId>de.slothsoft.charts</groupId>
+		<artifactId>build</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<docs-folder>${basedir}/../docs</docs-folder>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.slothsoft.charts</groupId>
+			<artifactId>charts</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.slothsoft.charts</groupId>
+			<artifactId>swt-charts</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- Jacoco reports the test coverage -->
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>aggregate-reports-all</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report-aggregate</goal>
+						</goals>
+						<configuration>
+							<title>Charts Coverage </title>
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>doc</id>
+			<build>
+				<plugins>
+			
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							
+							<!-- Copy Jacoco Reports -->
+							
+							<execution>
+								<id>copy-jacoco-reports</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${docs-folder}/coverage</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${project.reporting.outputDirectory}/jacoco</directory>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+							
+							<!-- Copy JUnit Reports -->
+							
+							<execution>
+								<id>copy-junit-reports</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${docs-folder}/tests</outputDirectory>
+									<resources>
+										<resource>
+											<directory>../target/site/</directory>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
