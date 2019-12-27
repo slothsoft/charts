@@ -365,4 +365,11 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 		Assert.assertEquals(70, result.getEndY(), DELTA);
 	}
 
+	@Test
+	public void testResetDisplayedArea() throws Exception {
+		this.chart.setDisplayedArea(new Area(1, 2, 3, 4));
+		this.chart.resetDisplayedArea();
+
+		Assert.assertEquals(null, this.chart.getDisplayedArea());
+	}
 }

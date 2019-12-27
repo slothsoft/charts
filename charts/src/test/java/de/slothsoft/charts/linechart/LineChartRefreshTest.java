@@ -17,47 +17,56 @@ import de.slothsoft.charts.internal.LogGraphicContext;
 @RunWith(Parameterized.class)
 public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 
-	@Parameters
+	@Parameters(name = "{0}")
 	public static Collection<Object[]> data() {
 		final List<Object[]> result = AbstractChartRefreshTest.createData();
 		result.addAll(Arrays.asList(
 
-				data(chart -> chart.addLine(new DataPointLine(2, 3, 4)), true),
+				data("addLine", chart -> chart.addLine(new DataPointLine(2, 3, 4)), true),
 
-				data(chart -> chart.addLines(new DataPointLine(2, 3, 4), new DataPointLine(1, 2, 3)), true),
+				data("addLines", chart -> chart.addLines(new DataPointLine(2, 3, 4), new DataPointLine(1, 2, 3)), true),
 
-				data(chart -> chart.removeLine(chart.lines.get(0)), true),
+				data("removeLine", chart -> chart.removeLine(chart.lines.get(0)), true),
 
-				data(chart -> chart.removeLines(chart.lines.get(0)), true),
+				data("removeLines", chart -> chart.removeLines(chart.lines.get(0)), true),
 
-				data(chart -> chart.setDisplayedArea(new Area(1, 2, 3, 4))),
+				data("displayedArea", chart -> chart.displayedArea(new Area(1, 2, 3, 4))),
 
-				data(chart -> chart.moveDisplayedAreaDirectly(1, 2), true),
+				data("setDisplayedArea", chart -> chart.setDisplayedArea(new Area(1, 2, 3, 4))),
 
-				data(chart -> chart.moveDisplayedAreaByChartCoordinates(1, 2), true),
+				data("moveDisplayedAreaDirectly", chart -> chart.moveDisplayedAreaDirectly(1, 2), true),
 
-				data(chart -> chart.zoomDisplayedAreaInByChartCoordinates(1, 2), true),
+				data("moveDisplayedAreaByChartCoordinates", chart -> chart.moveDisplayedAreaByChartCoordinates(1, 2),
+						true),
 
-				data(chart -> chart.zoomDisplayedAreaInByGraphCoordinates(1, 2), true),
+				data("zoomDisplayedAreaInByChartCoordinates",
+						chart -> chart.zoomDisplayedAreaInByChartCoordinates(1, 2), true),
 
-				data(chart -> chart.zoomDisplayedAreaOutByChartCoordinates(1, 2), true),
+				data("zoomDisplayedAreaInByGraphCoordinates",
+						chart -> chart.zoomDisplayedAreaInByGraphCoordinates(1, 2), true),
 
-				data(chart -> chart.zoomDisplayedAreaOutByGraphCoordinates(1, 2), true)
+				data("zoomDisplayedAreaOutByChartCoordinates",
+						chart -> chart.zoomDisplayedAreaOutByChartCoordinates(1, 2), true),
+
+				data("zoomDisplayedAreaOutByGraphCoordinates",
+						chart -> chart.zoomDisplayedAreaOutByGraphCoordinates(1, 2), true),
+
+				data("resetDisplayedArea", chart -> chart.resetDisplayedArea())
 
 		));
 		return result;
 	}
 
-	private static Object[] data(Consumer<LineChart> methodCall) {
-		return data(methodCall, false);
+	private static Object[] data(String displayName, Consumer<LineChart> methodCall) {
+		return data(displayName, methodCall, false);
 	}
 
-	private static Object[] data(Consumer<LineChart> methodCall, boolean secondCallChangesToo) {
-		return new Object[]{methodCall, Boolean.valueOf(secondCallChangesToo)};
+	private static Object[] data(String displayName, Consumer<LineChart> methodCall, boolean secondCallChangesToo) {
+		return new Object[]{displayName, methodCall, Boolean.valueOf(secondCallChangesToo)};
 	}
 
-	public LineChartRefreshTest(Consumer<LineChart> methodCall, boolean secondCallChangesToo) {
-		super(methodCall, secondCallChangesToo);
+	public LineChartRefreshTest(String displayName, Consumer<LineChart> methodCall, boolean secondCallChangesToo) {
+		super(displayName, methodCall, secondCallChangesToo);
 	}
 
 	@Override
@@ -65,6 +74,7 @@ public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 		final LineChart result = new LineChart();
 		result.addLine(new DataPointLine(3, 4, 5));
 		result.addLine(new DataPointLine(6, 7, 8));
+		result.setDisplayedArea(result.calculateDisplayedArea());
 		result.paintOn(new LogGraphicContext(), new PaintInstructions(new Area(1, 2, 3, 4)));
 		return result;
 	}

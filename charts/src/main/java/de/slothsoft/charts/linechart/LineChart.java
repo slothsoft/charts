@@ -313,6 +313,16 @@ public class LineChart extends Chart {
 	}
 
 	/**
+	 * Resets the displayed area.
+	 *
+	 * @see #setDisplayedArea(Area)
+	 */
+
+	public void resetDisplayedArea() {
+		setDisplayedArea(null);
+	}
+
+	/**
 	 * Returns the displayed area of this chart, i.e. the coordinates to display.
 	 * <code>null</code> is used to indicate the value is calculated by questioning the
 	 * {@link Line}s.

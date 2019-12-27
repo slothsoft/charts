@@ -10,13 +10,13 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class ChartRefreshTest extends AbstractChartRefreshTest<Chart> {
 
-	@Parameters
+	@Parameters(name = "{0}")
 	public static Collection<Object[]> data() {
 		return AbstractChartRefreshTest.createData();
 	}
 
-	public ChartRefreshTest(Consumer<Chart> methodCall, boolean secondCallChangesToo) {
-		super(methodCall, secondCallChangesToo);
+	public ChartRefreshTest(String displayName, Consumer<Chart> methodCall, boolean secondCallChangesToo) {
+		super(displayName, methodCall, secondCallChangesToo);
 	}
 
 	@Override

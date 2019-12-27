@@ -23,27 +23,27 @@ public abstract class AbstractChartRefreshTest<C extends Chart> {
 	public static List<Object[]> createData() {
 		return new ArrayList<>(Arrays.asList(
 
-				data(chart -> chart.setBackgroundColor(0xFF00FF00)),
+				data("setBackgroundColor", chart -> chart.setBackgroundColor(0xFF00FF00)),
 
-				data(chart -> chart.getBorder().setSpace(1)),
+				data("Border.setSpace", chart -> chart.getBorder().setSpace(1)),
 
-				data(chart -> chart.getBorder().setSpaceOnTop(1)),
+				data("Border.setSpaceOnTop", chart -> chart.getBorder().setSpaceOnTop(1)),
 
-				data(chart -> chart.getBorder().setSpaceOnRight(1)),
+				data("Border.setSpaceOnRight", chart -> chart.getBorder().setSpaceOnRight(1)),
 
-				data(chart -> chart.getBorder().setSpaceOnBottom(1)),
+				data("Border.setSpaceOnBottom", chart -> chart.getBorder().setSpaceOnBottom(1)),
 
-				data(chart -> chart.getBorder().setSpaceOnLeft(1))
+				data("Border.setSpaceOnLeft", chart -> chart.getBorder().setSpaceOnLeft(1))
 
 		));
 	}
 
-	private static Object[] data(Consumer<Chart> methodCall) {
-		return data(methodCall, false);
+	private static Object[] data(String displayName, Consumer<Chart> methodCall) {
+		return data(displayName, methodCall, false);
 	}
 
-	private static Object[] data(Consumer<Chart> methodCall, boolean secondCallChangesToo) {
-		return new Object[]{methodCall, Boolean.valueOf(secondCallChangesToo)};
+	private static Object[] data(String displayName, Consumer<Chart> methodCall, boolean secondCallChangesToo) {
+		return new Object[]{displayName, methodCall, Boolean.valueOf(secondCallChangesToo)};
 	}
 
 	private final Consumer<C> methodCall;
@@ -51,7 +51,8 @@ public abstract class AbstractChartRefreshTest<C extends Chart> {
 
 	protected C chart;
 
-	public AbstractChartRefreshTest(Consumer<C> methodCall, boolean secondCallChangesToo) {
+	public AbstractChartRefreshTest(@SuppressWarnings("unused") String displayName, Consumer<C> methodCall,
+			boolean secondCallChangesToo) {
 		this.methodCall = methodCall;
 		this.secondCallChangesToo = secondCallChangesToo;
 	}
