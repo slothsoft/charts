@@ -23,6 +23,12 @@
 			<groupId>de.slothsoft.charts</groupId>
 			<artifactId>swt-charts</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -55,14 +61,14 @@
 			<id>doc</id>
 			<build>
 				<plugins>
-			
+
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-resources-plugin</artifactId>
 						<executions>
-							
+
 							<!-- Copy Jacoco Reports -->
-							
+
 							<execution>
 								<id>copy-jacoco-reports</id>
 								<phase>verify</phase>
@@ -78,9 +84,9 @@
 									</resources>
 								</configuration>
 							</execution>
-							
+
 							<!-- Copy JUnit Reports -->
-							
+
 							<execution>
 								<id>copy-junit-reports</id>
 								<phase>verify</phase>

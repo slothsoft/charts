@@ -47,7 +47,7 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMoveLis
 	private static Cursor handCursor;
 
 	private final LineChart chart;
-	private boolean mouseDown;
+	boolean mouseDown;
 	private int mouseDownX;
 	private int mouseDownY;
 
@@ -68,6 +68,7 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMoveLis
 			this.mouseDown = true;
 			this.mouseDownX = e.x;
 			this.mouseDownY = e.y;
+			System.out.println("MoveLineChartByMouseListener.mouseDown()");
 		}
 	}
 

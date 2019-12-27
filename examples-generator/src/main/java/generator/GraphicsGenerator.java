@@ -47,6 +47,8 @@ public class GraphicsGenerator {
 
 	static class AllMethodsChart extends Chart {
 
+		// Note: the same calls are in AbstractGraphicContextTest
+
 		@Override
 		protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
 			gc.setColor(0xFF2222BB);

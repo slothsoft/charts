@@ -1,7 +1,10 @@
-package de.slothsoft.charts;
+package de.slothsoft.charts.internal;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.GraphicContext;
 
 /**
  * An implementation to test stuff, e.g. to test default methods.
@@ -10,7 +13,7 @@ import java.util.List;
  * @since 0.1.0
  */
 
-public class TestGraphicContext implements GraphicContext {
+public class LogGraphicContext implements GraphicContext {
 
 	public List<String> log = new ArrayList<>();
 

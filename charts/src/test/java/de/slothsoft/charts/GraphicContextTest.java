@@ -5,6 +5,8 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
+import de.slothsoft.charts.internal.LogGraphicContext;
+
 /**
  * We'll test the default methods of the interface here.
  *
@@ -14,7 +16,7 @@ import org.junit.Test;
 
 public class GraphicContextTest {
 
-	private final TestGraphicContext graphicContext = new TestGraphicContext();
+	private final LogGraphicContext graphicContext = new LogGraphicContext();
 
 	@Test
 	public void testScale() throws Exception {

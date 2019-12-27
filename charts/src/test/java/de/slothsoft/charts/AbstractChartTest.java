@@ -57,4 +57,13 @@ public abstract class AbstractChartTest<C extends Chart> {
 		this.chart.setBackgroundColor(0xABCDEF);
 		Assert.assertNotNull("throws an exception if implemented incorrectly", this.chart.refreshListeners);
 	}
+
+	@Test
+	public void testSetBackgroundColor() throws Exception {
+		this.chart.setBackgroundColor(0xFF00FF00);
+		Assert.assertEquals(0xFF00FF00, this.chart.getBackgroundColor());
+
+		this.chart.backgroundColor(0xFFFF0000);
+		Assert.assertEquals(0xFFFF0000, this.chart.getBackgroundColor());
+	}
 }
