@@ -14,13 +14,33 @@ public class Area {
 	double endX;
 	double endY;
 
+	/**
+	 * Constructor that sets start and end points to 0|0.
+	 */
+
 	public Area() {
 		this(0, 0);
 	}
 
+	/**
+	 * Constructor that sets start point to 0|0.
+	 *
+	 * @param endX end point's X
+	 * @param endY end point's Y
+	 */
+
 	public Area(double endX, double endY) {
 		this(0, 0, endX, endY);
 	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param startX start point's X
+	 * @param startY start point's Y
+	 * @param endX end point's X
+	 * @param endY end point's Y
+	 */
 
 	public Area(double startX, double startY, double endX, double endY) {
 		this.startX = startX;
@@ -58,10 +78,10 @@ public class Area {
 
 	/**
 	 * Returns true, if this area contains the point.
-	 * 
+	 *
 	 * @param x point's x
 	 * @param y point's y
-	 * @return
+	 * @return true or false
 	 */
 
 	public boolean containsPoint(double x, double y) {

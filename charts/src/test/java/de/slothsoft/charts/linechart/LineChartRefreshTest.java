@@ -11,6 +11,8 @@ import org.junit.runners.Parameterized.Parameters;
 
 import de.slothsoft.charts.AbstractChartRefreshTest;
 import de.slothsoft.charts.Area;
+import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.TestGraphicContext;
 
 @RunWith(Parameterized.class)
 public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
@@ -30,9 +32,19 @@ public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 
 				data(chart -> chart.setDisplayedArea(new Area(1, 2, 3, 4))),
 
-				data(chart -> chart.moveDisplayedArea(1, 2), true))
+				data(chart -> chart.moveDisplayedAreaDirectly(1, 2), true),
 
-		);
+				data(chart -> chart.moveDisplayedAreaByChartCoordinates(1, 2), true),
+
+				data(chart -> chart.zoomDisplayedAreaInByChartCoordinates(1, 2), true),
+
+				data(chart -> chart.zoomDisplayedAreaInByGraphCoordinates(1, 2), true),
+
+				data(chart -> chart.zoomDisplayedAreaOutByChartCoordinates(1, 2), true),
+
+				data(chart -> chart.zoomDisplayedAreaOutByGraphCoordinates(1, 2), true)
+
+		));
 		return result;
 	}
 
@@ -53,6 +65,7 @@ public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 		final LineChart result = new LineChart();
 		result.addLine(new DataPointLine(3, 4, 5));
 		result.addLine(new DataPointLine(6, 7, 8));
+		result.paintOn(new TestGraphicContext(), new PaintInstructions(new Area(1, 2, 3, 4)));
 		return result;
 	}
 }

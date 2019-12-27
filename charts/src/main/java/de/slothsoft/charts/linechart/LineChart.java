@@ -25,8 +25,10 @@ public class LineChart extends Chart {
 
 	final List<Line> lines = new ArrayList<>();
 
-	private Area lastGraphArea;
+	Area lastGraphArea;
+
 	private Area displayedArea;
+	private double zoomFactor = 0.25;
 
 	@Override
 	protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
@@ -123,6 +125,194 @@ public class LineChart extends Chart {
 	}
 
 	/**
+	 * Moves the displayed area of this {@link Chart} by the coordinates used for the
+	 * entire chart. Let's say the chart is painted on an area 1000x1000 pixels, but the
+	 * graph only displays something between the coordinates 0 and 1. If you move
+	 * 100pixels in the chart scale, you only need to move the graph 0.1 points.
+	 *
+	 * @param xIncrement the x movement
+	 * @param yIncrement the y movement
+	 * @exception IllegalArgumentException if graph was never painted before
+	 */
+
+	public void moveDisplayedAreaByChartCoordinates(double xIncrement, double yIncrement) {
+		requireLastGraphAreaNotNull();
+		final Area wantedArea = calculateDisplayedArea();
+
+		final double scaleX = (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX())
+				/ (wantedArea.getEndX() - wantedArea.getStartX());
+		final double scaleY = (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY())
+				/ (wantedArea.getEndY() - wantedArea.getStartY());
+
+		moveDisplayedAreaDirectly(xIncrement / scaleX, yIncrement / scaleY);
+	}
+
+	private void requireLastGraphAreaNotNull() {
+		if (this.lastGraphArea == null)
+			throw new IllegalArgumentException(
+					"You need to paint the graph at least once before you can move it with this method!");
+	}
+
+	/**
+	 * Moves the displayed area of this {@link Chart} directly, i.e. adds the movement
+	 * coordinates to the already existing ones.
+	 *
+	 * @param xIncrement the x movement
+	 * @param yIncrement the y movement
+	 * @see #moveDisplayedAreaByChartCoordinates(double, double)
+	 */
+
+	void moveDisplayedAreaDirectly(double xIncrement, double yIncrement) {
+		if (xIncrement == 0 && yIncrement == 0) return;
+		final Area newArea = calculateDisplayedArea().copy();
+		newArea.move(xIncrement, yIncrement);
+		setDisplayedArea(newArea);
+	}
+
+	/**
+	 * Zooms the graph area in using the chart's coordinates.
+	 *
+	 * @param chartX the x coordinate in the chart's coordinate system
+	 * @param chartY the y coordinate in the chart's coordinate system
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 */
+
+	public void zoomDisplayedAreaInByChartCoordinates(double chartX, double chartY) {
+		zoomDisplayedAreaInByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));
+	}
+
+	/**
+	 * Zooms the graph area in using the graph's coordinates.
+	 *
+	 * @param graphX the x coordinate in the graph's coordinate system
+	 * @param graphY the y coordinate in the graph's coordinate system
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 * @see #zoomDisplayedAreaOutByGraphCoordinates(double, double)
+	 */
+
+	public void zoomDisplayedAreaInByGraphCoordinates(double graphX, double graphY) {
+		zoom(graphX, graphY, true);
+	}
+
+	private void zoom(double graphX, double graphY, boolean in) {
+		final Area wantedArea = calculateDisplayedArea();
+
+		final double width = wantedArea.getEndX() - wantedArea.getStartX();
+		final double height = wantedArea.getEndY() - wantedArea.getStartY();
+
+		final double beforeXScale = (graphX - wantedArea.getStartX()) / width;
+		final double beforeYScale = (graphY - wantedArea.getStartY()) / height;
+
+		double beforeXZoom = beforeXScale * this.zoomFactor * width;
+		double afterXZoom = (1 - beforeXScale) * this.zoomFactor * width;
+
+		double beforeYZoom = beforeYScale * this.zoomFactor * height;
+		double afterYZoom = (1 - beforeYScale) * this.zoomFactor * height;
+
+		if (!in) {
+			beforeXZoom *= -1;
+			afterXZoom *= -1;
+			beforeYZoom *= -1;
+			afterYZoom *= -1;
+		}
+		setDisplayedArea(new Area(wantedArea.getStartX() + beforeXZoom, wantedArea.getStartY() + beforeYZoom,
+				wantedArea.getEndX() - afterXZoom, wantedArea.getEndY() - afterYZoom));
+	}
+
+	/**
+	 * Zooms the graph area out using the chart's coordinates.
+	 *
+	 * @param chartX the x coordinate in the chart's coordinate system
+	 * @param chartY the y coordinate in the chart's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 */
+
+	public void zoomDisplayedAreaOutByChartCoordinates(double chartX, double chartY) {
+		zoomDisplayedAreaOutByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));
+	}
+
+	/**
+	 * Zooms the graph area out using the graph's coordinates.
+	 *
+	 * @param graphX the x coordinate in the graph's coordinate system
+	 * @param graphY the y coordinate in the graph's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 * @see #zoomDisplayedAreaInByGraphCoordinates(double, double)
+	 */
+
+	public void zoomDisplayedAreaOutByGraphCoordinates(double graphX, double graphY) {
+		zoom(graphX, graphY, false);
+	}
+
+	/**
+	 * Converts chart coordinates to a graph ones. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param chartX the x coordinate in the chart's coordinate system
+	 * @param chartY the y coordinate in the chart's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphX(double)
+	 * @see #convertToGraphY(double)
+	 */
+
+	public double[] convertToGraphCoordinates(double chartX, double chartY) {
+		return new double[]{convertToGraphX(chartX), convertToGraphY(chartY)};
+	}
+
+	/**
+	 * Converts a chart coordinate to a graph one. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param chartX the x coordinate in the chart's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphY(double)
+	 */
+
+	public double convertToGraphX(double chartX) {
+		requireLastGraphAreaNotNull();
+		final Area wantedArea = calculateDisplayedArea();
+
+		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())
+				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());
+		return scale * (chartX - this.lastGraphArea.getStartX()) + wantedArea.getStartX();
+	}
+
+	/**
+	 * Converts a chart coordinate to a graph one. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param chartY the y coordinate in the chart's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToGraphCoordinates(double, double)
+	 * @see #convertToGraphX(double)
+	 */
+
+	public double convertToGraphY(double chartY) {
+		requireLastGraphAreaNotNull();
+		final Area wantedArea = calculateDisplayedArea();
+
+		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())
+				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());
+		return wantedArea.getEndY() - scale * (chartY - this.lastGraphArea.getStartY());
+	}
+
+	/**
 	 * Returns the displayed area of this chart, i.e. the coordinates to display.
 	 * <code>null</code> is used to indicate the value is calculated by questioning the
 	 * {@link Line}s.
@@ -165,42 +355,50 @@ public class LineChart extends Chart {
 	}
 
 	/**
-	 * Moves the displayed area of this {@link Chart} by the coordinates used for the
-	 * entire chart. Let's say the chart is painted on an area 1000x1000 pixels, but the
-	 * graph only displays something between the coordinates 0 and 1. If you move
-	 * 100pixels in the chart scale, you only need to move the graph 0.1 points.
+	 * Returns the factor which should be used to zoom the graph area. A value of 0.25
+	 * means it gets zoomed by 25%.
 	 *
-	 * @param xIncrement the x movement
-	 * @param yIncrement the y movement
+	 * @return the zoom factor
+	 * @see #zoomDisplayedAreaInByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaInByGraphCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByGraphCoordinates(double, double)
 	 */
 
-	public void moveDisplayedAreaByChartCoordinates(double xIncrement, double yIncrement) {
-		if (this.lastGraphArea == null)
-			throw new IllegalArgumentException(
-					"You need to paint the graph at least once before you can move it with this method!");
-		final Area wantedArea = calculateDisplayedArea();
-
-		final double scaleX = (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX())
-				/ (wantedArea.getEndX() - wantedArea.getStartX());
-		final double scaleY = (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY())
-				/ (wantedArea.getEndY() - wantedArea.getStartY());
-
-		moveDisplayedArea(xIncrement / scaleX, yIncrement / scaleY);
+	public double getZoomFactor() {
+		return this.zoomFactor;
 	}
 
 	/**
-	 * Moves the displayed area of this {@link Chart} directly, i.e. adds the movement
-	 * coordinates to the already existing ones.
+	 * Sets the factor which should be used to zoom the graph area. A value of 0.25 means
+	 * it gets zoomed by 25%.
 	 *
-	 * @param xIncrement the x movement
-	 * @param yIncrement the y movement
+	 * @param newZoomFactor the zoom factor
+	 * @return this instance
+	 * @see #zoomDisplayedAreaInByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaInByGraphCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByGraphCoordinates(double, double)
 	 */
 
-	public void moveDisplayedArea(double xIncrement, double yIncrement) {
-		if (xIncrement == 0 && yIncrement == 0) return;
-		final Area newArea = calculateDisplayedArea().copy();
-		newArea.move(xIncrement, yIncrement);
-		setDisplayedArea(newArea);
+	public LineChart zoomFactor(double newZoomFactor) {
+		setZoomFactor(newZoomFactor);
+		return this;
+	}
+
+	/**
+	 * Sets the factor which should be used to zoom the graph area. A value of 0.25 means
+	 * it gets zoomed by 25%.
+	 *
+	 * @param zoomFactor the zoom factor
+	 * @see #zoomDisplayedAreaInByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaInByGraphCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByChartCoordinates(double, double)
+	 * @see #zoomDisplayedAreaOutByGraphCoordinates(double, double)
+	 */
+
+	public void setZoomFactor(double zoomFactor) {
+		this.zoomFactor = zoomFactor;
 	}
 
 }
