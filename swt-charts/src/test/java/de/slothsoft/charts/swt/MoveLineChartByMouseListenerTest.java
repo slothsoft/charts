@@ -34,7 +34,7 @@ public class MoveLineChartByMouseListenerTest {
 	private MoveLineChartByMouseListener listener;
 
 	@Before
-	public void setUp() throws InterruptedException {
+	public void setUp() {
 		this.lineChart = createLineChart();
 		this.twinChart = createLineChart();
 
