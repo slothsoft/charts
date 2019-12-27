@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import de.slothsoft.charts.AbstractChartTest;
 import de.slothsoft.charts.Area;
+import de.slothsoft.charts.RefreshListener;
 
 public class LineChartTest extends AbstractChartTest<LineChart> {
 
@@ -71,7 +72,7 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 	}
 
 	@Test
-	public void testMoveDisplayedAreaDefault() throws Exception {
+	public void testMoveDisplayedAreaDirectlyDefault() throws Exception {
 		this.chart.setDisplayedArea(null);
 		final Area defaultArea = this.chart.calculateDisplayedArea();
 
@@ -86,6 +87,14 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 
 		this.chart.moveDisplayedAreaDirectly(-1, -2);
 		Assert.assertEquals(new Area(0, 0, 3, 5), this.chart.getDisplayedArea());
+	}
+
+	@Test
+	public void testMoveDisplayedAreaDirectlyDoNotDoIt() throws Exception {
+		this.chart.setDisplayedArea(new Area(1, 2, 4, 7));
+
+		this.chart.moveDisplayedAreaDirectly(0, 0);
+		Assert.assertEquals(new Area(1, 2, 4, 7), this.chart.getDisplayedArea());
 	}
 
 	@Test
@@ -109,6 +118,11 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 		// last graph's width is 20, that's 2x of the display area, so move 6 / 2 -> 3
 		// last graph's height is 30, that's 3x of the display area, so move 3 / 3 -> 1
 		Assert.assertEquals(new Area(3, 1, 13, 11), this.chart.getDisplayedArea());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testMoveDisplayedAreaByChartCoordinatesExecption() throws Exception {
+		this.chart.moveDisplayedAreaByChartCoordinates(6, 3);
 	}
 
 	@Test
@@ -194,6 +208,11 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 		Assert.assertEquals(40, this.chart.convertToGraphX(20), DELTA);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testConvertToGraphXExecption() throws Exception {
+		this.chart.convertToGraphX(0);
+	}
+
 	@Test
 	public void testConvertToGraphY() throws Exception {
 		this.chart.setDisplayedArea(new Area(60, 60));
@@ -212,6 +231,11 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 		Assert.assertEquals(80, this.chart.convertToGraphY(20), DELTA);
 		Assert.assertEquals(60, this.chart.convertToGraphY(30), DELTA);
 		Assert.assertEquals(20, this.chart.convertToGraphY(50), DELTA);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testConvertToGraphYExecption() throws Exception {
+		this.chart.convertToGraphY(0);
 	}
 
 	@Test
@@ -384,6 +408,11 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 		Assert.assertEquals(30, this.chart.convertToChartX(70), DELTA);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testConvertToChartXExecption() throws Exception {
+		this.chart.convertToChartX(0);
+	}
+
 	@Test
 	public void testConvertToChartY() throws Exception {
 		this.chart.setDisplayedArea(new Area(60, 60));
@@ -404,4 +433,88 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 		Assert.assertEquals(50, this.chart.convertToChartY(20), DELTA);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testConvertToChartYExecption() throws Exception {
+		this.chart.convertToChartY(0);
+	}
+
+	@Test
+	public void testAddLineRefreshWasExecuted() throws Exception {
+		final Line line = new DataPointLine(4, 5, 6);
+		this.chart.addLine(line);
+
+		final RefreshListener.Event[] called = {null};
+		this.chart.addRefreshListener(e -> called[0] = e);
+		line.setColor(0xFFEDCBA0);
+
+		Assert.assertNotNull(called[0]);
+		Assert.assertNotNull(called[0].getSource());
+	}
+
+	@Test
+	public void testAddLineRefreshWasNotExecutedAfterRemove() throws Exception {
+		final Line line = new DataPointLine(4, 5, 6);
+		this.chart.addLine(line);
+		this.chart.removeLine(line);
+
+		final RefreshListener.Event[] called = {null};
+		final RefreshListener listener = e -> called[0] = e;
+		this.chart.addRefreshListener(listener);
+		line.setColor(0xFFEDCBA0);
+
+		Assert.assertNull(called[0]);
+	}
+
+	@Test
+	public void testAddLineRefreshWasNotExecutedByTwoCalls() throws Exception {
+		final Line line = new DataPointLine(4, 5, 6).color(0xFFEDCBA0);
+		this.chart.addLine(line);
+
+		final RefreshListener.Event[] called = {null};
+		final RefreshListener listener = e -> called[0] = e;
+		this.chart.addRefreshListener(listener);
+		line.setColor(0xFFEDCBA0);
+
+		Assert.assertNull(called[0]);
+	}
+
+	@Test
+	public void testAddLinesRefreshWasExecuted() throws Exception {
+		final Line line = new DataPointLine(4, 5, 6);
+		this.chart.addLines(line);
+
+		final RefreshListener.Event[] called = {null};
+		this.chart.addRefreshListener(e -> called[0] = e);
+		line.setColor(0xFFEDCBA0);
+
+		Assert.assertNotNull(called[0]);
+		Assert.assertNotNull(called[0].getSource());
+	}
+
+	@Test
+	public void testAddLinesRefreshWasNotExecutedAfterRemove() throws Exception {
+		final Line line = new DataPointLine(4, 5, 6);
+		this.chart.addLines(line);
+		this.chart.removeLines(line);
+
+		final RefreshListener.Event[] called = {null};
+		final RefreshListener listener = e -> called[0] = e;
+		this.chart.addRefreshListener(listener);
+		line.setColor(0xFFEDCBA0);
+
+		Assert.assertNull(called[0]);
+	}
+
+	@Test
+	public void testAddLinesRefreshWasNotExecutedByTwoCalls() throws Exception {
+		final Line line = new DataPointLine(4, 5, 6).color(0xFFEDCBA0);
+		this.chart.addLines(line);
+
+		final RefreshListener.Event[] called = {null};
+		final RefreshListener listener = e -> called[0] = e;
+		this.chart.addRefreshListener(listener);
+		line.setColor(0xFFEDCBA0);
+
+		Assert.assertNull(called[0]);
+	}
 }

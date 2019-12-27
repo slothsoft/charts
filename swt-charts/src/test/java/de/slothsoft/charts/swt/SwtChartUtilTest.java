@@ -13,6 +13,7 @@ public class SwtChartUtilTest {
 	public SwtRule swtRule = new SwtRule();
 
 	@Test
+	@SuppressWarnings("static-method")
 	public void testCreateImage() throws Exception {
 		// we can't test much, only sanity check
 

@@ -46,12 +46,25 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMoveLis
 
 	private static Cursor handCursor;
 
+	static Cursor getHandCursor(Display display) {
+		if (handCursor == null) {
+			handCursor = new Cursor(display, SWT.CURSOR_HAND);
+		}
+		return handCursor;
+	}
+
 	private final LineChart chart;
 	boolean mouseDown;
 	private int mouseDownX;
 	private int mouseDownY;
 
 	private int movementMouseButton = 1;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param chart the chart this listener uses
+	 */
 
 	public MoveLineChartByMouseListener(LineChart chart) {
 		this.chart = Objects.requireNonNull(chart);
@@ -103,13 +116,6 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMoveLis
 		final Point controlSize = control.getSize();
 		final Area actualArea = this.chart.calculateGraphArea(controlSize.x, controlSize.y);
 		return actualArea.containsPoint(e.x, e.y);
-	}
-
-	private static Cursor getHandCursor(Display display) {
-		if (handCursor == null) {
-			handCursor = new Cursor(display, SWT.CURSOR_HAND);
-		}
-		return handCursor;
 	}
 
 	@Override

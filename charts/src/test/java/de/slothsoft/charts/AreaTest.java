@@ -3,6 +3,7 @@ package de.slothsoft.charts;
 import org.junit.Assert;
 import org.junit.Test;
 
+@SuppressWarnings("static-method")
 public class AreaTest {
 
 	@Test

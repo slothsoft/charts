@@ -2,6 +2,7 @@ package de.slothsoft.charts;
 
 import org.junit.Assert;
 
+@SuppressWarnings("static-method")
 public class BeanTest {
 
 	protected <T> void assertEquals(T expected, T actual) {

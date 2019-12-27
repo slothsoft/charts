@@ -1,7 +1,5 @@
 package de.slothsoft.charts.linechart;
 
-import java.util.Objects;
-
 import de.slothsoft.charts.ChartPart;
 import de.slothsoft.charts.RefreshListener;
 import de.slothsoft.charts.internal.RefreshListeners;
@@ -15,7 +13,6 @@ import de.slothsoft.charts.internal.RefreshListeners;
 
 abstract class Axis implements ChartPart {
 
-	final LineChart chart;
 	final RefreshListeners refreshListeners = new RefreshListeners(this);
 
 	int tickSteps = 1;
@@ -23,16 +20,6 @@ abstract class Axis implements ChartPart {
 	int bigTickSteps = 5;
 	int bigTickSize = 3;
 	double arrowSize = 3;
-
-	/**
-	 * Constructor.
-	 *
-	 * @param chart the chart this axis belongs to
-	 */
-
-	public Axis(LineChart chart) {
-		this.chart = Objects.requireNonNull(chart);
-	}
 
 	@Override
 	public void addRefreshListener(RefreshListener listener) {

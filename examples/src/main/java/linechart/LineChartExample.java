@@ -15,6 +15,8 @@ import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.linechart.DataPointLine;
 import de.slothsoft.charts.linechart.FunctionLine;
 import de.slothsoft.charts.linechart.LineChart;
+import de.slothsoft.charts.linechart.XAxis;
+import de.slothsoft.charts.linechart.YAxis;
 import de.slothsoft.charts.swt.SwtChartUtil;
 
 /**
@@ -43,6 +45,8 @@ public class LineChartExample {
 		chart.setBackgroundColor(0xFFFFFFFF);
 		chart.setDisplayedArea(new Area(-1, -4, 10, 4));
 		chart.getBorder().setSpaceOnBottom(7);
+		chart.getXAxis().setPosition(XAxis.Position.Y0);
+		chart.getYAxis().setPosition(YAxis.Position.X0);
 
 		chart.addLine(new DataPointLine(-9, -4, -2, 0, 1, 2, 2.5, 3, 3.3, 3.6, 4).color(0xFFFF00FF));
 		chart.addLine(new FunctionLine(x -> Math.sin(x)).color(0xFF00FF00));

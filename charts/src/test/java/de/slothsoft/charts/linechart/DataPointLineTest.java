@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import de.slothsoft.charts.Area;
 
+@SuppressWarnings("static-method")
 public class DataPointLineTest {
 
 	private static final double DELTA = 0.001;
@@ -15,6 +16,12 @@ public class DataPointLineTest {
 
 		Assert.assertArrayEquals(new double[]{0, 1, 2}, line.x, DELTA);
 		Assert.assertArrayEquals(new double[]{4, 5, 6}, line.y, DELTA);
+	}
+
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void testConstructorDifferentLengths() throws Exception {
+		new DataPointLine(new double[0], new double[]{1});
 	}
 
 	@Test

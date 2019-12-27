@@ -10,6 +10,7 @@ import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.ChartPart;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.RefreshListener;
 
 /**
  * This class represents a {@link Chart} that displays lines of some sort inside a
@@ -30,6 +31,7 @@ public class LineChart extends Chart {
 
 	private final XAxis xAxis = new XAxis(this);
 	private final YAxis yAxis = new YAxis(this);
+	private final RefreshListener refreshListener = e -> fireRefreshNeeded();
 
 	private Area displayedArea;
 	private double zoomFactor = 0.25;
@@ -103,6 +105,7 @@ public class LineChart extends Chart {
 	 */
 
 	public void addLine(Line line) {
+		line.addRefreshListener(this.refreshListener);
 		this.lines.add(line);
 		fireRefreshNeeded();
 	}
@@ -114,6 +117,9 @@ public class LineChart extends Chart {
 	 */
 
 	public void addLines(Line... addedLines) {
+		for (final Line addedLine : addedLines) {
+			addedLine.addRefreshListener(this.refreshListener);
+		}
 		this.lines.addAll(Arrays.asList(addedLines));
 		fireRefreshNeeded();
 	}
@@ -125,6 +131,7 @@ public class LineChart extends Chart {
 	 */
 
 	public void removeLine(Line line) {
+		line.removeRefreshListener(this.refreshListener);
 		this.lines.remove(line);
 		fireRefreshNeeded();
 	}
@@ -136,6 +143,9 @@ public class LineChart extends Chart {
 	 */
 
 	public void removeLines(Line... removedLines) {
+		for (final Line removedLine : removedLines) {
+			removedLine.removeRefreshListener(this.refreshListener);
+		}
 		this.lines.removeAll(Arrays.asList(removedLines));
 		fireRefreshNeeded();
 	}

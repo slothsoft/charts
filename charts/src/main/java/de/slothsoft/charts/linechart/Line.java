@@ -84,7 +84,11 @@ public abstract class Line implements Drawable {
 	 */
 
 	public void setColor(int color) {
+		final int oldColor = this.color;
 		this.color = color;
+		if (oldColor != color) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
 	}
 
 }

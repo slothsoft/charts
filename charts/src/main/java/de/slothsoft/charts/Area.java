@@ -50,18 +50,6 @@ public class Area {
 	}
 
 	/**
-	 * Returns an area that is shared between this area and the one coming in. If there
-	 * are no points between the two areas <code>null</code> is returned.
-	 *
-	 * @param area the area to intersect with
-	 * @return the intersecting area
-	 */
-
-	public Area intersect(Area area) {
-		throw new UnsupportedOperationException("intersect() is not implemented yet");
-	}
-
-	/**
 	 * Returns an area surrounding this area and the one coming in.
 	 *
 	 * @param area the area to unite with

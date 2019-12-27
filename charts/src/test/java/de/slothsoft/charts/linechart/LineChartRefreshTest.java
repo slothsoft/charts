@@ -30,6 +30,10 @@ public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 
 				data("removeLines", chart -> chart.removeLines(chart.lines.get(0)), true),
 
+				data("Line.setColor", chart -> chart.lines.get(0).setColor(0xFFABCDEF)),
+
+				data("Line.color", chart -> chart.lines.get(0).color(0xFFABCDEF)),
+
 				data("displayedArea", chart -> chart.displayedArea(new Area(1, 2, 3, 4))),
 
 				data("setDisplayedArea", chart -> chart.setDisplayedArea(new Area(1, 2, 3, 4))),

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import de.slothsoft.charts.Area;
+import de.slothsoft.charts.RefreshListener;
 
 public class BorderTest {
 
@@ -71,5 +72,26 @@ public class BorderTest {
 		Assert.assertEquals(2, this.border.getSpaceOnBottom(), DELTA);
 		Assert.assertEquals(2, this.border.getSpaceOnRight(), DELTA);
 		Assert.assertEquals(2, this.border.getSpaceOnLeft(), DELTA);
+	}
+
+	@Test
+	public void testAddRefreshListener() throws Exception {
+		final RefreshListener.Event[] called = {null};
+		this.border.addRefreshListener(e -> called[0] = e);
+		this.border.setSpaceOnLeft(100);
+
+		Assert.assertNotNull(called[0]);
+		Assert.assertNotNull(called[0].getSource());
+	}
+
+	@Test
+	public void testRemoveRefreshListener() throws Exception {
+		final RefreshListener.Event[] called = {null};
+		final RefreshListener listener = e -> called[0] = e;
+		this.border.addRefreshListener(listener);
+		this.border.removeRefreshListener(listener);
+		this.border.setSpaceOnLeft(100);
+
+		Assert.assertNull(called[0]);
 	}
 }
