@@ -6,6 +6,7 @@ import org.junit.Test;
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Font;
 import de.slothsoft.charts.RefreshListener;
+import de.slothsoft.charts.TextAlignment;
 
 public class TitleTest {
 
@@ -24,6 +25,27 @@ public class TitleTest {
 		Assert.assertEquals(40, result.getEndY(), DELTA);
 	}
 
+	@Test
+	public void testSnipNecessarySpacePositionTop() throws Exception {
+		this.title.size(7).text("❤").position(Title.Position.TOP);
+		final Area result = this.title.snipNecessarySpace(new Area(10, 20, 30, 40));
+
+		Assert.assertEquals(10, result.getStartX(), DELTA);
+		Assert.assertEquals(27, result.getStartY(), DELTA);
+		Assert.assertEquals(30, result.getEndX(), DELTA);
+		Assert.assertEquals(40, result.getEndY(), DELTA);
+	}
+
+	@Test
+	public void testSnipNecessarySpacePositionBottom() throws Exception {
+		this.title.size(7).text("❤").position(Title.Position.BOTTOM);
+		final Area result = this.title.snipNecessarySpace(new Area(10, 20, 30, 40));
+
+		Assert.assertEquals(10, result.getStartX(), DELTA);
+		Assert.assertEquals(20, result.getStartY(), DELTA);
+		Assert.assertEquals(30, result.getEndX(), DELTA);
+		Assert.assertEquals(33, result.getEndY(), DELTA);
+	}
 	@Test
 	public void testSnipNecessarySpaceNoText() throws Exception {
 		this.title.size(7);
@@ -65,10 +87,19 @@ public class TitleTest {
 	@Test
 	public void testSize() throws Exception {
 		this.title.size(1);
-		Assert.assertEquals(1, this.title.getSize());
+		Assert.assertEquals(1, this.title.getSize(), DELTA);
 
 		this.title.setSize(2);
-		Assert.assertEquals(2, this.title.getSize());
+		Assert.assertEquals(2, this.title.getSize(), DELTA);
+	}
+
+	@Test
+	public void testAlignment() throws Exception {
+		this.title.alignment(TextAlignment.LEFT);
+		Assert.assertEquals(TextAlignment.LEFT, this.title.getAlignment());
+
+		this.title.setAlignment(TextAlignment.RIGHT);
+		Assert.assertEquals(TextAlignment.RIGHT, this.title.getAlignment());
 	}
 
 	@Test

@@ -9,6 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.slothsoft.charts.common.Title;
+
 /**
  * This class tests the functionality of the {@link RefreshListener}s of {@link Chart} for
  * each implementation of it.
@@ -61,7 +63,15 @@ public abstract class AbstractChartRefreshTest<C extends Chart> {
 
 				data("Title.setSize", chart -> chart.getTitle().setSize(1)),
 
-				data("Title.size", chart -> chart.getTitle().size(2))
+				data("Title.size", chart -> chart.getTitle().size(2)),
+
+				data("Title.setPosition", chart -> chart.getTitle().setPosition(Title.Position.BOTTOM)),
+
+				data("Title.position", chart -> chart.getTitle().position(Title.Position.BOTTOM)),
+
+				data("Title.setAlignment", chart -> chart.getTitle().setAlignment(TextAlignment.LEFT)),
+
+				data("Title.alignment", chart -> chart.getTitle().alignment(TextAlignment.RIGHT))
 
 		));
 	}

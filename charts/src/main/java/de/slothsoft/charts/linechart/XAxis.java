@@ -146,7 +146,11 @@ public class XAxis extends Axis {
 	 */
 
 	public void setPosition(XAxis.Position position) {
+		final XAxis.Position oldPosition = this.position;
 		this.position = Objects.requireNonNull(position);
+		if (oldPosition != position) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
 	}
 
 }

@@ -146,6 +146,10 @@ public class YAxis extends Axis {
 	 */
 
 	public void setPosition(YAxis.Position position) {
+		final YAxis.Position oldPosition = this.position;
 		this.position = Objects.requireNonNull(position);
+		if (oldPosition != position) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
 	}
 }

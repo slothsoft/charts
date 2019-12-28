@@ -16,10 +16,10 @@ import de.slothsoft.charts.GraphicContext;
 
 public class LogGraphicContext implements GraphicContext {
 
-	public List<String> log = new ArrayList<>();
+	List<String> log = new ArrayList<>();
 
 	private int color;
-	private Font font;
+	private Font font = Font.NORMAL;
 
 	@Override
 	public void setColor(int color) {
@@ -96,7 +96,10 @@ public class LogGraphicContext implements GraphicContext {
 	@Override
 	public Area calculateTextSize(String text) {
 		this.log.add("calculateTextSize(" + text + ")");
-		return new Area(this.font.getSize(), text.length() * this.font.getSize());
+		return new Area(text.length() * this.font.getSize(), this.font.getSize());
 	}
 
+	public List<String> getLog() {
+		return this.log;
+	}
 }

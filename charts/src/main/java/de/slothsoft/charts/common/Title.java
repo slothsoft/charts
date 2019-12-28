@@ -9,6 +9,7 @@ import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
 import de.slothsoft.charts.RefreshListener;
+import de.slothsoft.charts.TextAlignment;
 import de.slothsoft.charts.internal.RefreshListeners;
 
 /**
@@ -21,10 +22,53 @@ import de.slothsoft.charts.internal.RefreshListeners;
 
 public class Title implements ChartPart {
 
+	/**
+	 * The position of the {@link Title}.
+	 */
+
+	public enum Position {
+		/**
+		 * The default behavior is to have the axis on y=0 if that is visible, else on the
+		 * top or bottom border of the graph depending were it is in relation to the
+		 * visible area.
+		 */
+		TOP {
+
+			@Override
+			Area snipNecessarySpace(Area existingArea, double size) {
+				return existingArea.copy().startY(existingArea.getStartY() + size);
+			}
+
+			@Override
+			double getPaintY(Area area, double size) {
+				return area.getStartY();
+			}
+		},
+
+		BOTTOM {
+
+			@Override
+			Area snipNecessarySpace(Area existingArea, double size) {
+				return existingArea.copy().endY(existingArea.getEndY() - size);
+			}
+
+			@Override
+			double getPaintY(Area area, double size) {
+				return area.getEndY() - size;
+			}
+		};
+
+		abstract Area snipNecessarySpace(Area existingArea, double size);
+
+		abstract double getPaintY(Area area, double size);
+
+	}
 	String text;
 	int color = 0xFF112211;
 	Font font = Font.TITLE;
-	int size = 20;
+	double size = 25;
+	Title.Position position = Title.Position.TOP;
+	TextAlignment alignment = TextAlignment.CENTER;
 
 	RefreshListeners refreshListeners = new RefreshListeners(this);
 
@@ -34,14 +78,16 @@ public class Title implements ChartPart {
 			final Area area = instructions.getArea();
 			gc.setColor(this.color);
 			gc.setFont(this.font);
-			gc.drawText(area.getStartX(), area.getStartY(), this.text);
+
+			final double paintY = this.position.getPaintY(area, this.size);
+			this.alignment.drawText(gc, area.copy().startY(paintY).endY(paintY + this.size), this.text);
 		}
 	}
 
 	@Override
 	public Area snipNecessarySpace(Area existingArea) {
 		if (this.text == null) return existingArea;
-		return existingArea.copy().startY(existingArea.getStartY() + this.size);
+		return this.position.snipNecessarySpace(existingArea, this.size);
 	}
 
 	@Override
@@ -171,7 +217,7 @@ public class Title implements ChartPart {
 	 * @return the title's size
 	 */
 
-	public int getSize() {
+	public double getSize() {
 		return this.size;
 	}
 
@@ -182,7 +228,7 @@ public class Title implements ChartPart {
 	 * @return this instance
 	 */
 
-	public Title size(int newSize) {
+	public Title size(double newSize) {
 		setSize(newSize);
 		return this;
 	}
@@ -193,12 +239,90 @@ public class Title implements ChartPart {
 	 * @param size the title's size
 	 */
 
-	public void setSize(int size) {
-		final int oldSize = this.size;
+	public void setSize(double size) {
+		final double oldSize = this.size;
 		this.size = size;
 		if (oldSize != size) {
 			this.refreshListeners.fireRefreshNeeded();
 		}
+	}
+
+	/**
+	 * Returns the position of the title.
+	 *
+	 * @return the position; never null
+	 */
+
+	public Title.Position getPosition() {
+		return this.position;
+	}
+
+	/**
+	 * Sets the position of the title.
+	 *
+	 * @param newPosition the position; cannot be null
+	 * @return this instance
+	 */
+
+	public Title position(Title.Position newPosition) {
+		setPosition(newPosition);
+		return this;
+	}
+
+	/**
+	 * Sets the position of the title.
+	 *
+	 * @param position the position; cannot be null
+	 */
+
+	public void setPosition(Title.Position position) {
+		final Title.Position oldPosition = this.position;
+		this.position = Objects.requireNonNull(position);
+		if (oldPosition != position) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
+	}
+
+	/**
+	 * Returns the alignment of the title.
+	 *
+	 * @return the alignment; never null
+	 */
+
+	public TextAlignment getAlignment() {
+		return this.alignment;
+	}
+
+	/**
+	 * Sets the alignment of the title.
+	 *
+	 * @param newAlignment the alignment; cannot be null
+	 * @return this instance
+	 */
+
+	public Title alignment(TextAlignment newAlignment) {
+		setAlignment(newAlignment);
+		return this;
+	}
+
+	/**
+	 * Sets the alignment of the title.
+	 *
+	 * @param alignment the alignment; cannot be null
+	 */
+
+	public void setAlignment(TextAlignment alignment) {
+		final TextAlignment oldAlignment = this.alignment;
+		this.alignment = Objects.requireNonNull(alignment);
+		if (oldAlignment != alignment) {
+			this.refreshListeners.fireRefreshNeeded();
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Title [text=" + this.text + ", color=" + this.color + ", font=" + this.font + ", size=" + this.size
+				+ ", position=" + this.position + ", alignment=" + this.alignment + "]";
 	}
 
 }
