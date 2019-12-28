@@ -7,10 +7,23 @@
 - **Repository:** <https://github.com/slothsoft/charts>
 - **Open Issues:** <https://github.com/slothsoft/charts/issues>
 - **Wiki:** <https://github.com/slothsoft/charts/wiki>
-- **JavaDoc:** [slothsoft.github.io](https://slothsoft.github.io/charts)
-- **Test Reports:** [Executed Tests](https://slothsoft.github.io/charts/tests), [Code Coverage](https://slothsoft.github.io/charts/coverage)
+- **Developer Resources:** [JavaDoc](https://slothsoft.github.io/charts), [Executed Tests](https://slothsoft.github.io/charts/tests), [Code Coverage](https://slothsoft.github.io/charts/coverage)
 
 A framework for creating charts. For my musings before even starting to code see the [Preliminary Considerations](https://github.com/slothsoft/charts/wiki/Preliminary-Considerations).
+
+**Content:**
+
+ - [Getting Started](#getting-started)
+     - [Prerequisites](#prerequisites)
+     - [Installing](#installing)
+     - [Using the Framework](#using-the-framework)
+ - [Versions](#versions)
+ - [Features](#features)
+     - [Chart](#chart)
+     - [LineChart](#linechart)
+ - [License](#license)
+
+
 
 ## Getting Started
 
@@ -29,6 +42,8 @@ TODO: This library will be in Maven Central.
 
 Examples for how to use this framework are located [here](examples/src/main/java/).
 
+
+
 ##  Versions
 
 
@@ -38,9 +53,15 @@ Examples for how to use this framework are located [here](examples/src/main/java
 | [0.1.0](https://github.com/slothsoft/charts/milestone/1?closed=1) | first draft of the API |
 
 
+
 ##  Features
     
 If something is missing, request it via [a new issue](https://github.com/slothsoft/charts/issues/new).
+
+To see examples of the charts in action, [check the wiki page](https://github.com/slothsoft/charts/wiki/Chart-Examples). This page contains an image for each chart and GUI framework.
+
+For the features of the GUI controls see [this wiki page](https://github.com/slothsoft/charts/wiki/GUI-Controls). 
+
 
 ### Chart
 
@@ -56,9 +77,10 @@ All charts have these features:
  - change general display information (background color)
  
  
-### LineChart
 
 <img align="right" src="https://raw.githubusercontent.com/wiki/slothsoft/charts/images/line-chart-structure.png">
+ 
+### LineChart
 
  - **JavaDoc:** [LineChart](https://slothsoft.github.io/charts/de/slothsoft/charts/linechart/LineChart)
 
