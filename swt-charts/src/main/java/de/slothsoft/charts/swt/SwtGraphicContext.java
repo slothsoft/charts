@@ -3,13 +3,17 @@ package de.slothsoft.charts.swt;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.graphics.Transform;
 
 import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
 
 /**
@@ -26,6 +30,8 @@ public class SwtGraphicContext implements GraphicContext {
 
 	private int colorAsInt;
 	private Color color;
+	private Font fontAsEnum;
+	private org.eclipse.swt.graphics.Font font;
 
 	private Transform transform;
 	private double scaleX = 1;
@@ -59,6 +65,46 @@ public class SwtGraphicContext implements GraphicContext {
 	@Override
 	public int getColor() {
 		return this.colorAsInt;
+	}
+
+	@Override
+	public void setFont(Font fontAsEnum) {
+		final org.eclipse.swt.graphics.Font newFont = createFont(fontAsEnum);
+		if (this.font != null) {
+			this.font.dispose();
+		}
+		this.font = newFont;
+		this.delegate.setFont(this.font);
+		this.fontAsEnum = fontAsEnum;
+	}
+
+	private org.eclipse.swt.graphics.Font createFont(Font enumFont) {
+		final FontData[] fontDatas = this.delegate.getFont().getFontData();
+		for (int i = 0; i < fontDatas.length; i++) {
+			fontDatas[i].setHeight(enumFont.getSize());
+			fontDatas[i].setStyle(getStyle(enumFont));
+
+		}
+		return new org.eclipse.swt.graphics.Font(this.delegate.getDevice(), fontDatas);
+	}
+
+	private static int getStyle(Font enumFont) {
+		int result = SWT.NORMAL;
+		if (enumFont.isBold()) {
+			result |= SWT.BOLD;
+		}
+		return result;
+	}
+
+	@Override
+	public Font getFont() {
+		return this.fontAsEnum;
+	}
+
+	@Override
+	public Area calculateTextSize(String text) {
+		final Point result = this.delegate.textExtent(text);
+		return new Area(result.x, result.y);
 	}
 
 	@Override
@@ -127,6 +173,11 @@ public class SwtGraphicContext implements GraphicContext {
 		this.delegate.fillPolygon(convertToSwtPoints(x, y));
 	}
 
+	@Override
+	public void drawText(double x, double y, String text) {
+		this.delegate.drawText(text, (int) x, (int) y, true);
+	}
+
 	/**
 	 * Disposes of the operating system resources associated with this resource.
 	 * Applications must dispose of all resources which they allocate. This method does
@@ -136,6 +187,12 @@ public class SwtGraphicContext implements GraphicContext {
 	public void dispose() {
 		if (this.transform != null) {
 			this.transform.dispose();
+		}
+		if (this.font != null) {
+			this.font.dispose();
+		}
+		if (this.color != null) {
+			this.color.dispose();
 		}
 	}
 

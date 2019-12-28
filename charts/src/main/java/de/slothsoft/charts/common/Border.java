@@ -10,6 +10,9 @@ import de.slothsoft.charts.internal.RefreshListeners;
 
 /**
  * A border on a {@link Chart}. On default it's only empty space and not visible.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
  */
 
 public class Border implements ChartPart {

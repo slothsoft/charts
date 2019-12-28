@@ -44,6 +44,36 @@ public interface GraphicContext {
 
 	int getColor();
 
+	/**
+	 * Sets the font as an enum with the font properties as hints for the actual font used
+	 * by the GUI.
+	 *
+	 * @param font the font
+	 */
+
+	void setFont(Font font);
+
+	/**
+	 * Returns the font as an enum with the font properties as hints for the actual font
+	 * used by the GUI.
+	 *
+	 * @return the font
+	 */
+
+	Font getFont();
+
+	/**
+	 * Calculates the size of the text.
+	 *
+	 * @param text
+	 * @return the text size area
+	 */
+
+	Area calculateTextSize(String text);
+
+	// TODO: this area should be a point or something?
+	// - also LineChart.convertToGraphCoordinates
+
 	// ==============
 	// ADVANCED STUFF
 	// ==============
@@ -142,5 +172,14 @@ public interface GraphicContext {
 	 */
 
 	void fillPolygon(double[] x, double[] y);
+
+	/**
+	 * Paints the text on a position.
+	 *
+	 * @param x the text's x
+	 * @param y the text's y
+	 */
+
+	void drawText(double x, double y, String text);
 
 }

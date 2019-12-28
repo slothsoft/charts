@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
 
@@ -69,6 +70,14 @@ public class GraphicsGenerator {
 			gc.translate(60, 60);
 			gc.fillPolygon(new double[]{0, 20, 10}, new double[]{0, 0, 10});
 			gc.translate(-60, -60);
+
+			gc.setColor(0xFFABCDEF);
+			gc.setFont(Font.NORMAL);
+			gc.drawText(5, 40, "ABCDE");
+
+			gc.setColor(0xFFFEDCBA);
+			gc.setFont(Font.TITLE);
+			gc.drawText(5, 55, "FGH");
 		}
 	}
 }

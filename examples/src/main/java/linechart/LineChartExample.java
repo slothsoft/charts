@@ -44,9 +44,11 @@ public class LineChartExample {
 		final LineChart chart = new LineChart();
 		chart.setBackgroundColor(0xFFFFFFFF);
 		chart.setDisplayedArea(new Area(-1, -4, 10, 4));
+
 		chart.getBorder().setSpaceOnBottom(7);
 		chart.getXAxis().setPosition(XAxis.Position.Y0);
 		chart.getYAxis().setPosition(YAxis.Position.X0);
+		chart.getTitle().setText("Line Chart");
 
 		chart.addLine(new DataPointLine(-9, -4, -2, 0, 1, 2, 2.5, 3, 3.3, 3.6, 4).color(0xFFFF00FF));
 		chart.addLine(new FunctionLine(x -> Math.sin(x)).color(0xFF00FF00));

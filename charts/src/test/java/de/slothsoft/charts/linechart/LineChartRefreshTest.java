@@ -65,14 +65,6 @@ public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 
 				data("XAxis.bigTickSize", chart -> chart.getXAxis().bigTickSize(5)),
 
-				data("YAxis.setTickSize", chart -> chart.getYAxis().setTickSize(5)),
-
-				data("YAxis.tickSize", chart -> chart.getYAxis().tickSize(5)),
-
-				data("YAxis.setBigTickSize", chart -> chart.getYAxis().setBigTickSize(5)),
-
-				data("YAxis.bigTickSize", chart -> chart.getYAxis().bigTickSize(5)),
-
 				data("XAxis.setTickSteps", chart -> chart.getXAxis().setTickSteps(5)),
 
 				data("XAxis.tickSteps", chart -> chart.getXAxis().tickSteps(5)),
@@ -84,6 +76,14 @@ public class LineChartRefreshTest extends AbstractChartRefreshTest<LineChart> {
 				data("XAxis.arrowSize", chart -> chart.getXAxis().arrowSize(5)),
 
 				data("XAxis.setArrowSize", chart -> chart.getXAxis().setArrowSize(5)),
+
+				data("YAxis.setTickSize", chart -> chart.getYAxis().setTickSize(5)),
+
+				data("YAxis.tickSize", chart -> chart.getYAxis().tickSize(5)),
+
+				data("YAxis.setBigTickSize", chart -> chart.getYAxis().setBigTickSize(5)),
+
+				data("YAxis.bigTickSize", chart -> chart.getYAxis().bigTickSize(5)),
 
 				data("YAxis.setTickSteps", chart -> chart.getYAxis().setTickSteps(5)),
 

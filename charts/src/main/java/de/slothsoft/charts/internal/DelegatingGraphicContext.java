@@ -3,6 +3,7 @@ package de.slothsoft.charts.internal;
 import java.util.Objects;
 
 import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
 
 /**
@@ -29,6 +30,16 @@ public class DelegatingGraphicContext implements GraphicContext {
 	@Override
 	public int getColor() {
 		return this.delegate.getColor();
+	}
+
+	@Override
+	public void setFont(Font font) {
+		this.delegate.setFont(font);
+	}
+
+	@Override
+	public Font getFont() {
+		return this.delegate.getFont();
 	}
 
 	@Override
@@ -69,5 +80,15 @@ public class DelegatingGraphicContext implements GraphicContext {
 	@Override
 	public void fillPolygon(double[] x, double[] y) {
 		this.delegate.fillPolygon(x, y);
+	}
+
+	@Override
+	public void drawText(double x, double y, String text) {
+		this.delegate.drawText(x, y, text);
+	}
+
+	@Override
+	public Area calculateTextSize(String text) {
+		return this.delegate.calculateTextSize(text);
 	}
 }

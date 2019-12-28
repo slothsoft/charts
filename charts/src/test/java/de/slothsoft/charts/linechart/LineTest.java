@@ -32,6 +32,15 @@ public class LineTest {
 	}
 
 	@Test
+	public void testColor() throws Exception {
+		this.line.color(0xFFABCDEF);
+		Assert.assertEquals(0xFFABCDEF, this.line.getColor());
+
+		this.line.setColor(0xFFFEDCBA);
+		Assert.assertEquals(0xFFFEDCBA, this.line.getColor());
+	}
+
+	@Test
 	public void testAddRefreshListener() throws Exception {
 		final RefreshListener.Event[] called = {null};
 		this.line.addRefreshListener(e -> called[0] = e);

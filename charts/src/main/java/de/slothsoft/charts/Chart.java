@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import de.slothsoft.charts.common.Border;
+import de.slothsoft.charts.common.Title;
 import de.slothsoft.charts.internal.RefreshListeners;
 
 /**
@@ -22,6 +23,8 @@ import de.slothsoft.charts.internal.RefreshListeners;
 public abstract class Chart {
 
 	private final Border border = new Border();
+	private final Title title = new Title();
+
 	private int backgroundColor = 0xFFFFFFFF;
 
 	private final List<ChartPart> chartParts = new ArrayList<>();
@@ -33,6 +36,7 @@ public abstract class Chart {
 
 	public Chart() {
 		addChartPart(this.border);
+		addChartPart(this.title);
 	}
 
 	protected void addChartPart(ChartPart chartPart) {
@@ -166,6 +170,20 @@ public abstract class Chart {
 
 	public Border getBorder() {
 		return this.border;
+	}
+
+	/**
+	 * Returns the title this chart has. The title is supposed to be on the top of
+	 * everything like this:<br>
+	 * <img src=
+	 * "https://raw.githubusercontent.com/wiki/slothsoft/charts/images/chart-design.png"
+	 * alt="Chart Parts">
+	 *
+	 * @return the border
+	 */
+
+	public Title getTitle() {
+		return this.title;
 	}
 
 	/**

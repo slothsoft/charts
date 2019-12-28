@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
 
 /**
@@ -53,6 +54,14 @@ public abstract class AbstractGraphicContextSanityTest {
 		this.gc.translate(60, 60);
 		this.gc.fillPolygon(new double[]{0, 20, 10}, new double[]{0, 0, 10});
 		this.gc.translate(-60, -60);
+
+		this.gc.setColor(0xFFABCDEF);
+		this.gc.setFont(Font.NORMAL);
+		this.gc.drawText(5, 40, "ABCDE");
+
+		this.gc.setColor(0xFFFEDCBA);
+		this.gc.setFont(Font.TITLE);
+		this.gc.drawText(5, 55, "FGH");
 	}
 
 	@Test
@@ -60,5 +69,33 @@ public abstract class AbstractGraphicContextSanityTest {
 		this.gc.setColor(0xFF2222BB);
 
 		Assert.assertEquals(0xFF2222BB, this.gc.getColor());
+	}
+
+	@Test
+	public void testSetFont() throws Exception {
+		this.gc.setFont(Font.TITLE);
+
+		Assert.assertEquals(Font.TITLE, this.gc.getFont());
+	}
+
+	@Test
+	public void testSetFontGettingBigger() throws Exception {
+		final Font smallFont = Font.NORMAL;
+		final Font bigFont = Font.TITLE;
+
+		Assert.assertTrue("Small font must be smaller than big font!", smallFont.getSize() < bigFont.getSize());
+
+		this.gc.setFont(smallFont);
+		final Area smallSize = this.gc.calculateTextSize("O");
+
+		this.gc.setFont(bigFont);
+		final Area bigSize = this.gc.calculateTextSize("O");
+
+		Assert.assertTrue(
+				"Small font must be smaller than big font: " + smallSize.getEndX() + " < " + bigSize.getEndX(),
+				smallSize.getEndX() < bigSize.getEndX());
+		Assert.assertTrue(
+				"Small font must be smaller than big font: " + smallSize.getEndY() + " < " + bigSize.getEndY(),
+				smallSize.getEndY() < bigSize.getEndY());
 	}
 }

@@ -25,6 +25,8 @@ public abstract class AbstractChartRefreshTest<C extends Chart> {
 
 				data("setBackgroundColor", chart -> chart.setBackgroundColor(0xFF00FF00)),
 
+				data("backgroundColor", chart -> chart.backgroundColor(0xFF00FF00)),
+
 				data("Border.setSpace", chart -> chart.getBorder().setSpace(1)),
 
 				data("Border.setSpaceOnTop", chart -> chart.getBorder().setSpaceOnTop(1)),
@@ -33,7 +35,33 @@ public abstract class AbstractChartRefreshTest<C extends Chart> {
 
 				data("Border.setSpaceOnBottom", chart -> chart.getBorder().setSpaceOnBottom(1)),
 
-				data("Border.setSpaceOnLeft", chart -> chart.getBorder().setSpaceOnLeft(1))
+				data("Border.setSpaceOnLeft", chart -> chart.getBorder().setSpaceOnLeft(1)),
+
+				data("Border.space", chart -> chart.getBorder().space(1)),
+
+				data("Border.spaceOnTop", chart -> chart.getBorder().spaceOnTop(1)),
+
+				data("Border.spaceOnRight", chart -> chart.getBorder().spaceOnRight(1)),
+
+				data("Border.spaceOnBottom", chart -> chart.getBorder().spaceOnBottom(1)),
+
+				data("Border.spaceOnLeft", chart -> chart.getBorder().spaceOnLeft(1)),
+
+				data("Title.setColor", chart -> chart.getTitle().setColor(0xFF00FF00)),
+
+				data("Title.color", chart -> chart.getTitle().color(0xFF00FF00)),
+
+				data("Title.setFont", chart -> chart.getTitle().setFont(Font.NORMAL)),
+
+				data("Title.font", chart -> chart.getTitle().font(Font.NORMAL)),
+
+				data("Title.setText", chart -> chart.getTitle().setText("Hello")),
+
+				data("Title.text", chart -> chart.getTitle().text("World")),
+
+				data("Title.setSize", chart -> chart.getTitle().setSize(1)),
+
+				data("Title.size", chart -> chart.getTitle().size(2))
 
 		));
 	}

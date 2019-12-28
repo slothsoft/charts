@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
 
 /**
@@ -18,6 +19,7 @@ public class LogGraphicContext implements GraphicContext {
 	public List<String> log = new ArrayList<>();
 
 	private int color;
+	private Font font;
 
 	@Override
 	public void setColor(int color) {
@@ -29,6 +31,18 @@ public class LogGraphicContext implements GraphicContext {
 	public int getColor() {
 		this.log.add("getColor()");
 		return this.color;
+	}
+
+	@Override
+	public Font getFont() {
+		this.log.add("getFont()");
+		return this.font;
+	}
+
+	@Override
+	public void setFont(Font font) {
+		this.log.add("setFont(" + font + ")");
+		this.font = font;
 	}
 
 	@Override
@@ -72,6 +86,17 @@ public class LogGraphicContext implements GraphicContext {
 	@Override
 	public void fillPolygon(double[] x, double[] y) {
 		this.log.add("fillPolygon(" + toString(x) + ", " + toString(y) + ")");
+	}
+
+	@Override
+	public void drawText(double x, double y, String text) {
+		this.log.add("drawText(" + x + ", " + y + ", " + text + ")");
+	}
+
+	@Override
+	public Area calculateTextSize(String text) {
+		this.log.add("calculateTextSize(" + text + ")");
+		return new Area(this.font.getSize(), text.length() * this.font.getSize());
 	}
 
 }
