@@ -517,4 +517,22 @@ public class LineChartTest extends AbstractChartTest<LineChart> {
 
 		Assert.assertNull(called[0]);
 	}
+
+	@Test
+	public void testSetDisplayedArea() throws Exception {
+		this.chart.displayedArea(new Area(1, 2, 3, 4));
+		Assert.assertEquals(new Area(1, 2, 3, 4), this.chart.getDisplayedArea());
+
+		this.chart.setDisplayedArea(new Area(5, 6, 7, 8));
+		Assert.assertEquals(new Area(5, 6, 7, 8), this.chart.getDisplayedArea());
+	}
+
+	@Test
+	public void testSetZoomFactor() throws Exception {
+		this.chart.zoomFactor(1);
+		Assert.assertEquals(1, this.chart.getZoomFactor(), DELTA);
+
+		this.chart.setZoomFactor(2);
+		Assert.assertEquals(2, this.chart.getZoomFactor(), DELTA);
+	}
 }

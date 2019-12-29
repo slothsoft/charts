@@ -88,6 +88,16 @@ public class DelegatingGraphicContext implements GraphicContext {
 	}
 
 	@Override
+	public void fillOval(double x, double y, double width, double height) {
+		this.delegate.fillOval(x, y, width, height);
+	}
+
+	@Override
+	public void fillArc(double x, double y, double width, double height, double startAngle, double arcAngle) {
+		this.delegate.fillArc(x, y, width, height, startAngle, arcAngle);
+	}
+
+	@Override
 	public Area calculateTextSize(String text) {
 		return this.delegate.calculateTextSize(text);
 	}

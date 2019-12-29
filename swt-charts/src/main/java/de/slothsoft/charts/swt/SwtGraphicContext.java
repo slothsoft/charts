@@ -178,6 +178,16 @@ public class SwtGraphicContext implements GraphicContext {
 		this.delegate.drawText(text, (int) x, (int) y, true);
 	}
 
+	@Override
+	public void fillOval(double x, double y, double width, double height) {
+		this.delegate.fillOval((int) x, (int) y, (int) width, (int) height);
+	}
+
+	@Override
+	public void fillArc(double x, double y, double width, double height, double startAngle, double arcAngle) {
+		this.delegate.fillArc((int) x, (int) y, (int) width, (int) height, (int) startAngle, (int) arcAngle);
+	}
+
 	/**
 	 * Disposes of the operating system resources associated with this resource.
 	 * Applications must dispose of all resources which they allocate. This method does

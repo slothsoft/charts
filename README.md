@@ -79,7 +79,7 @@ All charts have these features:
  
 
 <img align="right" src="https://raw.githubusercontent.com/wiki/slothsoft/charts/images/line-chart-structure.png">
- 
+
 ### LineChart
 
  - **JavaDoc:** [LineChart](https://slothsoft.github.io/charts/de/slothsoft/charts/linechart/LineChart)
@@ -88,9 +88,29 @@ All charts have these features:
 Line charts have these features:
 
  - all the features of `Chart`
- - manage lines 
+ - manage lines (add, remove)
+     - line implementation for functions and for concrete data points
+     - change general display information (color)
  - configure `XAxis` ([JavaDoc](https://slothsoft.github.io/charts/de/slothsoft/charts/linechart/XAxis)) and `YAxis` ([JavaDoc](https://slothsoft.github.io/charts/de/slothsoft/charts/linechart/YAxis))
      - change general display information (tick size and step length, arrow size, position)
+     
+<br clear="right"/>
+
+
+
+<img align="right" src="https://raw.githubusercontent.com/wiki/slothsoft/charts/images/pie-chart-structure.png">
+
+### PieChart
+
+ - **JavaDoc:** [PieChart](https://slothsoft.github.io/charts/de/slothsoft/charts/piechart/PieChart)
+
+
+Pie charts have these features:
+
+ - all the features of `Chart`
+ - manage the slices of the chart (add, remove)
+     - change general display information (percentage value, color)
+ - change general display information (start angle, pie color, pie border)
      
 <br clear="right"/>
 

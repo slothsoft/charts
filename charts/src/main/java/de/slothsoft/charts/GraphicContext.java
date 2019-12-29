@@ -21,6 +21,9 @@ public interface GraphicContext {
 	// TODO: these methods are missing to make the existing ones complete:
 	// void drawRectangle(Rectangle rect);
 	// void drawRectangle(double x, double y, double width, double height);
+	// void drawOval(double x, double y, double width, double height);
+	// void drawArc(double x, double y, double width, double height, double start, double
+	// end);
 
 	// ======
 	// CONFIG
@@ -181,5 +184,42 @@ public interface GraphicContext {
 	 */
 
 	void drawText(double x, double y, String text);
+
+	/**
+	 * Paints a filled oval.
+	 *
+	 * @param x the oval's x
+	 * @param y the oval's y
+	 * @param width the oval's width
+	 * @param height the oval's height
+	 */
+
+	void fillOval(double x, double y, double width, double height);
+
+	/**
+	 * Draws the outline of a circular or elliptical arc covering the specified rectangle.
+	 * <p>
+	 * The resulting arc begins at <code>startAngle</code> and extends for
+	 * <code>arcAngle</code> degrees, using the current color. Angles are interpreted such
+	 * that 0&nbsp;degrees is at the 3&nbsp;o'clock position. A positive value indicates a
+	 * counter-clockwise rotation while a negative value indicates a clockwise rotation.
+	 * <p>
+	 * The center of the arc is the center of the rectangle whose origin is
+	 * (<i>x</i>,&nbsp;<i>y</i>) and whose size is specified by the <code>width</code> and
+	 * <code>height</code> arguments.
+	 * <p>
+	 * The resulting arc covers an area <code>width&nbsp;+&nbsp;1</code> pixels wide by
+	 * <code>height&nbsp;+&nbsp;1</code> pixels tall.
+	 * <p>
+	 * 
+	 * @param x the <i>x</i> coordinate of the upper-left corner of the arc to be drawn.
+	 * @param y the <i>y</i> coordinate of the upper-left corner of the arc to be drawn.
+	 * @param width the width of the arc to be drawn.
+	 * @param height the height of the arc to be drawn.
+	 * @param startAngle the beginning angle.
+	 * @param arcAngle the angular extent of the arc, relative to the start angle.
+	 */
+
+	void fillArc(double x, double y, double width, double height, double startAngle, double arcAngle);
 
 }

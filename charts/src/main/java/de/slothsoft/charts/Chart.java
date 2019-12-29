@@ -71,7 +71,8 @@ public abstract class Chart {
 			gc.clip(graphArea);
 			gc.translate(graphArea.getStartX(), graphArea.getStartY());
 
-			paintGraph(gc, instructions.area(graphArea.copy().startX(0).startY(0)));
+			paintGraph(gc,
+					instructions.area(new Area(graphArea.endX - graphArea.startX, graphArea.endY - graphArea.startY)));
 		} finally {
 			gc.translate(-graphArea.getStartX(), -graphArea.getEndY());
 			gc.clip(null);

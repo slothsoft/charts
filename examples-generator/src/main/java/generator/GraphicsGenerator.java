@@ -1,5 +1,6 @@
 package generator;
 
+import java.awt.Desktop;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,6 +22,7 @@ import de.slothsoft.charts.PaintInstructions;
 public class GraphicsGenerator {
 
 	private static final Path TARGET_FOLDER = Paths.get("target/");
+	private static final boolean OPEN_FILES = false;
 
 	public static void main(String... args) throws IOException {
 		Path targetFolder = TARGET_FOLDER;
@@ -42,6 +44,10 @@ public class GraphicsGenerator {
 			overviewPage.append("![").append(writer.displayName).append("](gc-examples/")
 					.append(chartPath.getFileName()).append(") ");
 			overviewPage.append("\n\n");
+
+			if (OPEN_FILES) {
+				Desktop.getDesktop().open(chartPath.toFile());
+			}
 		}
 		Files.write(targetFolder.resolve("GUI Examples.md"), overviewPage.toString().getBytes());
 	}
@@ -78,6 +84,11 @@ public class GraphicsGenerator {
 			gc.setColor(0xFFFEDCBA);
 			gc.setFont(Font.TITLE);
 			gc.drawText(5, 55, "FGH");
+
+			gc.setColor(0xFFFFFF00);
+			gc.fillOval(10, 80, 60, 30);
+			gc.setColor(0xFF000000);
+			gc.fillArc(10, 80, 60, 30, -45, -90);
 		}
 	}
 }

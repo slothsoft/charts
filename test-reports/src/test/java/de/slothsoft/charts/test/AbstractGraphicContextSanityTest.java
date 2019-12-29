@@ -7,6 +7,11 @@ import org.junit.Test;
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
+import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.linechart.DataPointLine;
+import de.slothsoft.charts.linechart.FunctionLine;
+import de.slothsoft.charts.linechart.LineChart;
+import de.slothsoft.charts.piechart.PieChart;
 
 /**
  * We can't really tests {@link GraphicContext}s without a sophisticated algorithm to
@@ -62,6 +67,11 @@ public abstract class AbstractGraphicContextSanityTest {
 		this.gc.setColor(0xFFFEDCBA);
 		this.gc.setFont(Font.TITLE);
 		this.gc.drawText(5, 55, "FGH");
+
+		this.gc.setColor(0xFFFFFF00);
+		this.gc.fillOval(10, 80, 60, 30);
+		this.gc.setColor(0xFF000000);
+		this.gc.fillArc(10, 80, 60, 30, -45, -90);
 	}
 
 	@Test
@@ -97,5 +107,22 @@ public abstract class AbstractGraphicContextSanityTest {
 		Assert.assertTrue(
 				"Small font must be smaller than big font: " + smallSize.getEndY() + " < " + bigSize.getEndY(),
 				smallSize.getEndY() < bigSize.getEndY());
+	}
+
+	@Test
+	public void testPaintLineChart() throws Exception {
+		final LineChart chart = new LineChart();
+		chart.addLine(new DataPointLine(1, 2, 3, 4, 5));
+		chart.addLine(new FunctionLine(x -> x * 2 - 1));
+
+		chart.paintOn(this.gc, new PaintInstructions(new Area(100, 100)));
+	}
+
+	@Test
+	public void testPaintPieChart() throws Exception {
+		final PieChart chart = new PieChart();
+		chart.addSlices(1, 2, 3, 4, 5);
+
+		chart.paintOn(this.gc, new PaintInstructions(new Area(100, 100)));
 	}
 }

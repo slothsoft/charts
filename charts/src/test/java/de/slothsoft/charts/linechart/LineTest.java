@@ -32,7 +32,7 @@ public class LineTest {
 	}
 
 	@Test
-	public void testColor() throws Exception {
+	public void testSetColor() throws Exception {
 		this.line.color(0xFFABCDEF);
 		Assert.assertEquals(0xFFABCDEF, this.line.getColor());
 

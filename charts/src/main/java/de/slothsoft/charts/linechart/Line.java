@@ -27,9 +27,7 @@ public abstract class Line implements Drawable {
 		return new Area(DEFAULT_START_X, DEFAULT_START_Y, DEFAULT_END_X, DEFAULT_END_Y);
 	}
 
-	// TODO: for all lines, make it so they are only drawn inside the graph area
-
-	RefreshListeners refreshListeners = new RefreshListeners(this);
+	final RefreshListeners refreshListeners = new RefreshListeners(this);
 
 	int color = 0xFF0000FF;
 
