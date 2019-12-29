@@ -368,19 +368,15 @@
 					</plugin>
 
 					<!-- Configure the JavaDoc Plug-in so we publish it via GitHub Pages -->
-
+					
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
 							<source>8</source>
-							<show>public</show>
 							<quiet>true</quiet>
 							<locale>en</locale>
-							<sourceFileIncludes>de/slothsoft/**/*.java</sourceFileIncludes>
 							<notimestamp>true</notimestamp>
-							<reportOutputDirectory>${maven.multiModuleProjectDirectory}</reportOutputDirectory>
-							<destDir>docs</destDir>
 							<windowtitle>${project.name}</windowtitle>
 							<doctitle>${project.name}</doctitle>
 						</configuration>
@@ -391,6 +387,13 @@
 								<goals>
 									<goal>aggregate</goal>
 								</goals>
+								<configuration>
+									<show>public</show>
+									<locale>en</locale>
+									<sourceFileIncludes>de/slothsoft/**/*.java</sourceFileIncludes>
+									<reportOutputDirectory>${maven.multiModuleProjectDirectory}</reportOutputDirectory>
+									<destDir>docs</destDir>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
