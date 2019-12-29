@@ -1,7 +1,7 @@
 # Charts
 
 
-[![Build Status](https://travis-ci.org/slothsoft/charts.svg?branch=master)](https://travis-ci.org/slothsoft/charts)
+[![Build Status](https://travis-ci.org/slothsoft/charts.svg?branch=master)](https://travis-ci.org/slothsoft/charts) [![Maven Central](https://img.shields.io/maven-central/v/de.slothsoft.charts/charts.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22de.slothsoft.charts%22%20AND%20a:%22charts%22)
 
 - **Author:** [Stef Schulz](mailto:s.schulz@slothsoft.de)
 - **Repository:** <https://github.com/slothsoft/charts>
@@ -35,12 +35,56 @@ The [.travis.yml](.travis.yml) shows which JDK this library is build and tested 
 
 ### Installing
 
-TODO: This library will be in Maven Central.
+This library is in Maven Central, so you can easily add it like this:
+
+```xml
+<dependency>
+	<groupId>de.slothsoft.charts</groupId>
+	<artifactId>charts</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+For other build tools and the JAR take a look at [Maven Central](https://search.maven.org/artifact/de.slothsoft.charts/charts/) or the [MVN Repository](https://mvnrepository.com/artifact/de.slothsoft.charts/charts).
 
 
 ### Using the Framework
 
 Examples for how to use this framework are located [here](examples/src/main/java/).
+
+You usually start by creating the chart you wish to display.
+
+**LineChart:**
+
+```java
+LineChart chart = new LineChart();
+chart.addLine(new DataPointLine(-4, -2, -1, -0.5, 0));
+chart.addLine(new FunctionLine(x -> Math.cos(x)).color(0xFF00FFFF));
+```
+
+**PieChart:**
+
+```java
+PieChart chart = new PieChart();
+chart.addSlices(1, 3, 5, 15);
+```
+
+And then you need to set these charts as the model for your GUI framework.
+
+**SWT:**
+
+```java
+ChartControl chartControl = new ChartControl(shell, SWT.BORDER);
+chartControl.setModel(chart);
+```
+
+There are more extensive examples [here](examples/src/main/java/), for instance:
+
+ - **Chart types**
+    - [LineChart](examples/src/main/java/linechart)
+    - [PieChart](examples/src/main/java/piechart)
+ - **GUI Frameworks**
+    - [SWT](examples/src/main/java/swt)
 
 
 
