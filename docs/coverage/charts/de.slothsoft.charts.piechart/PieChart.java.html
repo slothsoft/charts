@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PieChart.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.piechart</a> &gt; <span class="el_source">PieChart.java</span></div><h1>PieChart.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.piechart;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.GraphicContext;
+import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.RefreshListener;
+
+/**
+ * This class represents a {@link Chart} that displays a circle with sections representing
+ * percentages. It's structure looks like this:&lt;br&gt;
+ * &lt;img src=
+ * &quot;https://raw.githubusercontent.com/wiki/slothsoft/charts/images/pie-chart-structure.png&quot;
+ * alt=&quot;structure&quot;&gt;
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+<span class="fc" id="L24">public class PieChart extends Chart {</span>
+
+	private static final int DEGREE = 360;
+<span class="fc" id="L27">	private static final int[] SLICE_COLORS = {0xFFf5b5fc, 0xFF96f7d2, 0xFFf0f696, 0xFFfcb1b1};</span>
+
+<span class="fc" id="L29">	final List&lt;PieSlice&gt; slices = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L30">	final RefreshListener refreshListener = e -&gt; fireRefreshNeeded();</span>
+
+<span class="fc" id="L32">	int pieColor = 0xFF222222;</span>
+	double startAngle;
+<span class="fc" id="L34">	double pieBorder = 2;</span>
+
+	@Override
+	protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
+<span class="fc" id="L38">		final Area area = instructions.getArea();</span>
+
+<span class="fc" id="L40">		double widthAndHeight = Math.min(area.getEndX() - area.getStartX(), area.getEndY() - area.getStartY());</span>
+<span class="fc" id="L41">		double startX = area.getStartX() + (area.getEndX() - area.getStartX() - widthAndHeight) / 2;</span>
+<span class="fc" id="L42">		double startY = area.getStartY() + (area.getEndY() - area.getStartY() - widthAndHeight) / 2;</span>
+
+<span class="fc" id="L44">		gc.setColor(this.pieColor);</span>
+<span class="fc" id="L45">		gc.fillOval(startX, startY, widthAndHeight, widthAndHeight);</span>
+
+<span class="fc" id="L47">		startX += this.pieBorder;</span>
+<span class="fc" id="L48">		startY += this.pieBorder;</span>
+<span class="fc" id="L49">		widthAndHeight -= 2 * this.pieBorder;</span>
+
+<span class="fc" id="L51">		final double valueSum = this.slices.stream().mapToDouble(PieSlice::getValue).sum();</span>
+<span class="fc" id="L52">		double currentAngle = this.startAngle;</span>
+
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		for (final PieSlice slice : this.slices) {</span>
+<span class="fc" id="L55">			final double sliceAngle = slice.getValue() / valueSum * DEGREE;</span>
+<span class="fc" id="L56">			gc.setColor(slice.color);</span>
+<span class="fc" id="L57">			gc.fillArc(startX, startY, widthAndHeight, widthAndHeight, currentAngle, sliceAngle);</span>
+<span class="fc" id="L58">			currentAngle += sliceAngle;</span>
+<span class="fc" id="L59">		}</span>
+<span class="fc" id="L60">	}</span>
+
+	/**
+	 * Creates a new {@link PieSlice} and adds it to this chart.
+	 *
+	 * @param value the value of the slice
+	 * @return the added slice
+	 */
+
+	public PieSlice addSlice(double value) {
+<span class="fc" id="L70">		final PieSlice result = doAddSlice(value);</span>
+<span class="fc" id="L71">		fireRefreshNeeded();</span>
+<span class="fc" id="L72">		return result;</span>
+	}
+
+	private PieSlice doAddSlice(double value) {
+<span class="fc" id="L76">		final PieSlice slice = new PieSlice(value).color(SLICE_COLORS[this.slices.size() % SLICE_COLORS.length]);</span>
+<span class="fc" id="L77">		slice.addRefreshListener(this.refreshListener);</span>
+<span class="fc" id="L78">		this.slices.add(slice);</span>
+<span class="fc" id="L79">		return slice;</span>
+	}
+
+	/**
+	 * Creates some new {@link PieSlice}s and adds them to this chart.
+	 *
+	 * @param values the values of the slices
+	 * @return the added slices
+	 */
+
+	public PieSlice[] addSlices(double... values) {
+<span class="fc" id="L90">		final PieSlice[] result = new PieSlice[values.length];</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L92">			result[i] = doAddSlice(values[i]);</span>
+		}
+<span class="fc" id="L94">		fireRefreshNeeded();</span>
+<span class="fc" id="L95">		return result;</span>
+	}
+
+	/**
+	 * Removes a {@link PieSlice} from this chart.
+	 *
+	 * @param slice the removed slice
+	 */
+
+	public void removeSlice(PieSlice slice) {
+<span class="fc" id="L105">		doRemoveSlice(slice);</span>
+<span class="fc" id="L106">		fireRefreshNeeded();</span>
+<span class="fc" id="L107">	}</span>
+
+	private void doRemoveSlice(PieSlice slice) {
+<span class="fc" id="L110">		slice.removeRefreshListener(this.refreshListener);</span>
+<span class="fc" id="L111">		this.slices.remove(slice);</span>
+<span class="fc" id="L112">	}</span>
+
+	/**
+	 * Removes some {@link PieSlice}s from this chart.
+	 *
+	 * @param removedSlices the removed slices
+	 */
+
+	public void removeSlices(PieSlice... removedSlices) {
+<span class="fc" id="L121">		Arrays.stream(removedSlices).forEach(this::doRemoveSlice);</span>
+<span class="fc" id="L122">		fireRefreshNeeded();</span>
+<span class="fc" id="L123">	}</span>
+
+	/**
+	 * Returns the color of the pie as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and
+	 * blue is &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @return the color
+	 */
+
+	public int getPieColor() {
+<span class="fc" id="L133">		return this.pieColor;</span>
+	}
+
+	/**
+	 * Sets the color of the pie as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue
+	 * is &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @param newPieColor the color
+	 * @return this instance
+	 */
+
+	public Chart pieColor(int newPieColor) {
+<span class="fc" id="L145">		setPieColor(newPieColor);</span>
+<span class="fc" id="L146">		return this;</span>
+	}
+
+	/**
+	 * Sets the color of the pie as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue
+	 * is &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @param pieColor the color
+	 */
+
+	public void setPieColor(int pieColor) {
+<span class="fc" id="L157">		final int oldPieColor = this.pieColor;</span>
+<span class="fc" id="L158">		this.pieColor = pieColor;</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">		if (oldPieColor != this.pieColor) {</span>
+<span class="fc" id="L160">			fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L162">	}</span>
+
+	/**
+	 * Returns the pie's border size. The border is drawn in the {@link #getPieColor()}.
+	 *
+	 * @return the border's size
+	 * @see #getPieColor()
+	 */
+
+	public double getPieBorder() {
+<span class="fc" id="L172">		return this.pieBorder;</span>
+	}
+
+	/**
+	 * Sets the pie's border size. The border is drawn in the {@link #getPieColor()}.
+	 *
+	 * @param newPieBorder the border's size
+	 * @return this instance
+	 * @see #getPieColor()
+	 */
+
+	public PieChart pieBorder(double newPieBorder) {
+<span class="fc" id="L184">		setPieBorder(newPieBorder);</span>
+<span class="fc" id="L185">		return this;</span>
+	}
+
+	/**
+	 * Sets the pie's border size. The border is drawn in the {@link #getPieColor()}.
+	 *
+	 * @param pieBorder the border's size
+	 * @see #getPieColor()
+	 */
+
+	public void setPieBorder(double pieBorder) {
+<span class="fc" id="L196">		final double oldPieBorder = this.pieBorder;</span>
+<span class="fc" id="L197">		this.pieBorder = pieBorder;</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">		if (oldPieBorder != pieBorder) {</span>
+<span class="fc" id="L199">			fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L201">	}</span>
+
+	/**
+	 * Returns the angle the pie starts drawing its slices. Angles are interpreted such
+	 * that 0&amp;nbsp;degrees is at the 3&amp;nbsp;o'clock position. A positive value indicates a
+	 * counter-clockwise rotation while a negative value indicates a clockwise rotation.
+	 *
+	 * @return the start angle
+	 */
+
+	public double getStartAngle() {
+<span class="fc" id="L212">		return this.startAngle;</span>
+	}
+
+	/**
+	 * Sets the angle the pie starts drawing its slices. Angles are interpreted such that
+	 * 0&amp;nbsp;degrees is at the 3&amp;nbsp;o'clock position. A positive value indicates a
+	 * counter-clockwise rotation while a negative value indicates a clockwise rotation.
+	 *
+	 * @param newStartAngle the start angle
+	 * @return this instance
+	 */
+
+	public PieChart startAngle(double newStartAngle) {
+<span class="fc" id="L225">		setStartAngle(newStartAngle);</span>
+<span class="fc" id="L226">		return this;</span>
+	}
+
+	/**
+	 * Sets the angle the pie starts drawing its slices. Angles are interpreted such that
+	 * 0&amp;nbsp;degrees is at the 3&amp;nbsp;o'clock position. A positive value indicates a
+	 * counter-clockwise rotation while a negative value indicates a clockwise rotation.
+	 *
+	 * @param startAngle the start angle
+	 */
+
+	public void setStartAngle(double startAngle) {
+<span class="fc" id="L238">		final double oldStartAngle = this.startAngle;</span>
+<span class="fc" id="L239">		this.startAngle = startAngle;</span>
+<span class="fc bfc" id="L240" title="All 2 branches covered.">		if (oldStartAngle != startAngle) {</span>
+<span class="fc" id="L241">			fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L243">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -136,17 +136,23 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#Area--">Area</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#Area--">Area</a></span>()</code>
+<div class="block">Constructor that sets start and end points to 0|0.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#Area-double-double-">Area</a></span>(double&nbsp;endX,
-    double&nbsp;endY)</code>&nbsp;</td>
+    double&nbsp;endY)</code>
+<div class="block">Constructor that sets start point to 0|0.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#Area-double-double-double-double-">Area</a></span>(double&nbsp;startX,
     double&nbsp;startY,
     double&nbsp;endX,
-    double&nbsp;endY)</code>&nbsp;</td>
+    double&nbsp;endY)</code>
+<div class="block">Constructor.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -164,78 +170,86 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#containsPoint-double-double-">containsPoint</a></span>(double&nbsp;x,
+             double&nbsp;y)</code>
+<div class="block">Returns true, if this area contains the point.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#copy--">copy</a></span>()</code>
 <div class="block">Creates a copy of this class.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#endX-double-">endX</a></span>(double&nbsp;newEndX)</code>&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#endY-double-">endY</a></span>(double&nbsp;newEndY)</code>&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#equals-java.lang.Object-">equals</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</code>&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#getEndX--">getEndX</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#getEndY--">getEndY</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#getStartX--">getStartX</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#getStartY--">getStartY</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#intersect-de.slothsoft.charts.Area-">intersect</a></span>(<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;area)</code>
-<div class="block">Returns an area that is shared between this area and the one coming in.</div>
-</td>
-</tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#setEndX-double-">setEndX</a></span>(double&nbsp;endX)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#move-double-double-">move</a></span>(double&nbsp;xIncrement,
+    double&nbsp;yIncrement)</code>
+<div class="block">Moves the area.</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#setEndY-double-">setEndY</a></span>(double&nbsp;endY)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#setEndX-double-">setEndX</a></span>(double&nbsp;endX)</code>&nbsp;</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#setStartX-double-">setStartX</a></span>(double&nbsp;startX)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#setEndY-double-">setEndY</a></span>(double&nbsp;endY)</code>&nbsp;</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#setStartY-double-">setStartY</a></span>(double&nbsp;startY)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#setStartX-double-">setStartX</a></span>(double&nbsp;startX)</code>&nbsp;</td>
 </tr>
 <tr id="i14" class="altColor">
-<td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#startX-double-">startX</a></span>(double&nbsp;newStartX)</code>&nbsp;</td>
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#setStartY-double-">setStartY</a></span>(double&nbsp;startY)</code>&nbsp;</td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#startY-double-">startY</a></span>(double&nbsp;newStartY)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#startX-double-">startX</a></span>(double&nbsp;newStartX)</code>&nbsp;</td>
 </tr>
 <tr id="i16" class="altColor">
+<td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#startY-double-">startY</a></span>(double&nbsp;newStartY)</code>&nbsp;</td>
+</tr>
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Area.html#unite-de.slothsoft.charts.Area-">unite</a></span>(<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;area)</code>
 <div class="block">Returns an area surrounding this area and the one coming in.</div>
@@ -270,6 +284,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <li class="blockList">
 <h4>Area</h4>
 <pre>public&nbsp;Area()</pre>
+<div class="block">Constructor that sets start and end points to 0|0.</div>
 </li>
 </ul>
 <a name="Area-double-double-">
@@ -280,6 +295,12 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>Area</h4>
 <pre>public&nbsp;Area(double&nbsp;endX,
             double&nbsp;endY)</pre>
+<div class="block">Constructor that sets start point to 0|0.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>endX</code> - end point's X</dd>
+<dd><code>endY</code> - end point's Y</dd>
+</dl>
 </li>
 </ul>
 <a name="Area-double-double-double-double-">
@@ -292,6 +313,14 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
             double&nbsp;startY,
             double&nbsp;endX,
             double&nbsp;endY)</pre>
+<div class="block">Constructor.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>startX</code> - start point's X</dd>
+<dd><code>startY</code> - start point's Y</dd>
+<dd><code>endX</code> - end point's X</dd>
+<dd><code>endY</code> - end point's Y</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -302,23 +331,6 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="intersect-de.slothsoft.charts.Area-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>intersect</h4>
-<pre>public&nbsp;<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;intersect(<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;area)</pre>
-<div class="block">Returns an area that is shared between this area and the one coming in. If there
- are no points between the two areas <code>null</code> is returned.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>area</code> - the area to intersect with</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the intersecting area</dd>
-</dl>
-</li>
-</ul>
 <a name="unite-de.slothsoft.charts.Area-">
 <!--   -->
 </a>
@@ -332,6 +344,40 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <dd><code>area</code> - the area to unite with</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the union area</dd>
+</dl>
+</li>
+</ul>
+<a name="containsPoint-double-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>containsPoint</h4>
+<pre>public&nbsp;boolean&nbsp;containsPoint(double&nbsp;x,
+                             double&nbsp;y)</pre>
+<div class="block">Returns true, if this area contains the point.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - point's x</dd>
+<dd><code>y</code> - point's y</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true or false</dd>
+</dl>
+</li>
+</ul>
+<a name="move-double-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>move</h4>
+<pre>public&nbsp;void&nbsp;move(double&nbsp;xIncrement,
+                 double&nbsp;yIncrement)</pre>
+<div class="block">Moves the area.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>xIncrement</code> - the x movement</dd>
+<dd><code>yIncrement</code> - the y movement</dd>
 </dl>
 </li>
 </ul>

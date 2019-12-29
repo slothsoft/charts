@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ChartPart.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts</a> &gt; <span class="el_source">ChartPart.java</span></div><h1>ChartPart.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts;
+
+import de.slothsoft.charts.common.Border;
+
+/**
+ * This class represents a part of the {@link Chart} that is not used for the actual
+ * graph. Classes are connected like this: &lt;br&gt;
+ * &lt;img src=&quot;https://raw.githubusercontent.com/wiki/slothsoft/charts/images/UML.png&quot; alt=
+ * &quot;UML Diagram&quot;&gt;&lt;br&gt;
+ * Common {@link ChartPart}s are:
+ * &lt;ul&gt;
+ * &lt;li&gt;{@link Border}&lt;/li&gt;
+ * &lt;/ul&gt;
+ *
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public interface ChartPart extends Drawable {
+
+	/**
+	 * Paints the current content onto the graphic context. Checks the instructions for
+	 * what to paint. Coordinates are starting from the top left with 0|0 and ending
+	 * bottom right with something like 800|600.
+	 *
+	 * @param gc graphic context; coordinates are relative to the {@link Chart}
+	 * @param instructions additional instructions like the area to paint on
+	 */
+
+	@Override
+	void paintOn(GraphicContext gc, PaintInstructions instructions);
+
+	/**
+	 * This method removes space from the existing area to make room for this part. E.g. a
+	 * part on the left of the graph would increase the x and decrease the width.
+	 *
+	 * @param existingArea the area this part could use
+	 * @return the area for the next parts
+	 */
+
+	default Area snipNecessarySpace(Area existingArea) {
+<span class="fc" id="L43">		return existingArea;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

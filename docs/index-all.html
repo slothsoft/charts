@@ -69,7 +69,7 @@
 <!--   -->
 </a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a name="I:A">
+<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:X">X</a>&nbsp;<a href="#I:Y">Y</a>&nbsp;<a href="#I:Z">Z</a>&nbsp;<a name="I:A">
 <!--   -->
 </a>
 <h2 class="title">A</h2>
@@ -89,6 +89,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Border.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener(RefreshListener)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Border.html" title="class in de.slothsoft.charts.common">Border</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener(RefreshListener)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Drawable.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener(RefreshListener)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts">Drawable</a></dt>
 <dd>
 <div class="block">Adds a refresh listener that is called whenever this <a href="de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts"><code>Drawable</code></a> needs to be
@@ -101,6 +103,23 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/Line.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener(RefreshListener)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/Line.html" title="class in de.slothsoft.charts.linechart">Line</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieSlice.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener(RefreshListener)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart">PieSlice</a></dt>
+<dd>
+<div class="block">Adds a refresh listener that is called whenever the source needs to be redrawn by
+ the GUI.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#addSlice-double-">addSlice(double)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Creates a new <a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart"><code>PieSlice</code></a> and adds it to this chart.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#addSlices-double...-">addSlices(double...)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Creates some new <a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart"><code>PieSlice</code></a>s and adds them to this chart.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#alignment-de.slothsoft.charts.TextAlignment-">alignment(TextAlignment)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the alignment of the title.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/FunctionLine.Function.html#apply-double-">apply(double)</a></span> - Method in interface de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/FunctionLine.Function.html" title="interface in de.slothsoft.charts.linechart">FunctionLine.Function</a></dt>
 <dd>
 <div class="block">Applies this function to the given argument.</div>
@@ -110,11 +129,17 @@
 <div class="block">A simple class representing an area with start and end point.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#Area--">Area()</a></span> - Constructor for class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructor that sets start and end points to 0|0.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#Area-double-double-">Area(double, double)</a></span> - Constructor for class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructor that sets start point to 0|0.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#Area-double-double-double-double-">Area(double, double, double, double)</a></span> - Constructor for class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructor.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/PaintInstructions.html#area-de.slothsoft.charts.Area-">area(Area)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a></dt>
 <dd>
 <div class="block">Sets the area to draw on.</div>
@@ -141,12 +166,29 @@
 </a>
 <h2 class="title">C</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/Chart.html#calculateGraphArea-double-double-">calculateGraphArea(double, double)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts">Chart</a></dt>
+<dd>
+<div class="block">Calculates the graph area by removing the <a href="de/slothsoft/charts/ChartPart.html" title="interface in de.slothsoft.charts"><code>ChartPart</code></a>s from the entire width
+ and height.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#calculateTextSize-java.lang.String-">calculateTextSize(String)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
+<dd>
+<div class="block">Calculates the size of the text.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#calculateTextSize-java.lang.String-">calculateTextSize(String)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#calculateTextSize-java.lang.String-">calculateTextSize(String)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#calculateTextSize-java.lang.String-">calculateTextSize(String)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><span class="typeNameLink">Chart</span></a> - Class in <a href="de/slothsoft/charts/package-summary.html">de.slothsoft.charts</a></dt>
 <dd>
 <div class="block">This is the base class this library is for.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Chart.html#Chart--">Chart()</a></span> - Constructor for class de.slothsoft.charts.<a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts">Chart</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Default constructor.</div>
+</dd>
 <dt><a href="de/slothsoft/charts/swt/ChartControl.html" title="class in de.slothsoft.charts.swt"><span class="typeNameLink">ChartControl</span></a> - Class in <a href="de/slothsoft/charts/swt/package-summary.html">de.slothsoft.charts.swt</a></dt>
 <dd>
 <div class="block">A SWT control displaying a <a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><code>Chart</code></a> and hooking it to the SWT framework.</div>
@@ -167,11 +209,45 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#clip-de.slothsoft.charts.Area-">clip(Area)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#clip-de.slothsoft.charts.Area-">clip(Area)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#clip-de.slothsoft.charts.Area-">clip(Area)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#color-int-">color(int)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the color as ARGB int, e.g.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/Line.html#color-int-">color(int)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/Line.html" title="class in de.slothsoft.charts.linechart">Line</a></dt>
 <dd>
 <div class="block">Sets the color as ARGB int, e.g.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieSlice.html#color-int-">color(int)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart">PieSlice</a></dt>
+<dd>
+<div class="block">Sets the color as ARGB int, e.g.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#containsPoint-double-double-">containsPoint(double, double)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
+<dd>
+<div class="block">Returns true, if this area contains the point.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#convertToChartX-double-">convertToChartX(double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Converts a graph coordinate to a chart one.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#convertToChartY-double-">convertToChartY(double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Converts a graph coordinate to a chart one.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#convertToGraphCoordinates-double-double-">convertToGraphCoordinates(double, double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Converts chart coordinates to a graph ones.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#convertToGraphX-double-">convertToGraphX(double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Converts a chart coordinate to a graph one.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#convertToGraphY-double-">convertToGraphY(double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Converts a chart coordinate to a graph one.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#copy--">copy()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
 <dd>
@@ -210,6 +286,8 @@
 <dt><a href="de/slothsoft/charts/internal/package-summary.html">de.slothsoft.charts.internal</a> - package de.slothsoft.charts.internal</dt>
 <dd>&nbsp;</dd>
 <dt><a href="de/slothsoft/charts/linechart/package-summary.html">de.slothsoft.charts.linechart</a> - package de.slothsoft.charts.linechart</dt>
+<dd>&nbsp;</dd>
+<dt><a href="de/slothsoft/charts/piechart/package-summary.html">de.slothsoft.charts.piechart</a> - package de.slothsoft.charts.piechart</dt>
 <dd>&nbsp;</dd>
 <dt><a href="de/slothsoft/charts/swt/package-summary.html">de.slothsoft.charts.swt</a> - package de.slothsoft.charts.swt</dt>
 <dd>&nbsp;</dd>
@@ -252,7 +330,21 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#drawPolyline-double:A-double:A-">drawPolyline(double[], double[])</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#drawPolyline-double:A-double:A-">drawPolyline(double[], double[])</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#drawPolyline-double:A-double:A-">drawPolyline(double[], double[])</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#drawText-double-double-java.lang.String-">drawText(double, double, String)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
+<dd>
+<div class="block">Paints the text on a position.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#drawText-double-double-java.lang.String-">drawText(double, double, String)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#drawText-double-double-java.lang.String-">drawText(double, double, String)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#drawText-double-double-java.lang.String-">drawText(double, double, String)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/TextAlignment.html#drawText-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.Area-java.lang.String-">drawText(GraphicContext, Area, String)</a></span> - Method in enum de.slothsoft.charts.<a href="de/slothsoft/charts/TextAlignment.html" title="enum in de.slothsoft.charts">TextAlignment</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a name="I:E">
@@ -278,6 +370,36 @@
 </a>
 <h2 class="title">F</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#fillArc-double-double-double-double-double-double-">fillArc(double, double, double, double, double, double)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
+<dd>
+<div class="block">Draws the outline of a circular or elliptical arc covering the specified rectangle.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#fillArc-double-double-double-double-double-double-">fillArc(double, double, double, double, double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#fillArc-double-double-double-double-double-double-">fillArc(double, double, double, double, double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#fillArc-double-double-double-double-double-double-">fillArc(double, double, double, double, double, double)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#fillOval-double-double-double-double-">fillOval(double, double, double, double)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
+<dd>
+<div class="block">Paints a filled oval.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#fillOval-double-double-double-double-">fillOval(double, double, double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#fillOval-double-double-double-double-">fillOval(double, double, double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#fillOval-double-double-double-double-">fillOval(double, double, double, double)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#fillPolygon-double:A-double:A-">fillPolygon(double[], double[])</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
+<dd>
+<div class="block">Paints a filled polygon.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#fillPolygon-double:A-double:A-">fillPolygon(double[], double[])</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#fillPolygon-double:A-double:A-">fillPolygon(double[], double[])</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#fillPolygon-double:A-double:A-">fillPolygon(double[], double[])</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#fillRectangle-de.slothsoft.charts.Area-">fillRectangle(Area)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
 <dd>
 <div class="block">Paints a filled rectangle.</div>
@@ -288,6 +410,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#fillRectangle-double-double-double-double-">fillRectangle(double, double, double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#fillRectangle-double-double-double-double-">fillRectangle(double, double, double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#fillRectangle-double-double-double-double-">fillRectangle(double, double, double, double)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/RefreshListeners.html#fireRefreshNeeded--">fireRefreshNeeded()</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/RefreshListeners.html" title="class in de.slothsoft.charts.internal">RefreshListeners</a></dt>
@@ -297,6 +421,14 @@
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/RefreshListeners.html#fireRefreshNeeded-de.slothsoft.charts.RefreshListener.Event-">fireRefreshNeeded(RefreshListener.Event)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/RefreshListeners.html" title="class in de.slothsoft.charts.internal">RefreshListeners</a></dt>
 <dd>
 <div class="block">Fires an event for the <a href="de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts"><code>RefreshListener</code></a>s of the source.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#font-de.slothsoft.charts.Font-">font(Font)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the font used to paint the title.</div>
+</dd>
+<dt><a href="de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts"><span class="typeNameLink">Font</span></a> - Enum in <a href="de/slothsoft/charts/package-summary.html">de.slothsoft.charts</a></dt>
+<dd>
+<div class="block">The fonts that can be used with the <a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts"><code>GraphicContext</code></a>.</div>
 </dd>
 <dt><a href="de/slothsoft/charts/linechart/FunctionLine.html" title="class in de.slothsoft.charts.linechart"><span class="typeNameLink">FunctionLine</span></a> - Class in <a href="de/slothsoft/charts/linechart/package-summary.html">de.slothsoft.charts.linechart</a></dt>
 <dd>
@@ -316,6 +448,10 @@
 </a>
 <h2 class="title">G</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#getAlignment--">getAlignment()</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Returns the alignment of the title.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/PaintInstructions.html#getArea--">getArea()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a></dt>
 <dd>
 <div class="block">Returns the area to draw on.</div>
@@ -328,13 +464,23 @@
 <dd>
 <div class="block">Returns the border this chart has.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#getColor--">getColor()</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Returns the color as ARGB int, e.g.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#getColor--">getColor()</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
 <dd>
 <div class="block">Returns the color as ARGB int, e.g.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#getColor--">getColor()</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#getColor--">getColor()</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/Line.html#getColor--">getColor()</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/Line.html" title="class in de.slothsoft.charts.linechart">Line</a></dt>
+<dd>
+<div class="block">Returns the color as ARGB int, e.g.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieSlice.html#getColor--">getColor()</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart">PieSlice</a></dt>
 <dd>
 <div class="block">Returns the color as ARGB int, e.g.</div>
 </dd>
@@ -352,13 +498,62 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#getEndY--">getEndY()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#getFont--">getFont()</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Returns the font used to paint the title.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#getFont--">getFont()</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
+<dd>
+<div class="block">Returns the font as an enum with the font properties as hints for the actual font
+ used by the GUI.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#getFont--">getFont()</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#getFont--">getFont()</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#getFont--">getFont()</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#getLog--">getLog()</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/ChartControl.html#getModel--">getModel()</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/ChartControl.html" title="class in de.slothsoft.charts.swt">ChartControl</a></dt>
 <dd>
 <div class="block">Returns the <a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><code>Chart</code></a> that gets displayed by this control.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#getMovementMouseButton--">getMovementMouseButton()</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>
+<div class="block">Returns the button that needs to be pressed to move the chart.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#getPieBorder--">getPieBorder()</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Returns the pie's border size.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#getPieColor--">getPieColor()</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Returns the color of the pie as ARGB int, e.g.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#getPosition--">getPosition()</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Returns the position of the title.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/XAxis.html#getPosition--">getPosition()</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/XAxis.html" title="class in de.slothsoft.charts.linechart">XAxis</a></dt>
+<dd>
+<div class="block">Returns the position of the x axis.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/YAxis.html#getPosition--">getPosition()</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/YAxis.html" title="class in de.slothsoft.charts.linechart">YAxis</a></dt>
+<dd>
+<div class="block">Returns the position of the y axis.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/FunctionLine.html#getPreferredArea--">getPreferredArea()</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/FunctionLine.html" title="class in de.slothsoft.charts.linechart">FunctionLine</a></dt>
 <dd>
 <div class="block">Returns the area this line would like to display.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#getSize--">getSize()</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Returns the height of the title, if one is drawn.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/Font.html#getSize--">getSize()</a></span> - Method in enum de.slothsoft.charts.<a href="de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a></dt>
+<dd>
+<div class="block">Returns the size hint.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/RefreshListener.Event.html#getSource--">getSource()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/RefreshListener.Event.html" title="class in de.slothsoft.charts">RefreshListener.Event</a></dt>
 <dd>
@@ -380,6 +575,10 @@
 <dd>
 <div class="block">Return the border size on the top.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#getStartAngle--">getStartAngle()</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Returns the angle the pie starts drawing its slices.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#getStartX--">getStartX()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#getStartY--">getStartY()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
@@ -388,6 +587,30 @@
 <dd>
 <div class="block">Returns the value that is used to determine which x values are drawn in
  <a href="de/slothsoft/charts/linechart/FunctionLine.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-"><code>FunctionLine.paintOn(GraphicContext, PaintInstructions)</code></a>, i.e.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#getText--">getText()</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Returns the text that is the title or <code>null</code> to show there is no title.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/Chart.html#getTitle--">getTitle()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts">Chart</a></dt>
+<dd>
+<div class="block">Returns the title this chart has.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieSlice.html#getValue--">getValue()</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart">PieSlice</a></dt>
+<dd>
+<div class="block">Sets the value this slice represents.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#getXAxis--">getXAxis()</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Returns the x axis of this line chart.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#getYAxis--">getYAxis()</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Returns the y axis of this line chart.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#getZoomFactor--">getZoomFactor()</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Returns the factor which should be used to zoom the graph area.</div>
 </dd>
 <dt><a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts"><span class="typeNameLink">GraphicContext</span></a> - Interface in <a href="de/slothsoft/charts/package-summary.html">de.slothsoft.charts</a></dt>
 <dd>
@@ -403,15 +626,21 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/PaintInstructions.html#hashCode--">hashCode()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#hookToControl-org.eclipse.swt.widgets.Control-de.slothsoft.charts.linechart.LineChart-">hookToControl(Control, LineChart)</a></span> - Static method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>
+<div class="block">Creates a new <a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt"><code>MoveLineChartByMouseListener</code></a>, hooks it to a control (not
+ necessary a <a href="de/slothsoft/charts/swt/ChartControl.html" title="class in de.slothsoft.charts.swt"><code>ChartControl</code></a>, but that's probably a good idea) and returns the
+ brand new instance.</div>
+</dd>
 </dl>
 <a name="I:I">
 <!--   -->
 </a>
 <h2 class="title">I</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#intersect-de.slothsoft.charts.Area-">intersect(Area)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/Font.html#isBold--">isBold()</a></span> - Method in enum de.slothsoft.charts.<a href="de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a></dt>
 <dd>
-<div class="block">Returns an area that is shared between this area and the one coming in.</div>
+<div class="block">Returns the bold hint.</div>
 </dd>
 </dl>
 <a name="I:L">
@@ -432,6 +661,12 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#LineChart--">LineChart()</a></span> - Constructor for class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal"><span class="typeNameLink">LogGraphicContext</span></a> - Class in <a href="de/slothsoft/charts/internal/package-summary.html">de.slothsoft.charts.internal</a></dt>
+<dd>
+<div class="block">An implementation to test stuff, e.g.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#LogGraphicContext--">LogGraphicContext()</a></span> - Constructor for class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <a name="I:M">
 <!--   -->
@@ -441,6 +676,38 @@
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/ChartControl.html#model-de.slothsoft.charts.Chart-">model(Chart)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/ChartControl.html" title="class in de.slothsoft.charts.swt">ChartControl</a></dt>
 <dd>
 <div class="block">Sets the <a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><code>Chart</code></a> that gets displayed by this control.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#mouseDoubleClick-org.eclipse.swt.events.MouseEvent-">mouseDoubleClick(MouseEvent)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#mouseDown-org.eclipse.swt.events.MouseEvent-">mouseDown(MouseEvent)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#mouseMove-org.eclipse.swt.events.MouseEvent-">mouseMove(MouseEvent)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#mouseScrolled-org.eclipse.swt.events.MouseEvent-">mouseScrolled(MouseEvent)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#mouseUp-org.eclipse.swt.events.MouseEvent-">mouseUp(MouseEvent)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#move-double-double-">move(double, double)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
+<dd>
+<div class="block">Moves the area.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#moveDisplayedAreaByChartCoordinates-double-double-">moveDisplayedAreaByChartCoordinates(double, double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Moves the displayed area of this <a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><code>Chart</code></a> by the coordinates used for the
+ entire chart.</div>
+</dd>
+<dt><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt"><span class="typeNameLink">MoveLineChartByMouseListener</span></a> - Class in <a href="de/slothsoft/charts/swt/package-summary.html">de.slothsoft.charts.swt</a></dt>
+<dd>
+<div class="block">A <code>MouseListener</code>, <code>MouseMoveListener</code> and <code>MouseWheelListener</code> to
+ move the diagram with the mouse.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#MoveLineChartByMouseListener-de.slothsoft.charts.linechart.LineChart-">MoveLineChartByMouseListener(LineChart)</a></span> - Constructor for class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>
+<div class="block">Constructor.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#movementMouseButton-int-">movementMouseButton(int)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>
+<div class="block">Sets the button that needs to be pressed to move the chart.</div>
 </dd>
 </dl>
 <a name="I:P">
@@ -469,6 +736,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Border.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn(GraphicContext, PaintInstructions)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Border.html" title="class in de.slothsoft.charts.common">Border</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn(GraphicContext, PaintInstructions)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Drawable.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn(GraphicContext, PaintInstructions)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts">Drawable</a></dt>
 <dd>
 <div class="block">Paints the current content onto the graphic context.</div>
@@ -477,6 +746,43 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/FunctionLine.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn(GraphicContext, PaintInstructions)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/FunctionLine.html" title="class in de.slothsoft.charts.linechart">FunctionLine</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn(GraphicContext, PaintInstructions)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/XAxis.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn(GraphicContext, PaintInstructions)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/XAxis.html" title="class in de.slothsoft.charts.linechart">XAxis</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/YAxis.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn(GraphicContext, PaintInstructions)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/YAxis.html" title="class in de.slothsoft.charts.linechart">YAxis</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#pieBorder-double-">pieBorder(double)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Sets the pie's border size.</div>
+</dd>
+<dt><a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart"><span class="typeNameLink">PieChart</span></a> - Class in <a href="de/slothsoft/charts/piechart/package-summary.html">de.slothsoft.charts.piechart</a></dt>
+<dd>
+<div class="block">This class represents a <a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><code>Chart</code></a> that displays a circle with sections representing
+ percentages.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#PieChart--">PieChart()</a></span> - Constructor for class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#pieColor-int-">pieColor(int)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Sets the color of the pie as ARGB int, e.g.</div>
+</dd>
+<dt><a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart"><span class="typeNameLink">PieSlice</span></a> - Class in <a href="de/slothsoft/charts/piechart/package-summary.html">de.slothsoft.charts.piechart</a></dt>
+<dd>
+<div class="block">A single slice of the <a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart"><code>PieChart</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#position-de.slothsoft.charts.common.Title.Position-">position(Title.Position)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the position of the title.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/XAxis.html#position-de.slothsoft.charts.linechart.XAxis.Position-">position(XAxis.Position)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/XAxis.html" title="class in de.slothsoft.charts.linechart">XAxis</a></dt>
+<dd>
+<div class="block">Sets the position of the x axis.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/YAxis.html#position-de.slothsoft.charts.linechart.YAxis.Position-">position(YAxis.Position)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/YAxis.html" title="class in de.slothsoft.charts.linechart">YAxis</a></dt>
+<dd>
+<div class="block">Sets the position of the y axis.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/FunctionLine.html#preferredArea-de.slothsoft.charts.Area-">preferredArea(Area)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/FunctionLine.html" title="class in de.slothsoft.charts.linechart">FunctionLine</a></dt>
 <dd>
 <div class="block">Sets the area this line would like to display.</div>
@@ -525,6 +831,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Border.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener(RefreshListener)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Border.html" title="class in de.slothsoft.charts.common">Border</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener(RefreshListener)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Drawable.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener(RefreshListener)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts">Drawable</a></dt>
 <dd>
 <div class="block">Removes a refresh listener that was called whenever this <a href="de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts"><code>Drawable</code></a> needed to
@@ -537,6 +845,23 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/Line.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener(RefreshListener)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/Line.html" title="class in de.slothsoft.charts.linechart">Line</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieSlice.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener(RefreshListener)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart">PieSlice</a></dt>
+<dd>
+<div class="block">Removes a refresh listener that was called whenever the source needed to be redrawn
+ by the GUI.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#removeSlice-de.slothsoft.charts.piechart.PieSlice-">removeSlice(PieSlice)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Removes a <a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart"><code>PieSlice</code></a> from this chart.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#removeSlices-de.slothsoft.charts.piechart.PieSlice...-">removeSlices(PieSlice...)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Removes some <a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart"><code>PieSlice</code></a>s from this chart.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#resetDisplayedArea--">resetDisplayedArea()</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Resets the displayed area.</div>
+</dd>
 </dl>
 <a name="I:S">
 <!--   -->
@@ -555,13 +880,23 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#scale-double-double-">scale(double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#scale-double-double-">scale(double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#scale-double-double-">scale(double, double)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#setAlignment-de.slothsoft.charts.TextAlignment-">setAlignment(TextAlignment)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the alignment of the title.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/PaintInstructions.html#setArea-de.slothsoft.charts.Area-">setArea(Area)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a></dt>
 <dd>
 <div class="block">Sets the area to draw on.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Chart.html#setBackgroundColor-int-">setBackgroundColor(int)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts">Chart</a></dt>
+<dd>
+<div class="block">Sets the color as ARGB int, e.g.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#setColor-int-">setColor(int)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
 <dd>
 <div class="block">Sets the color as ARGB int, e.g.</div>
 </dd>
@@ -571,7 +906,13 @@
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#setColor-int-">setColor(int)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#setColor-int-">setColor(int)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/Line.html#setColor-int-">setColor(int)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/Line.html" title="class in de.slothsoft.charts.linechart">Line</a></dt>
+<dd>
+<div class="block">Sets the color as ARGB int, e.g.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieSlice.html#setColor-int-">setColor(int)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart">PieSlice</a></dt>
 <dd>
 <div class="block">Sets the color as ARGB int, e.g.</div>
 </dd>
@@ -589,13 +930,56 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#setEndY-double-">setEndY(double)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#setFont-de.slothsoft.charts.Font-">setFont(Font)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the font used to paint the title.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#setFont-de.slothsoft.charts.Font-">setFont(Font)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
+<dd>
+<div class="block">Sets the font as an enum with the font properties as hints for the actual font used
+ by the GUI.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#setFont-de.slothsoft.charts.Font-">setFont(Font)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#setFont-de.slothsoft.charts.Font-">setFont(Font)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#setFont-de.slothsoft.charts.Font-">setFont(Font)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/ChartControl.html#setModel-de.slothsoft.charts.Chart-">setModel(Chart)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/ChartControl.html" title="class in de.slothsoft.charts.swt">ChartControl</a></dt>
 <dd>
 <div class="block">Sets the <a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><code>Chart</code></a> that gets displayed by this control.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html#setMovementMouseButton-int-">setMovementMouseButton(int)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/MoveLineChartByMouseListener.html" title="class in de.slothsoft.charts.swt">MoveLineChartByMouseListener</a></dt>
+<dd>
+<div class="block">Sets the button that needs to be pressed to move the chart.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#setPieBorder-double-">setPieBorder(double)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Sets the pie's border size.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#setPieColor-int-">setPieColor(int)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Sets the color of the pie as ARGB int, e.g.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#setPosition-de.slothsoft.charts.common.Title.Position-">setPosition(Title.Position)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the position of the title.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/XAxis.html#setPosition-de.slothsoft.charts.linechart.XAxis.Position-">setPosition(XAxis.Position)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/XAxis.html" title="class in de.slothsoft.charts.linechart">XAxis</a></dt>
+<dd>
+<div class="block">Sets the position of the x axis.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/YAxis.html#setPosition-de.slothsoft.charts.linechart.YAxis.Position-">setPosition(YAxis.Position)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/YAxis.html" title="class in de.slothsoft.charts.linechart">YAxis</a></dt>
+<dd>
+<div class="block">Sets the position of the y axis.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/FunctionLine.html#setPreferredArea-de.slothsoft.charts.Area-">setPreferredArea(Area)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/FunctionLine.html" title="class in de.slothsoft.charts.linechart">FunctionLine</a></dt>
 <dd>
 <div class="block">Sets the area this line would like to display.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#setSize-double-">setSize(double)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the height of the title, if one is drawn.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Border.html#setSpace-int-">setSpace(int)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Border.html" title="class in de.slothsoft.charts.common">Border</a></dt>
 <dd>
@@ -617,6 +1001,10 @@
 <dd>
 <div class="block">Sets the border size on the top.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#setStartAngle-double-">setStartAngle(double)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Sets the angle the pie starts drawing its slices.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#setStartX-double-">setStartX(double)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#setStartY-double-">setStartY(double)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
@@ -626,11 +1014,29 @@
 <div class="block">Sets the value that is used to determine which x values are drawn in
  <a href="de/slothsoft/charts/linechart/FunctionLine.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-"><code>FunctionLine.paintOn(GraphicContext, PaintInstructions)</code></a>, i.e.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#setText-java.lang.String-">setText(String)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the text that is the title or <code>null</code> to show there is no title.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieSlice.html#setValue-double-">setValue(double)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart">PieSlice</a></dt>
+<dd>
+<div class="block">Sets the value this slice represents.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#setZoomFactor-double-">setZoomFactor(double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Sets the factor which should be used to zoom the graph area.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#size-double-">size(double)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the height of the title, if one is drawn.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/ChartPart.html#snipNecessarySpace-de.slothsoft.charts.Area-">snipNecessarySpace(Area)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/ChartPart.html" title="interface in de.slothsoft.charts">ChartPart</a></dt>
 <dd>
 <div class="block">This method removes space from the existing area to make room for this part.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Border.html#snipNecessarySpace-de.slothsoft.charts.Area-">snipNecessarySpace(Area)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Border.html" title="class in de.slothsoft.charts.common">Border</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#snipNecessarySpace-de.slothsoft.charts.Area-">snipNecessarySpace(Area)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Border.html#space-int-">space(int)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Border.html" title="class in de.slothsoft.charts.common">Border</a></dt>
 <dd>
@@ -651,6 +1057,10 @@
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Border.html#spaceOnTop-int-">spaceOnTop(int)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Border.html" title="class in de.slothsoft.charts.common">Border</a></dt>
 <dd>
 <div class="block">Sets the border size on the top.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieChart.html#startAngle-double-">startAngle(double)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dt>
+<dd>
+<div class="block">Sets the angle the pie starts drawing its slices.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#startX-double-">startX(double)</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
 <dd>&nbsp;</dd>
@@ -680,15 +1090,39 @@
 </a>
 <h2 class="title">T</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#text-java.lang.String-">text(String)</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>
+<div class="block">Sets the text that is the title or <code>null</code> to show there is no title.</div>
+</dd>
+<dt><a href="de/slothsoft/charts/TextAlignment.html" title="enum in de.slothsoft.charts"><span class="typeNameLink">TextAlignment</span></a> - Enum in <a href="de/slothsoft/charts/package-summary.html">de.slothsoft.charts</a></dt>
+<dd>
+<div class="block">General text alignment that can be used to draw text using an <a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts"><code>GraphicContext</code></a>.</div>
+</dd>
+<dt><a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common"><span class="typeNameLink">Title</span></a> - Class in <a href="de/slothsoft/charts/common/package-summary.html">de.slothsoft.charts.common</a></dt>
+<dd>
+<div class="block">A title over an <a href="de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><code>Chart</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#Title--">Title()</a></span> - Constructor for class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="de/slothsoft/charts/common/Title.Position.html" title="enum in de.slothsoft.charts.common"><span class="typeNameLink">Title.Position</span></a> - Enum in <a href="de/slothsoft/charts/common/package-summary.html">de.slothsoft.charts.common</a></dt>
+<dd>
+<div class="block">The position of the <a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common"><code>Title</code></a>.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/Area.html#toString--">toString()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.html#toString--">toString()</a></span> - Method in class de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/PaintInstructions.html#toString--">toString()</a></span> - Method in class de.slothsoft.charts.<a href="de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieSlice.html#toString--">toString()</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart">PieSlice</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/GraphicContext.html#translate-double-double-">translate(double, double)</a></span> - Method in interface de.slothsoft.charts.<a href="de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></dt>
 <dd>
 <div class="block">Moves the drawing canvas's origin to the new coordinates.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html#translate-double-double-">translate(double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/internal/LogGraphicContext.html#translate-double-double-">translate(double, double)</a></span> - Method in class de.slothsoft.charts.internal.<a href="de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="de/slothsoft/charts/swt/SwtGraphicContext.html#translate-double-double-">translate(double, double)</a></span> - Method in class de.slothsoft.charts.swt.<a href="de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dt>
 <dd>&nbsp;</dd>
@@ -703,7 +1137,124 @@
 <div class="block">Returns an area surrounding this area and the one coming in.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;</div>
+<a name="I:V">
+<!--   -->
+</a>
+<h2 class="title">V</h2>
+<dl>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/piechart/PieSlice.html#value-double-">value(double)</a></span> - Method in class de.slothsoft.charts.piechart.<a href="de/slothsoft/charts/piechart/PieSlice.html" title="class in de.slothsoft.charts.piechart">PieSlice</a></dt>
+<dd>
+<div class="block">Sets the value this slice represents.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.Position.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.Position.html" title="enum in de.slothsoft.charts.common">Title.Position</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/Font.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum de.slothsoft.charts.<a href="de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/XAxis.Position.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/XAxis.Position.html" title="enum in de.slothsoft.charts.linechart">XAxis.Position</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/YAxis.Position.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/YAxis.Position.html" title="enum in de.slothsoft.charts.linechart">YAxis.Position</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/TextAlignment.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum de.slothsoft.charts.<a href="de/slothsoft/charts/TextAlignment.html" title="enum in de.slothsoft.charts">TextAlignment</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/common/Title.Position.html#values--">values()</a></span> - Static method in enum de.slothsoft.charts.common.<a href="de/slothsoft/charts/common/Title.Position.html" title="enum in de.slothsoft.charts.common">Title.Position</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/Font.html#values--">values()</a></span> - Static method in enum de.slothsoft.charts.<a href="de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/XAxis.Position.html#values--">values()</a></span> - Static method in enum de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/XAxis.Position.html" title="enum in de.slothsoft.charts.linechart">XAxis.Position</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/YAxis.Position.html#values--">values()</a></span> - Static method in enum de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/YAxis.Position.html" title="enum in de.slothsoft.charts.linechart">YAxis.Position</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/TextAlignment.html#values--">values()</a></span> - Static method in enum de.slothsoft.charts.<a href="de/slothsoft/charts/TextAlignment.html" title="enum in de.slothsoft.charts">TextAlignment</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+</dl>
+<a name="I:X">
+<!--   -->
+</a>
+<h2 class="title">X</h2>
+<dl>
+<dt><a href="de/slothsoft/charts/linechart/XAxis.html" title="class in de.slothsoft.charts.linechart"><span class="typeNameLink">XAxis</span></a> - Class in <a href="de/slothsoft/charts/linechart/package-summary.html">de.slothsoft.charts.linechart</a></dt>
+<dd>
+<div class="block">The X axis of a <a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart"><code>LineChart</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/XAxis.html#XAxis-de.slothsoft.charts.linechart.LineChart-">XAxis(LineChart)</a></span> - Constructor for class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/XAxis.html" title="class in de.slothsoft.charts.linechart">XAxis</a></dt>
+<dd>
+<div class="block">Constructor.</div>
+</dd>
+<dt><a href="de/slothsoft/charts/linechart/XAxis.Position.html" title="enum in de.slothsoft.charts.linechart"><span class="typeNameLink">XAxis.Position</span></a> - Enum in <a href="de/slothsoft/charts/linechart/package-summary.html">de.slothsoft.charts.linechart</a></dt>
+<dd>
+<div class="block">The position of the X axis.</div>
+</dd>
+</dl>
+<a name="I:Y">
+<!--   -->
+</a>
+<h2 class="title">Y</h2>
+<dl>
+<dt><a href="de/slothsoft/charts/linechart/YAxis.html" title="class in de.slothsoft.charts.linechart"><span class="typeNameLink">YAxis</span></a> - Class in <a href="de/slothsoft/charts/linechart/package-summary.html">de.slothsoft.charts.linechart</a></dt>
+<dd>
+<div class="block">The Y axis of a <a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart"><code>LineChart</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/YAxis.html#YAxis-de.slothsoft.charts.linechart.LineChart-">YAxis(LineChart)</a></span> - Constructor for class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/YAxis.html" title="class in de.slothsoft.charts.linechart">YAxis</a></dt>
+<dd>
+<div class="block">Constructor.</div>
+</dd>
+<dt><a href="de/slothsoft/charts/linechart/YAxis.Position.html" title="enum in de.slothsoft.charts.linechart"><span class="typeNameLink">YAxis.Position</span></a> - Enum in <a href="de/slothsoft/charts/linechart/package-summary.html">de.slothsoft.charts.linechart</a></dt>
+<dd>
+<div class="block">The position of the Y axis.</div>
+</dd>
+</dl>
+<a name="I:Z">
+<!--   -->
+</a>
+<h2 class="title">Z</h2>
+<dl>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#zoomDisplayedAreaInByChartCoordinates-double-double-">zoomDisplayedAreaInByChartCoordinates(double, double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Zooms the graph area in using the chart's coordinates.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#zoomDisplayedAreaInByGraphCoordinates-double-double-">zoomDisplayedAreaInByGraphCoordinates(double, double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Zooms the graph area in using the graph's coordinates.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#zoomDisplayedAreaOutByChartCoordinates-double-double-">zoomDisplayedAreaOutByChartCoordinates(double, double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Zooms the graph area out using the chart's coordinates.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#zoomDisplayedAreaOutByGraphCoordinates-double-double-">zoomDisplayedAreaOutByGraphCoordinates(double, double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Zooms the graph area out using the graph's coordinates.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="de/slothsoft/charts/linechart/LineChart.html#zoomFactor-double-">zoomFactor(double)</a></span> - Method in class de.slothsoft.charts.linechart.<a href="de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dt>
+<dd>
+<div class="block">Sets the factor which should be used to zoom the graph area.</div>
+</dd>
+</dl>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:X">X</a>&nbsp;<a href="#I:Y">Y</a>&nbsp;<a href="#I:Z">Z</a>&nbsp;</div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
 <!--   -->

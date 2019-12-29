@@ -21,7 +21,9 @@ public interface GraphicContext {
 	// TODO: these methods are missing to make the existing ones complete:
 	// void drawRectangle(Rectangle rect);
 	// void drawRectangle(double x, double y, double width, double height);
-	// void fillPolygon(double[] x, double[] y);
+	// void drawOval(double x, double y, double width, double height);
+	// void drawArc(double x, double y, double width, double height, double start, double
+	// end);
 
 	// ======
 	// CONFIG
@@ -45,6 +47,36 @@ public interface GraphicContext {
 
 	int getColor();
 
+	/**
+	 * Sets the font as an enum with the font properties as hints for the actual font used
+	 * by the GUI.
+	 *
+	 * @param font the font
+	 */
+
+	void setFont(Font font);
+
+	/**
+	 * Returns the font as an enum with the font properties as hints for the actual font
+	 * used by the GUI.
+	 *
+	 * @return the font
+	 */
+
+	Font getFont();
+
+	/**
+	 * Calculates the size of the text.
+	 *
+	 * @param text
+	 * @return the text size area
+	 */
+
+	Area calculateTextSize(String text);
+
+	// TODO: this area should be a point or something?
+	// - also LineChart.convertToGraphCoordinates
+
 	// ==============
 	// ADVANCED STUFF
 	// ==============
@@ -65,8 +97,8 @@ public interface GraphicContext {
 	 */
 
 	default void scale(double factor) {
-<span class="fc" id="L68">		scale(factor, factor);</span>
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L100">		scale(factor, factor);</span>
+<span class="fc" id="L101">	}</span>
 
 	/**
 	 * Scales the drawing canvas with the factor.
@@ -100,8 +132,8 @@ public interface GraphicContext {
 	 */
 
 	default void drawLine(double x1, double y1, double x2, double y2) {
-<span class="fc" id="L103">		drawPolyline(new double[]{x1, x2}, new double[]{y1, y2});</span>
-<span class="fc" id="L104">	}</span>
+<span class="fc" id="L135">		drawPolyline(new double[]{x1, x2}, new double[]{y1, y2});</span>
+<span class="fc" id="L136">	}</span>
 
 	/**
 	 * Paints a filled rectangle.
@@ -110,8 +142,8 @@ public interface GraphicContext {
 	 */
 
 	default void fillRectangle(Area rect) {
-<span class="fc" id="L113">		fillRectangle(rect.startX, rect.startY, rect.endX - rect.startX, rect.endY - rect.startY);</span>
-<span class="fc" id="L114">	}</span>
+<span class="fc" id="L145">		fillRectangle(rect.startX, rect.startY, rect.endX - rect.startX, rect.endY - rect.startY);</span>
+<span class="fc" id="L146">	}</span>
 
 	/**
 	 * Paints a filled rectangle.
@@ -129,9 +161,66 @@ public interface GraphicContext {
 	 *
 	 * @param x the polygon's x coordinates
 	 * @param y the polygon's y coordinates
+	 * @see #fillPolygon(double[], double[])
 	 */
 
 	void drawPolyline(double[] x, double[] y);
+
+	/**
+	 * Paints a filled polygon.
+	 *
+	 * @param x the polygon's x coordinates
+	 * @param y the polygon's y coordinates
+	 * @see #drawPolyline(double[], double[])
+	 */
+
+	void fillPolygon(double[] x, double[] y);
+
+	/**
+	 * Paints the text on a position.
+	 *
+	 * @param x the text's x
+	 * @param y the text's y
+	 */
+
+	void drawText(double x, double y, String text);
+
+	/**
+	 * Paints a filled oval.
+	 *
+	 * @param x the oval's x
+	 * @param y the oval's y
+	 * @param width the oval's width
+	 * @param height the oval's height
+	 */
+
+	void fillOval(double x, double y, double width, double height);
+
+	/**
+	 * Draws the outline of a circular or elliptical arc covering the specified rectangle.
+	 * &lt;p&gt;
+	 * The resulting arc begins at &lt;code&gt;startAngle&lt;/code&gt; and extends for
+	 * &lt;code&gt;arcAngle&lt;/code&gt; degrees, using the current color. Angles are interpreted such
+	 * that 0&amp;nbsp;degrees is at the 3&amp;nbsp;o'clock position. A positive value indicates a
+	 * counter-clockwise rotation while a negative value indicates a clockwise rotation.
+	 * &lt;p&gt;
+	 * The center of the arc is the center of the rectangle whose origin is
+	 * (&lt;i&gt;x&lt;/i&gt;,&amp;nbsp;&lt;i&gt;y&lt;/i&gt;) and whose size is specified by the &lt;code&gt;width&lt;/code&gt; and
+	 * &lt;code&gt;height&lt;/code&gt; arguments.
+	 * &lt;p&gt;
+	 * The resulting arc covers an area &lt;code&gt;width&amp;nbsp;+&amp;nbsp;1&lt;/code&gt; pixels wide by
+	 * &lt;code&gt;height&amp;nbsp;+&amp;nbsp;1&lt;/code&gt; pixels tall.
+	 * &lt;p&gt;
+	 * 
+	 * @param x the &lt;i&gt;x&lt;/i&gt; coordinate of the upper-left corner of the arc to be drawn.
+	 * @param y the &lt;i&gt;y&lt;/i&gt; coordinate of the upper-left corner of the arc to be drawn.
+	 * @param width the width of the arc to be drawn.
+	 * @param height the height of the arc to be drawn.
+	 * @param startAngle the beginning angle.
+	 * @param arcAngle the angular extent of the arc, relative to the start angle.
+	 */
+
+	void fillArc(double x, double y, double width, double height, double startAngle, double arcAngle);
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

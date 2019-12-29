@@ -28,14 +28,14 @@ public final class SwtChartUtil {
 	 */
 
 	public static Image createImage(Chart chart, int imageWidth, int imageHeight) {
-<span class="nc" id="L31">		final Image image = new Image(Display.getDefault(), imageWidth, imageHeight);</span>
-<span class="nc" id="L32">		final GC gc = new GC(image);</span>
-<span class="nc" id="L33">		gc.setAntialias(SWT.ON);</span>
+<span class="fc" id="L31">		final Image image = new Image(Display.getDefault(), imageWidth, imageHeight);</span>
+<span class="fc" id="L32">		final GC gc = new GC(image);</span>
+<span class="fc" id="L33">		gc.setAntialias(SWT.ON);</span>
 		try {
-<span class="nc" id="L35">			chart.paintOn(new SwtGraphicContext(gc), new PaintInstructions(new Area(imageWidth, imageHeight)));</span>
-<span class="nc" id="L36">			return image;</span>
+<span class="fc" id="L35">			chart.paintOn(new SwtGraphicContext(gc), new PaintInstructions(new Area(imageWidth, imageHeight)));</span>
+<span class="fc" id="L36">			return image;</span>
 		} finally {
-<span class="nc" id="L38">			gc.dispose();</span>
+<span class="fc" id="L38">			gc.dispose();</span>
 		}
 	}
 

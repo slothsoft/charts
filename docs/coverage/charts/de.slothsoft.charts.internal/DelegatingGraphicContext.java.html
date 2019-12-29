@@ -3,6 +3,7 @@
 import java.util.Objects;
 
 import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
 
 /**
@@ -17,58 +18,88 @@ public class DelegatingGraphicContext implements GraphicContext {
 
 	private final GraphicContext delegate;
 
-<span class="fc" id="L20">	public DelegatingGraphicContext(GraphicContext delegate) {</span>
-<span class="fc" id="L21">		this.delegate = Objects.requireNonNull(delegate);</span>
-<span class="fc" id="L22">	}</span>
+<span class="fc" id="L21">	public DelegatingGraphicContext(GraphicContext delegate) {</span>
+<span class="fc" id="L22">		this.delegate = Objects.requireNonNull(delegate);</span>
+<span class="fc" id="L23">	}</span>
 
 	@Override
 	public void setColor(int backgroundColor) {
-<span class="fc" id="L26">		this.delegate.setColor(backgroundColor);</span>
-<span class="fc" id="L27">	}</span>
+<span class="fc" id="L27">		this.delegate.setColor(backgroundColor);</span>
+<span class="fc" id="L28">	}</span>
 
 	@Override
 	public int getColor() {
-<span class="nc" id="L31">		return this.delegate.getColor();</span>
+<span class="fc" id="L32">		return this.delegate.getColor();</span>
+	}
+
+	@Override
+	public void setFont(Font font) {
+<span class="fc" id="L37">		this.delegate.setFont(font);</span>
+<span class="fc" id="L38">	}</span>
+
+	@Override
+	public Font getFont() {
+<span class="fc" id="L42">		return this.delegate.getFont();</span>
 	}
 
 	@Override
 	public void translate(double x, double y) {
-<span class="nc" id="L36">		this.delegate.translate(x, y);</span>
-<span class="nc" id="L37">	}</span>
+<span class="fc" id="L47">		this.delegate.translate(x, y);</span>
+<span class="fc" id="L48">	}</span>
 
 	@Override
 	public void scale(double factor) {
-<span class="nc" id="L41">		this.delegate.scale(factor);</span>
-<span class="nc" id="L42">	}</span>
+<span class="nc" id="L52">		this.delegate.scale(factor);</span>
+<span class="nc" id="L53">	}</span>
 
 	@Override
 	public void scale(double x, double y) {
-<span class="nc" id="L46">		this.delegate.scale(x, y);</span>
-<span class="nc" id="L47">	}</span>
+<span class="fc" id="L57">		this.delegate.scale(x, y);</span>
+<span class="fc" id="L58">	}</span>
 
 	@Override
 	public void clip(Area rect) {
-<span class="nc" id="L51">		this.delegate.clip(rect);</span>
-<span class="nc" id="L52">	}</span>
+<span class="fc" id="L62">		this.delegate.clip(rect);</span>
+<span class="fc" id="L63">	}</span>
 
 	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
-<span class="nc" id="L56">		this.delegate.drawLine(x1, y1, x2, y2);</span>
-<span class="nc" id="L57">	}</span>
+<span class="fc" id="L67">		this.delegate.drawLine(x1, y1, x2, y2);</span>
+<span class="fc" id="L68">	}</span>
 
 	@Override
 	public void fillRectangle(double x, double y, double width, double height) {
-<span class="nc" id="L61">		this.delegate.fillRectangle(x, y, width, height);</span>
-<span class="nc" id="L62">	}</span>
+<span class="fc" id="L72">		this.delegate.fillRectangle(x, y, width, height);</span>
+<span class="fc" id="L73">	}</span>
 
 	@Override
 	public void drawPolyline(double[] x, double[] y) {
-<span class="fc" id="L66">		final double[] otherY = new double[y.length];</span>
-<span class="fc bfc" id="L67" title="All 2 branches covered.">		for (int i = 0; i &lt; otherY.length; i++) {</span>
-<span class="fc" id="L68">			otherY[i] = -y[i];</span>
-		}
-<span class="fc" id="L70">		this.delegate.drawPolyline(x, otherY);</span>
-<span class="fc" id="L71">	}</span>
+<span class="fc" id="L77">		this.delegate.drawPolyline(x, y);</span>
+<span class="fc" id="L78">	}</span>
 
+	@Override
+	public void fillPolygon(double[] x, double[] y) {
+<span class="fc" id="L82">		this.delegate.fillPolygon(x, y);</span>
+<span class="fc" id="L83">	}</span>
+
+	@Override
+	public void drawText(double x, double y, String text) {
+<span class="fc" id="L87">		this.delegate.drawText(x, y, text);</span>
+<span class="fc" id="L88">	}</span>
+
+	@Override
+	public void fillOval(double x, double y, double width, double height) {
+<span class="fc" id="L92">		this.delegate.fillOval(x, y, width, height);</span>
+<span class="fc" id="L93">	}</span>
+
+	@Override
+	public void fillArc(double x, double y, double width, double height, double startAngle, double arcAngle) {
+<span class="fc" id="L97">		this.delegate.fillArc(x, y, width, height, startAngle, arcAngle);</span>
+<span class="fc" id="L98">	}</span>
+
+	@Override
+	public Area calculateTextSize(String text) {
+<span class="fc" id="L102">		return this.delegate.calculateTextSize(text);</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

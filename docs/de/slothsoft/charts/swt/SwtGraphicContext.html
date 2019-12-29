@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -162,24 +162,30 @@ implements <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#calculateTextSize-java.lang.String-">calculateTextSize</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</code>
+<div class="block">Calculates the size of the text.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#clip-de.slothsoft.charts.Area-">clip</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;rect)</code>
 <div class="block">Restricts which area of the context can be used to drawn on.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#delegate-org.eclipse.swt.graphics.GC-">delegate</a></span>(org.eclipse.swt.graphics.GC&nbsp;newDelegate)</code>
 <div class="block">Sets the GC.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#dispose--">dispose</a></span>()</code>
 <div class="block">Disposes of the operating system resources associated with this resource.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#drawLine-double-double-double-double-">drawLine</a></span>(double&nbsp;x1,
         double&nbsp;y1,
@@ -188,14 +194,49 @@ implements <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="
 <div class="block">Draws a simple line between two points.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#drawPolyline-double:A-double:A-">drawPolyline</a></span>(double[]&nbsp;x,
             double[]&nbsp;y)</code>
 <div class="block">Paints the outline of a polyline.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#drawText-double-double-java.lang.String-">drawText</a></span>(double&nbsp;x,
+        double&nbsp;y,
+        <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</code>
+<div class="block">Paints the text on a position.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#fillArc-double-double-double-double-double-double-">fillArc</a></span>(double&nbsp;x,
+       double&nbsp;y,
+       double&nbsp;width,
+       double&nbsp;height,
+       double&nbsp;startAngle,
+       double&nbsp;arcAngle)</code>
+<div class="block">Draws the outline of a circular or elliptical arc covering the specified rectangle.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#fillOval-double-double-double-double-">fillOval</a></span>(double&nbsp;x,
+        double&nbsp;y,
+        double&nbsp;width,
+        double&nbsp;height)</code>
+<div class="block">Paints a filled oval.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#fillPolygon-double:A-double:A-">fillPolygon</a></span>(double[]&nbsp;x,
+           double[]&nbsp;y)</code>
+<div class="block">Paints a filled polygon.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#fillRectangle-double-double-double-double-">fillRectangle</a></span>(double&nbsp;x,
              double&nbsp;y,
@@ -204,38 +245,52 @@ implements <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="
 <div class="block">Paints a filled rectangle.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#getColor--">getColor</a></span>()</code>
 <div class="block">Returns the color as ARGB int, e.g.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>org.eclipse.swt.graphics.GC</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#getDelegate--">getDelegate</a></span>()</code>
 <div class="block">Returns the GC.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#getFont--">getFont</a></span>()</code>
+<div class="block">Returns the font as an enum with the font properties as hints for the actual font
+ used by the GUI.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#scale-double-double-">scale</a></span>(double&nbsp;x,
      double&nbsp;y)</code>
 <div class="block">Scales the drawing canvas with the factor.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#setColor-int-">setColor</a></span>(int&nbsp;colorAsInt)</code>
 <div class="block">Sets the color as ARGB int, e.g.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#setDelegate-org.eclipse.swt.graphics.GC-">setDelegate</a></span>(org.eclipse.swt.graphics.GC&nbsp;delegate)</code>
 <div class="block">Sets the GC.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#setFont-de.slothsoft.charts.Font-">setFont</a></span>(<a href="../../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a>&nbsp;fontAsEnum)</code>
+<div class="block">Sets the font as an enum with the font properties as hints for the actual font used
+ by the GUI.</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swt/SwtGraphicContext.html#translate-double-double-">translate</a></span>(double&nbsp;x,
          double&nbsp;y)</code>
@@ -326,6 +381,59 @@ implements <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="
 <dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#getColor--">getColor</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the color</dd>
+</dl>
+</li>
+</ul>
+<a name="setFont-de.slothsoft.charts.Font-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setFont</h4>
+<pre>public&nbsp;void&nbsp;setFont(<a href="../../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a>&nbsp;fontAsEnum)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#setFont-de.slothsoft.charts.Font-">GraphicContext</a></code></span></div>
+<div class="block">Sets the font as an enum with the font properties as hints for the actual font used
+ by the GUI.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#setFont-de.slothsoft.charts.Font-">setFont</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>fontAsEnum</code> - the font</dd>
+</dl>
+</li>
+</ul>
+<a name="getFont--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFont</h4>
+<pre>public&nbsp;<a href="../../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a>&nbsp;getFont()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#getFont--">GraphicContext</a></code></span></div>
+<div class="block">Returns the font as an enum with the font properties as hints for the actual font
+ used by the GUI.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#getFont--">getFont</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the font</dd>
+</dl>
+</li>
+</ul>
+<a name="calculateTextSize-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>calculateTextSize</h4>
+<pre>public&nbsp;<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;calculateTextSize(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#calculateTextSize-java.lang.String-">GraphicContext</a></code></span></div>
+<div class="block">Calculates the size of the text.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#calculateTextSize-java.lang.String-">calculateTextSize</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the text size area</dd>
 </dl>
 </li>
 </ul>
@@ -447,6 +555,112 @@ implements <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>x</code> - the polygon's x coordinates</dd>
 <dd><code>y</code> - the polygon's y coordinates</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillPolygon-double:A-double:A-"><code>GraphicContext.fillPolygon(double[], double[])</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="fillPolygon-double:A-double:A-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>fillPolygon</h4>
+<pre>public&nbsp;void&nbsp;fillPolygon(double[]&nbsp;x,
+                        double[]&nbsp;y)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillPolygon-double:A-double:A-">GraphicContext</a></code></span></div>
+<div class="block">Paints a filled polygon.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillPolygon-double:A-double:A-">fillPolygon</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the polygon's x coordinates</dd>
+<dd><code>y</code> - the polygon's y coordinates</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../de/slothsoft/charts/GraphicContext.html#drawPolyline-double:A-double:A-"><code>GraphicContext.drawPolyline(double[], double[])</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="drawText-double-double-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawText</h4>
+<pre>public&nbsp;void&nbsp;drawText(double&nbsp;x,
+                     double&nbsp;y,
+                     <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#drawText-double-double-java.lang.String-">GraphicContext</a></code></span></div>
+<div class="block">Paints the text on a position.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#drawText-double-double-java.lang.String-">drawText</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the text's x</dd>
+<dd><code>y</code> - the text's y</dd>
+</dl>
+</li>
+</ul>
+<a name="fillOval-double-double-double-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>fillOval</h4>
+<pre>public&nbsp;void&nbsp;fillOval(double&nbsp;x,
+                     double&nbsp;y,
+                     double&nbsp;width,
+                     double&nbsp;height)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillOval-double-double-double-double-">GraphicContext</a></code></span></div>
+<div class="block">Paints a filled oval.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillOval-double-double-double-double-">fillOval</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the oval's x</dd>
+<dd><code>y</code> - the oval's y</dd>
+<dd><code>width</code> - the oval's width</dd>
+<dd><code>height</code> - the oval's height</dd>
+</dl>
+</li>
+</ul>
+<a name="fillArc-double-double-double-double-double-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>fillArc</h4>
+<pre>public&nbsp;void&nbsp;fillArc(double&nbsp;x,
+                    double&nbsp;y,
+                    double&nbsp;width,
+                    double&nbsp;height,
+                    double&nbsp;startAngle,
+                    double&nbsp;arcAngle)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillArc-double-double-double-double-double-double-">GraphicContext</a></code></span></div>
+<div class="block">Draws the outline of a circular or elliptical arc covering the specified rectangle.
+ <p>
+ The resulting arc begins at <code>startAngle</code> and extends for
+ <code>arcAngle</code> degrees, using the current color. Angles are interpreted such
+ that 0&nbsp;degrees is at the 3&nbsp;o'clock position. A positive value indicates a
+ counter-clockwise rotation while a negative value indicates a clockwise rotation.
+ <p>
+ The center of the arc is the center of the rectangle whose origin is
+ (<i>x</i>,&nbsp;<i>y</i>) and whose size is specified by the <code>width</code> and
+ <code>height</code> arguments.
+ <p>
+ The resulting arc covers an area <code>width&nbsp;+&nbsp;1</code> pixels wide by
+ <code>height&nbsp;+&nbsp;1</code> pixels tall.
+ <p></div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillArc-double-double-double-double-double-double-">fillArc</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the <i>x</i> coordinate of the upper-left corner of the arc to be drawn.</dd>
+<dd><code>y</code> - the <i>y</i> coordinate of the upper-left corner of the arc to be drawn.</dd>
+<dd><code>width</code> - the width of the arc to be drawn.</dd>
+<dd><code>height</code> - the height of the arc to be drawn.</dd>
+<dd><code>startAngle</code> - the beginning angle.</dd>
+<dd><code>arcAngle</code> - the angular extent of the arc, relative to the start angle.</dd>
 </dl>
 </li>
 </ul>

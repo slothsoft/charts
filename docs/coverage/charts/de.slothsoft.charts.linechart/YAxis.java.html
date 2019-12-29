@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>YAxis.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.linechart</a> &gt; <span class="el_source">YAxis.java</span></div><h1>YAxis.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.linechart;
+
+import java.util.Objects;
+import java.util.function.DoubleConsumer;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.GraphicContext;
+import de.slothsoft.charts.PaintInstructions;
+
+/**
+ * The Y axis of a {@link LineChart}.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public class YAxis extends Axis {
+
+	/**
+	 * The position of the Y axis.
+	 */
+
+<span class="fc" id="L23">	public enum Position {</span>
+		/**
+		 * The default behavior is to have the axis on x=0 if that is visible, else on the
+		 * left or right border of the graph depending were it is in relation to the
+		 * visible area.
+		 */
+<span class="fc" id="L29">		DEFAULT {</span>
+			@Override
+			void paintAxis(DoubleConsumer axisPainter, double xMin, double x0, double xMax) {
+<span class="fc" id="L32">				axisPainter.accept(Math.min(Math.max(x0, xMin), xMax));</span>
+<span class="fc" id="L33">			}</span>
+		},
+		/** Displays the axis on the right of the visible graph area. */
+<span class="fc" id="L36">		RIGHT {</span>
+			@Override
+			void paintAxis(DoubleConsumer axisPainter, double xMin, double x0, double xMax) {
+<span class="fc" id="L39">				axisPainter.accept(xMax);</span>
+<span class="fc" id="L40">			}</span>
+		},
+		/** Displays the axis on the left of the visible graph area. */
+<span class="fc" id="L43">		LEFT {</span>
+			@Override
+			void paintAxis(DoubleConsumer axisPainter, double xMin, double x0, double xMax) {
+<span class="fc" id="L46">				axisPainter.accept(xMin);</span>
+<span class="fc" id="L47">			}</span>
+		},
+		/** Displays the axis on the left and right of the visible graph area. */
+<span class="fc" id="L50">		LEFT_AND_RIGHT {</span>
+			@Override
+			void paintAxis(DoubleConsumer axisPainter, double xMin, double x0, double xMax) {
+<span class="fc" id="L53">				axisPainter.accept(xMin);</span>
+<span class="fc" id="L54">				axisPainter.accept(xMax);</span>
+<span class="fc" id="L55">			}</span>
+		},
+		/** Displays the axis on x=0. */
+<span class="fc" id="L58">		X0 {</span>
+			@Override
+			void paintAxis(DoubleConsumer axisPainter, double xMin, double x0, double xMax) {
+<span class="fc" id="L61">				axisPainter.accept(x0);</span>
+<span class="fc" id="L62">			}</span>
+		};
+
+		abstract void paintAxis(DoubleConsumer axisPainter, double xMin, double x0, double xMax);
+
+	}
+
+	private final LineChart chart;
+<span class="fc" id="L70">	private YAxis.Position position = YAxis.Position.DEFAULT;</span>
+
+	/**
+	 * Constructor.
+	 *
+	 * @param chart the chart this axis belongs to
+	 */
+
+<span class="fc" id="L78">	public YAxis(LineChart chart) {</span>
+<span class="fc" id="L79">		this.chart = Objects.requireNonNull(chart);</span>
+<span class="fc" id="L80">	}</span>
+
+	@Override
+	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
+<span class="fc" id="L84">		final Area area = this.chart.calculateDisplayedArea();</span>
+<span class="fc" id="L85">		final double x0 = this.chart.convertToChartX(0);</span>
+<span class="fc" id="L86">		final double yMin = this.chart.convertToChartY(area.getStartY());</span>
+<span class="fc" id="L87">		final double yMax = this.chart.convertToChartY(area.getEndY());</span>
+
+<span class="fc" id="L89">		final DoubleConsumer axisPainter = x -&gt; {</span>
+			// paint the line
+
+<span class="fc" id="L92">			gc.setColor(0xFF000000);</span>
+<span class="fc" id="L93">			gc.drawLine(x, yMin, x, yMax);</span>
+
+			// paint the big and little ticks
+
+<span class="fc" id="L97">			final int end = (int) Math.ceil(area.getEndY());</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">			for (int i = (int) Math.floor(area.getStartY()); i &lt; end; i++) {</span>
+<span class="fc" id="L99">				final double y = this.chart.convertToChartY(i);</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">				if (i % this.tickSteps == 0) {</span>
+<span class="fc" id="L101">					gc.drawLine(x - this.tickSize, y, x + this.tickSize, y);</span>
+				}
+<span class="fc bfc" id="L103" title="All 2 branches covered.">				if (i % this.bigTickSteps == 0) {</span>
+<span class="fc" id="L104">					gc.drawLine(x - this.bigTickSize, y, x + this.bigTickSize, y);</span>
+				}
+			}
+
+			// paint the arrow at the end
+
+<span class="fc" id="L110">			final double[] arrowX = {x, x + this.arrowSize, x - this.arrowSize};</span>
+<span class="fc" id="L111">			final double[] arrowY = {yMax - this.arrowSize, yMax, yMax};</span>
+<span class="fc" id="L112">			gc.fillPolygon(arrowX, arrowY);</span>
+<span class="fc" id="L113">		};</span>
+
+<span class="fc" id="L115">		final double xMin = this.chart.convertToChartX(area.getStartX());</span>
+<span class="fc" id="L116">		final double xMax = this.chart.convertToChartX(area.getEndX());</span>
+<span class="fc" id="L117">		this.position.paintAxis(axisPainter, xMin, x0, xMax);</span>
+<span class="fc" id="L118">	}</span>
+
+	/**
+	 * Returns the position of the y axis.
+	 *
+	 * @return the position; never null
+	 */
+
+	public YAxis.Position getPosition() {
+<span class="fc" id="L127">		return this.position;</span>
+	}
+
+	/**
+	 * Sets the position of the y axis.
+	 *
+	 * @param newPosition the position; cannot be null
+	 * @return this instance
+	 */
+
+	public YAxis position(YAxis.Position newPosition) {
+<span class="fc" id="L138">		setPosition(newPosition);</span>
+<span class="fc" id="L139">		return this;</span>
+	}
+
+	/**
+	 * Sets the position of the y axis.
+	 *
+	 * @param position the position; cannot be null
+	 */
+
+	public void setPosition(YAxis.Position position) {
+<span class="fc" id="L149">		final YAxis.Position oldPosition = this.position;</span>
+<span class="fc" id="L150">		this.position = Objects.requireNonNull(position);</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">		if (oldPosition != position) {</span>
+<span class="fc" id="L152">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L154">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -10,38 +10,41 @@ import de.slothsoft.charts.internal.RefreshListeners;
 
 /**
  * A border on a {@link Chart}. On default it's only empty space and not visible.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
  */
 
-<span class="fc" id="L15">public class Border implements ChartPart {</span>
+<span class="fc" id="L18">public class Border implements ChartPart {</span>
 
-<span class="fc" id="L17">	RefreshListeners refreshListeners = new RefreshListeners(this);</span>
+<span class="fc" id="L20">	RefreshListeners refreshListeners = new RefreshListeners(this);</span>
 
-<span class="fc" id="L19">	private int spaceOnTop = 10;</span>
-<span class="fc" id="L20">	private int spaceOnLeft = 5;</span>
-<span class="fc" id="L21">	private int spaceOnRight = 5;</span>
-<span class="fc" id="L22">	private int spaceOnBottom = 7;</span>
+<span class="fc" id="L22">	private int spaceOnTop = 10;</span>
+<span class="fc" id="L23">	private int spaceOnLeft = 5;</span>
+<span class="fc" id="L24">	private int spaceOnRight = 5;</span>
+<span class="fc" id="L25">	private int spaceOnBottom = 7;</span>
 
 	@Override
 	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
 		// this border is only empty space so don't draw anything
 
-<span class="fc" id="L28">	}</span>
+<span class="fc" id="L31">	}</span>
 	@Override
 	public Area snipNecessarySpace(Area existingArea) {
-<span class="fc" id="L31">		return new Area().startX(existingArea.getStartX() + this.spaceOnLeft)</span>
-<span class="fc" id="L32">				.startY(existingArea.getStartY() + this.spaceOnTop).endX(existingArea.getEndX() - this.spaceOnRight)</span>
-<span class="fc" id="L33">				.endY(existingArea.getEndY() - this.spaceOnBottom);</span>
+<span class="fc" id="L34">		return new Area().startX(existingArea.getStartX() + this.spaceOnLeft)</span>
+<span class="fc" id="L35">				.startY(existingArea.getStartY() + this.spaceOnTop).endX(existingArea.getEndX() - this.spaceOnRight)</span>
+<span class="fc" id="L36">				.endY(existingArea.getEndY() - this.spaceOnBottom);</span>
 	}
 
 	@Override
 	public void addRefreshListener(RefreshListener listener) {
-<span class="fc" id="L38">		this.refreshListeners.addRefreshListener(listener);</span>
-<span class="fc" id="L39">	}</span>
+<span class="fc" id="L41">		this.refreshListeners.addRefreshListener(listener);</span>
+<span class="fc" id="L42">	}</span>
 
 	@Override
 	public void removeRefreshListener(RefreshListener listener) {
-<span class="nc" id="L43">		this.refreshListeners.removeRefreshListener(listener);</span>
-<span class="nc" id="L44">	}</span>
+<span class="fc" id="L46">		this.refreshListeners.removeRefreshListener(listener);</span>
+<span class="fc" id="L47">	}</span>
 
 	/**
 	 * Sets the border size in all four directions.
@@ -51,8 +54,8 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public Border space(int newSpace) {
-<span class="nc" id="L54">		setSpace(newSpace);</span>
-<span class="nc" id="L55">		return this;</span>
+<span class="fc" id="L57">		setSpace(newSpace);</span>
+<span class="fc" id="L58">		return this;</span>
 	}
 
 	/**
@@ -62,24 +65,24 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public void setSpace(int space) {
-<span class="fc" id="L65">		final int oldSpace = hashCode(this.spaceOnBottom, this.spaceOnTop, this.spaceOnRight, this.spaceOnLeft);</span>
-<span class="fc" id="L66">		this.spaceOnBottom = space;</span>
-<span class="fc" id="L67">		this.spaceOnTop = space;</span>
-<span class="fc" id="L68">		this.spaceOnRight = space;</span>
-<span class="fc" id="L69">		this.spaceOnLeft = space;</span>
-<span class="fc" id="L70">		final int newSpace = hashCode(this.spaceOnBottom, this.spaceOnTop, this.spaceOnRight, this.spaceOnLeft);</span>
-<span class="fc bfc" id="L71" title="All 2 branches covered.">		if (oldSpace != newSpace) {</span>
-<span class="fc" id="L72">			this.refreshListeners.fireRefreshNeeded();</span>
+<span class="fc" id="L68">		final int oldSpace = hashCode(this.spaceOnBottom, this.spaceOnTop, this.spaceOnRight, this.spaceOnLeft);</span>
+<span class="fc" id="L69">		this.spaceOnBottom = space;</span>
+<span class="fc" id="L70">		this.spaceOnTop = space;</span>
+<span class="fc" id="L71">		this.spaceOnRight = space;</span>
+<span class="fc" id="L72">		this.spaceOnLeft = space;</span>
+<span class="fc" id="L73">		final int newSpace = hashCode(this.spaceOnBottom, this.spaceOnTop, this.spaceOnRight, this.spaceOnLeft);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (oldSpace != newSpace) {</span>
+<span class="fc" id="L75">			this.refreshListeners.fireRefreshNeeded();</span>
 		}
-<span class="fc" id="L74">	}</span>
+<span class="fc" id="L77">	}</span>
 
 	private static int hashCode(int... a) {
-<span class="fc" id="L77">		int result = 1;</span>
-<span class="fc bfc" id="L78" title="All 2 branches covered.">		for (final long element : a) {</span>
-<span class="fc" id="L79">			final int elementHash = (int) (element ^ (element &gt;&gt;&gt; 32));</span>
-<span class="fc" id="L80">			result = 31 * result + elementHash;</span>
+<span class="fc" id="L80">		int result = 1;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">		for (final long element : a) {</span>
+<span class="fc" id="L82">			final int elementHash = (int) (element ^ (element &gt;&gt;&gt; 32));</span>
+<span class="fc" id="L83">			result = 31 * result + elementHash;</span>
 		}
-<span class="fc" id="L82">		return result;</span>
+<span class="fc" id="L85">		return result;</span>
 	}
 
 	/**
@@ -89,7 +92,7 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public int getSpaceOnBottom() {
-<span class="nc" id="L92">		return this.spaceOnBottom;</span>
+<span class="fc" id="L95">		return this.spaceOnBottom;</span>
 	}
 
 	/**
@@ -100,8 +103,8 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public Border spaceOnBottom(int newSpaceOnBottom) {
-<span class="fc" id="L103">		setSpaceOnBottom(newSpaceOnBottom);</span>
-<span class="fc" id="L104">		return this;</span>
+<span class="fc" id="L106">		setSpaceOnBottom(newSpaceOnBottom);</span>
+<span class="fc" id="L107">		return this;</span>
 	}
 
 	/**
@@ -111,12 +114,12 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public void setSpaceOnBottom(int spaceOnBottom) {
-<span class="fc" id="L114">		final int oldSpaceOnBottom = this.spaceOnBottom;</span>
-<span class="fc" id="L115">		this.spaceOnBottom = spaceOnBottom;</span>
-<span class="fc bfc" id="L116" title="All 2 branches covered.">		if (oldSpaceOnBottom != this.spaceOnBottom) {</span>
-<span class="fc" id="L117">			this.refreshListeners.fireRefreshNeeded();</span>
+<span class="fc" id="L117">		final int oldSpaceOnBottom = this.spaceOnBottom;</span>
+<span class="fc" id="L118">		this.spaceOnBottom = spaceOnBottom;</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">		if (oldSpaceOnBottom != this.spaceOnBottom) {</span>
+<span class="fc" id="L120">			this.refreshListeners.fireRefreshNeeded();</span>
 		}
-<span class="fc" id="L119">	}</span>
+<span class="fc" id="L122">	}</span>
 
 	/**
 	 * Return the border size on the left.
@@ -125,7 +128,7 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public int getSpaceOnLeft() {
-<span class="nc" id="L128">		return this.spaceOnLeft;</span>
+<span class="fc" id="L131">		return this.spaceOnLeft;</span>
 	}
 
 	/**
@@ -136,8 +139,8 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public Border spaceOnLeft(int newSpaceOnLeft) {
-<span class="fc" id="L139">		setSpaceOnLeft(newSpaceOnLeft);</span>
-<span class="fc" id="L140">		return this;</span>
+<span class="fc" id="L142">		setSpaceOnLeft(newSpaceOnLeft);</span>
+<span class="fc" id="L143">		return this;</span>
 	}
 
 	/**
@@ -147,12 +150,12 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public void setSpaceOnLeft(int spaceOnLeft) {
-<span class="fc" id="L150">		final int oldSpaceOnLeft = this.spaceOnLeft;</span>
-<span class="fc" id="L151">		this.spaceOnLeft = spaceOnLeft;</span>
-<span class="fc bfc" id="L152" title="All 2 branches covered.">		if (oldSpaceOnLeft != this.spaceOnLeft) {</span>
-<span class="fc" id="L153">			this.refreshListeners.fireRefreshNeeded();</span>
+<span class="fc" id="L153">		final int oldSpaceOnLeft = this.spaceOnLeft;</span>
+<span class="fc" id="L154">		this.spaceOnLeft = spaceOnLeft;</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">		if (oldSpaceOnLeft != this.spaceOnLeft) {</span>
+<span class="fc" id="L156">			this.refreshListeners.fireRefreshNeeded();</span>
 		}
-<span class="fc" id="L155">	}</span>
+<span class="fc" id="L158">	}</span>
 
 	/**
 	 * Return the border size on the right.
@@ -161,7 +164,7 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public int getSpaceOnRight() {
-<span class="nc" id="L164">		return this.spaceOnRight;</span>
+<span class="fc" id="L167">		return this.spaceOnRight;</span>
 	}
 
 	/**
@@ -172,8 +175,8 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public Border spaceOnRight(int newSpaceOnRight) {
-<span class="fc" id="L175">		setSpaceOnRight(newSpaceOnRight);</span>
-<span class="fc" id="L176">		return this;</span>
+<span class="fc" id="L178">		setSpaceOnRight(newSpaceOnRight);</span>
+<span class="fc" id="L179">		return this;</span>
 	}
 
 	/**
@@ -183,12 +186,12 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public void setSpaceOnRight(int spaceOnRight) {
-<span class="fc" id="L186">		final int oldSpaceOnRight = this.spaceOnRight;</span>
-<span class="fc" id="L187">		this.spaceOnRight = spaceOnRight;</span>
-<span class="fc bfc" id="L188" title="All 2 branches covered.">		if (oldSpaceOnRight != this.spaceOnRight) {</span>
-<span class="fc" id="L189">			this.refreshListeners.fireRefreshNeeded();</span>
+<span class="fc" id="L189">		final int oldSpaceOnRight = this.spaceOnRight;</span>
+<span class="fc" id="L190">		this.spaceOnRight = spaceOnRight;</span>
+<span class="fc bfc" id="L191" title="All 2 branches covered.">		if (oldSpaceOnRight != this.spaceOnRight) {</span>
+<span class="fc" id="L192">			this.refreshListeners.fireRefreshNeeded();</span>
 		}
-<span class="fc" id="L191">	}</span>
+<span class="fc" id="L194">	}</span>
 
 	/**
 	 * Return the border size on the top.
@@ -197,7 +200,7 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public int getSpaceOnTop() {
-<span class="nc" id="L200">		return this.spaceOnTop;</span>
+<span class="fc" id="L203">		return this.spaceOnTop;</span>
 	}
 
 	/**
@@ -208,8 +211,8 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public Border spaceOnTop(int newSpaceOnTop) {
-<span class="fc" id="L211">		setSpaceOnTop(newSpaceOnTop);</span>
-<span class="fc" id="L212">		return this;</span>
+<span class="fc" id="L214">		setSpaceOnTop(newSpaceOnTop);</span>
+<span class="fc" id="L215">		return this;</span>
 	}
 
 	/**
@@ -219,12 +222,12 @@ import de.slothsoft.charts.internal.RefreshListeners;
 	 */
 
 	public void setSpaceOnTop(int spaceOnTop) {
-<span class="fc" id="L222">		final int oldSpaceOnTop = this.spaceOnTop;</span>
-<span class="fc" id="L223">		this.spaceOnTop = spaceOnTop;</span>
-<span class="fc bfc" id="L224" title="All 2 branches covered.">		if (oldSpaceOnTop != this.spaceOnTop) {</span>
-<span class="fc" id="L225">			this.refreshListeners.fireRefreshNeeded();</span>
+<span class="fc" id="L225">		final int oldSpaceOnTop = this.spaceOnTop;</span>
+<span class="fc" id="L226">		this.spaceOnTop = spaceOnTop;</span>
+<span class="fc bfc" id="L227" title="All 2 branches covered.">		if (oldSpaceOnTop != this.spaceOnTop) {</span>
+<span class="fc" id="L228">			this.refreshListeners.fireRefreshNeeded();</span>
 		}
-<span class="fc" id="L227">	}</span>
+<span class="fc" id="L230">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

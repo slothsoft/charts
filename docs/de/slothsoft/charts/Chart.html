@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -109,7 +109,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></dd>
+<dd><a href="../../../de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a>, <a href="../../../de/slothsoft/charts/piechart/PieChart.html" title="class in de.slothsoft.charts.piechart">PieChart</a></dd>
 </dl>
 <hr>
 <br>
@@ -144,7 +144,9 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Chart.html#Chart--">Chart</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Chart.html#Chart--">Chart</a></span>()</code>
+<div class="block">Default constructor.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -175,32 +177,46 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Chart.html#calculateGraphArea-double-double-">calculateGraphArea</a></span>(double&nbsp;width,
+                  double&nbsp;height)</code>
+<div class="block">Calculates the graph area by removing the <a href="../../../de/slothsoft/charts/ChartPart.html" title="interface in de.slothsoft.charts"><code>ChartPart</code></a>s from the entire width
+ and height.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Chart.html#getBackgroundColor--">getBackgroundColor</a></span>()</code>
 <div class="block">Returns the color as ARGB int, e.g.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../de/slothsoft/charts/common/Border.html" title="class in de.slothsoft.charts.common">Border</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Chart.html#getBorder--">getBorder</a></span>()</code>
 <div class="block">Returns the border this chart has.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="../../../de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Chart.html#getTitle--">getTitle</a></span>()</code>
+<div class="block">Returns the title this chart has.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Chart.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
        <a href="../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>
 <div class="block">Paints the current content onto the graphic context.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Chart.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener</a></span>(<a href="../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>
 <div class="block">Removes a refresh listener that was called whenever this <a href="../../../de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><code>Chart</code></a> needed to be
  redrawn by the GUI.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/Chart.html#setBackgroundColor-int-">setBackgroundColor</a></span>(int&nbsp;backgroundColor)</code>
 <div class="block">Sets the color as ARGB int, e.g.</div>
@@ -235,6 +251,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <li class="blockList">
 <h4>Chart</h4>
 <pre>public&nbsp;Chart()</pre>
+<div class="block">Default constructor.</div>
 </li>
 </ul>
 </li>
@@ -260,6 +277,25 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>gc</code> - graphic context; coordinates are relative to the screen</dd>
 <dd><code>instructions</code> - additional instructions like the area to paint on</dd>
+</dl>
+</li>
+</ul>
+<a name="calculateGraphArea-double-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>calculateGraphArea</h4>
+<pre>public&nbsp;<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;calculateGraphArea(double&nbsp;width,
+                               double&nbsp;height)</pre>
+<div class="block">Calculates the graph area by removing the <a href="../../../de/slothsoft/charts/ChartPart.html" title="interface in de.slothsoft.charts"><code>ChartPart</code></a>s from the entire width
+ and height.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>width</code> - the entire width</dd>
+<dd><code>height</code> - the entire height</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the graph area</dd>
 </dl>
 </li>
 </ul>
@@ -302,6 +338,24 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <pre>public&nbsp;<a href="../../../de/slothsoft/charts/common/Border.html" title="class in de.slothsoft.charts.common">Border</a>&nbsp;getBorder()</pre>
 <div class="block">Returns the border this chart has. The border is supposed to be around everything
  else like this:<br>
+ <img src=
+ "https://raw.githubusercontent.com/wiki/slothsoft/charts/images/chart-design.png"
+ alt="Chart Parts"></div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the border</dd>
+</dl>
+</li>
+</ul>
+<a name="getTitle--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTitle</h4>
+<pre>public&nbsp;<a href="../../../de/slothsoft/charts/common/Title.html" title="class in de.slothsoft.charts.common">Title</a>&nbsp;getTitle()</pre>
+<div class="block">Returns the title this chart has. The title is supposed to be on the top of
+ everything like this:<br>
  <img src=
  "https://raw.githubusercontent.com/wiki/slothsoft/charts/images/chart-design.png"
  alt="Chart Parts"></div>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Title.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.common</a> &gt; <span class="el_source">Title.java</span></div><h1>Title.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.common;
+
+import java.util.Objects;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.ChartPart;
+import de.slothsoft.charts.Font;
+import de.slothsoft.charts.GraphicContext;
+import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.RefreshListener;
+import de.slothsoft.charts.TextAlignment;
+import de.slothsoft.charts.internal.RefreshListeners;
+
+/**
+ * A title over an {@link Chart}. On default it's not visible, you need to use
+ * {@link #setText(String)} to get it to be displayed.
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+<span class="fc" id="L23">public class Title implements ChartPart {</span>
+
+	/**
+	 * The position of the {@link Title}.
+	 */
+
+<span class="fc" id="L29">	public enum Position {</span>
+		/**
+		 * The default behavior is to have the axis on y=0 if that is visible, else on the
+		 * top or bottom border of the graph depending were it is in relation to the
+		 * visible area.
+		 */
+<span class="fc" id="L35">		TOP {</span>
+
+			@Override
+			Area snipNecessarySpace(Area existingArea, double size) {
+<span class="fc" id="L39">				return existingArea.copy().startY(existingArea.getStartY() + size);</span>
+			}
+
+			@Override
+			double getPaintY(Area area, double size) {
+<span class="fc" id="L44">				return area.getStartY();</span>
+			}
+		},
+
+<span class="fc" id="L48">		BOTTOM {</span>
+
+			@Override
+			Area snipNecessarySpace(Area existingArea, double size) {
+<span class="fc" id="L52">				return existingArea.copy().endY(existingArea.getEndY() - size);</span>
+			}
+
+			@Override
+			double getPaintY(Area area, double size) {
+<span class="fc" id="L57">				return area.getEndY() - size;</span>
+			}
+		};
+
+		abstract Area snipNecessarySpace(Area existingArea, double size);
+
+		abstract double getPaintY(Area area, double size);
+
+	}
+	String text;
+<span class="fc" id="L67">	int color = 0xFF112211;</span>
+<span class="fc" id="L68">	Font font = Font.TITLE;</span>
+<span class="fc" id="L69">	double size = 25;</span>
+<span class="fc" id="L70">	Title.Position position = Title.Position.TOP;</span>
+<span class="fc" id="L71">	TextAlignment alignment = TextAlignment.CENTER;</span>
+
+<span class="fc" id="L73">	RefreshListeners refreshListeners = new RefreshListeners(this);</span>
+
+	@Override
+	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
+<span class="fc bfc" id="L77" title="All 2 branches covered.">		if (this.text != null) {</span>
+<span class="fc" id="L78">			final Area area = instructions.getArea();</span>
+<span class="fc" id="L79">			gc.setColor(this.color);</span>
+<span class="fc" id="L80">			gc.setFont(this.font);</span>
+
+<span class="fc" id="L82">			final double paintY = this.position.getPaintY(area, this.size);</span>
+<span class="fc" id="L83">			this.alignment.drawText(gc, area.copy().startY(paintY).endY(paintY + this.size), this.text);</span>
+		}
+<span class="fc" id="L85">	}</span>
+
+	@Override
+	public Area snipNecessarySpace(Area existingArea) {
+<span class="fc bfc" id="L89" title="All 2 branches covered.">		if (this.text == null) return existingArea;</span>
+<span class="fc" id="L90">		return this.position.snipNecessarySpace(existingArea, this.size);</span>
+	}
+
+	@Override
+	public void addRefreshListener(RefreshListener listener) {
+<span class="fc" id="L95">		this.refreshListeners.addRefreshListener(listener);</span>
+<span class="fc" id="L96">	}</span>
+
+	@Override
+	public void removeRefreshListener(RefreshListener listener) {
+<span class="fc" id="L100">		this.refreshListeners.removeRefreshListener(listener);</span>
+<span class="fc" id="L101">	}</span>
+
+	/**
+	 * Returns the text that is the title or &lt;code&gt;null&lt;/code&gt; to show there is no title.
+	 *
+	 * @return the text
+	 */
+
+	public String getText() {
+<span class="fc" id="L110">		return this.text;</span>
+	}
+
+	/**
+	 * Sets the text that is the title or &lt;code&gt;null&lt;/code&gt; to show there is no title.
+	 *
+	 * @param newText the text
+	 * @return this instance
+	 */
+
+	public Title text(String newText) {
+<span class="fc" id="L121">		setText(newText);</span>
+<span class="fc" id="L122">		return this;</span>
+	}
+
+	/**
+	 * Sets the text that is the title or &lt;code&gt;null&lt;/code&gt; to show there is no title.
+	 *
+	 * @param text the text
+	 */
+
+	public void setText(String text) {
+<span class="fc" id="L132">		final String oldText = this.text;</span>
+<span class="fc" id="L133">		this.text = text;</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">		if (oldText != text) {</span>
+<span class="fc" id="L135">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L137">	}</span>
+
+	/**
+	 * Returns the color as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue is
+	 * &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @return the color
+	 */
+
+	public int getColor() {
+<span class="fc" id="L147">		return this.color;</span>
+	}
+
+	/**
+	 * Sets the color as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue is
+	 * &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @param newColor the color
+	 * @return this instance
+	 */
+
+	public Title color(int newColor) {
+<span class="fc" id="L159">		setColor(newColor);</span>
+<span class="fc" id="L160">		return this;</span>
+	}
+
+	/**
+	 * Sets the color as ARGB int, e.g. red is &lt;code&gt;0xFFFF0000&lt;/code&gt; and blue is
+	 * &lt;code&gt;0xFF0000FF&lt;/code&gt;.
+	 *
+	 * @param color the color
+	 */
+
+	public void setColor(int color) {
+<span class="fc" id="L171">		final int oldColor = this.color;</span>
+<span class="fc" id="L172">		this.color = color;</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">		if (oldColor != color) {</span>
+<span class="fc" id="L174">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L176">	}</span>
+
+	/**
+	 * Returns the font used to paint the title.
+	 *
+	 * @return the font; never null
+	 */
+
+	public Font getFont() {
+<span class="fc" id="L185">		return this.font;</span>
+	}
+
+	/**
+	 * Sets the font used to paint the title.
+	 *
+	 * @param newFont the font; cannot be null
+	 * @return this instance
+	 */
+
+	public Title font(Font newFont) {
+<span class="fc" id="L196">		setFont(newFont);</span>
+<span class="fc" id="L197">		return this;</span>
+	}
+
+	/**
+	 * Sets the font used to paint the title.
+	 *
+	 * @param font the font; cannot be null
+	 */
+
+	public void setFont(Font font) {
+<span class="fc" id="L207">		final Font oldFont = this.font;</span>
+<span class="fc" id="L208">		this.font = Objects.requireNonNull(font);</span>
+<span class="fc bfc" id="L209" title="All 2 branches covered.">		if (oldFont != font) {</span>
+<span class="fc" id="L210">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L212">	}</span>
+
+	/**
+	 * Returns the height of the title, if one is drawn.
+	 *
+	 * @return the title's size
+	 */
+
+	public double getSize() {
+<span class="fc" id="L221">		return this.size;</span>
+	}
+
+	/**
+	 * Sets the height of the title, if one is drawn.
+	 *
+	 * @param newSize the title's size
+	 * @return this instance
+	 */
+
+	public Title size(double newSize) {
+<span class="fc" id="L232">		setSize(newSize);</span>
+<span class="fc" id="L233">		return this;</span>
+	}
+
+	/**
+	 * Sets the height of the title, if one is drawn.
+	 *
+	 * @param size the title's size
+	 */
+
+	public void setSize(double size) {
+<span class="fc" id="L243">		final double oldSize = this.size;</span>
+<span class="fc" id="L244">		this.size = size;</span>
+<span class="fc bfc" id="L245" title="All 2 branches covered.">		if (oldSize != size) {</span>
+<span class="fc" id="L246">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L248">	}</span>
+
+	/**
+	 * Returns the position of the title.
+	 *
+	 * @return the position; never null
+	 */
+
+	public Title.Position getPosition() {
+<span class="nc" id="L257">		return this.position;</span>
+	}
+
+	/**
+	 * Sets the position of the title.
+	 *
+	 * @param newPosition the position; cannot be null
+	 * @return this instance
+	 */
+
+	public Title position(Title.Position newPosition) {
+<span class="fc" id="L268">		setPosition(newPosition);</span>
+<span class="fc" id="L269">		return this;</span>
+	}
+
+	/**
+	 * Sets the position of the title.
+	 *
+	 * @param position the position; cannot be null
+	 */
+
+	public void setPosition(Title.Position position) {
+<span class="fc" id="L279">		final Title.Position oldPosition = this.position;</span>
+<span class="fc" id="L280">		this.position = Objects.requireNonNull(position);</span>
+<span class="fc bfc" id="L281" title="All 2 branches covered.">		if (oldPosition != position) {</span>
+<span class="fc" id="L282">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L284">	}</span>
+
+	/**
+	 * Returns the alignment of the title.
+	 *
+	 * @return the alignment; never null
+	 */
+
+	public TextAlignment getAlignment() {
+<span class="fc" id="L293">		return this.alignment;</span>
+	}
+
+	/**
+	 * Sets the alignment of the title.
+	 *
+	 * @param newAlignment the alignment; cannot be null
+	 * @return this instance
+	 */
+
+	public Title alignment(TextAlignment newAlignment) {
+<span class="fc" id="L304">		setAlignment(newAlignment);</span>
+<span class="fc" id="L305">		return this;</span>
+	}
+
+	/**
+	 * Sets the alignment of the title.
+	 *
+	 * @param alignment the alignment; cannot be null
+	 */
+
+	public void setAlignment(TextAlignment alignment) {
+<span class="fc" id="L315">		final TextAlignment oldAlignment = this.alignment;</span>
+<span class="fc" id="L316">		this.alignment = Objects.requireNonNull(alignment);</span>
+<span class="fc bfc" id="L317" title="All 2 branches covered.">		if (oldAlignment != alignment) {</span>
+<span class="fc" id="L318">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L320">	}</span>
+
+	@Override
+	public String toString() {
+<span class="fc" id="L324">		return &quot;Title [text=&quot; + this.text + &quot;, color=&quot; + this.color + &quot;, font=&quot; + this.font + &quot;, size=&quot; + this.size</span>
+				+ &quot;, position=&quot; + this.position + &quot;, alignment=&quot; + this.alignment + &quot;]&quot;;
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

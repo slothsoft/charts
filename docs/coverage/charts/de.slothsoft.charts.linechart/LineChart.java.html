@@ -7,8 +7,10 @@ import java.util.Objects;
 
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.ChartPart;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.RefreshListener;
 
 /**
  * This class represents a {@link Chart} that displays lines of some sort inside a
@@ -21,44 +23,60 @@ import de.slothsoft.charts.PaintInstructions;
  * @since 0.1.0
  */
 
-<span class="fc" id="L24">public class LineChart extends Chart {</span>
+public class LineChart extends Chart {
 
-<span class="fc" id="L26">	final List&lt;Line&gt; lines = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L28">	final List&lt;Line&gt; lines = new ArrayList&lt;&gt;();</span>
 
 	Area lastGraphArea;
 
+<span class="fc" id="L32">	private final XAxis xAxis = new XAxis(this);</span>
+<span class="fc" id="L33">	private final YAxis yAxis = new YAxis(this);</span>
+<span class="fc" id="L34">	private final RefreshListener refreshListener = e -&gt; fireRefreshNeeded();</span>
+
 	private Area displayedArea;
-<span class="fc" id="L31">	private double zoomFactor = 0.25;</span>
+<span class="fc" id="L37">	private double zoomFactor = 0.25;</span>
+
+<span class="fc" id="L39">	public LineChart() {</span>
+<span class="fc" id="L40">		addChartPart(this.xAxis);</span>
+<span class="fc" id="L41">		addChartPart(this.yAxis);</span>
+<span class="fc" id="L42">	}</span>
+
+	@Override
+	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
+<span class="fc" id="L46">		this.lastGraphArea = instructions.getArea().copy();</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		for (final ChartPart part : fetchChartParts()) {</span>
+<span class="fc" id="L48">			this.lastGraphArea = part.snipNecessarySpace(this.lastGraphArea);</span>
+<span class="fc" id="L49">		}</span>
+<span class="fc" id="L50">		super.paintOn(gc, instructions);</span>
+<span class="fc" id="L51">	}</span>
 
 	@Override
 	protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
-<span class="fc" id="L35">		this.lastGraphArea = instructions.getArea();</span>
+<span class="fc" id="L55">		final Area graphArea = calculateDisplayedArea();</span>
+<span class="fc" id="L56">		final double graphWidth = graphArea.getEndX() - graphArea.getStartX();</span>
+<span class="fc" id="L57">		final double graphHeight = graphArea.getEndY() - graphArea.getStartY();</span>
 
-<span class="fc" id="L37">		final Area graphArea = calculateDisplayedArea();</span>
-<span class="fc" id="L38">		final double graphWidth = graphArea.getEndX() - graphArea.getStartX();</span>
-<span class="fc" id="L39">		final double graphHeight = graphArea.getEndY() - graphArea.getStartY();</span>
+<span class="fc" id="L59">		final double actualWidth = this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX();</span>
+<span class="fc" id="L60">		final double actualHeight = this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY();</span>
+<span class="fc" id="L61">		final double scaleX = actualWidth / graphWidth;</span>
+<span class="fc" id="L62">		final double scaleY = actualHeight / graphHeight;</span>
+<span class="fc" id="L63">		gc.scale(scaleX, scaleY);</span>
 
-<span class="fc" id="L41">		final double actualWidth = this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX();</span>
-<span class="fc" id="L42">		final double actualHeight = this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY();</span>
-<span class="fc" id="L43">		final double scaleX = actualWidth / graphWidth;</span>
-<span class="fc" id="L44">		final double scaleY = actualHeight / graphHeight;</span>
-<span class="fc" id="L45">		gc.scale(scaleX, scaleY);</span>
-
-<span class="fc" id="L47">		final PaintInstructions lineInstructions = instructions.copy().area(graphArea);</span>
-<span class="fc" id="L48">		final GraphicContext linesGc = new FlipYGraphicContext(gc);</span>
+<span class="fc" id="L65">		final PaintInstructions lineInstructions = instructions.copy().area(graphArea);</span>
+<span class="fc" id="L66">		final GraphicContext linesGc = new FlipYGraphicContext(gc);</span>
 		// the top left corner is not where the graph origin is, so move
-<span class="fc" id="L50">		final double originX = -Math.min(graphArea.getStartX(), graphArea.getEndX()) * scaleX;</span>
-<span class="fc" id="L51">		final double originY = Math.max(graphArea.getStartY(), graphArea.getEndY()) * scaleY;</span>
-<span class="fc" id="L52">		gc.translate(originX, originY);</span>
+<span class="fc" id="L68">		final double originX = -Math.min(graphArea.getStartX(), graphArea.getEndX()) * scaleX;</span>
+<span class="fc" id="L69">		final double originY = Math.max(graphArea.getStartY(), graphArea.getEndY()) * scaleY;</span>
+<span class="fc" id="L70">		gc.translate(originX, originY);</span>
 
-<span class="fc bfc" id="L54" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
-<span class="fc" id="L55">			line.paintOn(linesGc, lineInstructions);</span>
-<span class="fc" id="L56">		}</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
+<span class="fc" id="L73">			line.paintOn(linesGc, lineInstructions);</span>
+<span class="fc" id="L74">		}</span>
 
 		// reset everything that was done previously
-<span class="fc" id="L59">		gc.translate(-originX, -originY);</span>
-<span class="fc" id="L60">		gc.scale(1 / scaleX, 1 / scaleY);</span>
-<span class="fc" id="L61">	}</span>
+<span class="fc" id="L77">		gc.translate(-originX, -originY);</span>
+<span class="fc" id="L78">		gc.scale(1 / scaleX, 1 / scaleY);</span>
+<span class="fc" id="L79">	}</span>
 
 	/**
 	 * Calculates the displayed area via {@link #getDisplayedArea()} or the added lines.
@@ -70,14 +88,14 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	Area calculateDisplayedArea() {
-<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (this.displayedArea != null) return this.displayedArea;</span>
-<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (this.lines.isEmpty()) return Line.createDefaultArea();</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		if (this.displayedArea != null) return this.displayedArea;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">		if (this.lines.isEmpty()) return Line.createDefaultArea();</span>
 
-<span class="fc" id="L76">		Area result = new Area();</span>
-<span class="fc bfc" id="L77" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
-<span class="fc" id="L78">			result = result.unite(line.calculatePreferredArea());</span>
-<span class="fc" id="L79">		}</span>
-<span class="fc" id="L80">		return result;</span>
+<span class="fc" id="L94">		Area result = new Area();</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
+<span class="fc" id="L96">			result = result.unite(line.calculatePreferredArea());</span>
+<span class="fc" id="L97">		}</span>
+<span class="fc" id="L98">		return result;</span>
 	}
 
 	/**
@@ -87,9 +105,10 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void addLine(Line line) {
-<span class="fc" id="L90">		this.lines.add(line);</span>
-<span class="fc" id="L91">		fireRefreshNeeded();</span>
-<span class="fc" id="L92">	}</span>
+<span class="fc" id="L108">		line.addRefreshListener(this.refreshListener);</span>
+<span class="fc" id="L109">		this.lines.add(line);</span>
+<span class="fc" id="L110">		fireRefreshNeeded();</span>
+<span class="fc" id="L111">	}</span>
 
 	/**
 	 * Adds some lines to the chart.
@@ -98,9 +117,12 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void addLines(Line... addedLines) {
-<span class="fc" id="L101">		this.lines.addAll(Arrays.asList(addedLines));</span>
-<span class="fc" id="L102">		fireRefreshNeeded();</span>
-<span class="fc" id="L103">	}</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">		for (final Line addedLine : addedLines) {</span>
+<span class="fc" id="L121">			addedLine.addRefreshListener(this.refreshListener);</span>
+		}
+<span class="fc" id="L123">		this.lines.addAll(Arrays.asList(addedLines));</span>
+<span class="fc" id="L124">		fireRefreshNeeded();</span>
+<span class="fc" id="L125">	}</span>
 
 	/**
 	 * Removes a line from the chart.
@@ -109,9 +131,10 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void removeLine(Line line) {
-<span class="fc" id="L112">		this.lines.remove(line);</span>
-<span class="fc" id="L113">		fireRefreshNeeded();</span>
-<span class="fc" id="L114">	}</span>
+<span class="fc" id="L134">		line.removeRefreshListener(this.refreshListener);</span>
+<span class="fc" id="L135">		this.lines.remove(line);</span>
+<span class="fc" id="L136">		fireRefreshNeeded();</span>
+<span class="fc" id="L137">	}</span>
 
 	/**
 	 * Removes some lines to the chart.
@@ -120,9 +143,12 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void removeLines(Line... removedLines) {
-<span class="fc" id="L123">		this.lines.removeAll(Arrays.asList(removedLines));</span>
-<span class="fc" id="L124">		fireRefreshNeeded();</span>
-<span class="fc" id="L125">	}</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">		for (final Line removedLine : removedLines) {</span>
+<span class="fc" id="L147">			removedLine.removeRefreshListener(this.refreshListener);</span>
+		}
+<span class="fc" id="L149">		this.lines.removeAll(Arrays.asList(removedLines));</span>
+<span class="fc" id="L150">		fireRefreshNeeded();</span>
+<span class="fc" id="L151">	}</span>
 
 	/**
 	 * Moves the displayed area of this {@link Chart} by the coordinates used for the
@@ -136,22 +162,22 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void moveDisplayedAreaByChartCoordinates(double xIncrement, double yIncrement) {
-<span class="fc" id="L139">		requireLastGraphAreaNotNull();</span>
-<span class="fc" id="L140">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L165">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L166">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L142">		final double scaleX = (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX())</span>
-<span class="fc" id="L143">				/ (wantedArea.getEndX() - wantedArea.getStartX());</span>
-<span class="fc" id="L144">		final double scaleY = (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY())</span>
-<span class="fc" id="L145">				/ (wantedArea.getEndY() - wantedArea.getStartY());</span>
+<span class="fc" id="L168">		final double scaleX = (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX())</span>
+<span class="fc" id="L169">				/ (wantedArea.getEndX() - wantedArea.getStartX());</span>
+<span class="fc" id="L170">		final double scaleY = (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY())</span>
+<span class="fc" id="L171">				/ (wantedArea.getEndY() - wantedArea.getStartY());</span>
 
-<span class="fc" id="L147">		moveDisplayedAreaDirectly(xIncrement / scaleX, yIncrement / scaleY);</span>
-<span class="fc" id="L148">	}</span>
+<span class="fc" id="L173">		moveDisplayedAreaDirectly(xIncrement / scaleX, yIncrement / scaleY);</span>
+<span class="fc" id="L174">	}</span>
 
 	private void requireLastGraphAreaNotNull() {
-<span class="pc bpc" id="L151" title="1 of 2 branches missed.">		if (this.lastGraphArea == null)</span>
-<span class="nc" id="L152">			throw new IllegalArgumentException(</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">		if (this.lastGraphArea == null)</span>
+<span class="fc" id="L178">			throw new IllegalArgumentException(</span>
 					&quot;You need to paint the graph at least once before you can move it with this method!&quot;);
-<span class="fc" id="L154">	}</span>
+<span class="fc" id="L180">	}</span>
 
 	/**
 	 * Moves the displayed area of this {@link Chart} directly, i.e. adds the movement
@@ -163,11 +189,11 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	void moveDisplayedAreaDirectly(double xIncrement, double yIncrement) {
-<span class="pc bpc" id="L166" title="3 of 4 branches missed.">		if (xIncrement == 0 &amp;&amp; yIncrement == 0) return;</span>
-<span class="fc" id="L167">		final Area newArea = calculateDisplayedArea().copy();</span>
-<span class="fc" id="L168">		newArea.move(xIncrement, yIncrement);</span>
-<span class="fc" id="L169">		setDisplayedArea(newArea);</span>
-<span class="fc" id="L170">	}</span>
+<span class="pc bpc" id="L192" title="1 of 4 branches missed.">		if (xIncrement == 0 &amp;&amp; yIncrement == 0) return;</span>
+<span class="fc" id="L193">		final Area newArea = calculateDisplayedArea().copy();</span>
+<span class="fc" id="L194">		newArea.move(xIncrement, yIncrement);</span>
+<span class="fc" id="L195">		setDisplayedArea(newArea);</span>
+<span class="fc" id="L196">	}</span>
 
 	/**
 	 * Zooms the graph area in using the chart's coordinates.
@@ -181,8 +207,8 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void zoomDisplayedAreaInByChartCoordinates(double chartX, double chartY) {
-<span class="fc" id="L184">		zoomDisplayedAreaInByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
-<span class="fc" id="L185">	}</span>
+<span class="fc" id="L210">		zoomDisplayedAreaInByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
+<span class="fc" id="L211">	}</span>
 
 	/**
 	 * Zooms the graph area in using the graph's coordinates.
@@ -196,33 +222,33 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void zoomDisplayedAreaInByGraphCoordinates(double graphX, double graphY) {
-<span class="fc" id="L199">		zoom(graphX, graphY, true);</span>
-<span class="fc" id="L200">	}</span>
+<span class="fc" id="L225">		zoom(graphX, graphY, true);</span>
+<span class="fc" id="L226">	}</span>
 
 	private void zoom(double graphX, double graphY, boolean in) {
-<span class="fc" id="L203">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L229">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L205">		final double width = wantedArea.getEndX() - wantedArea.getStartX();</span>
-<span class="fc" id="L206">		final double height = wantedArea.getEndY() - wantedArea.getStartY();</span>
+<span class="fc" id="L231">		final double width = wantedArea.getEndX() - wantedArea.getStartX();</span>
+<span class="fc" id="L232">		final double height = wantedArea.getEndY() - wantedArea.getStartY();</span>
 
-<span class="fc" id="L208">		final double beforeXScale = (graphX - wantedArea.getStartX()) / width;</span>
-<span class="fc" id="L209">		final double beforeYScale = (graphY - wantedArea.getStartY()) / height;</span>
+<span class="fc" id="L234">		final double beforeXScale = (graphX - wantedArea.getStartX()) / width;</span>
+<span class="fc" id="L235">		final double beforeYScale = (graphY - wantedArea.getStartY()) / height;</span>
 
-<span class="fc" id="L211">		double beforeXZoom = beforeXScale * this.zoomFactor * width;</span>
-<span class="fc" id="L212">		double afterXZoom = (1 - beforeXScale) * this.zoomFactor * width;</span>
+<span class="fc" id="L237">		double beforeXZoom = beforeXScale * this.zoomFactor * width;</span>
+<span class="fc" id="L238">		double afterXZoom = (1 - beforeXScale) * this.zoomFactor * width;</span>
 
-<span class="fc" id="L214">		double beforeYZoom = beforeYScale * this.zoomFactor * height;</span>
-<span class="fc" id="L215">		double afterYZoom = (1 - beforeYScale) * this.zoomFactor * height;</span>
+<span class="fc" id="L240">		double beforeYZoom = beforeYScale * this.zoomFactor * height;</span>
+<span class="fc" id="L241">		double afterYZoom = (1 - beforeYScale) * this.zoomFactor * height;</span>
 
-<span class="fc bfc" id="L217" title="All 2 branches covered.">		if (!in) {</span>
-<span class="fc" id="L218">			beforeXZoom *= -1;</span>
-<span class="fc" id="L219">			afterXZoom *= -1;</span>
-<span class="fc" id="L220">			beforeYZoom *= -1;</span>
-<span class="fc" id="L221">			afterYZoom *= -1;</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">		if (!in) {</span>
+<span class="fc" id="L244">			beforeXZoom *= -1;</span>
+<span class="fc" id="L245">			afterXZoom *= -1;</span>
+<span class="fc" id="L246">			beforeYZoom *= -1;</span>
+<span class="fc" id="L247">			afterYZoom *= -1;</span>
 		}
-<span class="fc" id="L223">		setDisplayedArea(new Area(wantedArea.getStartX() + beforeXZoom, wantedArea.getStartY() + beforeYZoom,</span>
-<span class="fc" id="L224">				wantedArea.getEndX() - afterXZoom, wantedArea.getEndY() - afterYZoom));</span>
-<span class="fc" id="L225">	}</span>
+<span class="fc" id="L249">		setDisplayedArea(new Area(wantedArea.getStartX() + beforeXZoom, wantedArea.getStartY() + beforeYZoom,</span>
+<span class="fc" id="L250">				wantedArea.getEndX() - afterXZoom, wantedArea.getEndY() - afterYZoom));</span>
+<span class="fc" id="L251">	}</span>
 
 	/**
 	 * Zooms the graph area out using the chart's coordinates.
@@ -237,8 +263,8 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void zoomDisplayedAreaOutByChartCoordinates(double chartX, double chartY) {
-<span class="fc" id="L240">		zoomDisplayedAreaOutByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
-<span class="fc" id="L241">	}</span>
+<span class="fc" id="L266">		zoomDisplayedAreaOutByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
+<span class="fc" id="L267">	}</span>
 
 	/**
 	 * Zooms the graph area out using the graph's coordinates.
@@ -253,8 +279,8 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void zoomDisplayedAreaOutByGraphCoordinates(double graphX, double graphY) {
-<span class="fc" id="L256">		zoom(graphX, graphY, false);</span>
-<span class="fc" id="L257">	}</span>
+<span class="fc" id="L282">		zoom(graphX, graphY, false);</span>
+<span class="fc" id="L283">	}</span>
 
 	/**
 	 * Converts chart coordinates to a graph ones. The chart is everything and x and y
@@ -269,7 +295,7 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public double[] convertToGraphCoordinates(double chartX, double chartY) {
-<span class="fc" id="L272">		return new double[]{convertToGraphX(chartX), convertToGraphY(chartY)};</span>
+<span class="fc" id="L298">		return new double[]{convertToGraphX(chartX), convertToGraphY(chartY)};</span>
 	}
 
 	/**
@@ -284,12 +310,12 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public double convertToGraphX(double chartX) {
-<span class="fc" id="L287">		requireLastGraphAreaNotNull();</span>
-<span class="fc" id="L288">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L313">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L314">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L290">		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())</span>
-<span class="fc" id="L291">				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());</span>
-<span class="fc" id="L292">		return scale * (chartX - this.lastGraphArea.getStartX()) + wantedArea.getStartX();</span>
+<span class="fc" id="L316">		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())</span>
+<span class="fc" id="L317">				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());</span>
+<span class="fc" id="L318">		return scale * (chartX - this.lastGraphArea.getStartX()) + wantedArea.getStartX();</span>
 	}
 
 	/**
@@ -304,13 +330,61 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public double convertToGraphY(double chartY) {
-<span class="fc" id="L307">		requireLastGraphAreaNotNull();</span>
-<span class="fc" id="L308">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L333">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L334">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L310">		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())</span>
-<span class="fc" id="L311">				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());</span>
-<span class="fc" id="L312">		return wantedArea.getEndY() - scale * (chartY - this.lastGraphArea.getStartY());</span>
+<span class="fc" id="L336">		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())</span>
+<span class="fc" id="L337">				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());</span>
+<span class="fc" id="L338">		return wantedArea.getEndY() - scale * (chartY - this.lastGraphArea.getStartY());</span>
 	}
+
+	/**
+	 * Converts a graph coordinate to a chart one. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param graphX the x coordinate in the graph's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToChartY(double)
+	 */
+
+	public double convertToChartX(double graphX) {
+<span class="fc" id="L352">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L353">		final Area wantedArea = calculateDisplayedArea();</span>
+
+<span class="fc" id="L355">		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())</span>
+<span class="fc" id="L356">				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());</span>
+<span class="fc" id="L357">		return (graphX - wantedArea.getStartX()) / scale + this.lastGraphArea.getStartX();</span>
+	}
+
+	/**
+	 * Converts a graph coordinate to a chart one. The chart is everything and x and y
+	 * move from the top left to the bottom right. The graph is the area with the lines
+	 * and moves from bottom left to top right.
+	 *
+	 * @param graphY the y coordinate in the graph's coordinate system
+	 * @exception IllegalArgumentException if graph was never painted before
+	 * @see #convertToChartX(double)
+	 */
+
+	public double convertToChartY(double graphY) {
+<span class="fc" id="L371">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L372">		final Area wantedArea = calculateDisplayedArea();</span>
+
+<span class="fc" id="L374">		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())</span>
+<span class="fc" id="L375">				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());</span>
+<span class="fc" id="L376">		return (-graphY + wantedArea.getEndY()) / scale + this.lastGraphArea.getStartY();</span>
+	}
+
+	/**
+	 * Resets the displayed area.
+	 *
+	 * @see #setDisplayedArea(Area)
+	 */
+
+	public void resetDisplayedArea() {
+<span class="fc" id="L386">		setDisplayedArea(null);</span>
+<span class="fc" id="L387">	}</span>
 
 	/**
 	 * Returns the displayed area of this chart, i.e. the coordinates to display.
@@ -321,7 +395,7 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public Area getDisplayedArea() {
-<span class="fc" id="L324">		return this.displayedArea;</span>
+<span class="fc" id="L398">		return this.displayedArea;</span>
 	}
 
 	/**
@@ -334,8 +408,8 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public LineChart displayedArea(Area newDisplayedArea) {
-<span class="nc" id="L337">		setDisplayedArea(newDisplayedArea);</span>
-<span class="nc" id="L338">		return this;</span>
+<span class="fc" id="L411">		setDisplayedArea(newDisplayedArea);</span>
+<span class="fc" id="L412">		return this;</span>
 	}
 
 	/**
@@ -347,12 +421,12 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void setDisplayedArea(Area displayedArea) {
-<span class="fc" id="L350">		final Area oldDisplayedArea = this.displayedArea;</span>
-<span class="fc" id="L351">		this.displayedArea = displayedArea;</span>
-<span class="fc bfc" id="L352" title="All 2 branches covered.">		if (!Objects.equals(displayedArea, oldDisplayedArea)) {</span>
-<span class="fc" id="L353">			fireRefreshNeeded();</span>
+<span class="fc" id="L424">		final Area oldDisplayedArea = this.displayedArea;</span>
+<span class="fc" id="L425">		this.displayedArea = displayedArea;</span>
+<span class="fc bfc" id="L426" title="All 2 branches covered.">		if (!Objects.equals(displayedArea, oldDisplayedArea)) {</span>
+<span class="fc" id="L427">			fireRefreshNeeded();</span>
 		}
-<span class="fc" id="L355">	}</span>
+<span class="fc" id="L429">	}</span>
 
 	/**
 	 * Returns the factor which should be used to zoom the graph area. A value of 0.25
@@ -366,7 +440,7 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public double getZoomFactor() {
-<span class="fc" id="L369">		return this.zoomFactor;</span>
+<span class="fc" id="L443">		return this.zoomFactor;</span>
 	}
 
 	/**
@@ -382,8 +456,8 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public LineChart zoomFactor(double newZoomFactor) {
-<span class="fc" id="L385">		setZoomFactor(newZoomFactor);</span>
-<span class="fc" id="L386">		return this;</span>
+<span class="fc" id="L459">		setZoomFactor(newZoomFactor);</span>
+<span class="fc" id="L460">		return this;</span>
 	}
 
 	/**
@@ -398,8 +472,27 @@ import de.slothsoft.charts.PaintInstructions;
 	 */
 
 	public void setZoomFactor(double zoomFactor) {
-<span class="fc" id="L401">		this.zoomFactor = zoomFactor;</span>
-<span class="fc" id="L402">	}</span>
+<span class="fc" id="L475">		this.zoomFactor = zoomFactor;</span>
+<span class="fc" id="L476">	}</span>
 
+	/**
+	 * Returns the x axis of this line chart.
+	 *
+	 * @return the x axis
+	 */
+
+	public XAxis getXAxis() {
+<span class="fc" id="L485">		return this.xAxis;</span>
+	}
+
+	/**
+	 * Returns the y axis of this line chart.
+	 *
+	 * @return the y axis
+	 */
+
+	public YAxis getYAxis() {
+<span class="fc" id="L495">		return this.yAxis;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

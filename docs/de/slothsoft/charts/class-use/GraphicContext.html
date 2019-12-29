@@ -119,20 +119,26 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><code>abstract void</code></td>
+<td class="colLast"><span class="typeNameLabel">TextAlignment.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/TextAlignment.html#drawText-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.Area-java.lang.String-">drawText</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
+        <a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;area,
+        <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">Chart.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/Chart.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
        <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>
 <div class="block">Paints the current content onto the graphic context.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">ChartPart.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/ChartPart.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
        <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>
 <div class="block">Paints the current content onto the graphic context.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">Drawable.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/Drawable.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
        <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>
@@ -158,6 +164,11 @@
 <td class="colLast"><span class="typeNameLabel">Border.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/common/Border.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
        <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">Title.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/common/Title.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
+       <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>&nbsp;</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -176,6 +187,12 @@
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a></span></code>
 <div class="block">This is a <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts"><code>GraphicContext</code></a> that only delegates to another one.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a></span></code>
+<div class="block">An implementation to test stuff, e.g.</div>
 </td>
 </tr>
 </tbody>
@@ -211,6 +228,21 @@
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">FunctionLine.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/FunctionLine.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
+       <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">LineChart.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
+       <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">XAxis.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
+       <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">YAxis.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/YAxis.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
        <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>&nbsp;</td>
 </tr>
 </tbody>

@@ -22,7 +22,7 @@ public class ChartControl extends Canvas {
 	private Chart model;
 	private SwtGraphicContext graphicContext;
 
-<span class="pc" id="L25">	private final RefreshListener refreshListener = e -&gt; redraw();</span>
+<span class="fc" id="L25">	private final RefreshListener refreshListener = e -&gt; redraw();</span>
 
 	/**
 	 * Constructs a new instance of this class given its parentand a style value
@@ -43,16 +43,16 @@ public class ChartControl extends Canvas {
 <span class="fc" id="L43">		final Rectangle rect = getClientArea();</span>
 <span class="fc" id="L44">		e.gc.setAntialias(SWT.ON);</span>
 
-<span class="pc bpc" id="L46" title="1 of 2 branches missed.">		if (this.model != null) {</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">			if (this.graphicContext == null) {</span>
-<span class="nc" id="L48">				this.graphicContext = new SwtGraphicContext(e.gc);</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">		if (this.model != null) {</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">			if (this.graphicContext == null) {</span>
+<span class="fc" id="L48">				this.graphicContext = new SwtGraphicContext(e.gc);</span>
 			} else {
-<span class="nc" id="L50">				this.graphicContext.delegate(e.gc);</span>
+<span class="fc" id="L50">				this.graphicContext.delegate(e.gc);</span>
 			}
 
-<span class="nc" id="L53">			final PaintInstructions instructions = new PaintInstructions(</span>
+<span class="fc" id="L53">			final PaintInstructions instructions = new PaintInstructions(</span>
 					new de.slothsoft.charts.Area(rect.x, rect.y, rect.width, rect.height));
-<span class="nc" id="L55">			this.model.paintOn(this.graphicContext, instructions);</span>
+<span class="fc" id="L55">			this.model.paintOn(this.graphicContext, instructions);</span>
 		}
 <span class="fc" id="L57">	}</span>
 
@@ -63,7 +63,7 @@ public class ChartControl extends Canvas {
 	 */
 
 	public Chart getModel() {
-<span class="nc" id="L66">		return this.model;</span>
+<span class="fc" id="L66">		return this.model;</span>
 	}
 
 	/**
@@ -74,8 +74,8 @@ public class ChartControl extends Canvas {
 	 */
 
 	public ChartControl model(Chart newModel) {
-<span class="nc" id="L77">		setModel(newModel);</span>
-<span class="nc" id="L78">		return this;</span>
+<span class="fc" id="L77">		setModel(newModel);</span>
+<span class="fc" id="L78">		return this;</span>
 	}
 
 	/**
@@ -85,23 +85,23 @@ public class ChartControl extends Canvas {
 	 */
 
 	public void setModel(Chart model) {
-<span class="nc bnc" id="L88" title="All 2 branches missed.">		if (this.model != null) {</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		if (this.model != null) {</span>
 <span class="nc" id="L89">			this.model.removeRefreshListener(this.refreshListener);</span>
 		}
-<span class="nc" id="L91">		this.model = model;</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">		if (this.model != null) {</span>
-<span class="nc" id="L93">			this.model.addRefreshListener(this.refreshListener);</span>
+<span class="fc" id="L91">		this.model = model;</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">		if (this.model != null) {</span>
+<span class="fc" id="L93">			this.model.addRefreshListener(this.refreshListener);</span>
 		}
-<span class="nc" id="L95">		redraw();</span>
-<span class="nc" id="L96">	}</span>
+<span class="fc" id="L95">		redraw();</span>
+<span class="fc" id="L96">	}</span>
 
 	@Override
 	public void dispose() {
-<span class="pc bpc" id="L100" title="1 of 2 branches missed.">		if (this.graphicContext != null) {</span>
-<span class="nc" id="L101">			this.graphicContext.dispose();</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">		if (this.graphicContext != null) {</span>
+<span class="fc" id="L101">			this.graphicContext.dispose();</span>
 		}
-<span class="pc bpc" id="L103" title="1 of 2 branches missed.">		if (this.model != null) {</span>
-<span class="nc" id="L104">			this.model.removeRefreshListener(this.refreshListener);</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">		if (this.model != null) {</span>
+<span class="fc" id="L104">			this.model.removeRefreshListener(this.refreshListener);</span>
 		}
 <span class="fc" id="L106">		super.dispose();</span>
 <span class="fc" id="L107">	}</span>

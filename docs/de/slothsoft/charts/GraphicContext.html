@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":18,"i2":6,"i3":18,"i4":6,"i5":6,"i6":18,"i7":6,"i8":6,"i9":6};
+var methods = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":18,"i9":6,"i10":6,"i11":6,"i12":18,"i13":6,"i14":6,"i15":6,"i16":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -101,7 +101,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a>, <a href="../../../de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dd>
+<dd><a href="../../../de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a>, <a href="../../../de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a>, <a href="../../../de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dd>
 </dl>
 <hr>
 <br>
@@ -138,12 +138,18 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#calculateTextSize-java.lang.String-">calculateTextSize</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</code>
+<div class="block">Calculates the size of the text.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#clip-de.slothsoft.charts.Area-">clip</a></span>(<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;rect)</code>
 <div class="block">Restricts which area of the context can be used to drawn on.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#drawLine-double-double-double-double-">drawLine</a></span>(double&nbsp;x1,
         double&nbsp;y1,
@@ -152,20 +158,55 @@ var activeTableTab = "activeTableTab";
 <div class="block">Draws a simple line between two points.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#drawPolyline-double:A-double:A-">drawPolyline</a></span>(double[]&nbsp;x,
             double[]&nbsp;y)</code>
 <div class="block">Paints the outline of a polyline.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#drawText-double-double-java.lang.String-">drawText</a></span>(double&nbsp;x,
+        double&nbsp;y,
+        <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</code>
+<div class="block">Paints the text on a position.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillArc-double-double-double-double-double-double-">fillArc</a></span>(double&nbsp;x,
+       double&nbsp;y,
+       double&nbsp;width,
+       double&nbsp;height,
+       double&nbsp;startAngle,
+       double&nbsp;arcAngle)</code>
+<div class="block">Draws the outline of a circular or elliptical arc covering the specified rectangle.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillOval-double-double-double-double-">fillOval</a></span>(double&nbsp;x,
+        double&nbsp;y,
+        double&nbsp;width,
+        double&nbsp;height)</code>
+<div class="block">Paints a filled oval.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillPolygon-double:A-double:A-">fillPolygon</a></span>(double[]&nbsp;x,
+           double[]&nbsp;y)</code>
+<div class="block">Paints a filled polygon.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-de.slothsoft.charts.Area-">fillRectangle</a></span>(<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;rect)</code>
 <div class="block">Paints a filled rectangle.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-double-double-double-double-">fillRectangle</a></span>(double&nbsp;x,
              double&nbsp;y,
@@ -174,32 +215,46 @@ var activeTableTab = "activeTableTab";
 <div class="block">Paints a filled rectangle.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#getColor--">getColor</a></span>()</code>
 <div class="block">Returns the color as ARGB int, e.g.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#getFont--">getFont</a></span>()</code>
+<div class="block">Returns the font as an enum with the font properties as hints for the actual font
+ used by the GUI.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#scale-double-">scale</a></span>(double&nbsp;factor)</code>
 <div class="block">Scales the drawing canvas with the factor.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#scale-double-double-">scale</a></span>(double&nbsp;x,
      double&nbsp;y)</code>
 <div class="block">Scales the drawing canvas with the factor.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#setColor-int-">setColor</a></span>(int&nbsp;color)</code>
 <div class="block">Sets the color as ARGB int, e.g.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#setFont-de.slothsoft.charts.Font-">setFont</a></span>(<a href="../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a>&nbsp;font)</code>
+<div class="block">Sets the font as an enum with the font properties as hints for the actual font used
+ by the GUI.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#translate-double-double-">translate</a></span>(double&nbsp;x,
          double&nbsp;y)</code>
@@ -248,6 +303,52 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the color</dd>
+</dl>
+</li>
+</ul>
+<a name="setFont-de.slothsoft.charts.Font-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setFont</h4>
+<pre>void&nbsp;setFont(<a href="../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a>&nbsp;font)</pre>
+<div class="block">Sets the font as an enum with the font properties as hints for the actual font used
+ by the GUI.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>font</code> - the font</dd>
+</dl>
+</li>
+</ul>
+<a name="getFont--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFont</h4>
+<pre><a href="../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a>&nbsp;getFont()</pre>
+<div class="block">Returns the font as an enum with the font properties as hints for the actual font
+ used by the GUI.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the font</dd>
+</dl>
+</li>
+</ul>
+<a name="calculateTextSize-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>calculateTextSize</h4>
+<pre><a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;calculateTextSize(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</pre>
+<div class="block">Calculates the size of the text.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>text</code> - </dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the text size area</dd>
 </dl>
 </li>
 </ul>
@@ -369,7 +470,7 @@ var activeTableTab = "activeTableTab";
 <a name="drawPolyline-double:A-double:A-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>drawPolyline</h4>
 <pre>void&nbsp;drawPolyline(double[]&nbsp;x,
@@ -379,6 +480,100 @@ var activeTableTab = "activeTableTab";
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>x</code> - the polygon's x coordinates</dd>
 <dd><code>y</code> - the polygon's y coordinates</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../de/slothsoft/charts/GraphicContext.html#fillPolygon-double:A-double:A-"><code>fillPolygon(double[], double[])</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="fillPolygon-double:A-double:A-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>fillPolygon</h4>
+<pre>void&nbsp;fillPolygon(double[]&nbsp;x,
+                 double[]&nbsp;y)</pre>
+<div class="block">Paints a filled polygon.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the polygon's x coordinates</dd>
+<dd><code>y</code> - the polygon's y coordinates</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../de/slothsoft/charts/GraphicContext.html#drawPolyline-double:A-double:A-"><code>drawPolyline(double[], double[])</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="drawText-double-double-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawText</h4>
+<pre>void&nbsp;drawText(double&nbsp;x,
+              double&nbsp;y,
+              <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</pre>
+<div class="block">Paints the text on a position.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the text's x</dd>
+<dd><code>y</code> - the text's y</dd>
+</dl>
+</li>
+</ul>
+<a name="fillOval-double-double-double-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>fillOval</h4>
+<pre>void&nbsp;fillOval(double&nbsp;x,
+              double&nbsp;y,
+              double&nbsp;width,
+              double&nbsp;height)</pre>
+<div class="block">Paints a filled oval.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the oval's x</dd>
+<dd><code>y</code> - the oval's y</dd>
+<dd><code>width</code> - the oval's width</dd>
+<dd><code>height</code> - the oval's height</dd>
+</dl>
+</li>
+</ul>
+<a name="fillArc-double-double-double-double-double-double-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>fillArc</h4>
+<pre>void&nbsp;fillArc(double&nbsp;x,
+             double&nbsp;y,
+             double&nbsp;width,
+             double&nbsp;height,
+             double&nbsp;startAngle,
+             double&nbsp;arcAngle)</pre>
+<div class="block">Draws the outline of a circular or elliptical arc covering the specified rectangle.
+ <p>
+ The resulting arc begins at <code>startAngle</code> and extends for
+ <code>arcAngle</code> degrees, using the current color. Angles are interpreted such
+ that 0&nbsp;degrees is at the 3&nbsp;o'clock position. A positive value indicates a
+ counter-clockwise rotation while a negative value indicates a clockwise rotation.
+ <p>
+ The center of the arc is the center of the rectangle whose origin is
+ (<i>x</i>,&nbsp;<i>y</i>) and whose size is specified by the <code>width</code> and
+ <code>height</code> arguments.
+ <p>
+ The resulting arc covers an area <code>width&nbsp;+&nbsp;1</code> pixels wide by
+ <code>height&nbsp;+&nbsp;1</code> pixels tall.
+ <p></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the <i>x</i> coordinate of the upper-left corner of the arc to be drawn.</dd>
+<dd><code>y</code> - the <i>y</i> coordinate of the upper-left corner of the arc to be drawn.</dd>
+<dd><code>width</code> - the width of the arc to be drawn.</dd>
+<dd><code>height</code> - the height of the arc to be drawn.</dd>
+<dd><code>startAngle</code> - the beginning angle.</dd>
+<dd><code>arcAngle</code> - the angular extent of the arc, relative to the start angle.</dd>
 </dl>
 </li>
 </ul>
@@ -410,7 +605,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
