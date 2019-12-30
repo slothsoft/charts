@@ -31,6 +31,8 @@ public class LineChartExample {
 	public static void main(String... args) throws IOException {
 		final Chart chart = createChart();
 
+		// create and open the chart image
+
 		final Path imageFile = Files.createTempFile(null, ".png");
 		final Image image = SwtChartUtil.createImage(chart, 600, 400);
 

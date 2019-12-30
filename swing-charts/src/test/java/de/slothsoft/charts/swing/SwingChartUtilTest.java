@@ -1,18 +1,15 @@
-package de.slothsoft.charts.swt;
+package de.slothsoft.charts.swing;
 
-import org.eclipse.swt.graphics.Image;
+import java.awt.image.BufferedImage;
+
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
 
 import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
 
-public class SwtChartUtilTest {
-
-	@Rule
-	public SwtRule swtRule = new SwtRule();
+public class SwingChartUtilTest {
 
 	@Test
 	@SuppressWarnings("static-method")
@@ -26,10 +23,10 @@ public class SwtChartUtilTest {
 				called[0] = true;
 			}
 		};
-		final Image image = SwtChartUtil.createImage(chart, 123, 456);
+		final BufferedImage image = SwingChartUtil.createImage(chart, 123, 456);
 
 		Assert.assertTrue(called[0]);
-		Assert.assertEquals(123, image.getBounds().width);
-		Assert.assertEquals(456, image.getBounds().height);
+		Assert.assertEquals(123, image.getWidth());
+		Assert.assertEquals(456, image.getHeight());
 	}
 }

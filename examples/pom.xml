@@ -11,6 +11,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>de.slothsoft.charts</groupId>
+			<artifactId>swing-charts</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.slothsoft.charts</groupId>
 			<artifactId>swt-charts</artifactId>
 		</dependency>
 

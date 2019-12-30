@@ -29,11 +29,11 @@ public class SwtGraphicContext implements GraphicContext {
 	private GC delegate;
 
 	private int colorAsInt;
-	private Color color;
+	Color color;
 	private Font fontAsEnum;
-	private org.eclipse.swt.graphics.Font font;
+	org.eclipse.swt.graphics.Font font;
 
-	private Transform transform;
+	Transform transform;
 	private double scaleX = 1;
 	private double scaleY = 1;
 
@@ -82,13 +82,13 @@ public class SwtGraphicContext implements GraphicContext {
 		final FontData[] fontDatas = this.delegate.getFont().getFontData();
 		for (int i = 0; i < fontDatas.length; i++) {
 			fontDatas[i].setHeight(enumFont.getSize());
-			fontDatas[i].setStyle(getStyle(enumFont));
+			fontDatas[i].setStyle(createFontStyle(enumFont));
 
 		}
 		return new org.eclipse.swt.graphics.Font(this.delegate.getDevice(), fontDatas);
 	}
 
-	private static int getStyle(Font enumFont) {
+	private static int createFontStyle(Font enumFont) {
 		int result = SWT.NORMAL;
 		if (enumFont.isBold()) {
 			result |= SWT.BOLD;
@@ -137,21 +137,19 @@ public class SwtGraphicContext implements GraphicContext {
 		if (rect == null) {
 			this.delegate.setClipping((Rectangle) null);
 		} else {
-			this.delegate.setClipping((int) rect.getStartX(), (int) rect.getStartY(),
-					(int) (rect.getEndX() - rect.getStartX()), (int) (rect.getEndY() - rect.getStartY()));
+			this.delegate.setClipping(convertToSwtX(rect.getStartX()), convertToSwtY(rect.getStartY()),
+					convertToSwtX(rect.calculateWidth()), convertToSwtY(rect.calculateHeight()));
 		}
 	}
 
 	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
-		this.delegate.drawLine((int) (this.scaleX * x1), (int) (this.scaleY * y1), (int) (this.scaleX * x2),
-				(int) (this.scaleX * y2));
+		this.delegate.drawLine(convertToSwtX(x1), convertToSwtY(y1), convertToSwtX(x2), convertToSwtX(y2));
 	}
 
 	@Override
 	public void fillRectangle(double x, double y, double width, double height) {
-		this.delegate.fillRectangle((int) (this.scaleX * x), (int) (this.scaleY * y), (int) (this.scaleX * width),
-				(int) (this.scaleY * height));
+		this.delegate.fillRectangle(convertToSwtX(x), convertToSwtY(y), convertToSwtX(width), convertToSwtY(height));
 	}
 
 	@Override
@@ -162,10 +160,18 @@ public class SwtGraphicContext implements GraphicContext {
 	private int[] convertToSwtPoints(double[] x, double[] y) {
 		final int[] points = new int[x.length + y.length];
 		for (int i = 0; i < x.length; i++) {
-			points[2 * i] = (int) (this.scaleX * x[i]);
-			points[2 * i + 1] = (int) (this.scaleY * y[i]);
+			points[2 * i] = convertToSwtX(x[i]);
+			points[2 * i + 1] = convertToSwtY(y[i]);
 		}
 		return points;
+	}
+
+	private int convertToSwtX(double x) {
+		return (int) (this.scaleX * x);
+	}
+
+	private int convertToSwtY(double Y) {
+		return (int) (this.scaleY * Y);
 	}
 
 	@Override
@@ -175,17 +181,18 @@ public class SwtGraphicContext implements GraphicContext {
 
 	@Override
 	public void drawText(double x, double y, String text) {
-		this.delegate.drawText(text, (int) x, (int) y, true);
+		this.delegate.drawText(text, convertToSwtX(x), convertToSwtY(y), true);
 	}
 
 	@Override
 	public void fillOval(double x, double y, double width, double height) {
-		this.delegate.fillOval((int) x, (int) y, (int) width, (int) height);
+		this.delegate.fillOval(convertToSwtX(x), convertToSwtY(y), convertToSwtX(width), convertToSwtY(height));
 	}
 
 	@Override
 	public void fillArc(double x, double y, double width, double height, double startAngle, double arcAngle) {
-		this.delegate.fillArc((int) x, (int) y, (int) width, (int) height, (int) startAngle, (int) arcAngle);
+		this.delegate.fillArc(convertToSwtX(x), convertToSwtY(y), convertToSwtX(width), convertToSwtY(height),
+				(int) startAngle, (int) arcAngle);
 	}
 
 	/**
@@ -197,12 +204,15 @@ public class SwtGraphicContext implements GraphicContext {
 	public void dispose() {
 		if (this.transform != null) {
 			this.transform.dispose();
+			this.transform = null;
 		}
 		if (this.font != null) {
 			this.font.dispose();
+			this.font = null;
 		}
 		if (this.color != null) {
 			this.color.dispose();
+			this.color = null;
 		}
 	}
 

@@ -21,6 +21,7 @@ A framework for creating charts. For my musings before even starting to code see
  - [Features](#features)
      - [Chart](#chart)
      - [LineChart](#linechart)
+     - [PieChart](#piechart)
  - [License](#license)
 
 
@@ -41,7 +42,19 @@ This library is in Maven Central, so you can easily add it like this:
 <dependency>
 	<groupId>de.slothsoft.charts</groupId>
 	<artifactId>charts</artifactId>
-    <version>0.1.0</version>
+	<version>0.2.0</version>
+</dependency>
+
+<dependency>
+	<groupId>de.slothsoft.charts</groupId>
+	<artifactId>swt-charts</artifactId>
+	<version>0.2.0</version>
+</dependency>
+
+<dependency>
+	<groupId>de.slothsoft.charts</groupId>
+	<artifactId>swing-charts</artifactId>
+	<version>0.2.0</version>
 </dependency>
 ```
 
@@ -78,12 +91,19 @@ ChartControl chartControl = new ChartControl(shell, SWT.BORDER);
 chartControl.setModel(chart);
 ```
 
+**Swing:**
+
+```java
+ChartControl chartControl = new ChartControl(chart);
+```
+
 There are more extensive examples [here](examples/src/main/java/), for instance:
 
  - **Chart types**
     - [LineChart](examples/src/main/java/linechart)
     - [PieChart](examples/src/main/java/piechart)
  - **GUI Frameworks**
+    - [Swing](examples/src/main/java/swing)
     - [SWT](examples/src/main/java/swt)
 
 
@@ -94,6 +114,7 @@ There are more extensive examples [here](examples/src/main/java/), for instance:
 | Version       | Changes       |
 | ------------- | ------------- |
 | [Future](https://github.com/slothsoft/charts/milestone/2) |  |
+| [0.2.0](https://github.com/slothsoft/charts/milestone/3?closed=1) | Swing GUI & bar chart |
 | [0.1.0](https://github.com/slothsoft/charts/milestone/1?closed=1) | first draft of the API |
 
 

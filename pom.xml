@@ -1,9 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<name>Slothsoft Charts</name>
 	<description>A framework for creating charts.</description>
 	<url>https://github.com/slothsoft/charts</url>
-	
+
 	<groupId>de.slothsoft.charts</groupId>
 	<artifactId>build</artifactId>
 	<version>0.2.0-SNAPSHOT</version>
@@ -15,6 +17,8 @@
 		<module>examples-generator</module>
 		<module>swt-charts</module>
 		<module>test-reports</module>
+		<module>swing-charts</module>
+		<module>gui-tests</module>
 	</modules>
 
 	<properties>
@@ -22,7 +26,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<manifest.location>${project.build.directory}/META-INF</manifest.location>
-		
+
 		<swt.version>4.6.1</swt.version>
 	</properties>
 
@@ -52,6 +56,16 @@
 			</dependency>
 			<dependency>
 				<groupId>de.slothsoft.charts</groupId>
+				<artifactId>gui-tests</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.slothsoft.charts</groupId>
+				<artifactId>swing-charts</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.slothsoft.charts</groupId>
 				<artifactId>swt-charts</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -73,9 +87,9 @@
 	<build>
 		<pluginManagement>
 			<plugins>
-			
+
 				<!-- This plug-in adds OSGi properties to manifest -->
-			
+
 				<plugin>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>maven-bundle-plugin</artifactId>
@@ -162,7 +176,7 @@
 					<artifactId>jacoco-maven-plugin</artifactId>
 					<version>0.8.5</version>
 				</plugin>
-				
+
 				<plugin>
 					<groupId>org.sonatype.plugins</groupId>
 					<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -223,6 +237,11 @@
 						</configuration>
 					</execution>
 				</executions>
+				<configuration>
+					<excludes>
+						<exclude>de/slothsoft/charts/test/**</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 
 			<!-- Create an aggregated JUnit report -->
@@ -244,9 +263,9 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<!-- The following plug-ins are for the release -->
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
@@ -260,7 +279,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
@@ -278,7 +297,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -289,7 +308,7 @@
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -302,7 +321,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -321,9 +340,9 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<!-- We want to deploy to Sonatype -->
-	
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -343,9 +362,9 @@
 	</scm>
 
 	<profiles>
-	
+
 		<!-- Profile to create Documentation (JavaDoc, JUnit, Jacoco, Wiki) -->
-	
+
 		<profile>
 			<id>doc</id>
 			<build>
@@ -366,7 +385,7 @@
 					</plugin>
 
 					<!-- Configure the JavaDoc Plug-in so we publish it via GitHub Pages -->
-					
+
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
@@ -387,10 +406,7 @@
 								</goals>
 								<configuration>
 									<show>public</show>
-									<locale>en</locale>
 									<sourceFileIncludes>de/slothsoft/**/*.java</sourceFileIncludes>
-									<reportOutputDirectory>${maven.multiModuleProjectDirectory}</reportOutputDirectory>
-									<destDir>docs</destDir>
 								</configuration>
 							</execution>
 						</executions>
@@ -398,9 +414,9 @@
 				</plugins>
 			</build>
 		</profile>
-		
+
 		<!-- This profile is for signing the JARs before uploading -->
-		
+
 		<profile>
 			<id>release-sign-artifacts</id>
 			<activation>
@@ -429,7 +445,7 @@
 			</build>
 		</profile>
 	</profiles>
-	
+
 	<licenses>
 		<license>
 			<name>MIT License</name>

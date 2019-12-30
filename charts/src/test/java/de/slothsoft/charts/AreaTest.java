@@ -6,6 +6,8 @@ import org.junit.Test;
 @SuppressWarnings("static-method")
 public class AreaTest {
 
+	private static final double DELTA = 0.001;
+
 	@Test
 	public void testUnite() throws Exception {
 		final Area area1 = new Area(1, 2, 3, 4);
@@ -65,5 +67,19 @@ public class AreaTest {
 		Assert.assertFalse(new Area().containsPoint(1, 2));
 		Assert.assertFalse(new Area(1, 2).containsPoint(-1, 1));
 		Assert.assertFalse(new Area(1, 2, 3, 4).containsPoint(0, 0));
+	}
+
+	@Test
+	public void testCalculateWidth() throws Exception {
+		Assert.assertEquals(0, new Area().calculateWidth(), DELTA);
+		Assert.assertEquals(1, new Area(1, 2).calculateWidth(), DELTA);
+		Assert.assertEquals(3, new Area(1, 2, 4, 6).calculateWidth(), DELTA);
+	}
+
+	@Test
+	public void testCalculateHeight() throws Exception {
+		Assert.assertEquals(0, new Area().calculateHeight(), DELTA);
+		Assert.assertEquals(2, new Area(1, 2).calculateHeight(), DELTA);
+		Assert.assertEquals(4, new Area(1, 2, 4, 6).calculateHeight(), DELTA);
 	}
 }

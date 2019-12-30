@@ -1,4 +1,4 @@
-package de.slothsoft.charts.test;
+package de.slothsoft.charts.swt;
 
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Rule;
 
 import de.slothsoft.charts.GraphicContext;
-import de.slothsoft.charts.swt.SwtGraphicContext;
+import de.slothsoft.charts.test.AbstractGraphicContextSanityTest;
 
 public class SwtGraphicContextSanityTest extends AbstractGraphicContextSanityTest {
 

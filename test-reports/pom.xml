@@ -19,6 +19,14 @@
 		</dependency>
 		<dependency>
 			<groupId>de.slothsoft.charts</groupId>
+			<artifactId>gui-tests</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.slothsoft.charts</groupId>
+			<artifactId>swing-charts</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.slothsoft.charts</groupId>
 			<artifactId>swt-charts</artifactId>
 		</dependency>
 		
@@ -96,6 +104,25 @@
 									<resources>
 										<resource>
 											<directory>../target/site/</directory>
+											<exclude>apidocs/**</exclude>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+
+							<!-- Copy JavaDoc -->
+
+							<execution>
+								<id>copy-javadoc</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${docs-folder}/</outputDirectory>
+									<resources>
+										<resource>
+											<directory>../target/site/apidocs</directory>
 										</resource>
 									</resources>
 								</configuration>

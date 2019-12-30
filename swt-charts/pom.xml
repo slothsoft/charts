@@ -14,6 +14,11 @@
 			<groupId>de.slothsoft.charts</groupId>
 			<artifactId>charts</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>de.slothsoft.charts</groupId>
+			<artifactId>gui-tests</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.eclipse.swt</groupId>

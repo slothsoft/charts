@@ -1,18 +1,16 @@
 package piechart;
 
 import java.awt.Desktop;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.ImageData;
-import org.eclipse.swt.graphics.ImageLoader;
+import javax.imageio.ImageIO;
 
 import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.piechart.PieChart;
-import de.slothsoft.charts.swt.SwtChartUtil;
+import de.slothsoft.charts.swing.SwingChartUtil;
 
 /**
  * This example tries to outline the features of the {@link PieChart}.
@@ -26,12 +24,11 @@ public class PieChartExample {
 	public static void main(String... args) throws IOException {
 		final Chart chart = createChart();
 
-		final Path imageFile = Files.createTempFile(null, ".png");
-		final Image image = SwtChartUtil.createImage(chart, 600, 400);
+		// create and open the chart image
 
-		final ImageLoader saver = new ImageLoader();
-		saver.data = new ImageData[]{image.getImageData()};
-		saver.save(imageFile.toString(), SWT.IMAGE_PNG);
+		final Path imageFile = Files.createTempFile(null, ".png");
+		final BufferedImage image = SwingChartUtil.createImage(chart, 400, 300);
+		ImageIO.write(image, "PNG", imageFile.toFile());
 		Desktop.getDesktop().open(imageFile.toFile());
 	}
 

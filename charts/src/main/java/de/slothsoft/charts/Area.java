@@ -50,6 +50,26 @@ public class Area {
 	}
 
 	/**
+	 * Calculates this areas width from {@link #getStartX()} and {@link #getEndX()}.
+	 * 
+	 * @return the width
+	 */
+
+	public double calculateWidth() {
+		return this.endX - this.startX;
+	}
+
+	/**
+	 * Calculates this areas height from {@link #getStartY()} and {@link #getEndY()}.
+	 * 
+	 * @return the width
+	 */
+
+	public double calculateHeight() {
+		return this.endY - this.startY;
+	}
+
+	/**
 	 * Returns an area surrounding this area and the one coming in.
 	 *
 	 * @param area the area to unite with
