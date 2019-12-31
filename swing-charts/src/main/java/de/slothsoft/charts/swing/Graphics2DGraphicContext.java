@@ -132,7 +132,7 @@ public class Graphics2DGraphicContext implements GraphicContext {
 
 	@Override
 	public void drawText(double x, double y, String text) {
-		this.delegate.drawString(text, convertToX(x), convertToY(y));
+		this.delegate.drawString(text, convertToX(x), convertToY(y) + this.delegate.getFontMetrics().getAscent());
 	}
 
 	@Override

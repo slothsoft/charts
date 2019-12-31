@@ -42,6 +42,8 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMotionL
 		return result;
 	}
 
+	static final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
+
 	private final LineChart chart;
 	boolean mouseDown;
 	private int mouseDownX;
@@ -79,7 +81,7 @@ public class MoveLineChartByMouseListener implements MouseListener, MouseMotionL
 	public void mouseMoved(MouseEvent e) {
 		final Component control = e.getComponent();
 		if (isInGraphArea(e)) {
-			control.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			control.setCursor(HAND_CURSOR);
 		} else {
 			control.setCursor(null);
 		}

@@ -51,8 +51,9 @@ public class Area {
 
 	/**
 	 * Calculates this areas width from {@link #getStartX()} and {@link #getEndX()}.
-	 * 
+	 *
 	 * @return the width
+	 * @since 0.2.0
 	 */
 
 	public double calculateWidth() {
@@ -61,8 +62,9 @@ public class Area {
 
 	/**
 	 * Calculates this areas height from {@link #getStartY()} and {@link #getEndY()}.
-	 * 
+	 *
 	 * @return the width
+	 * @since 0.2.0
 	 */
 
 	public double calculateHeight() {
