@@ -31,6 +31,8 @@ public class GraphicsGenerator {
 		Files.createDirectories(targetFolder);
 		System.out.println("GraphicsGenerator: " + targetFolder.toAbsolutePath());
 		final StringBuilder overviewPage = new StringBuilder();
+		overviewPage.append(
+				"These images are generated using [these methods](https://github.com/slothsoft/charts/blob/master/gui-tests/src/main/java/de/slothsoft/charts/test/AllMethodsChart.java).");
 
 		// generate images and fill the table
 

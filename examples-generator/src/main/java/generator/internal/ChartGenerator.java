@@ -2,7 +2,9 @@ package generator.internal;
 
 import java.util.function.Supplier;
 
+import barchart.BarChartExample;
 import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.barchart.BarChart;
 import de.slothsoft.charts.linechart.LineChart;
 import de.slothsoft.charts.piechart.PieChart;
 import linechart.LineChartExample;
@@ -15,6 +17,8 @@ public class ChartGenerator {
 			new ChartGenerator("LineChart", LineChart.class, LineChartExample::createChart),
 
 			new ChartGenerator("PieChart", PieChart.class, PieChartExample::createChart),
+
+			new ChartGenerator("BarChart", BarChart.class, BarChartExample::createChart),
 
 	};
 
