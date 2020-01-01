@@ -61,12 +61,6 @@ public class LogGraphicContext implements GraphicContext {
 	}
 
 	@Override
-	public void fillRectangle(double x, double y, double width, double height) {
-		this.log.add("fillRectangle(" + x + ", " + y + ", " + width + ", " + height + ")");
-
-	}
-
-	@Override
 	public void drawPolyline(double[] x, double[] y) {
 		this.log.add("drawPolyline(" + toString(x) + ", " + toString(y) + ")");
 	}

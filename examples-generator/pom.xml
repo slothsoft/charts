@@ -17,11 +17,19 @@
 	<dependencies>
 		<dependency>
 			<groupId>de.slothsoft.charts</groupId>
-			<artifactId>swt-charts</artifactId>
+			<artifactId>examples</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>de.slothsoft.charts</groupId>
-			<artifactId>examples</artifactId>
+			<artifactId>gui-tests</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.slothsoft.charts</groupId>
+			<artifactId>swing-charts</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.slothsoft.charts</groupId>
+			<artifactId>swt-charts</artifactId>
 		</dependency>
 
 		<dependency>

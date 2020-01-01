@@ -19,8 +19,6 @@ package de.slothsoft.charts;
 public interface GraphicContext {
 
 	// TODO: these methods are missing to make the existing ones complete:
-	// void drawRectangle(Rectangle rect);
-	// void drawRectangle(double x, double y, double width, double height);
 	// void drawOval(double x, double y, double width, double height);
 	// void drawArc(double x, double y, double width, double height, double start, double
 	// end);
@@ -154,7 +152,34 @@ public interface GraphicContext {
 	 * @param height the rectangle's height
 	 */
 
-	void fillRectangle(double x, double y, double width, double height);
+	default void fillRectangle(double x, double y, double width, double height) {
+		fillPolygon(new double[]{x, x + width, x + width, x}, new double[]{y, y, y + height, y + height});
+	}
+
+	/**
+	 * Paints a outline of a rectangle.
+	 *
+	 * @param rect the rectangle's coordinates
+	 * @since 0.2.0
+	 */
+
+	default void drawRectangle(Area rect) {
+		drawRectangle(rect.startX, rect.startY, rect.endX - rect.startX, rect.endY - rect.startY);
+	}
+
+	/**
+	 * Paints a outline of a rectangle.
+	 *
+	 * @param x the rectangle's x
+	 * @param y the rectangle's y
+	 * @param width the rectangle's width
+	 * @param height the rectangle's height
+	 * @since 0.2.0
+	 */
+
+	default void drawRectangle(double x, double y, double width, double height) {
+		drawPolyline(new double[]{x, x + width, x + width, x, x}, new double[]{y, y, y + height, y + height, y});
+	}
 
 	/**
 	 * Paints the outline of a polyline.
@@ -211,7 +236,7 @@ public interface GraphicContext {
 	 * The resulting arc covers an area <code>width&nbsp;+&nbsp;1</code> pixels wide by
 	 * <code>height&nbsp;+&nbsp;1</code> pixels tall.
 	 * <p>
-	 * 
+	 *
 	 * @param x the <i>x</i> coordinate of the upper-left corner of the arc to be drawn.
 	 * @param y the <i>y</i> coordinate of the upper-left corner of the arc to be drawn.
 	 * @param width the width of the arc to be drawn.

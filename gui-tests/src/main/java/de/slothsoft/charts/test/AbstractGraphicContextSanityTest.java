@@ -37,41 +37,9 @@ public abstract class AbstractGraphicContextSanityTest {
 
 	protected abstract GraphicContext createGraphicContext();
 
-	// Note: the same calls are in GraphicsGenerator.AllMethodsChart
-
 	@Test
 	public void testAllPaintMethods() throws Exception {
-		this.gc.setColor(0xFF2222BB);
-		this.gc.fillRectangle(5, 10, 40, 20);
-
-		this.gc.setColor(0xFF2222FF);
-		this.gc.fillRectangle(new Area(10, 10, 40, 30));
-
-		this.gc.setColor(0xFF555511);
-		this.gc.clip(new Area(60, 10, 80, 41));
-		this.gc.drawPolyline(new double[]{70, 90, 50, 70}, new double[]{10, 40, 40, 10});
-		this.gc.clip(null);
-
-		this.gc.setColor(0xFF115511);
-		this.gc.drawLine(60, 50, 80, 50);
-
-		this.gc.setColor(0xFF770011);
-		this.gc.translate(60, 60);
-		this.gc.fillPolygon(new double[]{0, 20, 10}, new double[]{0, 0, 10});
-		this.gc.translate(-60, -60);
-
-		this.gc.setColor(0xFFABCDEF);
-		this.gc.setFont(Font.NORMAL);
-		this.gc.drawText(5, 40, "ABCDE");
-
-		this.gc.setColor(0xFFFEDCBA);
-		this.gc.setFont(Font.TITLE);
-		this.gc.drawText(5, 55, "FGH");
-
-		this.gc.setColor(0xFFFFFF00);
-		this.gc.fillOval(10, 80, 60, 30);
-		this.gc.setColor(0xFF000000);
-		this.gc.fillArc(10, 80, 60, 30, -45, -90);
+		AllMethodsChart.paintAllMethods(this.gc, new Area(WIDTH - 1, HEIGHT - 1));
 	}
 
 	@Test

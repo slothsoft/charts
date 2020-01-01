@@ -20,7 +20,9 @@ public class XAxisPositionTest {
 	public static Collection<Object[]> data() {
 		final List<Object[]> result = new ArrayList<>();
 		for (final XAxis.Position position : XAxis.Position.values()) {
-			result.add(new Object[]{position});
+			if (position != Position.NOWHERE) {
+				result.add(new Object[]{position});
+			}
 		}
 		return result;
 	}

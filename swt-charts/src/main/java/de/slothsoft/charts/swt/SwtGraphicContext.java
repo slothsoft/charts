@@ -53,12 +53,14 @@ public class SwtGraphicContext implements GraphicContext {
 			this.color.dispose();
 		}
 
+		final int alpha = (colorAsInt >> 24) & 0xFF;
 		final int red = (colorAsInt >> 16) & 0xFF;
 		final int green = (colorAsInt >> 8) & 0xFF;
 		final int blue = colorAsInt & 0xFF;
 		this.color = new Color(this.delegate.getDevice(), new RGB(red, green, blue));
 		this.delegate.setBackground(this.color);
 		this.delegate.setForeground(this.color);
+		this.delegate.setAlpha(alpha);
 		this.colorAsInt = colorAsInt;
 	}
 

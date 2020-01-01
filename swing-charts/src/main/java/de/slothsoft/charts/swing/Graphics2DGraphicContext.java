@@ -32,7 +32,7 @@ public class Graphics2DGraphicContext implements GraphicContext {
 
 	@Override
 	public void setColor(int color) {
-		this.delegate.setColor(new Color(color));
+		this.delegate.setColor(new Color(color, true));
 	}
 
 	@Override

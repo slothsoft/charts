@@ -21,17 +21,17 @@ import linechart.LineChartExample;
  * following Maven dependency (or an equivalent one in your build tool):
  *
  * <pre>
- * &lt;dependency>
- *     &lt;groupId>org.apache.xmlgraphics&lt;/groupId>
- *     &lt;artifactId>batik-svggen&lt;/artifactId>
- *     &lt;version>1.7&lt;/version>
- * &lt;/dependency>
- * &lt;dependency>
- *     &lt;groupId>org.apache.xmlgraphics
- *     &lt;/groupId>
- *     &lt;artifactId>batik-dom&lt;/artifactId>
- *     &lt;version>1.7&lt;/version>
- * &lt;/dependency>
+ * &lt;dependency&gt;
+ *     &lt;groupId&gt;org.apache.xmlgraphics&lt;/groupId&gt;
+ *     &lt;artifactId&gt;batik-svggen&lt;/artifactId&gt;
+ *     &lt;version&gt;1.7&lt;/version&gt;
+ * &lt;/dependency&gt;
+ * &lt;dependency&gt;
+ *     &lt;groupId&gt;org.apache.xmlgraphics
+ *     &lt;/groupId&gt;
+ *     &lt;artifactId&gt;batik-dom&lt;/artifactId&gt;
+ *     &lt;version&gt;1.7&lt;/version&gt;
+ * &lt;/dependency&gt;
  * </pre>
  *
  * @author Stef Schulz
