@@ -15,10 +15,10 @@
 		<module>charts</module>
 		<module>examples</module>
 		<module>examples-generator</module>
+		<module>gui-tests</module>
+		<module>swing-charts</module>
 		<module>swt-charts</module>
 		<module>test-reports</module>
-		<module>swing-charts</module>
-		<module>gui-tests</module>
 	</modules>
 
 	<properties>
@@ -147,9 +147,6 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>3.0.0-M1</version>
-					<configuration>
-						<skip>true</skip>
-					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

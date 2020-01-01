@@ -38,6 +38,23 @@
 			<artifactId>batik-transcoder</artifactId>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<!-- We do not want to deploy this project! -->
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<extensions>true</extensions>
+					<configuration>
+						<skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 	<profiles>
 		<profile>
