@@ -46,8 +46,8 @@ public class ChartsGenerator {
 					.append(generator.chartClass.getCanonicalName().replace('.', '/')).append(") ");
 			for (final ChartWriter writer : ChartWriter.ALL) {
 				final Chart chart = generator.chartGenerator.get();
-				final Path chartPath = targetFolder
-						.resolve(generator.displayName.toLowerCase() + "-" + writer.displayName.toLowerCase() + ".png");
+				final Path chartPath = targetFolder.resolve(generator.displayName.toLowerCase() + "-"
+						+ writer.displayName.toLowerCase() + "." + writer.extension);
 				writer.chartWriter.accept(chartPath, chart);
 				System.out.println("Generated file: " + chartPath);
 				overviewPage.append("| ![").append(generator.displayName).append("](chart-examples/")

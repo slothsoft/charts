@@ -105,6 +105,8 @@ There are more extensive examples [here](examples/src/main/java/), for instance:
  - **GUI Frameworks**
     - [Swing](examples/src/main/java/swing)
     - [SWT](examples/src/main/java/swt)
+ - **Miscellaneous**
+    - [SVG](examples/src/main/java/other/SvgExample.java)
 
 
 
