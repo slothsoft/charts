@@ -60,6 +60,17 @@ public class YAxis extends Axis {
 			void paintAxis(DoubleConsumer axisPainter, double xMin, double x0, double xMax) {
 				axisPainter.accept(x0);
 			}
+		},
+		/**
+		 * Does not displays the axis.
+		 * 
+		 * @since 0.2.0
+		 */
+		NOWHERE {
+			@Override
+			void paintAxis(DoubleConsumer axisPainter, double yMin, double y0, double yMax) {
+				// Don't do it.
+			}
 		};
 
 		abstract void paintAxis(DoubleConsumer axisPainter, double xMin, double x0, double xMax);

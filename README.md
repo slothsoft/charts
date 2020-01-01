@@ -106,7 +106,7 @@ There are more extensive examples [here](examples/src/main/java/), for instance:
     - [Swing](examples/src/main/java/swing)
     - [SWT](examples/src/main/java/swt)
  - **Miscellaneous**
-    - [SVG](examples/src/main/java/other/SvgExample.java)
+    - [SVG](examples/src/main/java/other/SvgExample.java) (using [Apache Batik](https://xmlgraphics.apache.org/batik/))
 
 
 
