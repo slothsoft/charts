@@ -153,7 +153,7 @@ public interface GraphicContext {
 	 */
 
 	default void fillRectangle(double x, double y, double width, double height) {
-		fillPolygon(new double[]{x, x + width, x + width, x}, new double[]{y, y, y + height, y + height});
+		fillPolygon(new double[]{x, x + width, x + width, x, x}, new double[]{y, y, y + height, y + height, y});
 	}
 
 	/**

@@ -36,7 +36,7 @@ public class GraphicContextTest {
 	public void testFillRectangleArea() throws Exception {
 		this.graphicContext.fillRectangle(new Area(1.2, 3.4, 4.5, 6.8));
 
-		Assert.assertEquals(Arrays.asList("fillPolygon([1.2, 4.5, 4.5, 1.2], [3.4, 3.4, 6.8, 6.8])"),
+		Assert.assertEquals(Arrays.asList("fillPolygon([1.2, 4.5, 4.5, 1.2, 1.2], [3.4, 3.4, 6.8, 6.8, 3.4])"),
 				this.graphicContext.getLog());
 	}
 
@@ -44,7 +44,7 @@ public class GraphicContextTest {
 	public void testFillRectangle() throws Exception {
 		this.graphicContext.fillRectangle(1.2, 3.4, 4.5, 6.8);
 
-		Assert.assertEquals(Arrays.asList("fillPolygon([1.2, 5.7, 5.7, 1.2], [3.4, 3.4, 10.2, 10.2])"),
+		Assert.assertEquals(Arrays.asList("fillPolygon([1.2, 5.7, 5.7, 1.2, 1.2], [3.4, 3.4, 10.2, 10.2, 3.4])"),
 				this.graphicContext.getLog());
 	}
 
@@ -52,7 +52,7 @@ public class GraphicContextTest {
 	public void testDrawRectangleArea() throws Exception {
 		this.graphicContext.drawRectangle(new Area(1.2, 3.4, 4.5, 6.8));
 
-		Assert.assertEquals(Arrays.asList("drawPolyline([1.2, 4.5, 4.5, 1.2], [3.4, 3.4, 6.8, 6.8])"),
+		Assert.assertEquals(Arrays.asList("drawPolyline([1.2, 4.5, 4.5, 1.2, 1.2], [3.4, 3.4, 6.8, 6.8, 3.4])"),
 				this.graphicContext.getLog());
 	}
 
@@ -60,7 +60,7 @@ public class GraphicContextTest {
 	public void testDrawRectangle() throws Exception {
 		this.graphicContext.drawRectangle(1.2, 3.4, 4.5, 6.8);
 
-		Assert.assertEquals(Arrays.asList("drawPolyline([1.2, 5.7, 5.7, 1.2], [3.4, 3.4, 10.2, 10.2])"),
+		Assert.assertEquals(Arrays.asList("drawPolyline([1.2, 5.7, 5.7, 1.2, 1.2], [3.4, 3.4, 10.2, 10.2, 3.4])"),
 				this.graphicContext.getLog());
 	}
 }
