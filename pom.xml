@@ -28,6 +28,7 @@
 		<manifest.location>${project.build.directory}/META-INF</manifest.location>
 
 		<swt.version>4.6.1</swt.version>
+		<batik.version>1.12</batik.version>
 	</properties>
 
 	<repositories>
@@ -80,6 +81,27 @@
 				<groupId>org.eclipse.swt</groupId>
 				<artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
 				<version>${swt.version}</version>
+			</dependency>
+
+			<dependency>
+			    <groupId>org.apache.xmlgraphics</groupId>
+			    <artifactId>batik-codec</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-dom</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-svggen</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-transcoder</artifactId>
+				<version>${batik.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

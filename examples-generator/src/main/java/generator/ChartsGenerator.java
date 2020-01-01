@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import de.slothsoft.charts.Chart;
+import generator.internal.ChartGenerator;
+import generator.internal.ChartWriter;
 
 /**
  * This class generates example files for all types of charts AND all types of GUI
@@ -46,12 +48,11 @@ public class ChartsGenerator {
 					.append(generator.chartClass.getCanonicalName().replace('.', '/')).append(") ");
 			for (final ChartWriter writer : ChartWriter.ALL) {
 				final Chart chart = generator.chartGenerator.get();
-				final Path chartPath = targetFolder.resolve(generator.displayName.toLowerCase() + "-"
-						+ writer.displayName.toLowerCase() + "." + writer.extension);
+				final Path chartPath = targetFolder
+						.resolve(generator.displayName.toLowerCase() + "-" + writer.displayName.toLowerCase() + ".png");
 				writer.chartWriter.accept(chartPath, chart);
 				System.out.println("Generated file: " + chartPath);
-				overviewPage.append("| ![").append(generator.displayName).append("](chart-examples/")
-						.append(chartPath.getFileName()).append(") ");
+				overviewPage.append("| ").append(writer.createImageMarkdown(chartPath)).append(" ");
 			}
 			overviewPage.append("|\n");
 		}

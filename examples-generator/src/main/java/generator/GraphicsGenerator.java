@@ -11,6 +11,7 @@ import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
+import generator.internal.ChartWriter;
 
 /**
  * This class generates example files for implementations of {@link GraphicContext}.
@@ -41,8 +42,7 @@ public class GraphicsGenerator {
 			final Path chartPath = targetFolder.resolve(writer.displayName.toLowerCase() + ".png");
 			writer.chartWriter.accept(chartPath, chart);
 			System.out.println("Generated file: " + chartPath);
-			overviewPage.append("![").append(writer.displayName).append("](gc-examples/")
-					.append(chartPath.getFileName()).append(") ");
+			overviewPage.append(writer.createImageMarkdown(chartPath)).append(" ");
 			overviewPage.append("\n\n");
 
 			if (OPEN_FILES) {

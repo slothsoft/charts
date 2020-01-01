@@ -10,10 +10,6 @@
 		<version>0.2.0-SNAPSHOT</version>
 	</parent>
 
-	<properties>
-		<batik-version>1.7</batik-version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>de.slothsoft.charts</groupId>
@@ -28,15 +24,14 @@
 			<groupId>org.eclipse.swt</groupId>
 			<artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-svggen</artifactId>
-			<version>${batik-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-dom</artifactId>
-			<version>${batik-version}</version>
 		</dependency>
 	</dependencies>
 </project>

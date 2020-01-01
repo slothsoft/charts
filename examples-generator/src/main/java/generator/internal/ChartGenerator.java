@@ -1,4 +1,4 @@
-package generator;
+package generator.internal;
 
 import java.util.function.Supplier;
 
@@ -8,7 +8,7 @@ import de.slothsoft.charts.piechart.PieChart;
 import linechart.LineChartExample;
 import piechart.PieChartExample;
 
-class ChartGenerator {
+public class ChartGenerator {
 
 	public static final ChartGenerator[] ALL = {
 
@@ -18,9 +18,9 @@ class ChartGenerator {
 
 	};
 
-	String displayName;
-	Class<?> chartClass;
-	Supplier<Chart> chartGenerator;
+	public final String displayName;
+	public final Class<?> chartClass;
+	public final Supplier<Chart> chartGenerator;
 
 	public ChartGenerator(String displayName, Class<?> chartClass, Supplier<Chart> chartGenerator) {
 		this.displayName = displayName;
