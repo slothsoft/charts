@@ -183,6 +183,24 @@ Pie charts have these features:
 
 
 
+<img align="right" src="https://raw.githubusercontent.com/wiki/slothsoft/charts/images/bar-chart-structure.png">
+
+### BarChart
+
+ - **JavaDoc:** [BarChart](https://slothsoft.github.io/charts/de/slothsoft/charts/barchart/BarChart)
+
+
+Bar charts have these features:
+
+ - all the features of `Chart`
+ - manage the bars of the chart (add, remove)
+     - change general display information (value, color)
+ - change general display information (default bar color)
+     
+<br clear="right"/>
+
+
+
 ## License
 
 This project is licensed under the MIT License - see the [MIT license](LICENSE) for details.
