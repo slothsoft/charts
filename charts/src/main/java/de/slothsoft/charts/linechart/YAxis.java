@@ -6,6 +6,7 @@ import java.util.function.DoubleConsumer;
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.common.Axis;
 
 /**
  * The Y axis of a {@link LineChart}.
@@ -63,7 +64,7 @@ public class YAxis extends Axis {
 		},
 		/**
 		 * Does not displays the axis.
-		 * 
+		 *
 		 * @since 0.2.0
 		 */
 		NOWHERE {
@@ -81,51 +82,23 @@ public class YAxis extends Axis {
 	private YAxis.Position position = YAxis.Position.DEFAULT;
 
 	/**
-	 * Constructor.
+	 * Constructor for a {@link LineChart}.
 	 *
 	 * @param chart the chart this axis belongs to
 	 */
 
 	public YAxis(LineChart chart) {
-		this.chart = Objects.requireNonNull(chart);
+		super(chart::convertToChartX, chart::convertToChartY);
+		this.chart = chart;
 	}
 
 	@Override
 	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
 		final Area area = this.chart.calculateDisplayedArea();
-		final double x0 = this.chart.convertToChartX(0);
-		final double yMin = this.chart.convertToChartY(area.getStartY());
-		final double yMax = this.chart.convertToChartY(area.getEndY());
-
-		final DoubleConsumer axisPainter = x -> {
-			// paint the line
-
-			gc.setColor(0xFF000000);
-			gc.drawLine(x, yMin, x, yMax);
-
-			// paint the big and little ticks
-
-			final int end = (int) Math.ceil(area.getEndY());
-			for (int i = (int) Math.floor(area.getStartY()); i < end; i++) {
-				final double y = this.chart.convertToChartY(i);
-				if (i % this.tickSteps == 0) {
-					gc.drawLine(x - this.tickSize, y, x + this.tickSize, y);
-				}
-				if (i % this.bigTickSteps == 0) {
-					gc.drawLine(x - this.bigTickSize, y, x + this.bigTickSize, y);
-				}
-			}
-
-			// paint the arrow at the end
-
-			final double[] arrowX = {x, x + this.arrowSize, x - this.arrowSize};
-			final double[] arrowY = {yMax - this.arrowSize, yMax, yMax};
-			gc.fillPolygon(arrowX, arrowY);
-		};
-
-		final double xMin = this.chart.convertToChartX(area.getStartX());
-		final double xMax = this.chart.convertToChartX(area.getEndX());
-		this.position.paintAxis(axisPainter, xMin, x0, xMax);
+		final double x0 = this.chartXConverter.applyAsDouble(0);
+		final double xMin = this.chartXConverter.applyAsDouble(area.getStartX());
+		final double xMax = this.chartXConverter.applyAsDouble(area.getEndX());
+		this.position.paintAxis(x -> paintVerticalAxis(gc, area.getStartY(), area.getEndY(), x), xMin, x0, xMax);
 	}
 
 	/**

@@ -63,8 +63,8 @@ public class ChartWriter {
 			final TranscoderOutput transcoderOutput = new TranscoderOutput(resultByteStream);
 
 			final PNGTranscoder pngTranscoder = new PNGTranscoder();
-			pngTranscoder.addTranscodingHint(SVGAbstractTranscoder.KEY_WIDTH, 400f);
-			pngTranscoder.addTranscodingHint(SVGAbstractTranscoder.KEY_HEIGHT, 300f);
+			pngTranscoder.addTranscodingHint(SVGAbstractTranscoder.KEY_WIDTH, Float.valueOf(400f));
+			pngTranscoder.addTranscodingHint(SVGAbstractTranscoder.KEY_HEIGHT, Float.valueOf(300f));
 			pngTranscoder.transcode(transcoderInput, transcoderOutput);
 			resultByteStream.flush();
 

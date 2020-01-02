@@ -6,6 +6,7 @@ import java.util.function.DoubleConsumer;
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.common.Axis;
 
 /**
  * The X axis of a {@link LineChart}.
@@ -81,51 +82,23 @@ public class XAxis extends Axis {
 	private XAxis.Position position = XAxis.Position.DEFAULT;
 
 	/**
-	 * Constructor.
+	 * Constructor for a {@link LineChart}.
 	 *
 	 * @param chart the chart this axis belongs to
 	 */
 
 	public XAxis(LineChart chart) {
-		this.chart = Objects.requireNonNull(chart);
+		super(chart::convertToChartX, chart::convertToChartY);
+		this.chart = chart;
 	}
 
 	@Override
-	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
+	public void paintOn(GraphicContext gc, PaintInstructions abc) {
 		final Area area = this.chart.calculateDisplayedArea();
-		final double y0 = this.chart.convertToChartY(0);
-		final double xMin = this.chart.convertToChartX(area.getStartX());
-		final double xMax = this.chart.convertToChartX(area.getEndX());
-
-		final DoubleConsumer axisPainter = y -> {
-			// paint the line
-
-			gc.setColor(0xFF000000);
-			gc.drawLine(xMin, y, xMax, y);
-
-			// paint the big and little ticks
-
-			final int end = (int) Math.ceil(area.getEndX());
-			for (int i = (int) Math.floor(area.getStartX()); i < end; i++) {
-				final double x = this.chart.convertToChartX(i);
-				if (i % this.tickSteps == 0) {
-					gc.drawLine(x, y - this.tickSize, x, y + this.tickSize);
-				}
-				if (i % this.bigTickSteps == 0) {
-					gc.drawLine(x, y - this.bigTickSize, x, y + this.bigTickSize);
-				}
-			}
-
-			// paint the arrow at the end
-
-			final double[] arrowX = {xMax, xMax - this.arrowSize, xMax - this.arrowSize};
-			final double[] arrowY = {y, y + this.arrowSize, y - this.arrowSize};
-			gc.fillPolygon(arrowX, arrowY);
-		};
-
-		final double yMin = this.chart.convertToChartY(area.getStartY());
-		final double yMax = this.chart.convertToChartY(area.getEndY());
-		this.position.paintAxis(axisPainter, yMin, y0, yMax);
+		final double y0 = this.chartYConverter.applyAsDouble(0);
+		final double yMin = this.chartYConverter.applyAsDouble(area.getStartY());
+		final double yMax = this.chartYConverter.applyAsDouble(area.getEndY());
+		this.position.paintAxis(y -> paintHorizontalAxis(gc, area.getStartX(), area.getEndX(), y), yMin, y0, yMax);
 	}
 
 	/**

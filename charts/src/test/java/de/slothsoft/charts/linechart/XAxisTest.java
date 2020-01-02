@@ -3,6 +3,9 @@ package de.slothsoft.charts.linechart;
 import org.junit.Assert;
 import org.junit.Test;
 
+import de.slothsoft.charts.linechart.LineChart;
+import de.slothsoft.charts.linechart.XAxis;
+
 public class XAxisTest {
 
 	private final XAxis axis = new XAxis(new LineChart());

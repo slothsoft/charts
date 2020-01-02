@@ -9,6 +9,31 @@ public class AreaTest {
 	private static final double DELTA = 0.001;
 
 	@Test
+	public void testEqual() {
+		final Area area = new Area();
+		Assert.assertEquals(area, area);
+		Assert.assertEquals(new Area(), new Area());
+		Assert.assertEquals(new Area(1, 2), new Area(1, 2));
+		Assert.assertEquals(new Area(1, 2, 3, 4), new Area(1, 2, 3, 4));
+	}
+
+	@Test
+	public void testNotEqual() {
+		Assert.assertNotEquals(new Area(1, 2), new Area(2, 2));
+		Assert.assertNotEquals(new Area(1, 2), new Area(1, 3));
+		Assert.assertNotEquals(new Area(1, 2, 3, 4), new Area(2, 2, 3, 4));
+		Assert.assertNotEquals(new Area(1, 2, 3, 4), new Area(1, 3, 3, 4));
+		Assert.assertNotEquals(new Area(1, 2, 3, 4), new Area(1, 2, 2, 4));
+		Assert.assertNotEquals(new Area(1, 2, 3, 4), new Area(1, 2, 3, 3));
+	}
+
+	@Test
+	public void testEqualSpecialCases() {
+		Assert.assertFalse(new Area().equals(null));
+		Assert.assertFalse(new Area().equals(new Object()));
+	}
+
+	@Test
 	public void testUnite() throws Exception {
 		final Area area1 = new Area(1, 2, 3, 4);
 		final Area area2 = new Area(6, 7, 8, 9);

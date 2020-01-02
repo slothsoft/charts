@@ -3,6 +3,9 @@ package de.slothsoft.charts.linechart;
 import org.junit.Assert;
 import org.junit.Test;
 
+import de.slothsoft.charts.linechart.LineChart;
+import de.slothsoft.charts.linechart.YAxis;
+
 public class YAxisTest {
 
 	private final YAxis axis = new YAxis(new LineChart());

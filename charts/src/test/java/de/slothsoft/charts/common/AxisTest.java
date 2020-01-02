@@ -1,4 +1,6 @@
-package de.slothsoft.charts.linechart;
+package de.slothsoft.charts.common;
+
+import java.util.function.DoubleUnaryOperator;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,12 +13,13 @@ public class AxisTest {
 
 	private static final double DELTA = 0.001;
 
-	private final Axis axis = new Axis() {
+	private final Axis axis = new Axis(DoubleUnaryOperator.identity(), DoubleUnaryOperator.identity()) {
 
 		@Override
 		public void paintOn(GraphicContext gc, PaintInstructions instructions) {
 			// nothing to do in test
 		}
+
 	};
 
 	@Test

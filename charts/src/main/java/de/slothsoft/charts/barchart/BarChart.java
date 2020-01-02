@@ -23,10 +23,19 @@ import de.slothsoft.charts.RefreshListener;
 
 public class BarChart extends Chart {
 
+	final XYAxis axis = new XYAxis(this);
 	final List<Bar> bars = new ArrayList<>();
 	final RefreshListener refreshListener = e -> fireRefreshNeeded();
 
 	int defaultBarColor = 0xFF22AA22;
+
+	/**
+	 * Default constructor.
+	 */
+
+	public BarChart() {
+		addChartPart(this.axis);
+	}
 
 	@Override
 	protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
@@ -45,7 +54,7 @@ public class BarChart extends Chart {
 			final double barHeight = (bar.getValue()) / maxValue * height;
 
 			gc.fillRectangle(startX + widthPerBar + 2 * index * widthPerBar, height - barHeight, widthPerBar,
-					barHeight);
+					barHeight + 1);
 			index++;
 		}
 	}
@@ -150,5 +159,15 @@ public class BarChart extends Chart {
 		if (oldDefaultBarColor != this.defaultBarColor) {
 			fireRefreshNeeded();
 		}
+	}
+
+	/**
+	 * Returns the axis of this line chart.
+	 *
+	 * @return the axis
+	 */
+
+	public XYAxis getAxis() {
+		return this.axis;
 	}
 }

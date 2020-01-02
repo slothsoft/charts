@@ -36,6 +36,10 @@ public class LineChart extends Chart {
 	private Area displayedArea;
 	private double zoomFactor = 0.25;
 
+	/**
+	 * Default constructor.
+	 */
+
 	public LineChart() {
 		addChartPart(this.xAxis);
 		addChartPart(this.yAxis);
@@ -85,9 +89,10 @@ public class LineChart extends Chart {
 	 * @see #getDisplayedArea()
 	 * @see #addLine(Line)
 	 * @see #addLines(Line[])
+	 * @since 0.2.0
 	 */
 
-	Area calculateDisplayedArea() {
+	public Area calculateDisplayedArea() {
 		if (this.displayedArea != null) return this.displayedArea;
 		if (this.lines.isEmpty()) return Line.createDefaultArea();
 
@@ -352,8 +357,7 @@ public class LineChart extends Chart {
 		requireLastGraphAreaNotNull();
 		final Area wantedArea = calculateDisplayedArea();
 
-		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())
-				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());
+		final double scale = wantedArea.calculateWidth() / this.lastGraphArea.calculateWidth();
 		return (graphX - wantedArea.getStartX()) / scale + this.lastGraphArea.getStartX();
 	}
 
@@ -371,8 +375,7 @@ public class LineChart extends Chart {
 		requireLastGraphAreaNotNull();
 		final Area wantedArea = calculateDisplayedArea();
 
-		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())
-				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());
+		final double scale = wantedArea.calculateHeight() / this.lastGraphArea.calculateHeight();
 		return (-graphY + wantedArea.getEndY()) / scale + this.lastGraphArea.getStartY();
 	}
 

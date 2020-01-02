@@ -1,19 +1,29 @@
-package de.slothsoft.charts.linechart;
+package de.slothsoft.charts.common;
 
+import java.util.Objects;
+import java.util.function.DoubleUnaryOperator;
+
+import de.slothsoft.charts.Chart;
 import de.slothsoft.charts.ChartPart;
+import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.RefreshListener;
 import de.slothsoft.charts.internal.RefreshListeners;
 
 /**
- * The X or Y axis of a {@link LineChart}.
+ * The X or Y axis of a {@link Chart}. You have the following methods to implement this
+ * abstract class:
+ * <ul>
+ * <li>{@link #paintHorizontalAxis(GraphicContext, double, double, double)}</li>
+ * <li>{@link #paintVerticalAxis(GraphicContext, double, double, double)}</li>
+ * </ul>
  *
  * @author Stef Schulz
  * @since 0.1.0
  */
 
-abstract class Axis implements ChartPart {
+public abstract class Axis implements ChartPart {
 
-	final RefreshListeners refreshListeners = new RefreshListeners(this);
+	protected final RefreshListeners refreshListeners = new RefreshListeners(this);
 
 	int tickSteps = 1;
 	int tickSize = 1;
@@ -21,6 +31,103 @@ abstract class Axis implements ChartPart {
 	int bigTickSize = 3;
 	double arrowSize = 3;
 
+	protected DoubleUnaryOperator chartXConverter;
+	protected DoubleUnaryOperator chartYConverter;
+
+	/**
+	 * Creates an axis using no converters for the coordinates.
+	 */
+
+	public Axis() {
+		this(DoubleUnaryOperator.identity(), DoubleUnaryOperator.identity());
+	}
+
+	/**
+	 * Creates an axis using converters for the coordinates.
+	 *
+	 * @param chartXConverter converter for graph x to chart x
+	 * @param chartYConverter converter for graph y to chart y
+	 */
+
+	public Axis(DoubleUnaryOperator chartXConverter, DoubleUnaryOperator chartYConverter) {
+		this.chartXConverter = Objects.requireNonNull(chartXConverter);
+		this.chartYConverter = Objects.requireNonNull(chartYConverter);
+	}
+
+	/**
+	 * Paints the horizontal axis using the chart.
+	 *
+	 * @param gc the graphic context to draw on
+	 * @param graphStartX the graph's start x
+	 * @param graphEndX the graph's end x
+	 * @param y the y coordinate this axis get drawn on (chart coordinate!)
+	 */
+
+	protected void paintHorizontalAxis(GraphicContext gc, double graphStartX, double graphEndX, double y) {
+		final double xMin = this.chartXConverter.applyAsDouble(graphStartX);
+		final double xMax = this.chartXConverter.applyAsDouble(graphEndX);
+
+		// paint the line
+
+		gc.setColor(0xFF000000);
+		gc.drawLine(xMin, y, xMax, y);
+
+		// paint the big and little ticks
+
+		final int end = (int) Math.ceil(graphEndX);
+		for (int i = (int) Math.floor(graphStartX); i < end; i++) {
+			final double x = this.chartXConverter.applyAsDouble(i);
+			if (i % this.tickSteps == 0) {
+				gc.drawLine(x, y - this.tickSize, x, y + this.tickSize);
+			}
+			if (i % this.bigTickSteps == 0) {
+				gc.drawLine(x, y - this.bigTickSize, x, y + this.bigTickSize);
+			}
+		}
+
+		// paint the arrow at the end
+
+		final double[] arrowX = {xMax, xMax - this.arrowSize, xMax - this.arrowSize};
+		final double[] arrowY = {y, y + this.arrowSize, y - this.arrowSize};
+		gc.fillPolygon(arrowX, arrowY);
+	}
+
+	/**
+	 * Paints the vertical axis using the chart.
+	 *
+	 * @param gc the graphic context to draw on
+	 * @param graphStartX the graph's start y
+	 * @param graphEndY the graph's end y
+	 * @param x the y coordinate this axis get drawn on (chart coordinate!)
+	 */
+	protected void paintVerticalAxis(GraphicContext gc, double graphStartX, double graphEndY, double x) {
+		final double yMin = this.chartYConverter.applyAsDouble(graphStartX);
+		final double yMax = this.chartYConverter.applyAsDouble(graphEndY);
+
+		// paint the line
+
+		gc.setColor(0xFF000000);
+		gc.drawLine(x, yMin, x, yMax);
+
+		// paint the big and little ticks
+
+		final int end = (int) Math.ceil(graphEndY);
+		for (int i = (int) Math.floor(graphStartX); i < end; i++) {
+			final double y = this.chartYConverter.applyAsDouble(i);
+			if (i % this.tickSteps == 0) {
+				gc.drawLine(x - this.tickSize, y, x + this.tickSize, y);
+			}
+			if (i % this.bigTickSteps == 0) {
+				gc.drawLine(x - this.bigTickSize, y, x + this.bigTickSize, y);
+			}
+		}
+
+		// paint the arrow at the end
+
+		final double[] arrowX = {x, x + this.arrowSize, x - this.arrowSize};
+		final double[] arrowY = {yMax - this.arrowSize, yMax, yMax};
+		gc.fillPolygon(arrowX, arrowY);
+	}
 	@Override
 	public void addRefreshListener(RefreshListener listener) {
 		this.refreshListeners.addRefreshListener(listener);

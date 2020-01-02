@@ -39,7 +39,7 @@ public class BarChartExample {
 		chart.getBorder().setSpaceOnBottom(7);
 		chart.getTitle().setText("Bar Chart");
 
-		chart.addBar(6);
+		chart.addBar(6).color(0xFFFF0000);
 		chart.addBars(3, 4);
 
 		return chart;

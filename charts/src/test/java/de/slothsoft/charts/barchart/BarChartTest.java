@@ -8,8 +8,6 @@ import de.slothsoft.charts.RefreshListener;
 
 public class BarChartTest extends AbstractChartTest<BarChart> {
 
-	private static final double DELTA = 0.001;
-
 	@Override
 	protected BarChart createChart() {
 		return new BarChart();
