@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -100,7 +100,12 @@ var activeTableTab = "activeTableTab";
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../de/slothsoft/charts/common/Axis.html" title="class in de.slothsoft.charts.common">de.slothsoft.charts.common.Axis</a></li>
+<li>
+<ul class="inheritance">
 <li>de.slothsoft.charts.linechart.XAxis</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -114,7 +119,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">XAxis</span>
-extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+extends <a href="../../../../de/slothsoft/charts/common/Axis.html" title="class in de.slothsoft.charts.common">Axis</a></pre>
 <div class="block">The X axis of a <a href="../../../../de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart"><code>LineChart</code></a>.</div>
 <dl>
 <dt><span class="simpleTagLabel">Since:</span></dt>
@@ -162,7 +167,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#XAxis-de.slothsoft.charts.linechart.LineChart-">XAxis</a></span>(<a href="../../../../de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a>&nbsp;chart)</code>
-<div class="block">Constructor.</div>
+<div class="block">Constructor for a <a href="../../../../de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart"><code>LineChart</code></a>.</div>
 </td>
 </tr>
 </table>
@@ -181,135 +186,38 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener</a></span>(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>
-<div class="block">Adds a refresh listener that is called whenever this <a href="../../../../de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts"><code>Drawable</code></a> needs to be
- redrawn by the GUI.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>de.slothsoft.charts.linechart.Axis</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#arrowSize-double-">arrowSize</a></span>(double&nbsp;newArrowSize)</code>
-<div class="block">Sets the size of the arrow at the end of the graph.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>de.slothsoft.charts.linechart.Axis</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#bigTickSize-int-">bigTickSize</a></span>(int&nbsp;newBigTickSize)</code>
-<div class="block">Sets the size of the big ticks in pixels.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>de.slothsoft.charts.linechart.Axis</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#bigTickSteps-int-">bigTickSteps</a></span>(int&nbsp;newBigTickSteps)</code>
-<div class="block">Sets the range after which a big tick is painted on the graph.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#getArrowSize--">getArrowSize</a></span>()</code>
-<div class="block">Returns the size of the arrow at the end of the graph.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#getBigTickSize--">getBigTickSize</a></span>()</code>
-<div class="block">Returns the size of the big ticks in pixels.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#getBigTickSteps--">getBigTickSteps</a></span>()</code>
-<div class="block">Returns the range after which a big tick is painted on the graph.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/linechart/XAxis.Position.html" title="enum in de.slothsoft.charts.linechart">XAxis.Position</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#getPosition--">getPosition</a></span>()</code>
 <div class="block">Returns the position of the x axis.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#getTickSize--">getTickSize</a></span>()</code>
-<div class="block">Returns the size of the ticks in pixels.</div>
-</td>
-</tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#getTickSteps--">getTickSteps</a></span>()</code>
-<div class="block">Returns the range after which a tick is painted on the graph.</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
-       <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>
+       <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;abc)</code>
 <div class="block">Paints the current content onto the graphic context.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/linechart/XAxis.html" title="class in de.slothsoft.charts.linechart">XAxis</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#position-de.slothsoft.charts.linechart.XAxis.Position-">position</a></span>(<a href="../../../../de/slothsoft/charts/linechart/XAxis.Position.html" title="enum in de.slothsoft.charts.linechart">XAxis.Position</a>&nbsp;newPosition)</code>
 <div class="block">Sets the position of the x axis.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener</a></span>(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>
-<div class="block">Removes a refresh listener that was called whenever this <a href="../../../../de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts"><code>Drawable</code></a> needed to
- be redrawn by the GUI.</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#setArrowSize-double-">setArrowSize</a></span>(double&nbsp;arrowSize)</code>
-<div class="block">Sets the size of the arrow at the end of the graph.</div>
-</td>
-</tr>
-<tr id="i14" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#setBigTickSize-int-">setBigTickSize</a></span>(int&nbsp;bigTickSize)</code>
-<div class="block">Sets the size of the big ticks in pixels.</div>
-</td>
-</tr>
-<tr id="i15" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#setBigTickSteps-int-">setBigTickSteps</a></span>(int&nbsp;bigTickSteps)</code>
-<div class="block">Sets the range after which a big tick is painted on the graph.</div>
-</td>
-</tr>
-<tr id="i16" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#setPosition-de.slothsoft.charts.linechart.XAxis.Position-">setPosition</a></span>(<a href="../../../../de/slothsoft/charts/linechart/XAxis.Position.html" title="enum in de.slothsoft.charts.linechart">XAxis.Position</a>&nbsp;position)</code>
 <div class="block">Sets the position of the x axis.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#setTickSize-int-">setTickSize</a></span>(int&nbsp;tickSize)</code>
-<div class="block">Sets the size of the ticks in pixels.</div>
-</td>
-</tr>
-<tr id="i18" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#setTickSteps-int-">setTickSteps</a></span>(int&nbsp;tickSteps)</code>
-<div class="block">Sets the range after which a tick is painted on the graph.</div>
-</td>
-</tr>
-<tr id="i19" class="rowColor">
-<td class="colFirst"><code>de.slothsoft.charts.linechart.Axis</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#tickSize-int-">tickSize</a></span>(int&nbsp;newTickSize)</code>
-<div class="block">Sets the size of the ticks in pixels.</div>
-</td>
-</tr>
-<tr id="i20" class="altColor">
-<td class="colFirst"><code>de.slothsoft.charts.linechart.Axis</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/XAxis.html#tickSteps-int-">tickSteps</a></span>(int&nbsp;newTickSteps)</code>
-<div class="block">Sets the range after which a tick is painted on the graph.</div>
-</td>
-</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.de.slothsoft.charts.common.Axis">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;de.slothsoft.charts.common.<a href="../../../../de/slothsoft/charts/common/Axis.html" title="class in de.slothsoft.charts.common">Axis</a></h3>
+<code><a href="../../../../de/slothsoft/charts/common/Axis.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#arrowSize-double-">arrowSize</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#bigTickSize-int-">bigTickSize</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#bigTickSteps-int-">bigTickSteps</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#getArrowSize--">getArrowSize</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#getBigTickSize--">getBigTickSize</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#getBigTickSteps--">getBigTickSteps</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#getTickSize--">getTickSize</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#getTickSteps--">getTickSteps</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#setArrowSize-double-">setArrowSize</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#setBigTickSize-int-">setBigTickSize</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#setBigTickSteps-int-">setBigTickSteps</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#setTickSize-int-">setTickSize</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#setTickSteps-int-">setTickSteps</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#tickSize-int-">tickSize</a>, <a href="../../../../de/slothsoft/charts/common/Axis.html#tickSteps-int-">tickSteps</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -345,7 +253,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <li class="blockList">
 <h4>XAxis</h4>
 <pre>public&nbsp;XAxis(<a href="../../../../de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a>&nbsp;chart)</pre>
-<div class="block">Constructor.</div>
+<div class="block">Constructor for a <a href="../../../../de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart"><code>LineChart</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>chart</code> - the chart this axis belongs to</dd>
@@ -367,7 +275,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <li class="blockList">
 <h4>paintOn</h4>
 <pre>public&nbsp;void&nbsp;paintOn(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
-                    <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</pre>
+                    <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;abc)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/ChartPart.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">ChartPart</a></code></span></div>
 <div class="block">Paints the current content onto the graphic context. Checks the instructions for
  what to paint. Coordinates are starting from the top left with 0|0 and ending
@@ -375,7 +283,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>gc</code> - graphic context; coordinates are relative to the <a href="../../../../de/slothsoft/charts/Chart.html" title="class in de.slothsoft.charts"><code>Chart</code></a></dd>
-<dd><code>instructions</code> - additional instructions like the area to paint on</dd>
+<dd><code>abc</code> - additional instructions like the area to paint on</dd>
 </dl>
 </li>
 </ul>
@@ -412,7 +320,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <a name="setPosition-de.slothsoft.charts.linechart.XAxis.Position-">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>setPosition</h4>
 <pre>public&nbsp;void&nbsp;setPosition(<a href="../../../../de/slothsoft/charts/linechart/XAxis.Position.html" title="enum in de.slothsoft.charts.linechart">XAxis.Position</a>&nbsp;position)</pre>
@@ -420,262 +328,6 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>position</code> - the position; cannot be null</dd>
-</dl>
-</li>
-</ul>
-<a name="addRefreshListener-de.slothsoft.charts.RefreshListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addRefreshListener</h4>
-<pre>public&nbsp;void&nbsp;addRefreshListener(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/Drawable.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">Drawable</a></code></span></div>
-<div class="block">Adds a refresh listener that is called whenever this <a href="../../../../de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts"><code>Drawable</code></a> needs to be
- redrawn by the GUI.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../de/slothsoft/charts/Drawable.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts">Drawable</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>listener</code> - a listener</dd>
-</dl>
-</li>
-</ul>
-<a name="removeRefreshListener-de.slothsoft.charts.RefreshListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>removeRefreshListener</h4>
-<pre>public&nbsp;void&nbsp;removeRefreshListener(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/Drawable.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">Drawable</a></code></span></div>
-<div class="block">Removes a refresh listener that was called whenever this <a href="../../../../de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts"><code>Drawable</code></a> needed to
- be redrawn by the GUI. Does nothing if the listener was never added.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../de/slothsoft/charts/Drawable.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/Drawable.html" title="interface in de.slothsoft.charts">Drawable</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>listener</code> - a listener</dd>
-</dl>
-</li>
-</ul>
-<a name="getTickSize--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getTickSize</h4>
-<pre>public&nbsp;int&nbsp;getTickSize()</pre>
-<div class="block">Returns the size of the ticks in pixels.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the tick size</dd>
-</dl>
-</li>
-</ul>
-<a name="tickSize-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>tickSize</h4>
-<pre>public&nbsp;de.slothsoft.charts.linechart.Axis&nbsp;tickSize(int&nbsp;newTickSize)</pre>
-<div class="block">Sets the size of the ticks in pixels.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>newTickSize</code> - the tick size</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>this instance</dd>
-</dl>
-</li>
-</ul>
-<a name="setTickSize-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setTickSize</h4>
-<pre>public&nbsp;void&nbsp;setTickSize(int&nbsp;tickSize)</pre>
-<div class="block">Sets the size of the ticks in pixels.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>tickSize</code> - the tick size</dd>
-</dl>
-</li>
-</ul>
-<a name="getBigTickSize--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getBigTickSize</h4>
-<pre>public&nbsp;int&nbsp;getBigTickSize()</pre>
-<div class="block">Returns the size of the big ticks in pixels.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the big tick size</dd>
-</dl>
-</li>
-</ul>
-<a name="bigTickSize-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>bigTickSize</h4>
-<pre>public&nbsp;de.slothsoft.charts.linechart.Axis&nbsp;bigTickSize(int&nbsp;newBigTickSize)</pre>
-<div class="block">Sets the size of the big ticks in pixels.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>newBigTickSize</code> - the big tick size</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>this instance</dd>
-</dl>
-</li>
-</ul>
-<a name="setBigTickSize-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setBigTickSize</h4>
-<pre>public&nbsp;void&nbsp;setBigTickSize(int&nbsp;bigTickSize)</pre>
-<div class="block">Sets the size of the big ticks in pixels.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>bigTickSize</code> - the big tick size</dd>
-</dl>
-</li>
-</ul>
-<a name="getBigTickSteps--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getBigTickSteps</h4>
-<pre>public&nbsp;int&nbsp;getBigTickSteps()</pre>
-<div class="block">Returns the range after which a big tick is painted on the graph.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the big tick step length</dd>
-</dl>
-</li>
-</ul>
-<a name="bigTickSteps-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>bigTickSteps</h4>
-<pre>public&nbsp;de.slothsoft.charts.linechart.Axis&nbsp;bigTickSteps(int&nbsp;newBigTickSteps)</pre>
-<div class="block">Sets the range after which a big tick is painted on the graph.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>newBigTickSteps</code> - the big tick step length</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>this instance</dd>
-</dl>
-</li>
-</ul>
-<a name="setBigTickSteps-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setBigTickSteps</h4>
-<pre>public&nbsp;void&nbsp;setBigTickSteps(int&nbsp;bigTickSteps)</pre>
-<div class="block">Sets the range after which a big tick is painted on the graph.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>bigTickSteps</code> - the big tick step length</dd>
-</dl>
-</li>
-</ul>
-<a name="getTickSteps--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getTickSteps</h4>
-<pre>public&nbsp;int&nbsp;getTickSteps()</pre>
-<div class="block">Returns the range after which a tick is painted on the graph.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the tick step length</dd>
-</dl>
-</li>
-</ul>
-<a name="tickSteps-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>tickSteps</h4>
-<pre>public&nbsp;de.slothsoft.charts.linechart.Axis&nbsp;tickSteps(int&nbsp;newTickSteps)</pre>
-<div class="block">Sets the range after which a tick is painted on the graph.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>newTickSteps</code> - the tick step length</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>this instance</dd>
-</dl>
-</li>
-</ul>
-<a name="setTickSteps-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setTickSteps</h4>
-<pre>public&nbsp;void&nbsp;setTickSteps(int&nbsp;tickSteps)</pre>
-<div class="block">Sets the range after which a tick is painted on the graph.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>tickSteps</code> - the tick step length</dd>
-</dl>
-</li>
-</ul>
-<a name="getArrowSize--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getArrowSize</h4>
-<pre>public&nbsp;double&nbsp;getArrowSize()</pre>
-<div class="block">Returns the size of the arrow at the end of the graph.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the arrow size in pixels</dd>
-</dl>
-</li>
-</ul>
-<a name="arrowSize-double-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>arrowSize</h4>
-<pre>public&nbsp;de.slothsoft.charts.linechart.Axis&nbsp;arrowSize(double&nbsp;newArrowSize)</pre>
-<div class="block">Sets the size of the arrow at the end of the graph.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>newArrowSize</code> - the arrow size in pixels</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>this instance</dd>
-</dl>
-</li>
-</ul>
-<a name="setArrowSize-double-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>setArrowSize</h4>
-<pre>public&nbsp;void&nbsp;setArrowSize(double&nbsp;arrowSize)</pre>
-<div class="block">Sets the size of the arrow at the end of the graph.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>arrowSize</code> - the arrow size in pixels</dd>
 </dl>
 </li>
 </ul>
@@ -748,6 +400,6 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2019. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2020. All rights reserved.</small></p>
 </body>
 </html>

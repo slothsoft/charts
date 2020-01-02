@@ -29,11 +29,11 @@ public class SwtGraphicContext implements GraphicContext {
 	private GC delegate;
 
 	private int colorAsInt;
-	private Color color;
+	Color color;
 	private Font fontAsEnum;
-	private org.eclipse.swt.graphics.Font font;
+	org.eclipse.swt.graphics.Font font;
 
-	private Transform transform;
+	Transform transform;
 <span class="fc" id="L37">	private double scaleX = 1;</span>
 <span class="fc" id="L38">	private double scaleY = 1;</span>
 
@@ -53,105 +53,105 @@ public class SwtGraphicContext implements GraphicContext {
 <span class="fc" id="L53">			this.color.dispose();</span>
 		}
 
-<span class="fc" id="L56">		final int red = (colorAsInt &gt;&gt; 16) &amp; 0xFF;</span>
-<span class="fc" id="L57">		final int green = (colorAsInt &gt;&gt; 8) &amp; 0xFF;</span>
-<span class="fc" id="L58">		final int blue = colorAsInt &amp; 0xFF;</span>
-<span class="fc" id="L59">		this.color = new Color(this.delegate.getDevice(), new RGB(red, green, blue));</span>
-<span class="fc" id="L60">		this.delegate.setBackground(this.color);</span>
-<span class="fc" id="L61">		this.delegate.setForeground(this.color);</span>
-<span class="fc" id="L62">		this.colorAsInt = colorAsInt;</span>
-<span class="fc" id="L63">	}</span>
+<span class="fc" id="L56">		final int alpha = (colorAsInt &gt;&gt; 24) &amp; 0xFF;</span>
+<span class="fc" id="L57">		final int red = (colorAsInt &gt;&gt; 16) &amp; 0xFF;</span>
+<span class="fc" id="L58">		final int green = (colorAsInt &gt;&gt; 8) &amp; 0xFF;</span>
+<span class="fc" id="L59">		final int blue = colorAsInt &amp; 0xFF;</span>
+<span class="fc" id="L60">		this.color = new Color(this.delegate.getDevice(), new RGB(red, green, blue));</span>
+<span class="fc" id="L61">		this.delegate.setBackground(this.color);</span>
+<span class="fc" id="L62">		this.delegate.setForeground(this.color);</span>
+<span class="fc" id="L63">		this.delegate.setAlpha(alpha);</span>
+<span class="fc" id="L64">		this.colorAsInt = colorAsInt;</span>
+<span class="fc" id="L65">	}</span>
 
 	@Override
 	public int getColor() {
-<span class="fc" id="L67">		return this.colorAsInt;</span>
+<span class="fc" id="L69">		return this.colorAsInt;</span>
 	}
 
 	@Override
 	public void setFont(Font fontAsEnum) {
-<span class="fc" id="L72">		final org.eclipse.swt.graphics.Font newFont = createFont(fontAsEnum);</span>
-<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (this.font != null) {</span>
-<span class="fc" id="L74">			this.font.dispose();</span>
+<span class="fc" id="L74">		final org.eclipse.swt.graphics.Font newFont = createFont(fontAsEnum);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">		if (this.font != null) {</span>
+<span class="fc" id="L76">			this.font.dispose();</span>
 		}
-<span class="fc" id="L76">		this.font = newFont;</span>
-<span class="fc" id="L77">		this.delegate.setFont(this.font);</span>
-<span class="fc" id="L78">		this.fontAsEnum = fontAsEnum;</span>
-<span class="fc" id="L79">	}</span>
+<span class="fc" id="L78">		this.font = newFont;</span>
+<span class="fc" id="L79">		this.delegate.setFont(this.font);</span>
+<span class="fc" id="L80">		this.fontAsEnum = fontAsEnum;</span>
+<span class="fc" id="L81">	}</span>
 
 	private org.eclipse.swt.graphics.Font createFont(Font enumFont) {
-<span class="fc" id="L82">		final FontData[] fontDatas = this.delegate.getFont().getFontData();</span>
-<span class="fc bfc" id="L83" title="All 2 branches covered.">		for (int i = 0; i &lt; fontDatas.length; i++) {</span>
-<span class="fc" id="L84">			fontDatas[i].setHeight(enumFont.getSize());</span>
-<span class="fc" id="L85">			fontDatas[i].setStyle(getStyle(enumFont));</span>
+<span class="fc" id="L84">		final FontData[] fontDatas = this.delegate.getFont().getFontData();</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		for (int i = 0; i &lt; fontDatas.length; i++) {</span>
+<span class="fc" id="L86">			fontDatas[i].setHeight(enumFont.getSize());</span>
+<span class="fc" id="L87">			fontDatas[i].setStyle(createFontStyle(enumFont));</span>
 
 		}
-<span class="fc" id="L88">		return new org.eclipse.swt.graphics.Font(this.delegate.getDevice(), fontDatas);</span>
+<span class="fc" id="L90">		return new org.eclipse.swt.graphics.Font(this.delegate.getDevice(), fontDatas);</span>
 	}
 
-	private static int getStyle(Font enumFont) {
-<span class="fc" id="L92">		int result = SWT.NORMAL;</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">		if (enumFont.isBold()) {</span>
-<span class="fc" id="L94">			result |= SWT.BOLD;</span>
+	private static int createFontStyle(Font enumFont) {
+<span class="fc" id="L94">		int result = SWT.NORMAL;</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">		if (enumFont.isBold()) {</span>
+<span class="fc" id="L96">			result |= SWT.BOLD;</span>
 		}
-<span class="fc" id="L96">		return result;</span>
+<span class="fc" id="L98">		return result;</span>
 	}
 
 	@Override
 	public Font getFont() {
-<span class="fc" id="L101">		return this.fontAsEnum;</span>
+<span class="fc" id="L103">		return this.fontAsEnum;</span>
 	}
 
 	@Override
 	public Area calculateTextSize(String text) {
-<span class="fc" id="L106">		final Point result = this.delegate.textExtent(text);</span>
-<span class="fc" id="L107">		return new Area(result.x, result.y);</span>
+<span class="fc" id="L108">		final Point result = this.delegate.textExtent(text);</span>
+<span class="fc" id="L109">		return new Area(result.x, result.y);</span>
 	}
 
 	@Override
 	public void translate(double x, double y) {
-<span class="fc" id="L112">		doToTransform(t -&gt; t.translate((int) x, (int) y));</span>
-<span class="fc" id="L113">	}</span>
+<span class="fc" id="L114">		doToTransform(t -&gt; t.translate((int) x, (int) y));</span>
+<span class="fc" id="L115">	}</span>
 
 	private void doToTransform(Consumer&lt;Transform&gt; transformConsumer) {
-<span class="fc" id="L116">		final Transform usedTransform = fetchTransform();</span>
-<span class="fc" id="L117">		this.delegate.getTransform(usedTransform);</span>
-<span class="fc" id="L118">		transformConsumer.accept(usedTransform);</span>
-<span class="fc" id="L119">		this.delegate.setTransform(usedTransform);</span>
-<span class="fc" id="L120">	}</span>
+<span class="fc" id="L118">		final Transform usedTransform = fetchTransform();</span>
+<span class="fc" id="L119">		this.delegate.getTransform(usedTransform);</span>
+<span class="fc" id="L120">		transformConsumer.accept(usedTransform);</span>
+<span class="fc" id="L121">		this.delegate.setTransform(usedTransform);</span>
+<span class="fc" id="L122">	}</span>
 
 	Transform fetchTransform() {
-<span class="fc bfc" id="L123" title="All 2 branches covered.">		if (this.transform == null) {</span>
-<span class="fc" id="L124">			this.transform = new Transform(this.delegate.getDevice());</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">		if (this.transform == null) {</span>
+<span class="fc" id="L126">			this.transform = new Transform(this.delegate.getDevice());</span>
 		}
-<span class="fc" id="L126">		return this.transform;</span>
+<span class="fc" id="L128">		return this.transform;</span>
 	}
 
 	@Override
 	public void scale(double x, double y) {
-<span class="fc" id="L131">		this.scaleX *= x;</span>
-<span class="fc" id="L132">		this.scaleY *= y;</span>
-<span class="fc" id="L133">	}</span>
+<span class="fc" id="L133">		this.scaleX *= x;</span>
+<span class="fc" id="L134">		this.scaleY *= y;</span>
+<span class="fc" id="L135">	}</span>
 
 	@Override
 	public void clip(Area rect) {
-<span class="fc bfc" id="L137" title="All 2 branches covered.">		if (rect == null) {</span>
-<span class="fc" id="L138">			this.delegate.setClipping((Rectangle) null);</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">		if (rect == null) {</span>
+<span class="fc" id="L140">			this.delegate.setClipping((Rectangle) null);</span>
 		} else {
-<span class="fc" id="L140">			this.delegate.setClipping((int) rect.getStartX(), (int) rect.getStartY(),</span>
-<span class="fc" id="L141">					(int) (rect.getEndX() - rect.getStartX()), (int) (rect.getEndY() - rect.getStartY()));</span>
+<span class="fc" id="L142">			this.delegate.setClipping(convertToSwtX(rect.getStartX()), convertToSwtY(rect.getStartY()),</span>
+<span class="fc" id="L143">					convertToSwtX(rect.calculateWidth()), convertToSwtY(rect.calculateHeight()));</span>
 		}
-<span class="fc" id="L143">	}</span>
+<span class="fc" id="L145">	}</span>
 
 	@Override
 	public void drawLine(double x1, double y1, double x2, double y2) {
-<span class="fc" id="L147">		this.delegate.drawLine((int) (this.scaleX * x1), (int) (this.scaleY * y1), (int) (this.scaleX * x2),</span>
-				(int) (this.scaleX * y2));
-<span class="fc" id="L149">	}</span>
+<span class="fc" id="L149">		this.delegate.drawLine(convertToSwtX(x1), convertToSwtY(y1), convertToSwtX(x2), convertToSwtX(y2));</span>
+<span class="fc" id="L150">	}</span>
 
 	@Override
 	public void fillRectangle(double x, double y, double width, double height) {
-<span class="fc" id="L153">		this.delegate.fillRectangle((int) (this.scaleX * x), (int) (this.scaleY * y), (int) (this.scaleX * width),</span>
-				(int) (this.scaleY * height));
+<span class="fc" id="L154">		this.delegate.fillRectangle(convertToSwtX(x), convertToSwtY(y), convertToSwtX(width), convertToSwtY(height));</span>
 <span class="fc" id="L155">	}</span>
 
 	@Override
@@ -162,31 +162,40 @@ public class SwtGraphicContext implements GraphicContext {
 	private int[] convertToSwtPoints(double[] x, double[] y) {
 <span class="fc" id="L163">		final int[] points = new int[x.length + y.length];</span>
 <span class="fc bfc" id="L164" title="All 2 branches covered.">		for (int i = 0; i &lt; x.length; i++) {</span>
-<span class="fc" id="L165">			points[2 * i] = (int) (this.scaleX * x[i]);</span>
-<span class="fc" id="L166">			points[2 * i + 1] = (int) (this.scaleY * y[i]);</span>
+<span class="fc" id="L165">			points[2 * i] = convertToSwtX(x[i]);</span>
+<span class="fc" id="L166">			points[2 * i + 1] = convertToSwtY(y[i]);</span>
 		}
 <span class="fc" id="L168">		return points;</span>
 	}
 
+	private int convertToSwtX(double x) {
+<span class="fc" id="L172">		return (int) (this.scaleX * x);</span>
+	}
+
+	private int convertToSwtY(double Y) {
+<span class="fc" id="L176">		return (int) (this.scaleY * Y);</span>
+	}
+
 	@Override
 	public void fillPolygon(double[] x, double[] y) {
-<span class="fc" id="L173">		this.delegate.fillPolygon(convertToSwtPoints(x, y));</span>
-<span class="fc" id="L174">	}</span>
+<span class="fc" id="L181">		this.delegate.fillPolygon(convertToSwtPoints(x, y));</span>
+<span class="fc" id="L182">	}</span>
 
 	@Override
 	public void drawText(double x, double y, String text) {
-<span class="fc" id="L178">		this.delegate.drawText(text, (int) x, (int) y, true);</span>
-<span class="fc" id="L179">	}</span>
+<span class="fc" id="L186">		this.delegate.drawText(text, convertToSwtX(x), convertToSwtY(y), true);</span>
+<span class="fc" id="L187">	}</span>
 
 	@Override
 	public void fillOval(double x, double y, double width, double height) {
-<span class="fc" id="L183">		this.delegate.fillOval((int) x, (int) y, (int) width, (int) height);</span>
-<span class="fc" id="L184">	}</span>
+<span class="fc" id="L191">		this.delegate.fillOval(convertToSwtX(x), convertToSwtY(y), convertToSwtX(width), convertToSwtY(height));</span>
+<span class="fc" id="L192">	}</span>
 
 	@Override
 	public void fillArc(double x, double y, double width, double height, double startAngle, double arcAngle) {
-<span class="fc" id="L188">		this.delegate.fillArc((int) x, (int) y, (int) width, (int) height, (int) startAngle, (int) arcAngle);</span>
-<span class="fc" id="L189">	}</span>
+<span class="fc" id="L196">		this.delegate.fillArc(convertToSwtX(x), convertToSwtY(y), convertToSwtX(width), convertToSwtY(height),</span>
+				(int) startAngle, (int) arcAngle);
+<span class="fc" id="L198">	}</span>
 
 	/**
 	 * Disposes of the operating system resources associated with this resource.
@@ -195,16 +204,19 @@ public class SwtGraphicContext implements GraphicContext {
 	 */
 
 	public void dispose() {
-<span class="pc bpc" id="L198" title="1 of 2 branches missed.">		if (this.transform != null) {</span>
-<span class="fc" id="L199">			this.transform.dispose();</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">		if (this.transform != null) {</span>
+<span class="fc" id="L208">			this.transform.dispose();</span>
+<span class="fc" id="L209">			this.transform = null;</span>
 		}
-<span class="pc bpc" id="L201" title="1 of 2 branches missed.">		if (this.font != null) {</span>
-<span class="nc" id="L202">			this.font.dispose();</span>
+<span class="fc bfc" id="L211" title="All 2 branches covered.">		if (this.font != null) {</span>
+<span class="fc" id="L212">			this.font.dispose();</span>
+<span class="fc" id="L213">			this.font = null;</span>
 		}
-<span class="pc bpc" id="L204" title="1 of 2 branches missed.">		if (this.color != null) {</span>
-<span class="fc" id="L205">			this.color.dispose();</span>
+<span class="fc bfc" id="L215" title="All 2 branches covered.">		if (this.color != null) {</span>
+<span class="fc" id="L216">			this.color.dispose();</span>
+<span class="fc" id="L217">			this.color = null;</span>
 		}
-<span class="fc" id="L207">	}</span>
+<span class="fc" id="L219">	}</span>
 
 	/**
 	 * Returns the GC.
@@ -213,7 +225,7 @@ public class SwtGraphicContext implements GraphicContext {
 	 */
 
 	public GC getDelegate() {
-<span class="nc" id="L216">		return this.delegate;</span>
+<span class="fc" id="L228">		return this.delegate;</span>
 	}
 
 	/**
@@ -224,8 +236,8 @@ public class SwtGraphicContext implements GraphicContext {
 	 */
 
 	public SwtGraphicContext delegate(GC newDelegate) {
-<span class="fc" id="L227">		setDelegate(newDelegate);</span>
-<span class="fc" id="L228">		return this;</span>
+<span class="fc" id="L239">		setDelegate(newDelegate);</span>
+<span class="fc" id="L240">		return this;</span>
 	}
 
 	/**
@@ -235,8 +247,8 @@ public class SwtGraphicContext implements GraphicContext {
 	 */
 
 	public void setDelegate(GC delegate) {
-<span class="fc" id="L238">		this.delegate = Objects.requireNonNull(delegate);</span>
-<span class="fc" id="L239">	}</span>
+<span class="fc" id="L250">		this.delegate = Objects.requireNonNull(delegate);</span>
+<span class="fc" id="L251">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -85,11 +85,11 @@ public class ChartControl extends Canvas {
 	 */
 
 	public void setModel(Chart model) {
-<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		if (this.model != null) {</span>
-<span class="nc" id="L89">			this.model.removeRefreshListener(this.refreshListener);</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">		if (this.model != null) {</span>
+<span class="fc" id="L89">			this.model.removeRefreshListener(this.refreshListener);</span>
 		}
 <span class="fc" id="L91">		this.model = model;</span>
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">		if (this.model != null) {</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">		if (this.model != null) {</span>
 <span class="fc" id="L93">			this.model.addRefreshListener(this.refreshListener);</span>
 		}
 <span class="fc" id="L95">		redraw();</span>

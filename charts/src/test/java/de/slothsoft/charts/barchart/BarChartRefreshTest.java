@@ -37,7 +37,27 @@ public class BarChartRefreshTest extends AbstractChartRefreshTest<BarChart> {
 
 				data("setDefaultBarColor", chart -> chart.setDefaultBarColor(0xFFABCDEF)),
 
-				data("defaultBarColor", chart -> chart.defaultBarColor(0xFFABCDEF))
+				data("defaultBarColor", chart -> chart.defaultBarColor(0xFFABCDEF)),
+
+				data("Axis.setTickSize", chart -> chart.getAxis().setTickSize(5)),
+
+				data("Axis.tickSize", chart -> chart.getAxis().tickSize(5)),
+
+				data("Axis.setBigTickSize", chart -> chart.getAxis().setBigTickSize(5)),
+
+				data("Axis.bigTickSize", chart -> chart.getAxis().bigTickSize(5)),
+
+				data("Axis.setTickSteps", chart -> chart.getAxis().setTickSteps(5)),
+
+				data("Axis.tickSteps", chart -> chart.getAxis().tickSteps(5)),
+
+				data("Axis.setBigTickSteps", chart -> chart.getAxis().setBigTickSteps(3)),
+
+				data("Axis.bigTickSteps", chart -> chart.getAxis().bigTickSteps(3)),
+
+				data("Axis.arrowSize", chart -> chart.getAxis().arrowSize(5)),
+
+				data("Axis.setArrowSize", chart -> chart.getAxis().setArrowSize(5))
 
 		));
 		return result;

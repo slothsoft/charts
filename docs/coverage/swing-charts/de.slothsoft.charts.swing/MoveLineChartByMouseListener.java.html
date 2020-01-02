@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>MoveLineChartByMouseListener.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">swing-charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.swing</a> &gt; <span class="el_source">MoveLineChartByMouseListener.java</span></div><h1>MoveLineChartByMouseListener.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.swing;
+
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.util.Objects;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.linechart.LineChart;
+
+/**
+ * A {@link MouseListener}, {@link MouseMotionListener} and {@link MouseWheelListener} to
+ * move the diagram with the mouse. It's advised to add this listener by using the
+ * {@link MoveLineChartByMouseListener#hookToControl(Component, LineChart)} method.
+ *
+ * @author Stef Schulz
+ * @since 0.2.0
+ */
+
+public class MoveLineChartByMouseListener implements MouseListener, MouseMotionListener, MouseWheelListener {
+
+	/**
+	 * Creates a new {@link MoveLineChartByMouseListener}, hooks it to a control (not
+	 * necessary a {@link ChartControl}, but that's probably a good idea) and returns the
+	 * brand new instance.
+	 *
+	 * @param control the control, probably a {@link ChartControl}
+	 * @param chart the displayed chart
+	 * @return the brand new listener
+	 */
+
+	public static MoveLineChartByMouseListener hookToControl(Component control, LineChart chart) {
+<span class="nc" id="L38">		final MoveLineChartByMouseListener result = new MoveLineChartByMouseListener(chart);</span>
+<span class="nc" id="L39">		control.addMouseListener(result);</span>
+<span class="nc" id="L40">		control.addMouseMotionListener(result);</span>
+<span class="nc" id="L41">		control.addMouseWheelListener(result);</span>
+<span class="nc" id="L42">		return result;</span>
+	}
+
+<span class="fc" id="L45">	static final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);</span>
+
+	private final LineChart chart;
+	boolean mouseDown;
+	private int mouseDownX;
+	private int mouseDownY;
+
+<span class="fc" id="L52">	private int movementMouseButton = MouseEvent.BUTTON1;</span>
+
+	/**
+	 * Constructor.
+	 *
+	 * @param chart the chart this listener uses
+	 */
+
+<span class="fc" id="L60">	public MoveLineChartByMouseListener(LineChart chart) {</span>
+<span class="fc" id="L61">		this.chart = Objects.requireNonNull(chart);</span>
+<span class="fc" id="L62">	}</span>
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+<span class="pc bpc" id="L66" title="1 of 4 branches missed.">		if (isInGraphArea(e) &amp;&amp; e.getButton() == this.movementMouseButton) {</span>
+<span class="fc" id="L67">			this.mouseDown = true;</span>
+<span class="fc" id="L68">			this.mouseDownX = e.getX();</span>
+<span class="fc" id="L69">			this.mouseDownY = e.getY();</span>
+		}
+<span class="fc" id="L71">	}</span>
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">		if (e.getButton() == this.movementMouseButton) {</span>
+<span class="fc" id="L76">			this.mouseDown = false;</span>
+		}
+<span class="fc" id="L78">	}</span>
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+<span class="fc" id="L82">		final Component control = e.getComponent();</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">		if (isInGraphArea(e)) {</span>
+<span class="fc" id="L84">			control.setCursor(HAND_CURSOR);</span>
+		} else {
+<span class="fc" id="L86">			control.setCursor(null);</span>
+		}
+<span class="fc" id="L88">	}</span>
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+<span class="fc bfc" id="L92" title="All 2 branches covered.">		if (this.mouseDown) {</span>
+<span class="fc" id="L93">			final int diffX = this.mouseDownX - e.getX();</span>
+<span class="fc" id="L94">			final int diffY = e.getY() - this.mouseDownY; // for line charts y is flipped</span>
+
+<span class="fc" id="L96">			this.chart.moveDisplayedAreaByChartCoordinates(diffX, diffY);</span>
+
+<span class="fc" id="L98">			this.mouseDownX = e.getX();</span>
+<span class="fc" id="L99">			this.mouseDownY = e.getY();</span>
+		}
+<span class="fc" id="L101">	}</span>
+
+	private boolean isInGraphArea(MouseEvent e) {
+<span class="fc" id="L104">		final Component control = e.getComponent();</span>
+<span class="fc" id="L105">		final Dimension controlSize = control.getSize();</span>
+<span class="fc" id="L106">		final Area actualArea = this.chart.calculateGraphArea(controlSize.getWidth(), controlSize.getHeight());</span>
+<span class="fc" id="L107">		return actualArea.containsPoint(e.getX(), e.getY());</span>
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">		if (isInGraphArea(e)) {</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">			if (e.getWheelRotation() &lt; 0) {</span>
+<span class="fc" id="L114">				this.chart.zoomDisplayedAreaInByChartCoordinates(e.getX(), e.getY());</span>
+			} else {
+<span class="fc" id="L116">				this.chart.zoomDisplayedAreaOutByChartCoordinates(e.getX(), e.getY());</span>
+			}
+		}
+<span class="fc" id="L119">	}</span>
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// nothing to do yet
+<span class="nc" id="L124">	}</span>
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// nothing to do yet
+<span class="nc" id="L129">	}</span>
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// nothing to do yet
+<span class="nc" id="L134">	}</span>
+
+	/**
+	 * Returns the button that needs to be pressed to move the chart.
+	 * &lt;ul&gt;
+	 * &lt;li&gt;&lt;code&gt;MouseEvent.BUTTON1&lt;/code&gt;&lt;/li&gt;
+	 * &lt;li&gt;&lt;code&gt;MouseEvent.BUTTON2&lt;/code&gt;&lt;/li&gt;
+	 * &lt;li&gt;&lt;code&gt;MouseEvent.BUTTON3&lt;/code&gt;&lt;/li&gt;
+	 * &lt;/ul&gt;
+	 *
+	 * @return the mouse button
+	 */
+
+	public int getMovementMouseButton() {
+<span class="fc" id="L148">		return this.movementMouseButton;</span>
+	}
+
+	/**
+	 * Sets the button that needs to be pressed to move the chart.
+	 * &lt;ul&gt;
+	 * &lt;li&gt;&lt;code&gt;MouseEvent.BUTTON1&lt;/code&gt;&lt;/li&gt;
+	 * &lt;li&gt;&lt;code&gt;MouseEvent.BUTTON2&lt;/code&gt;&lt;/li&gt;
+	 * &lt;li&gt;&lt;code&gt;MouseEvent.BUTTON3&lt;/code&gt;&lt;/li&gt;
+	 * &lt;/ul&gt;
+	 *
+	 * @param newMovementMouseButton the mouse button
+	 * @return this instance
+	 */
+
+	public MoveLineChartByMouseListener movementMouseButton(int newMovementMouseButton) {
+<span class="fc" id="L164">		setMovementMouseButton(newMovementMouseButton);</span>
+<span class="fc" id="L165">		return this;</span>
+	}
+
+	/**
+	 * Sets the button that needs to be pressed to move the chart.
+	 * &lt;ul&gt;
+	 * &lt;li&gt;&lt;code&gt;MouseEvent.BUTTON1&lt;/code&gt;&lt;/li&gt;
+	 * &lt;li&gt;&lt;code&gt;MouseEvent.BUTTON2&lt;/code&gt;&lt;/li&gt;
+	 * &lt;li&gt;&lt;code&gt;MouseEvent.BUTTON3&lt;/code&gt;&lt;/li&gt;
+	 * &lt;/ul&gt;
+	 *
+	 * @param movementMouseButton the mouse button
+	 */
+
+	public void setMovementMouseButton(int movementMouseButton) {
+<span class="fc" id="L180">		this.movementMouseButton = movementMouseButton;</span>
+<span class="fc" id="L181">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

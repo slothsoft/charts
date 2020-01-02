@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -145,7 +145,9 @@ extends <a href="../../../../de/slothsoft/charts/Chart.html" title="class in de.
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#LineChart--">LineChart</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#LineChart--">LineChart</a></span>()</code>
+<div class="block">Default constructor.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -175,67 +177,73 @@ extends <a href="../../../../de/slothsoft/charts/Chart.html" title="class in de.
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#calculateDisplayedArea--">calculateDisplayedArea</a></span>()</code>
+<div class="block">Calculates the displayed area via <a href="../../../../de/slothsoft/charts/linechart/LineChart.html#getDisplayedArea--"><code>getDisplayedArea()</code></a> or the added lines.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#convertToChartX-double-">convertToChartX</a></span>(double&nbsp;graphX)</code>
 <div class="block">Converts a graph coordinate to a chart one.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#convertToChartY-double-">convertToChartY</a></span>(double&nbsp;graphY)</code>
 <div class="block">Converts a graph coordinate to a chart one.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#convertToGraphCoordinates-double-double-">convertToGraphCoordinates</a></span>(double&nbsp;chartX,
                          double&nbsp;chartY)</code>
 <div class="block">Converts chart coordinates to a graph ones.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#convertToGraphX-double-">convertToGraphX</a></span>(double&nbsp;chartX)</code>
 <div class="block">Converts a chart coordinate to a graph one.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#convertToGraphY-double-">convertToGraphY</a></span>(double&nbsp;chartY)</code>
 <div class="block">Converts a chart coordinate to a graph one.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#displayedArea-de.slothsoft.charts.Area-">displayedArea</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;newDisplayedArea)</code>
 <div class="block">Sets the displayed area of this chart, i.e.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#getDisplayedArea--">getDisplayedArea</a></span>()</code>
 <div class="block">Returns the displayed area of this chart, i.e.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/linechart/XAxis.html" title="class in de.slothsoft.charts.linechart">XAxis</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#getXAxis--">getXAxis</a></span>()</code>
 <div class="block">Returns the x axis of this line chart.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/linechart/YAxis.html" title="class in de.slothsoft.charts.linechart">YAxis</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#getYAxis--">getYAxis</a></span>()</code>
 <div class="block">Returns the y axis of this line chart.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#getZoomFactor--">getZoomFactor</a></span>()</code>
 <div class="block">Returns the factor which should be used to zoom the graph area.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#moveDisplayedAreaByChartCoordinates-double-double-">moveDisplayedAreaByChartCoordinates</a></span>(double&nbsp;xIncrement,
                                    double&nbsp;yIncrement)</code>
@@ -243,72 +251,72 @@ extends <a href="../../../../de/slothsoft/charts/Chart.html" title="class in de.
  entire chart.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#paintOn-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.PaintInstructions-">paintOn</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
        <a href="../../../../de/slothsoft/charts/PaintInstructions.html" title="class in de.slothsoft.charts">PaintInstructions</a>&nbsp;instructions)</code>
 <div class="block">Paints the current content onto the graphic context.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#removeLine-de.slothsoft.charts.linechart.Line-">removeLine</a></span>(<a href="../../../../de/slothsoft/charts/linechart/Line.html" title="class in de.slothsoft.charts.linechart">Line</a>&nbsp;line)</code>
 <div class="block">Removes a line from the chart.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#removeLines-de.slothsoft.charts.linechart.Line...-">removeLines</a></span>(<a href="../../../../de/slothsoft/charts/linechart/Line.html" title="class in de.slothsoft.charts.linechart">Line</a>...&nbsp;removedLines)</code>
 <div class="block">Removes some lines to the chart.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#resetDisplayedArea--">resetDisplayedArea</a></span>()</code>
 <div class="block">Resets the displayed area.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#setDisplayedArea-de.slothsoft.charts.Area-">setDisplayedArea</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;displayedArea)</code>
 <div class="block">Sets the displayed area of this chart, i.e.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#setZoomFactor-double-">setZoomFactor</a></span>(double&nbsp;zoomFactor)</code>
 <div class="block">Sets the factor which should be used to zoom the graph area.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#zoomDisplayedAreaInByChartCoordinates-double-double-">zoomDisplayedAreaInByChartCoordinates</a></span>(double&nbsp;chartX,
                                      double&nbsp;chartY)</code>
 <div class="block">Zooms the graph area in using the chart's coordinates.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#zoomDisplayedAreaInByGraphCoordinates-double-double-">zoomDisplayedAreaInByGraphCoordinates</a></span>(double&nbsp;graphX,
                                      double&nbsp;graphY)</code>
 <div class="block">Zooms the graph area in using the graph's coordinates.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#zoomDisplayedAreaOutByChartCoordinates-double-double-">zoomDisplayedAreaOutByChartCoordinates</a></span>(double&nbsp;chartX,
                                       double&nbsp;chartY)</code>
 <div class="block">Zooms the graph area out using the chart's coordinates.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#zoomDisplayedAreaOutByGraphCoordinates-double-double-">zoomDisplayedAreaOutByGraphCoordinates</a></span>(double&nbsp;graphX,
                                       double&nbsp;graphY)</code>
 <div class="block">Zooms the graph area out using the graph's coordinates.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/linechart/LineChart.html" title="class in de.slothsoft.charts.linechart">LineChart</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#zoomFactor-double-">zoomFactor</a></span>(double&nbsp;newZoomFactor)</code>
 <div class="block">Sets the factor which should be used to zoom the graph area.</div>
@@ -350,6 +358,7 @@ extends <a href="../../../../de/slothsoft/charts/Chart.html" title="class in de.
 <li class="blockList">
 <h4>LineChart</h4>
 <pre>public&nbsp;LineChart()</pre>
+<div class="block">Default constructor.</div>
 </li>
 </ul>
 </li>
@@ -378,6 +387,26 @@ extends <a href="../../../../de/slothsoft/charts/Chart.html" title="class in de.
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>gc</code> - graphic context; coordinates are relative to the screen</dd>
 <dd><code>instructions</code> - additional instructions like the area to paint on</dd>
+</dl>
+</li>
+</ul>
+<a name="calculateDisplayedArea--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>calculateDisplayedArea</h4>
+<pre>public&nbsp;<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;calculateDisplayedArea()</pre>
+<div class="block">Calculates the displayed area via <a href="../../../../de/slothsoft/charts/linechart/LineChart.html#getDisplayedArea--"><code>getDisplayedArea()</code></a> or the added lines.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the displayed area</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>0.2.0</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#getDisplayedArea--"><code>getDisplayedArea()</code></a>, 
+<a href="../../../../de/slothsoft/charts/linechart/LineChart.html#addLine-de.slothsoft.charts.linechart.Line-"><code>addLine(Line)</code></a>, 
+<a href="../../../../de/slothsoft/charts/linechart/LineChart.html#addLines-de.slothsoft.charts.linechart.Line...-"><code>addLines(Line[])</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -874,6 +903,6 @@ extends <a href="../../../../de/slothsoft/charts/Chart.html" title="class in de.
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2019. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2020. All rights reserved.</small></p>
 </body>
 </html>

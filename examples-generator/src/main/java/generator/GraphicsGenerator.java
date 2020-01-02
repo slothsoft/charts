@@ -21,7 +21,7 @@ import generator.internal.ChartWriter;
 public class GraphicsGenerator {
 
 	private static final Path TARGET_FOLDER = Paths.get("target/");
-	private static final boolean OPEN_FILES = true;
+	private static final boolean OPEN_FILES = false;
 
 	public static void main(String... args) throws IOException {
 		Path targetFolder = TARGET_FOLDER;
@@ -32,7 +32,7 @@ public class GraphicsGenerator {
 		System.out.println("GraphicsGenerator: " + targetFolder.toAbsolutePath());
 		final StringBuilder overviewPage = new StringBuilder();
 		overviewPage.append(
-				"These images are generated using [these methods](https://github.com/slothsoft/charts/blob/master/gui-tests/src/main/java/de/slothsoft/charts/test/AllMethodsChart.java).");
+				"These images are generated using [these methods](https://github.com/slothsoft/charts/blob/master/gui-tests/src/main/java/de/slothsoft/charts/test/AllMethodsChart.java).\n\n");
 
 		// generate images and fill the table
 

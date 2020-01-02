@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Graphics2DGraphicContext.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">swing-charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.swing</a> &gt; <span class="el_source">Graphics2DGraphicContext.java</span></div><h1>Graphics2DGraphicContext.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.swing;
+
+import java.awt.Color;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.util.Objects;
+
+import de.slothsoft.charts.Area;
+import de.slothsoft.charts.Font;
+import de.slothsoft.charts.GraphicContext;
+
+/**
+ * A {@link GraphicContext} implementation using the Swing {@link Graphics2D} to draw on
+ * whatever you like.
+ *
+ * @author Stef Schulz
+ * @since 0.2.0
+ */
+
+public class Graphics2DGraphicContext implements GraphicContext {
+
+	private Graphics2D delegate;
+
+	private Font fontAsEnum;
+
+<span class="fc" id="L26">	private double scaleX = 1;</span>
+<span class="fc" id="L27">	private double scaleY = 1;</span>
+
+<span class="fc" id="L29">	public Graphics2DGraphicContext(Graphics2D graphics) {</span>
+<span class="fc" id="L30">		this.delegate = Objects.requireNonNull(graphics);</span>
+<span class="fc" id="L31">	}</span>
+
+	@Override
+	public void setColor(int color) {
+<span class="fc" id="L35">		this.delegate.setColor(new Color(color, true));</span>
+<span class="fc" id="L36">	}</span>
+
+	@Override
+	public int getColor() {
+<span class="fc" id="L40">		return this.delegate.getColor().getRGB();</span>
+	}
+
+	@Override
+	public void setFont(Font fontAsEnum) {
+<span class="fc" id="L45">		this.fontAsEnum = fontAsEnum;</span>
+<span class="fc" id="L46">		this.delegate.setFont(this.delegate.getFont().deriveFont(createFontStyle(fontAsEnum), fontAsEnum.getSize()));</span>
+<span class="fc" id="L47">	}</span>
+
+	private static int createFontStyle(Font enumFont) {
+<span class="fc" id="L50">		int result = 0;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">		if (enumFont.isBold()) {</span>
+<span class="fc" id="L52">			result |= java.awt.Font.BOLD;</span>
+		}
+<span class="fc" id="L54">		return result;</span>
+	}
+
+	@Override
+	public Font getFont() {
+<span class="fc" id="L59">		return this.fontAsEnum;</span>
+	}
+
+	@Override
+	public Area calculateTextSize(String text) {
+<span class="fc" id="L64">		final FontMetrics fontMetrics = this.delegate.getFontMetrics();</span>
+<span class="fc" id="L65">		return new Area(fontMetrics.stringWidth(text), fontMetrics.getHeight());</span>
+	}
+
+	@Override
+	public void translate(double x, double y) {
+<span class="fc" id="L70">		this.delegate.translate(x, y);</span>
+<span class="fc" id="L71">	}</span>
+
+	@Override
+	public void scale(double x, double y) {
+<span class="fc" id="L75">		this.scaleX *= x;</span>
+<span class="fc" id="L76">		this.scaleY *= y;</span>
+<span class="fc" id="L77">	}</span>
+
+	@Override
+	public void clip(Area rect) {
+<span class="fc bfc" id="L81" title="All 2 branches covered.">		if (rect == null) {</span>
+<span class="fc" id="L82">			this.delegate.setClip(null);</span>
+		} else {
+<span class="fc" id="L84">			this.delegate.setClip(convertToX(rect.getStartX()), convertToY(rect.getStartY()),</span>
+<span class="fc" id="L85">					convertToX(rect.calculateWidth()), convertToY(rect.calculateHeight()));</span>
+		}
+<span class="fc" id="L87">	}</span>
+
+	private int convertToX(double x) {
+<span class="fc" id="L90">		return (int) (this.scaleX * x);</span>
+	}
+
+	private int convertToY(double Y) {
+<span class="fc" id="L94">		return (int) (this.scaleY * Y);</span>
+	}
+
+	@Override
+	public void drawLine(double x1, double y1, double x2, double y2) {
+<span class="fc" id="L99">		this.delegate.drawLine(convertToX(x1), convertToY(y1), convertToX(x2), convertToX(y2));</span>
+<span class="fc" id="L100">	}</span>
+
+	@Override
+	public void fillRectangle(double x, double y, double width, double height) {
+<span class="fc" id="L104">		this.delegate.fillRect(convertToX(x), convertToY(y), convertToX(width), convertToY(height));</span>
+<span class="fc" id="L105">	}</span>
+
+	@Override
+	public void drawPolyline(double[] x, double[] y) {
+<span class="fc" id="L109">		this.delegate.drawPolyline(toIntArrayX(x), toIntArrayY(y), x.length);</span>
+<span class="fc" id="L110">	}</span>
+
+	private int[] toIntArrayX(double[] input) {
+<span class="fc" id="L113">		final int[] result = new int[input.length];</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">		for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L115">			result[i] = convertToX(input[i]);</span>
+		}
+<span class="fc" id="L117">		return result;</span>
+	}
+
+	private int[] toIntArrayY(double[] input) {
+<span class="fc" id="L121">		final int[] result = new int[input.length];</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">		for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L123">			result[i] = convertToY(input[i]);</span>
+		}
+<span class="fc" id="L125">		return result;</span>
+	}
+
+	@Override
+	public void fillPolygon(double[] x, double[] y) {
+<span class="fc" id="L130">		this.delegate.fillPolygon(toIntArrayX(x), toIntArrayY(y), x.length);</span>
+<span class="fc" id="L131">	}</span>
+
+	@Override
+	public void drawText(double x, double y, String text) {
+<span class="fc" id="L135">		this.delegate.drawString(text, convertToX(x), convertToY(y) + this.delegate.getFontMetrics().getAscent());</span>
+<span class="fc" id="L136">	}</span>
+
+	@Override
+	public void fillOval(double x, double y, double width, double height) {
+<span class="fc" id="L140">		this.delegate.fillOval(convertToX(x), convertToY(y), convertToX(width), convertToY(height));</span>
+<span class="fc" id="L141">	}</span>
+
+	@Override
+	public void fillArc(double x, double y, double width, double height, double startAngle, double arcAngle) {
+<span class="fc" id="L145">		this.delegate.fillArc(convertToX(x), convertToY(y), convertToX(width), convertToY(height), (int) startAngle,</span>
+				(int) arcAngle);
+<span class="fc" id="L147">	}</span>
+
+	/**
+	 * Returns the Graphics2D.
+	 *
+	 * @return the Graphics2D to draw on; never null
+	 */
+
+	public Graphics2D getDelegate() {
+<span class="fc" id="L156">		return this.delegate;</span>
+	}
+
+	/**
+	 * Sets the Graphics2D.
+	 *
+	 * @param newDelegate the Graphics2D to draw on; cannot be null
+	 * @return this instance
+	 */
+
+	public Graphics2DGraphicContext delegate(Graphics2D newDelegate) {
+<span class="fc" id="L167">		setDelegate(newDelegate);</span>
+<span class="fc" id="L168">		return this;</span>
+	}
+
+	/**
+	 * Sets the Graphics2D.
+	 *
+	 * @param delegate the Graphics2D to draw on; cannot be null
+	 */
+
+	public void setDelegate(Graphics2D delegate) {
+<span class="fc" id="L178">		this.delegate = Objects.requireNonNull(delegate);</span>
+<span class="fc" id="L179">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -213,52 +213,43 @@ implements <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/LogGraphicContext.html#fillRectangle-double-double-double-double-">fillRectangle</a></span>(double&nbsp;x,
-             double&nbsp;y,
-             double&nbsp;width,
-             double&nbsp;height)</code>
-<div class="block">Paints a filled rectangle.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/LogGraphicContext.html#getColor--">getColor</a></span>()</code>
 <div class="block">Returns the color as ARGB int, e.g.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/LogGraphicContext.html#getFont--">getFont</a></span>()</code>
 <div class="block">Returns the font as an enum with the font properties as hints for the actual font
  used by the GUI.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/LogGraphicContext.html#getLog--">getLog</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/LogGraphicContext.html#scale-double-double-">scale</a></span>(double&nbsp;x,
      double&nbsp;y)</code>
 <div class="block">Scales the drawing canvas with the factor.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/LogGraphicContext.html#setColor-int-">setColor</a></span>(int&nbsp;color)</code>
 <div class="block">Sets the color as ARGB int, e.g.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/LogGraphicContext.html#setFont-de.slothsoft.charts.Font-">setFont</a></span>(<a href="../../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a>&nbsp;font)</code>
 <div class="block">Sets the font as an enum with the font properties as hints for the actual font used
  by the GUI.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/internal/LogGraphicContext.html#translate-double-double-">translate</a></span>(double&nbsp;x,
          double&nbsp;y)</code>
@@ -278,7 +269,7 @@ implements <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;de.slothsoft.charts.<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></h3>
-<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#drawLine-double-double-double-double-">drawLine</a>, <a href="../../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-de.slothsoft.charts.Area-">fillRectangle</a>, <a href="../../../../de/slothsoft/charts/GraphicContext.html#scale-double-">scale</a></code></li>
+<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#drawLine-double-double-double-double-">drawLine</a>, <a href="../../../../de/slothsoft/charts/GraphicContext.html#drawRectangle-de.slothsoft.charts.Area-">drawRectangle</a>, <a href="../../../../de/slothsoft/charts/GraphicContext.html#drawRectangle-double-double-double-double-">drawRectangle</a>, <a href="../../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-de.slothsoft.charts.Area-">fillRectangle</a>, <a href="../../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-double-double-double-double-">fillRectangle</a>, <a href="../../../../de/slothsoft/charts/GraphicContext.html#scale-double-">scale</a></code></li>
 </ul>
 </li>
 </ul>
@@ -436,29 +427,6 @@ implements <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="
 <dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#clip-de.slothsoft.charts.Area-">clip</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>rect</code> - the clipping area</dd>
-</dl>
-</li>
-</ul>
-<a name="fillRectangle-double-double-double-double-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>fillRectangle</h4>
-<pre>public&nbsp;void&nbsp;fillRectangle(double&nbsp;x,
-                          double&nbsp;y,
-                          double&nbsp;width,
-                          double&nbsp;height)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-double-double-double-double-">GraphicContext</a></code></span></div>
-<div class="block">Paints a filled rectangle.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-double-double-double-double-">fillRectangle</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>x</code> - the rectangle's x</dd>
-<dd><code>y</code> - the rectangle's y</dd>
-<dd><code>width</code> - the rectangle's width</dd>
-<dd><code>height</code> - the rectangle's height</dd>
 </dl>
 </li>
 </ul>
@@ -682,6 +650,6 @@ implements <a href="../../../../de/slothsoft/charts/GraphicContext.html" title="
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2019. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2020. All rights reserved.</small></p>
 </body>
 </html>

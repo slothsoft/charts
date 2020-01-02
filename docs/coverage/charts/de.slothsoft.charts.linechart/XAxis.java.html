@@ -6,6 +6,7 @@ import java.util.function.DoubleConsumer;
 import de.slothsoft.charts.Area;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.common.Axis;
 
 /**
  * The X axis of a {@link LineChart}.
@@ -20,46 +21,57 @@ public class XAxis extends Axis {
 	 * The position of the X axis.
 	 */
 
-<span class="fc" id="L23">	public enum Position {</span>
+<span class="fc" id="L24">	public enum Position {</span>
 		/**
 		 * The default behavior is to have the axis on y=0 if that is visible, else on the
 		 * top or bottom border of the graph depending were it is in relation to the
 		 * visible area.
 		 */
-<span class="fc" id="L29">		DEFAULT {</span>
+<span class="fc" id="L30">		DEFAULT {</span>
 			@Override
 			void paintAxis(DoubleConsumer axisPainter, double yMin, double y0, double yMax) {
-<span class="fc" id="L32">				axisPainter.accept(Math.max(Math.min(y0, yMin), yMax));</span>
-<span class="fc" id="L33">			}</span>
+<span class="fc" id="L33">				axisPainter.accept(Math.max(Math.min(y0, yMin), yMax));</span>
+<span class="fc" id="L34">			}</span>
 		},
 		/** Displays the axis on the top of the visible graph area. */
-<span class="fc" id="L36">		TOP {</span>
+<span class="fc" id="L37">		TOP {</span>
 			@Override
 			void paintAxis(DoubleConsumer axisPainter, double yMin, double y0, double yMax) {
-<span class="fc" id="L39">				axisPainter.accept(yMax);</span>
-<span class="fc" id="L40">			}</span>
+<span class="fc" id="L40">				axisPainter.accept(yMax);</span>
+<span class="fc" id="L41">			}</span>
 		},
 		/** Displays the axis on the bottom of the visible graph area. */
-<span class="fc" id="L43">		BOTTOM {</span>
+<span class="fc" id="L44">		BOTTOM {</span>
 			@Override
 			void paintAxis(DoubleConsumer axisPainter, double yMin, double y0, double yMax) {
-<span class="fc" id="L46">				axisPainter.accept(yMin);</span>
-<span class="fc" id="L47">			}</span>
+<span class="fc" id="L47">				axisPainter.accept(yMin);</span>
+<span class="fc" id="L48">			}</span>
 		},
 		/** Displays the axis on the top and bottom of the visible graph area. */
-<span class="fc" id="L50">		TOP_AND_BOTTOM {</span>
+<span class="fc" id="L51">		TOP_AND_BOTTOM {</span>
 			@Override
 			void paintAxis(DoubleConsumer axisPainter, double yMin, double y0, double yMax) {
-<span class="fc" id="L53">				axisPainter.accept(yMin);</span>
-<span class="fc" id="L54">				axisPainter.accept(yMax);</span>
-<span class="fc" id="L55">			}</span>
+<span class="fc" id="L54">				axisPainter.accept(yMin);</span>
+<span class="fc" id="L55">				axisPainter.accept(yMax);</span>
+<span class="fc" id="L56">			}</span>
 		},
 		/** Displays the axis on y=0. */
-<span class="fc" id="L58">		Y0 {</span>
+<span class="fc" id="L59">		Y0 {</span>
 			@Override
 			void paintAxis(DoubleConsumer axisPainter, double yMin, double y0, double yMax) {
-<span class="fc" id="L61">				axisPainter.accept(y0);</span>
-<span class="fc" id="L62">			}</span>
+<span class="fc" id="L62">				axisPainter.accept(y0);</span>
+<span class="fc" id="L63">			}</span>
+		},
+		/**
+		 * Does not displays the axis.
+		 *
+		 * @since 0.2.0
+		 */
+<span class="fc" id="L70">		NOWHERE {</span>
+			@Override
+			void paintAxis(DoubleConsumer axisPainter, double yMin, double y0, double yMax) {
+				// Don't do it.
+<span class="nc" id="L74">			}</span>
 		};
 
 		abstract void paintAxis(DoubleConsumer axisPainter, double yMin, double y0, double yMax);
@@ -67,55 +79,27 @@ public class XAxis extends Axis {
 	}
 
 	private final LineChart chart;
-<span class="fc" id="L70">	private XAxis.Position position = XAxis.Position.DEFAULT;</span>
+<span class="fc" id="L82">	private XAxis.Position position = XAxis.Position.DEFAULT;</span>
 
 	/**
-	 * Constructor.
+	 * Constructor for a {@link LineChart}.
 	 *
 	 * @param chart the chart this axis belongs to
 	 */
 
-<span class="fc" id="L78">	public XAxis(LineChart chart) {</span>
-<span class="fc" id="L79">		this.chart = Objects.requireNonNull(chart);</span>
-<span class="fc" id="L80">	}</span>
+	public XAxis(LineChart chart) {
+<span class="fc" id="L91">		super(chart::convertToChartX, chart::convertToChartY);</span>
+<span class="fc" id="L92">		this.chart = chart;</span>
+<span class="fc" id="L93">	}</span>
 
 	@Override
-	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
-<span class="fc" id="L84">		final Area area = this.chart.calculateDisplayedArea();</span>
-<span class="fc" id="L85">		final double y0 = this.chart.convertToChartY(0);</span>
-<span class="fc" id="L86">		final double xMin = this.chart.convertToChartX(area.getStartX());</span>
-<span class="fc" id="L87">		final double xMax = this.chart.convertToChartX(area.getEndX());</span>
-
-<span class="fc" id="L89">		final DoubleConsumer axisPainter = y -&gt; {</span>
-			// paint the line
-
-<span class="fc" id="L92">			gc.setColor(0xFF000000);</span>
-<span class="fc" id="L93">			gc.drawLine(xMin, y, xMax, y);</span>
-
-			// paint the big and little ticks
-
-<span class="fc" id="L97">			final int end = (int) Math.ceil(area.getEndX());</span>
-<span class="fc bfc" id="L98" title="All 2 branches covered.">			for (int i = (int) Math.floor(area.getStartX()); i &lt; end; i++) {</span>
-<span class="fc" id="L99">				final double x = this.chart.convertToChartX(i);</span>
-<span class="pc bpc" id="L100" title="1 of 2 branches missed.">				if (i % this.tickSteps == 0) {</span>
-<span class="fc" id="L101">					gc.drawLine(x, y - this.tickSize, x, y + this.tickSize);</span>
-				}
-<span class="fc bfc" id="L103" title="All 2 branches covered.">				if (i % this.bigTickSteps == 0) {</span>
-<span class="fc" id="L104">					gc.drawLine(x, y - this.bigTickSize, x, y + this.bigTickSize);</span>
-				}
-			}
-
-			// paint the arrow at the end
-
-<span class="fc" id="L110">			final double[] arrowX = {xMax, xMax - this.arrowSize, xMax - this.arrowSize};</span>
-<span class="fc" id="L111">			final double[] arrowY = {y, y + this.arrowSize, y - this.arrowSize};</span>
-<span class="fc" id="L112">			gc.fillPolygon(arrowX, arrowY);</span>
-<span class="fc" id="L113">		};</span>
-
-<span class="fc" id="L115">		final double yMin = this.chart.convertToChartY(area.getStartY());</span>
-<span class="fc" id="L116">		final double yMax = this.chart.convertToChartY(area.getEndY());</span>
-<span class="fc" id="L117">		this.position.paintAxis(axisPainter, yMin, y0, yMax);</span>
-<span class="fc" id="L118">	}</span>
+	public void paintOn(GraphicContext gc, PaintInstructions abc) {
+<span class="fc" id="L97">		final Area area = this.chart.calculateDisplayedArea();</span>
+<span class="fc" id="L98">		final double y0 = this.chartYConverter.applyAsDouble(0);</span>
+<span class="fc" id="L99">		final double yMin = this.chartYConverter.applyAsDouble(area.getStartY());</span>
+<span class="fc" id="L100">		final double yMax = this.chartYConverter.applyAsDouble(area.getEndY());</span>
+<span class="fc" id="L101">		this.position.paintAxis(y -&gt; paintHorizontalAxis(gc, area.getStartX(), area.getEndX(), y), yMin, y0, yMax);</span>
+<span class="fc" id="L102">	}</span>
 
 	/**
 	 * Returns the position of the x axis.
@@ -124,7 +108,7 @@ public class XAxis extends Axis {
 	 */
 
 	public XAxis.Position getPosition() {
-<span class="fc" id="L127">		return this.position;</span>
+<span class="fc" id="L111">		return this.position;</span>
 	}
 
 	/**
@@ -135,8 +119,8 @@ public class XAxis extends Axis {
 	 */
 
 	public XAxis position(XAxis.Position newPosition) {
-<span class="fc" id="L138">		setPosition(newPosition);</span>
-<span class="fc" id="L139">		return this;</span>
+<span class="fc" id="L122">		setPosition(newPosition);</span>
+<span class="fc" id="L123">		return this;</span>
 	}
 
 	/**
@@ -146,12 +130,12 @@ public class XAxis extends Axis {
 	 */
 
 	public void setPosition(XAxis.Position position) {
-<span class="fc" id="L149">		final XAxis.Position oldPosition = this.position;</span>
-<span class="fc" id="L150">		this.position = Objects.requireNonNull(position);</span>
-<span class="fc bfc" id="L151" title="All 2 branches covered.">		if (oldPosition != position) {</span>
-<span class="fc" id="L152">			this.refreshListeners.fireRefreshNeeded();</span>
+<span class="fc" id="L133">		final XAxis.Position oldPosition = this.position;</span>
+<span class="fc" id="L134">		this.position = Objects.requireNonNull(position);</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">		if (oldPosition != position) {</span>
+<span class="fc" id="L136">			this.refreshListeners.fireRefreshNeeded();</span>
 		}
-<span class="fc" id="L154">	}</span>
+<span class="fc" id="L138">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

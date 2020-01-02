@@ -8,6 +8,7 @@ import de.slothsoft.charts.Area;
 import de.slothsoft.charts.Font;
 import de.slothsoft.charts.GraphicContext;
 import de.slothsoft.charts.PaintInstructions;
+import de.slothsoft.charts.barchart.BarChart;
 import de.slothsoft.charts.linechart.DataPointLine;
 import de.slothsoft.charts.linechart.FunctionLine;
 import de.slothsoft.charts.linechart.LineChart;
@@ -90,6 +91,14 @@ public abstract class AbstractGraphicContextSanityTest {
 	public void testPaintPieChart() throws Exception {
 		final PieChart chart = new PieChart();
 		chart.addSlices(1, 2, 3, 4, 5);
+
+		chart.paintOn(this.gc, new PaintInstructions(new Area(100, 100)));
+	}
+
+	@Test
+	public void testPaintBarChart() throws Exception {
+		final BarChart chart = new BarChart();
+		chart.addBars(1, 2, 3, 4, 5);
 
 		chart.paintOn(this.gc, new PaintInstructions(new Area(100, 100)));
 	}

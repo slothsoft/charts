@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Axis.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">charts</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.charts.common</a> &gt; <span class="el_source">Axis.java</span></div><h1>Axis.java</h1><pre class="source lang-java linenums">package de.slothsoft.charts.common;
+
+import java.util.Objects;
+import java.util.function.DoubleUnaryOperator;
+
+import de.slothsoft.charts.Chart;
+import de.slothsoft.charts.ChartPart;
+import de.slothsoft.charts.GraphicContext;
+import de.slothsoft.charts.RefreshListener;
+import de.slothsoft.charts.internal.RefreshListeners;
+
+/**
+ * The X or Y axis of a {@link Chart}. You have the following methods to implement this
+ * abstract class:
+ * &lt;ul&gt;
+ * &lt;li&gt;{@link #paintHorizontalAxis(GraphicContext, double, double, double)}&lt;/li&gt;
+ * &lt;li&gt;{@link #paintVerticalAxis(GraphicContext, double, double, double)}&lt;/li&gt;
+ * &lt;/ul&gt;
+ *
+ * @author Stef Schulz
+ * @since 0.1.0
+ */
+
+public abstract class Axis implements ChartPart {
+
+<span class="fc" id="L26">	protected final RefreshListeners refreshListeners = new RefreshListeners(this);</span>
+
+<span class="fc" id="L28">	int tickSteps = 1;</span>
+<span class="fc" id="L29">	int tickSize = 1;</span>
+<span class="fc" id="L30">	int bigTickSteps = 5;</span>
+<span class="fc" id="L31">	int bigTickSize = 3;</span>
+<span class="fc" id="L32">	double arrowSize = 3;</span>
+
+	protected DoubleUnaryOperator chartXConverter;
+	protected DoubleUnaryOperator chartYConverter;
+
+	/**
+	 * Creates an axis using no converters for the coordinates.
+	 */
+
+	public Axis() {
+<span class="nc" id="L42">		this(DoubleUnaryOperator.identity(), DoubleUnaryOperator.identity());</span>
+<span class="nc" id="L43">	}</span>
+
+	/**
+	 * Creates an axis using converters for the coordinates.
+	 *
+	 * @param chartXConverter converter for graph x to chart x
+	 * @param chartYConverter converter for graph y to chart y
+	 */
+
+<span class="fc" id="L52">	public Axis(DoubleUnaryOperator chartXConverter, DoubleUnaryOperator chartYConverter) {</span>
+<span class="fc" id="L53">		this.chartXConverter = Objects.requireNonNull(chartXConverter);</span>
+<span class="fc" id="L54">		this.chartYConverter = Objects.requireNonNull(chartYConverter);</span>
+<span class="fc" id="L55">	}</span>
+
+	/**
+	 * Paints the horizontal axis using the chart.
+	 *
+	 * @param gc the graphic context to draw on
+	 * @param graphStartX the graph's start x
+	 * @param graphEndX the graph's end x
+	 * @param y the y coordinate this axis get drawn on (chart coordinate!)
+	 */
+
+	protected void paintHorizontalAxis(GraphicContext gc, double graphStartX, double graphEndX, double y) {
+<span class="fc" id="L67">		final double xMin = this.chartXConverter.applyAsDouble(graphStartX);</span>
+<span class="fc" id="L68">		final double xMax = this.chartXConverter.applyAsDouble(graphEndX);</span>
+
+		// paint the line
+
+<span class="fc" id="L72">		gc.setColor(0xFF000000);</span>
+<span class="fc" id="L73">		gc.drawLine(xMin, y, xMax, y);</span>
+
+		// paint the big and little ticks
+
+<span class="fc" id="L77">		final int end = (int) Math.ceil(graphEndX);</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">		for (int i = (int) Math.floor(graphStartX); i &lt; end; i++) {</span>
+<span class="fc" id="L79">			final double x = this.chartXConverter.applyAsDouble(i);</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">			if (i % this.tickSteps == 0) {</span>
+<span class="fc" id="L81">				gc.drawLine(x, y - this.tickSize, x, y + this.tickSize);</span>
+			}
+<span class="fc bfc" id="L83" title="All 2 branches covered.">			if (i % this.bigTickSteps == 0) {</span>
+<span class="fc" id="L84">				gc.drawLine(x, y - this.bigTickSize, x, y + this.bigTickSize);</span>
+			}
+		}
+
+		// paint the arrow at the end
+
+<span class="fc" id="L90">		final double[] arrowX = {xMax, xMax - this.arrowSize, xMax - this.arrowSize};</span>
+<span class="fc" id="L91">		final double[] arrowY = {y, y + this.arrowSize, y - this.arrowSize};</span>
+<span class="fc" id="L92">		gc.fillPolygon(arrowX, arrowY);</span>
+<span class="fc" id="L93">	}</span>
+
+	/**
+	 * Paints the vertical axis using the chart.
+	 *
+	 * @param gc the graphic context to draw on
+	 * @param graphStartX the graph's start y
+	 * @param graphEndY the graph's end y
+	 * @param x the y coordinate this axis get drawn on (chart coordinate!)
+	 */
+	protected void paintVerticalAxis(GraphicContext gc, double graphStartX, double graphEndY, double x) {
+<span class="fc" id="L104">		final double yMin = this.chartYConverter.applyAsDouble(graphStartX);</span>
+<span class="fc" id="L105">		final double yMax = this.chartYConverter.applyAsDouble(graphEndY);</span>
+
+		// paint the line
+
+<span class="fc" id="L109">		gc.setColor(0xFF000000);</span>
+<span class="fc" id="L110">		gc.drawLine(x, yMin, x, yMax);</span>
+
+		// paint the big and little ticks
+
+<span class="fc" id="L114">		final int end = (int) Math.ceil(graphEndY);</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">		for (int i = (int) Math.floor(graphStartX); i &lt; end; i++) {</span>
+<span class="fc" id="L116">			final double y = this.chartYConverter.applyAsDouble(i);</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">			if (i % this.tickSteps == 0) {</span>
+<span class="fc" id="L118">				gc.drawLine(x - this.tickSize, y, x + this.tickSize, y);</span>
+			}
+<span class="fc bfc" id="L120" title="All 2 branches covered.">			if (i % this.bigTickSteps == 0) {</span>
+<span class="fc" id="L121">				gc.drawLine(x - this.bigTickSize, y, x + this.bigTickSize, y);</span>
+			}
+		}
+
+		// paint the arrow at the end
+
+<span class="fc" id="L127">		final double[] arrowX = {x, x + this.arrowSize, x - this.arrowSize};</span>
+<span class="fc" id="L128">		final double[] arrowY = {yMax - this.arrowSize, yMax, yMax};</span>
+<span class="fc" id="L129">		gc.fillPolygon(arrowX, arrowY);</span>
+<span class="fc" id="L130">	}</span>
+	@Override
+	public void addRefreshListener(RefreshListener listener) {
+<span class="fc" id="L133">		this.refreshListeners.addRefreshListener(listener);</span>
+<span class="fc" id="L134">	}</span>
+
+	@Override
+	public void removeRefreshListener(RefreshListener listener) {
+<span class="fc" id="L138">		this.refreshListeners.removeRefreshListener(listener);</span>
+<span class="fc" id="L139">	}</span>
+
+	/**
+	 * Returns the size of the ticks in pixels.
+	 *
+	 * @return the tick size
+	 */
+
+	public int getTickSize() {
+<span class="fc" id="L148">		return this.tickSize;</span>
+	}
+
+	/**
+	 * Sets the size of the ticks in pixels.
+	 *
+	 * @param newTickSize the tick size
+	 * @return this instance
+	 */
+
+	public Axis tickSize(int newTickSize) {
+<span class="fc" id="L159">		setTickSize(newTickSize);</span>
+<span class="fc" id="L160">		return this;</span>
+	}
+
+	/**
+	 * Sets the size of the ticks in pixels.
+	 *
+	 * @param tickSize the tick size
+	 */
+
+	public void setTickSize(int tickSize) {
+<span class="fc" id="L170">		final int oldTickSize = this.tickSize;</span>
+<span class="fc" id="L171">		this.tickSize = tickSize;</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">		if (oldTickSize != tickSize) {</span>
+<span class="fc" id="L173">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L175">	}</span>
+
+	/**
+	 * Returns the size of the big ticks in pixels.
+	 *
+	 * @return the big tick size
+	 */
+
+	public int getBigTickSize() {
+<span class="fc" id="L184">		return this.bigTickSize;</span>
+	}
+
+	/**
+	 * Sets the size of the big ticks in pixels.
+	 *
+	 * @param newBigTickSize the big tick size
+	 * @return this instance
+	 */
+
+	public Axis bigTickSize(int newBigTickSize) {
+<span class="fc" id="L195">		setBigTickSize(newBigTickSize);</span>
+<span class="fc" id="L196">		return this;</span>
+	}
+
+	/**
+	 * Sets the size of the big ticks in pixels.
+	 *
+	 * @param bigTickSize the big tick size
+	 */
+
+	public void setBigTickSize(int bigTickSize) {
+<span class="fc" id="L206">		final int oldBigTickSize = this.bigTickSize;</span>
+<span class="fc" id="L207">		this.bigTickSize = bigTickSize;</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">		if (oldBigTickSize != bigTickSize) {</span>
+<span class="fc" id="L209">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L211">	}</span>
+
+	/**
+	 * Returns the range after which a big tick is painted on the graph.
+	 *
+	 * @return the big tick step length
+	 */
+
+	public int getBigTickSteps() {
+<span class="fc" id="L220">		return this.bigTickSteps;</span>
+	}
+
+	/**
+	 * Sets the range after which a big tick is painted on the graph.
+	 *
+	 * @param newBigTickSteps the big tick step length
+	 * @return this instance
+	 */
+
+	public Axis bigTickSteps(int newBigTickSteps) {
+<span class="fc" id="L231">		setBigTickSteps(newBigTickSteps);</span>
+<span class="fc" id="L232">		return this;</span>
+	}
+
+	/**
+	 * Sets the range after which a big tick is painted on the graph.
+	 *
+	 * @param bigTickSteps the big tick step length
+	 */
+
+	public void setBigTickSteps(int bigTickSteps) {
+<span class="fc" id="L242">		final int oldBigTickSteps = this.bigTickSteps;</span>
+<span class="fc" id="L243">		this.bigTickSteps = bigTickSteps;</span>
+<span class="fc bfc" id="L244" title="All 2 branches covered.">		if (oldBigTickSteps != bigTickSteps) {</span>
+<span class="fc" id="L245">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L247">	}</span>
+
+	/**
+	 * Returns the range after which a tick is painted on the graph.
+	 *
+	 * @return the tick step length
+	 */
+
+	public int getTickSteps() {
+<span class="fc" id="L256">		return this.tickSteps;</span>
+	}
+
+	/**
+	 * Sets the range after which a tick is painted on the graph.
+	 *
+	 * @param newTickSteps the tick step length
+	 * @return this instance
+	 */
+
+	public Axis tickSteps(int newTickSteps) {
+<span class="fc" id="L267">		setTickSteps(newTickSteps);</span>
+<span class="fc" id="L268">		return this;</span>
+	}
+
+	/**
+	 * Sets the range after which a tick is painted on the graph.
+	 *
+	 * @param tickSteps the tick step length
+	 */
+
+	public void setTickSteps(int tickSteps) {
+<span class="fc" id="L278">		final int oldTickSteps = this.tickSteps;</span>
+<span class="fc" id="L279">		this.tickSteps = tickSteps;</span>
+<span class="fc bfc" id="L280" title="All 2 branches covered.">		if (oldTickSteps != tickSteps) {</span>
+<span class="fc" id="L281">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L283">	}</span>
+
+	/**
+	 * Returns the size of the arrow at the end of the graph.
+	 *
+	 * @return the arrow size in pixels
+	 */
+
+	public double getArrowSize() {
+<span class="fc" id="L292">		return this.arrowSize;</span>
+	}
+
+	/**
+	 * Sets the size of the arrow at the end of the graph.
+	 *
+	 * @param newArrowSize the arrow size in pixels
+	 * @return this instance
+	 */
+
+	public Axis arrowSize(double newArrowSize) {
+<span class="fc" id="L303">		setArrowSize(newArrowSize);</span>
+<span class="fc" id="L304">		return this;</span>
+	}
+
+	/**
+	 * Sets the size of the arrow at the end of the graph.
+	 *
+	 * @param arrowSize the arrow size in pixels
+	 */
+
+	public void setArrowSize(double arrowSize) {
+<span class="fc" id="L314">		final double oldArrowSize = this.arrowSize;</span>
+<span class="fc" id="L315">		this.arrowSize = arrowSize;</span>
+<span class="fc bfc" id="L316" title="All 2 branches covered.">		if (oldArrowSize != arrowSize) {</span>
+<span class="fc" id="L317">			this.refreshListeners.fireRefreshNeeded();</span>
+		}
+<span class="fc" id="L319">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

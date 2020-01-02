@@ -1,6 +1,9 @@
 de.slothsoft.charts
+de.slothsoft.charts.barchart
 de.slothsoft.charts.common
 de.slothsoft.charts.internal
 de.slothsoft.charts.linechart
 de.slothsoft.charts.piechart
+de.slothsoft.charts.swing
 de.slothsoft.charts.swt
+de.slothsoft.charts.test

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":18,"i9":6,"i10":6,"i11":6,"i12":18,"i13":6,"i14":6,"i15":6,"i16":6};
+var methods = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":18,"i5":18,"i6":6,"i7":6,"i8":6,"i9":6,"i10":18,"i11":18,"i12":6,"i13":6,"i14":18,"i15":6,"i16":6,"i17":6,"i18":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -101,7 +101,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a>, <a href="../../../de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a>, <a href="../../../de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dd>
+<dd><a href="../../../de/slothsoft/charts/internal/DelegatingGraphicContext.html" title="class in de.slothsoft.charts.internal">DelegatingGraphicContext</a>, <a href="../../../de/slothsoft/charts/swing/Graphics2DGraphicContext.html" title="class in de.slothsoft.charts.swing">Graphics2DGraphicContext</a>, <a href="../../../de/slothsoft/charts/internal/LogGraphicContext.html" title="class in de.slothsoft.charts.internal">LogGraphicContext</a>, <a href="../../../de/slothsoft/charts/swt/SwtGraphicContext.html" title="class in de.slothsoft.charts.swt">SwtGraphicContext</a></dd>
 </dl>
 <hr>
 <br>
@@ -166,6 +166,21 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code>default void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#drawRectangle-de.slothsoft.charts.Area-">drawRectangle</a></span>(<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;rect)</code>
+<div class="block">Paints a outline of a rectangle.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>default void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#drawRectangle-double-double-double-double-">drawRectangle</a></span>(double&nbsp;x,
+             double&nbsp;y,
+             double&nbsp;width,
+             double&nbsp;height)</code>
+<div class="block">Paints a outline of a rectangle.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#drawText-double-double-java.lang.String-">drawText</a></span>(double&nbsp;x,
         double&nbsp;y,
@@ -173,7 +188,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">Paints the text on a position.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillArc-double-double-double-double-double-double-">fillArc</a></span>(double&nbsp;x,
        double&nbsp;y,
@@ -184,7 +199,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">Draws the outline of a circular or elliptical arc covering the specified rectangle.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillOval-double-double-double-double-">fillOval</a></span>(double&nbsp;x,
         double&nbsp;y,
@@ -193,21 +208,21 @@ var activeTableTab = "activeTableTab";
 <div class="block">Paints a filled oval.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillPolygon-double:A-double:A-">fillPolygon</a></span>(double[]&nbsp;x,
            double[]&nbsp;y)</code>
 <div class="block">Paints a filled polygon.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-de.slothsoft.charts.Area-">fillRectangle</a></span>(<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;rect)</code>
 <div class="block">Paints a filled rectangle.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-double-double-double-double-">fillRectangle</a></span>(double&nbsp;x,
              double&nbsp;y,
              double&nbsp;width,
@@ -215,46 +230,46 @@ var activeTableTab = "activeTableTab";
 <div class="block">Paints a filled rectangle.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#getColor--">getColor</a></span>()</code>
 <div class="block">Returns the color as ARGB int, e.g.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#getFont--">getFont</a></span>()</code>
 <div class="block">Returns the font as an enum with the font properties as hints for the actual font
  used by the GUI.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#scale-double-">scale</a></span>(double&nbsp;factor)</code>
 <div class="block">Scales the drawing canvas with the factor.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#scale-double-double-">scale</a></span>(double&nbsp;x,
      double&nbsp;y)</code>
 <div class="block">Scales the drawing canvas with the factor.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#setColor-int-">setColor</a></span>(int&nbsp;color)</code>
 <div class="block">Sets the color as ARGB int, e.g.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#setFont-de.slothsoft.charts.Font-">setFont</a></span>(<a href="../../../de/slothsoft/charts/Font.html" title="enum in de.slothsoft.charts">Font</a>&nbsp;font)</code>
 <div class="block">Sets the font as an enum with the font properties as hints for the actual font used
  by the GUI.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/charts/GraphicContext.html#translate-double-double-">translate</a></span>(double&nbsp;x,
          double&nbsp;y)</code>
@@ -453,10 +468,10 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>fillRectangle</h4>
-<pre>void&nbsp;fillRectangle(double&nbsp;x,
-                   double&nbsp;y,
-                   double&nbsp;width,
-                   double&nbsp;height)</pre>
+<pre>default&nbsp;void&nbsp;fillRectangle(double&nbsp;x,
+                           double&nbsp;y,
+                           double&nbsp;width,
+                           double&nbsp;height)</pre>
 <div class="block">Paints a filled rectangle.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -464,6 +479,44 @@ var activeTableTab = "activeTableTab";
 <dd><code>y</code> - the rectangle's y</dd>
 <dd><code>width</code> - the rectangle's width</dd>
 <dd><code>height</code> - the rectangle's height</dd>
+</dl>
+</li>
+</ul>
+<a name="drawRectangle-de.slothsoft.charts.Area-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawRectangle</h4>
+<pre>default&nbsp;void&nbsp;drawRectangle(<a href="../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;rect)</pre>
+<div class="block">Paints a outline of a rectangle.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>rect</code> - the rectangle's coordinates</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>0.2.0</dd>
+</dl>
+</li>
+</ul>
+<a name="drawRectangle-double-double-double-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawRectangle</h4>
+<pre>default&nbsp;void&nbsp;drawRectangle(double&nbsp;x,
+                           double&nbsp;y,
+                           double&nbsp;width,
+                           double&nbsp;height)</pre>
+<div class="block">Paints a outline of a rectangle.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the rectangle's x</dd>
+<dd><code>y</code> - the rectangle's y</dd>
+<dd><code>width</code> - the rectangle's width</dd>
+<dd><code>height</code> - the rectangle's height</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>0.2.0</dd>
 </dl>
 </li>
 </ul>
@@ -646,6 +699,6 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2019. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2020. All rights reserved.</small></p>
 </body>
 </html>

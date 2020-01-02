@@ -36,47 +36,51 @@ public class LineChart extends Chart {
 	private Area displayedArea;
 <span class="fc" id="L37">	private double zoomFactor = 0.25;</span>
 
-<span class="fc" id="L39">	public LineChart() {</span>
-<span class="fc" id="L40">		addChartPart(this.xAxis);</span>
-<span class="fc" id="L41">		addChartPart(this.yAxis);</span>
-<span class="fc" id="L42">	}</span>
+	/**
+	 * Default constructor.
+	 */
+
+<span class="fc" id="L43">	public LineChart() {</span>
+<span class="fc" id="L44">		addChartPart(this.xAxis);</span>
+<span class="fc" id="L45">		addChartPart(this.yAxis);</span>
+<span class="fc" id="L46">	}</span>
 
 	@Override
 	public void paintOn(GraphicContext gc, PaintInstructions instructions) {
-<span class="fc" id="L46">		this.lastGraphArea = instructions.getArea().copy();</span>
-<span class="fc bfc" id="L47" title="All 2 branches covered.">		for (final ChartPart part : fetchChartParts()) {</span>
-<span class="fc" id="L48">			this.lastGraphArea = part.snipNecessarySpace(this.lastGraphArea);</span>
-<span class="fc" id="L49">		}</span>
-<span class="fc" id="L50">		super.paintOn(gc, instructions);</span>
-<span class="fc" id="L51">	}</span>
+<span class="fc" id="L50">		this.lastGraphArea = instructions.getArea().copy();</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">		for (final ChartPart part : fetchChartParts()) {</span>
+<span class="fc" id="L52">			this.lastGraphArea = part.snipNecessarySpace(this.lastGraphArea);</span>
+<span class="fc" id="L53">		}</span>
+<span class="fc" id="L54">		super.paintOn(gc, instructions);</span>
+<span class="fc" id="L55">	}</span>
 
 	@Override
 	protected void paintGraph(GraphicContext gc, PaintInstructions instructions) {
-<span class="fc" id="L55">		final Area graphArea = calculateDisplayedArea();</span>
-<span class="fc" id="L56">		final double graphWidth = graphArea.getEndX() - graphArea.getStartX();</span>
-<span class="fc" id="L57">		final double graphHeight = graphArea.getEndY() - graphArea.getStartY();</span>
+<span class="fc" id="L59">		final Area graphArea = calculateDisplayedArea();</span>
+<span class="fc" id="L60">		final double graphWidth = graphArea.getEndX() - graphArea.getStartX();</span>
+<span class="fc" id="L61">		final double graphHeight = graphArea.getEndY() - graphArea.getStartY();</span>
 
-<span class="fc" id="L59">		final double actualWidth = this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX();</span>
-<span class="fc" id="L60">		final double actualHeight = this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY();</span>
-<span class="fc" id="L61">		final double scaleX = actualWidth / graphWidth;</span>
-<span class="fc" id="L62">		final double scaleY = actualHeight / graphHeight;</span>
-<span class="fc" id="L63">		gc.scale(scaleX, scaleY);</span>
+<span class="fc" id="L63">		final double actualWidth = this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX();</span>
+<span class="fc" id="L64">		final double actualHeight = this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY();</span>
+<span class="fc" id="L65">		final double scaleX = actualWidth / graphWidth;</span>
+<span class="fc" id="L66">		final double scaleY = actualHeight / graphHeight;</span>
+<span class="fc" id="L67">		gc.scale(scaleX, scaleY);</span>
 
-<span class="fc" id="L65">		final PaintInstructions lineInstructions = instructions.copy().area(graphArea);</span>
-<span class="fc" id="L66">		final GraphicContext linesGc = new FlipYGraphicContext(gc);</span>
+<span class="fc" id="L69">		final PaintInstructions lineInstructions = instructions.copy().area(graphArea);</span>
+<span class="fc" id="L70">		final GraphicContext linesGc = new FlipYGraphicContext(gc);</span>
 		// the top left corner is not where the graph origin is, so move
-<span class="fc" id="L68">		final double originX = -Math.min(graphArea.getStartX(), graphArea.getEndX()) * scaleX;</span>
-<span class="fc" id="L69">		final double originY = Math.max(graphArea.getStartY(), graphArea.getEndY()) * scaleY;</span>
-<span class="fc" id="L70">		gc.translate(originX, originY);</span>
+<span class="fc" id="L72">		final double originX = -Math.min(graphArea.getStartX(), graphArea.getEndX()) * scaleX;</span>
+<span class="fc" id="L73">		final double originY = Math.max(graphArea.getStartY(), graphArea.getEndY()) * scaleY;</span>
+<span class="fc" id="L74">		gc.translate(originX, originY);</span>
 
-<span class="fc bfc" id="L72" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
-<span class="fc" id="L73">			line.paintOn(linesGc, lineInstructions);</span>
-<span class="fc" id="L74">		}</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
+<span class="fc" id="L77">			line.paintOn(linesGc, lineInstructions);</span>
+<span class="fc" id="L78">		}</span>
 
 		// reset everything that was done previously
-<span class="fc" id="L77">		gc.translate(-originX, -originY);</span>
-<span class="fc" id="L78">		gc.scale(1 / scaleX, 1 / scaleY);</span>
-<span class="fc" id="L79">	}</span>
+<span class="fc" id="L81">		gc.translate(-originX, -originY);</span>
+<span class="fc" id="L82">		gc.scale(1 / scaleX, 1 / scaleY);</span>
+<span class="fc" id="L83">	}</span>
 
 	/**
 	 * Calculates the displayed area via {@link #getDisplayedArea()} or the added lines.
@@ -85,17 +89,18 @@ public class LineChart extends Chart {
 	 * @see #getDisplayedArea()
 	 * @see #addLine(Line)
 	 * @see #addLines(Line[])
+	 * @since 0.2.0
 	 */
 
-	Area calculateDisplayedArea() {
-<span class="fc bfc" id="L91" title="All 2 branches covered.">		if (this.displayedArea != null) return this.displayedArea;</span>
-<span class="fc bfc" id="L92" title="All 2 branches covered.">		if (this.lines.isEmpty()) return Line.createDefaultArea();</span>
+	public Area calculateDisplayedArea() {
+<span class="fc bfc" id="L96" title="All 2 branches covered.">		if (this.displayedArea != null) return this.displayedArea;</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">		if (this.lines.isEmpty()) return Line.createDefaultArea();</span>
 
-<span class="fc" id="L94">		Area result = new Area();</span>
-<span class="fc bfc" id="L95" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
-<span class="fc" id="L96">			result = result.unite(line.calculatePreferredArea());</span>
-<span class="fc" id="L97">		}</span>
-<span class="fc" id="L98">		return result;</span>
+<span class="fc" id="L99">		Area result = new Area();</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">		for (final Line line : this.lines) {</span>
+<span class="fc" id="L101">			result = result.unite(line.calculatePreferredArea());</span>
+<span class="fc" id="L102">		}</span>
+<span class="fc" id="L103">		return result;</span>
 	}
 
 	/**
@@ -105,10 +110,10 @@ public class LineChart extends Chart {
 	 */
 
 	public void addLine(Line line) {
-<span class="fc" id="L108">		line.addRefreshListener(this.refreshListener);</span>
-<span class="fc" id="L109">		this.lines.add(line);</span>
-<span class="fc" id="L110">		fireRefreshNeeded();</span>
-<span class="fc" id="L111">	}</span>
+<span class="fc" id="L113">		line.addRefreshListener(this.refreshListener);</span>
+<span class="fc" id="L114">		this.lines.add(line);</span>
+<span class="fc" id="L115">		fireRefreshNeeded();</span>
+<span class="fc" id="L116">	}</span>
 
 	/**
 	 * Adds some lines to the chart.
@@ -117,12 +122,12 @@ public class LineChart extends Chart {
 	 */
 
 	public void addLines(Line... addedLines) {
-<span class="fc bfc" id="L120" title="All 2 branches covered.">		for (final Line addedLine : addedLines) {</span>
-<span class="fc" id="L121">			addedLine.addRefreshListener(this.refreshListener);</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">		for (final Line addedLine : addedLines) {</span>
+<span class="fc" id="L126">			addedLine.addRefreshListener(this.refreshListener);</span>
 		}
-<span class="fc" id="L123">		this.lines.addAll(Arrays.asList(addedLines));</span>
-<span class="fc" id="L124">		fireRefreshNeeded();</span>
-<span class="fc" id="L125">	}</span>
+<span class="fc" id="L128">		this.lines.addAll(Arrays.asList(addedLines));</span>
+<span class="fc" id="L129">		fireRefreshNeeded();</span>
+<span class="fc" id="L130">	}</span>
 
 	/**
 	 * Removes a line from the chart.
@@ -131,10 +136,10 @@ public class LineChart extends Chart {
 	 */
 
 	public void removeLine(Line line) {
-<span class="fc" id="L134">		line.removeRefreshListener(this.refreshListener);</span>
-<span class="fc" id="L135">		this.lines.remove(line);</span>
-<span class="fc" id="L136">		fireRefreshNeeded();</span>
-<span class="fc" id="L137">	}</span>
+<span class="fc" id="L139">		line.removeRefreshListener(this.refreshListener);</span>
+<span class="fc" id="L140">		this.lines.remove(line);</span>
+<span class="fc" id="L141">		fireRefreshNeeded();</span>
+<span class="fc" id="L142">	}</span>
 
 	/**
 	 * Removes some lines to the chart.
@@ -143,12 +148,12 @@ public class LineChart extends Chart {
 	 */
 
 	public void removeLines(Line... removedLines) {
-<span class="fc bfc" id="L146" title="All 2 branches covered.">		for (final Line removedLine : removedLines) {</span>
-<span class="fc" id="L147">			removedLine.removeRefreshListener(this.refreshListener);</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">		for (final Line removedLine : removedLines) {</span>
+<span class="fc" id="L152">			removedLine.removeRefreshListener(this.refreshListener);</span>
 		}
-<span class="fc" id="L149">		this.lines.removeAll(Arrays.asList(removedLines));</span>
-<span class="fc" id="L150">		fireRefreshNeeded();</span>
-<span class="fc" id="L151">	}</span>
+<span class="fc" id="L154">		this.lines.removeAll(Arrays.asList(removedLines));</span>
+<span class="fc" id="L155">		fireRefreshNeeded();</span>
+<span class="fc" id="L156">	}</span>
 
 	/**
 	 * Moves the displayed area of this {@link Chart} by the coordinates used for the
@@ -162,22 +167,22 @@ public class LineChart extends Chart {
 	 */
 
 	public void moveDisplayedAreaByChartCoordinates(double xIncrement, double yIncrement) {
-<span class="fc" id="L165">		requireLastGraphAreaNotNull();</span>
-<span class="fc" id="L166">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L170">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L171">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L168">		final double scaleX = (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX())</span>
-<span class="fc" id="L169">				/ (wantedArea.getEndX() - wantedArea.getStartX());</span>
-<span class="fc" id="L170">		final double scaleY = (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY())</span>
-<span class="fc" id="L171">				/ (wantedArea.getEndY() - wantedArea.getStartY());</span>
+<span class="fc" id="L173">		final double scaleX = (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX())</span>
+<span class="fc" id="L174">				/ (wantedArea.getEndX() - wantedArea.getStartX());</span>
+<span class="fc" id="L175">		final double scaleY = (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY())</span>
+<span class="fc" id="L176">				/ (wantedArea.getEndY() - wantedArea.getStartY());</span>
 
-<span class="fc" id="L173">		moveDisplayedAreaDirectly(xIncrement / scaleX, yIncrement / scaleY);</span>
-<span class="fc" id="L174">	}</span>
+<span class="fc" id="L178">		moveDisplayedAreaDirectly(xIncrement / scaleX, yIncrement / scaleY);</span>
+<span class="fc" id="L179">	}</span>
 
 	private void requireLastGraphAreaNotNull() {
-<span class="fc bfc" id="L177" title="All 2 branches covered.">		if (this.lastGraphArea == null)</span>
-<span class="fc" id="L178">			throw new IllegalArgumentException(</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">		if (this.lastGraphArea == null)</span>
+<span class="fc" id="L183">			throw new IllegalArgumentException(</span>
 					&quot;You need to paint the graph at least once before you can move it with this method!&quot;);
-<span class="fc" id="L180">	}</span>
+<span class="fc" id="L185">	}</span>
 
 	/**
 	 * Moves the displayed area of this {@link Chart} directly, i.e. adds the movement
@@ -189,11 +194,11 @@ public class LineChart extends Chart {
 	 */
 
 	void moveDisplayedAreaDirectly(double xIncrement, double yIncrement) {
-<span class="pc bpc" id="L192" title="1 of 4 branches missed.">		if (xIncrement == 0 &amp;&amp; yIncrement == 0) return;</span>
-<span class="fc" id="L193">		final Area newArea = calculateDisplayedArea().copy();</span>
-<span class="fc" id="L194">		newArea.move(xIncrement, yIncrement);</span>
-<span class="fc" id="L195">		setDisplayedArea(newArea);</span>
-<span class="fc" id="L196">	}</span>
+<span class="pc bpc" id="L197" title="1 of 4 branches missed.">		if (xIncrement == 0 &amp;&amp; yIncrement == 0) return;</span>
+<span class="fc" id="L198">		final Area newArea = calculateDisplayedArea().copy();</span>
+<span class="fc" id="L199">		newArea.move(xIncrement, yIncrement);</span>
+<span class="fc" id="L200">		setDisplayedArea(newArea);</span>
+<span class="fc" id="L201">	}</span>
 
 	/**
 	 * Zooms the graph area in using the chart's coordinates.
@@ -207,8 +212,8 @@ public class LineChart extends Chart {
 	 */
 
 	public void zoomDisplayedAreaInByChartCoordinates(double chartX, double chartY) {
-<span class="fc" id="L210">		zoomDisplayedAreaInByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
-<span class="fc" id="L211">	}</span>
+<span class="fc" id="L215">		zoomDisplayedAreaInByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
+<span class="fc" id="L216">	}</span>
 
 	/**
 	 * Zooms the graph area in using the graph's coordinates.
@@ -222,33 +227,33 @@ public class LineChart extends Chart {
 	 */
 
 	public void zoomDisplayedAreaInByGraphCoordinates(double graphX, double graphY) {
-<span class="fc" id="L225">		zoom(graphX, graphY, true);</span>
-<span class="fc" id="L226">	}</span>
+<span class="fc" id="L230">		zoom(graphX, graphY, true);</span>
+<span class="fc" id="L231">	}</span>
 
 	private void zoom(double graphX, double graphY, boolean in) {
-<span class="fc" id="L229">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L234">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L231">		final double width = wantedArea.getEndX() - wantedArea.getStartX();</span>
-<span class="fc" id="L232">		final double height = wantedArea.getEndY() - wantedArea.getStartY();</span>
+<span class="fc" id="L236">		final double width = wantedArea.getEndX() - wantedArea.getStartX();</span>
+<span class="fc" id="L237">		final double height = wantedArea.getEndY() - wantedArea.getStartY();</span>
 
-<span class="fc" id="L234">		final double beforeXScale = (graphX - wantedArea.getStartX()) / width;</span>
-<span class="fc" id="L235">		final double beforeYScale = (graphY - wantedArea.getStartY()) / height;</span>
+<span class="fc" id="L239">		final double beforeXScale = (graphX - wantedArea.getStartX()) / width;</span>
+<span class="fc" id="L240">		final double beforeYScale = (graphY - wantedArea.getStartY()) / height;</span>
 
-<span class="fc" id="L237">		double beforeXZoom = beforeXScale * this.zoomFactor * width;</span>
-<span class="fc" id="L238">		double afterXZoom = (1 - beforeXScale) * this.zoomFactor * width;</span>
+<span class="fc" id="L242">		double beforeXZoom = beforeXScale * this.zoomFactor * width;</span>
+<span class="fc" id="L243">		double afterXZoom = (1 - beforeXScale) * this.zoomFactor * width;</span>
 
-<span class="fc" id="L240">		double beforeYZoom = beforeYScale * this.zoomFactor * height;</span>
-<span class="fc" id="L241">		double afterYZoom = (1 - beforeYScale) * this.zoomFactor * height;</span>
+<span class="fc" id="L245">		double beforeYZoom = beforeYScale * this.zoomFactor * height;</span>
+<span class="fc" id="L246">		double afterYZoom = (1 - beforeYScale) * this.zoomFactor * height;</span>
 
-<span class="fc bfc" id="L243" title="All 2 branches covered.">		if (!in) {</span>
-<span class="fc" id="L244">			beforeXZoom *= -1;</span>
-<span class="fc" id="L245">			afterXZoom *= -1;</span>
-<span class="fc" id="L246">			beforeYZoom *= -1;</span>
-<span class="fc" id="L247">			afterYZoom *= -1;</span>
+<span class="fc bfc" id="L248" title="All 2 branches covered.">		if (!in) {</span>
+<span class="fc" id="L249">			beforeXZoom *= -1;</span>
+<span class="fc" id="L250">			afterXZoom *= -1;</span>
+<span class="fc" id="L251">			beforeYZoom *= -1;</span>
+<span class="fc" id="L252">			afterYZoom *= -1;</span>
 		}
-<span class="fc" id="L249">		setDisplayedArea(new Area(wantedArea.getStartX() + beforeXZoom, wantedArea.getStartY() + beforeYZoom,</span>
-<span class="fc" id="L250">				wantedArea.getEndX() - afterXZoom, wantedArea.getEndY() - afterYZoom));</span>
-<span class="fc" id="L251">	}</span>
+<span class="fc" id="L254">		setDisplayedArea(new Area(wantedArea.getStartX() + beforeXZoom, wantedArea.getStartY() + beforeYZoom,</span>
+<span class="fc" id="L255">				wantedArea.getEndX() - afterXZoom, wantedArea.getEndY() - afterYZoom));</span>
+<span class="fc" id="L256">	}</span>
 
 	/**
 	 * Zooms the graph area out using the chart's coordinates.
@@ -263,8 +268,8 @@ public class LineChart extends Chart {
 	 */
 
 	public void zoomDisplayedAreaOutByChartCoordinates(double chartX, double chartY) {
-<span class="fc" id="L266">		zoomDisplayedAreaOutByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
-<span class="fc" id="L267">	}</span>
+<span class="fc" id="L271">		zoomDisplayedAreaOutByGraphCoordinates(convertToGraphX(chartX), convertToGraphY(chartY));</span>
+<span class="fc" id="L272">	}</span>
 
 	/**
 	 * Zooms the graph area out using the graph's coordinates.
@@ -279,8 +284,8 @@ public class LineChart extends Chart {
 	 */
 
 	public void zoomDisplayedAreaOutByGraphCoordinates(double graphX, double graphY) {
-<span class="fc" id="L282">		zoom(graphX, graphY, false);</span>
-<span class="fc" id="L283">	}</span>
+<span class="fc" id="L287">		zoom(graphX, graphY, false);</span>
+<span class="fc" id="L288">	}</span>
 
 	/**
 	 * Converts chart coordinates to a graph ones. The chart is everything and x and y
@@ -295,7 +300,7 @@ public class LineChart extends Chart {
 	 */
 
 	public double[] convertToGraphCoordinates(double chartX, double chartY) {
-<span class="fc" id="L298">		return new double[]{convertToGraphX(chartX), convertToGraphY(chartY)};</span>
+<span class="fc" id="L303">		return new double[]{convertToGraphX(chartX), convertToGraphY(chartY)};</span>
 	}
 
 	/**
@@ -310,12 +315,12 @@ public class LineChart extends Chart {
 	 */
 
 	public double convertToGraphX(double chartX) {
-<span class="fc" id="L313">		requireLastGraphAreaNotNull();</span>
-<span class="fc" id="L314">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L318">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L319">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L316">		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())</span>
-<span class="fc" id="L317">				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());</span>
-<span class="fc" id="L318">		return scale * (chartX - this.lastGraphArea.getStartX()) + wantedArea.getStartX();</span>
+<span class="fc" id="L321">		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())</span>
+<span class="fc" id="L322">				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());</span>
+<span class="fc" id="L323">		return scale * (chartX - this.lastGraphArea.getStartX()) + wantedArea.getStartX();</span>
 	}
 
 	/**
@@ -330,12 +335,12 @@ public class LineChart extends Chart {
 	 */
 
 	public double convertToGraphY(double chartY) {
-<span class="fc" id="L333">		requireLastGraphAreaNotNull();</span>
-<span class="fc" id="L334">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L338">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L339">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L336">		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())</span>
-<span class="fc" id="L337">				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());</span>
-<span class="fc" id="L338">		return wantedArea.getEndY() - scale * (chartY - this.lastGraphArea.getStartY());</span>
+<span class="fc" id="L341">		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())</span>
+<span class="fc" id="L342">				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());</span>
+<span class="fc" id="L343">		return wantedArea.getEndY() - scale * (chartY - this.lastGraphArea.getStartY());</span>
 	}
 
 	/**
@@ -349,12 +354,11 @@ public class LineChart extends Chart {
 	 */
 
 	public double convertToChartX(double graphX) {
-<span class="fc" id="L352">		requireLastGraphAreaNotNull();</span>
-<span class="fc" id="L353">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L357">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L358">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L355">		final double scale = (wantedArea.getEndX() - wantedArea.getStartX())</span>
-<span class="fc" id="L356">				/ (this.lastGraphArea.getEndX() - this.lastGraphArea.getStartX());</span>
-<span class="fc" id="L357">		return (graphX - wantedArea.getStartX()) / scale + this.lastGraphArea.getStartX();</span>
+<span class="fc" id="L360">		final double scale = wantedArea.calculateWidth() / this.lastGraphArea.calculateWidth();</span>
+<span class="fc" id="L361">		return (graphX - wantedArea.getStartX()) / scale + this.lastGraphArea.getStartX();</span>
 	}
 
 	/**
@@ -368,12 +372,11 @@ public class LineChart extends Chart {
 	 */
 
 	public double convertToChartY(double graphY) {
-<span class="fc" id="L371">		requireLastGraphAreaNotNull();</span>
-<span class="fc" id="L372">		final Area wantedArea = calculateDisplayedArea();</span>
+<span class="fc" id="L375">		requireLastGraphAreaNotNull();</span>
+<span class="fc" id="L376">		final Area wantedArea = calculateDisplayedArea();</span>
 
-<span class="fc" id="L374">		final double scale = (wantedArea.getEndY() - wantedArea.getStartY())</span>
-<span class="fc" id="L375">				/ (this.lastGraphArea.getEndY() - this.lastGraphArea.getStartY());</span>
-<span class="fc" id="L376">		return (-graphY + wantedArea.getEndY()) / scale + this.lastGraphArea.getStartY();</span>
+<span class="fc" id="L378">		final double scale = wantedArea.calculateHeight() / this.lastGraphArea.calculateHeight();</span>
+<span class="fc" id="L379">		return (-graphY + wantedArea.getEndY()) / scale + this.lastGraphArea.getStartY();</span>
 	}
 
 	/**
@@ -383,8 +386,8 @@ public class LineChart extends Chart {
 	 */
 
 	public void resetDisplayedArea() {
-<span class="fc" id="L386">		setDisplayedArea(null);</span>
-<span class="fc" id="L387">	}</span>
+<span class="fc" id="L389">		setDisplayedArea(null);</span>
+<span class="fc" id="L390">	}</span>
 
 	/**
 	 * Returns the displayed area of this chart, i.e. the coordinates to display.
@@ -395,7 +398,7 @@ public class LineChart extends Chart {
 	 */
 
 	public Area getDisplayedArea() {
-<span class="fc" id="L398">		return this.displayedArea;</span>
+<span class="fc" id="L401">		return this.displayedArea;</span>
 	}
 
 	/**
@@ -408,8 +411,8 @@ public class LineChart extends Chart {
 	 */
 
 	public LineChart displayedArea(Area newDisplayedArea) {
-<span class="fc" id="L411">		setDisplayedArea(newDisplayedArea);</span>
-<span class="fc" id="L412">		return this;</span>
+<span class="fc" id="L414">		setDisplayedArea(newDisplayedArea);</span>
+<span class="fc" id="L415">		return this;</span>
 	}
 
 	/**
@@ -421,12 +424,12 @@ public class LineChart extends Chart {
 	 */
 
 	public void setDisplayedArea(Area displayedArea) {
-<span class="fc" id="L424">		final Area oldDisplayedArea = this.displayedArea;</span>
-<span class="fc" id="L425">		this.displayedArea = displayedArea;</span>
-<span class="fc bfc" id="L426" title="All 2 branches covered.">		if (!Objects.equals(displayedArea, oldDisplayedArea)) {</span>
-<span class="fc" id="L427">			fireRefreshNeeded();</span>
+<span class="fc" id="L427">		final Area oldDisplayedArea = this.displayedArea;</span>
+<span class="fc" id="L428">		this.displayedArea = displayedArea;</span>
+<span class="fc bfc" id="L429" title="All 2 branches covered.">		if (!Objects.equals(displayedArea, oldDisplayedArea)) {</span>
+<span class="fc" id="L430">			fireRefreshNeeded();</span>
 		}
-<span class="fc" id="L429">	}</span>
+<span class="fc" id="L432">	}</span>
 
 	/**
 	 * Returns the factor which should be used to zoom the graph area. A value of 0.25
@@ -440,7 +443,7 @@ public class LineChart extends Chart {
 	 */
 
 	public double getZoomFactor() {
-<span class="fc" id="L443">		return this.zoomFactor;</span>
+<span class="fc" id="L446">		return this.zoomFactor;</span>
 	}
 
 	/**
@@ -456,8 +459,8 @@ public class LineChart extends Chart {
 	 */
 
 	public LineChart zoomFactor(double newZoomFactor) {
-<span class="fc" id="L459">		setZoomFactor(newZoomFactor);</span>
-<span class="fc" id="L460">		return this;</span>
+<span class="fc" id="L462">		setZoomFactor(newZoomFactor);</span>
+<span class="fc" id="L463">		return this;</span>
 	}
 
 	/**
@@ -472,8 +475,8 @@ public class LineChart extends Chart {
 	 */
 
 	public void setZoomFactor(double zoomFactor) {
-<span class="fc" id="L475">		this.zoomFactor = zoomFactor;</span>
-<span class="fc" id="L476">	}</span>
+<span class="fc" id="L478">		this.zoomFactor = zoomFactor;</span>
+<span class="fc" id="L479">	}</span>
 
 	/**
 	 * Returns the x axis of this line chart.
@@ -482,7 +485,7 @@ public class LineChart extends Chart {
 	 */
 
 	public XAxis getXAxis() {
-<span class="fc" id="L485">		return this.xAxis;</span>
+<span class="fc" id="L488">		return this.xAxis;</span>
 	}
 
 	/**
@@ -492,7 +495,7 @@ public class LineChart extends Chart {
 	 */
 
 	public YAxis getYAxis() {
-<span class="fc" id="L495">		return this.yAxis;</span>
+<span class="fc" id="L498">		return this.yAxis;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

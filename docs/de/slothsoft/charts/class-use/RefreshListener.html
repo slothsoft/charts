@@ -87,18 +87,22 @@
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#de.slothsoft.charts.barchart">de.slothsoft.charts.barchart</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#de.slothsoft.charts.common">de.slothsoft.charts.common</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#de.slothsoft.charts.internal">de.slothsoft.charts.internal</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#de.slothsoft.charts.linechart">de.slothsoft.charts.linechart</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#de.slothsoft.charts.piechart">de.slothsoft.charts.piechart</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -149,6 +153,34 @@
 </tbody>
 </table>
 </li>
+<li class="blockList"><a name="de.slothsoft.charts.barchart">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a> in <a href="../../../../de/slothsoft/charts/barchart/package-summary.html">de.slothsoft.charts.barchart</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../de/slothsoft/charts/barchart/package-summary.html">de.slothsoft.charts.barchart</a> with parameters of type <a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">Bar.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/barchart/Bar.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener</a></span>(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>
+<div class="block">Adds a refresh listener that is called whenever the source needs to be redrawn by
+ the GUI.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">Bar.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/barchart/Bar.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener</a></span>(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>
+<div class="block">Removes a refresh listener that was called whenever the source needed to be redrawn
+ by the GUI.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="de.slothsoft.charts.common">
 <!--   -->
 </a>
@@ -162,11 +194,19 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">Border.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/common/Border.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener</a></span>(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">Axis.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/common/Axis.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener</a></span>(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">Border.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/common/Border.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener</a></span>(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">Title.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/common/Title.html#addRefreshListener-de.slothsoft.charts.RefreshListener-">addRefreshListener</a></span>(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">Axis.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/common/Axis.html#removeRefreshListener-de.slothsoft.charts.RefreshListener-">removeRefreshListener</a></span>(<a href="../../../../de/slothsoft/charts/RefreshListener.html" title="interface in de.slothsoft.charts">RefreshListener</a>&nbsp;listener)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -308,6 +348,6 @@
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2019. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2020. All rights reserved.</small></p>
 </body>
 </html>

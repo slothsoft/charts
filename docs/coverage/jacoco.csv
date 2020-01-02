@@ -1,46 +1,55 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 Charts Coverage/charts,de.slothsoft.charts.internal,DelegatingGraphicContext,5,101,0,0,2,30,1,16,1,16
-Charts Coverage/charts,de.slothsoft.charts.internal,LogGraphicContext,0,342,0,4,0,41,0,19,0,17
+Charts Coverage/charts,de.slothsoft.charts.internal,LogGraphicContext,0,315,0,4,0,39,0,18,0,16
 Charts Coverage/charts,de.slothsoft.charts.internal,RefreshListeners,0,63,0,4,0,14,0,7,0,5
+Charts Coverage/charts,de.slothsoft.charts.barchart,Bar,17,68,0,4,1,25,1,11,1,9
+Charts Coverage/charts,de.slothsoft.charts.barchart,XYAxis,0,57,0,0,0,10,0,3,0,3
+Charts Coverage/charts,de.slothsoft.charts.barchart,BarChart,0,205,0,6,0,51,0,16,0,13
 Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis.Position.new XAxis.Position() {...},0,13,0,0,0,4,0,2,0,2
 Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis.Position.new XAxis.Position() {...},0,10,0,0,0,3,0,2,0,2
 Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis.Position.new XAxis.Position() {...},0,10,0,0,0,3,0,2,0,2
-Charts Coverage/charts,de.slothsoft.charts.linechart,FunctionLine,0,148,0,4,0,36,0,12,0,10
 Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis.Position.new XAxis.Position() {...},0,10,0,0,0,3,0,2,0,2
+Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis.Position.new XAxis.Position() {...},1,6,0,0,1,1,1,1,1,1
 Charts Coverage/charts,de.slothsoft.charts.linechart,FlipYGraphicContext,0,68,0,2,0,18,0,9,0,8
 Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis.Position.new XAxis.Position() {...},0,14,0,0,0,3,0,2,0,2
 Charts Coverage/charts,de.slothsoft.charts.linechart,Line,0,51,0,2,0,16,0,8,0,7
+Charts Coverage/charts,de.slothsoft.charts.linechart,LineChart,0,656,1,23,0,136,1,42,0,31
+Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis.Position,0,64,0,0,0,7,0,1,0,1
+Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis.Position,0,64,0,0,0,7,0,1,0,1
+Charts Coverage/charts,de.slothsoft.charts.linechart,FunctionLine,0,148,0,4,0,36,0,12,0,10
 Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis.Position.new YAxis.Position() {...},0,10,0,0,0,3,0,2,0,2
 Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis.Position.new YAxis.Position() {...},0,13,0,0,0,4,0,2,0,2
 Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis.Position.new YAxis.Position() {...},0,10,0,0,0,3,0,2,0,2
-Charts Coverage/charts,de.slothsoft.charts.linechart,LineChart,0,670,1,23,0,138,1,42,0,31
+Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis.Position.new YAxis.Position() {...},1,6,0,0,1,1,1,1,1,1
 Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis.Position.new YAxis.Position() {...},0,14,0,0,0,3,0,2,0,2
 Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis.Position.new YAxis.Position() {...},0,10,0,0,0,3,0,2,0,2
-Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis.Position,0,54,0,0,0,6,0,1,0,1
-Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis,0,197,1,7,0,34,1,9,0,6
-Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis.Position,0,54,0,0,0,6,0,1,0,1
-Charts Coverage/charts,de.slothsoft.charts.linechart,Axis,0,140,0,10,0,51,0,23,0,18
+Charts Coverage/charts,de.slothsoft.charts.linechart,XAxis,0,83,0,2,0,18,0,7,0,6
 Charts Coverage/charts,de.slothsoft.charts.linechart,DataPointLine,0,99,0,2,0,16,0,5,0,4
-Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis,0,194,1,7,0,34,1,9,0,6
+Charts Coverage/charts,de.slothsoft.charts.linechart,YAxis,0,83,0,2,0,18,0,7,0,6
 Charts Coverage/charts,de.slothsoft.charts.piechart,PieSlice,17,68,0,4,1,25,1,11,1,9
 Charts Coverage/charts,de.slothsoft.charts.piechart,PieChart,0,299,0,10,0,69,0,24,0,19
-Charts Coverage/charts,de.slothsoft.charts,TextAlignment,0,34,0,0,0,4,0,1,0,1
-Charts Coverage/charts,de.slothsoft.charts,Font,0,45,0,0,0,9,0,4,0,4
-Charts Coverage/charts,de.slothsoft.charts,PaintInstructions,18,61,3,5,1,16,4,8,1,7
-Charts Coverage/charts,de.slothsoft.charts,GraphicContext,0,45,0,0,0,6,0,3,0,3
-Charts Coverage/charts,de.slothsoft.charts,Chart,0,197,0,6,0,50,0,18,0,15
+Charts Coverage/charts,de.slothsoft.charts,PaintInstructions,12,67,0,8,1,16,1,11,1,7
+Charts Coverage/charts,de.slothsoft.charts,GraphicContext,0,172,0,0,0,12,0,6,0,6
 Charts Coverage/charts,de.slothsoft.charts,TextAlignment.new TextAlignment() {...},0,14,0,0,0,3,0,2,0,2
 Charts Coverage/charts,de.slothsoft.charts,TextAlignment.new TextAlignment() {...},0,21,0,0,0,4,0,2,0,2
 Charts Coverage/charts,de.slothsoft.charts,TextAlignment.new TextAlignment() {...},0,36,0,0,0,6,0,2,0,2
-Charts Coverage/charts,de.slothsoft.charts,Area,4,289,4,18,0,53,4,29,0,22
+Charts Coverage/charts,de.slothsoft.charts,Area,0,305,2,20,0,55,2,33,0,24
 Charts Coverage/charts,de.slothsoft.charts,ChartPart,0,2,0,0,0,1,0,1,0,1
 Charts Coverage/charts,de.slothsoft.charts,RefreshListener.Event,0,9,0,0,0,4,0,2,0,2
+Charts Coverage/charts,de.slothsoft.charts,TextAlignment,0,34,0,0,0,4,0,1,0,1
+Charts Coverage/charts,de.slothsoft.charts,Font,0,45,0,0,0,9,0,4,0,4
+Charts Coverage/charts,de.slothsoft.charts,Chart,0,197,0,6,0,50,0,18,0,15
 Charts Coverage/charts,de.slothsoft.charts.common,Border,0,258,0,12,0,62,0,26,0,20
 Charts Coverage/charts,de.slothsoft.charts.common,Title.Position,0,24,0,0,0,3,0,1,0,1
-Charts Coverage/charts,de.slothsoft.charts.common,Title,3,250,0,16,1,68,1,31,1,23
 Charts Coverage/charts,de.slothsoft.charts.common,Title.Position.new Title.Position() {...},0,19,0,0,0,3,0,3,0,3
 Charts Coverage/charts,de.slothsoft.charts.common,Title.Position.new Title.Position() {...},0,17,0,0,0,3,0,3,0,3
-Charts Coverage/swt-charts,de.slothsoft.charts.swt,SwtGraphicContext,6,410,3,17,2,82,4,32,1,25
+Charts Coverage/charts,de.slothsoft.charts.common,Axis,5,393,2,20,2,84,3,29,1,20
+Charts Coverage/charts,de.slothsoft.charts.common,Title,3,250,0,16,1,68,1,31,1,23
+Charts Coverage/swing-charts,de.slothsoft.charts.swing,SwingChartUtil,0,36,0,0,0,6,0,1,0,1
+Charts Coverage/swing-charts,de.slothsoft.charts.swing,ChartControl,34,47,2,4,6,16,2,8,1,6
+Charts Coverage/swing-charts,de.slothsoft.charts.swing,MoveLineChartByMouseListener,19,155,3,11,8,39,7,15,4,11
+Charts Coverage/swing-charts,de.slothsoft.charts.swing,Graphics2DGraphicContext,0,297,0,8,0,57,0,28,0,24
+Charts Coverage/swt-charts,de.slothsoft.charts.swt,SwtGraphicContext,0,435,0,20,0,91,0,38,0,28
 Charts Coverage/swt-charts,de.slothsoft.charts.swt,MoveLineChartByMouseListener,17,164,3,13,6,40,5,15,2,10
 Charts Coverage/swt-charts,de.slothsoft.charts.swt,SwtChartUtil,0,37,0,0,0,6,0,1,0,1
-Charts Coverage/swt-charts,de.slothsoft.charts.swt,ChartControl,5,120,2,10,1,29,2,12,0,8
+Charts Coverage/swt-charts,de.slothsoft.charts.swt,ChartControl,0,125,0,12,0,30,0,14,0,8

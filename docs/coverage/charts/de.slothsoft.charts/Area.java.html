@@ -50,6 +50,28 @@ public class Area {
 <span class="fc" id="L50">	}</span>
 
 	/**
+	 * Calculates this areas width from {@link #getStartX()} and {@link #getEndX()}.
+	 *
+	 * @return the width
+	 * @since 0.2.0
+	 */
+
+	public double calculateWidth() {
+<span class="fc" id="L60">		return this.endX - this.startX;</span>
+	}
+
+	/**
+	 * Calculates this areas height from {@link #getStartY()} and {@link #getEndY()}.
+	 *
+	 * @return the width
+	 * @since 0.2.0
+	 */
+
+	public double calculateHeight() {
+<span class="fc" id="L71">		return this.endY - this.startY;</span>
+	}
+
+	/**
 	 * Returns an area surrounding this area and the one coming in.
 	 *
 	 * @param area the area to unite with
@@ -57,11 +79,11 @@ public class Area {
 	 */
 
 	public Area unite(Area area) {
-<span class="fc" id="L60">		final double minX = Math.min(Math.min(this.startX, this.endX), Math.min(area.startX, area.endX));</span>
-<span class="fc" id="L61">		final double maxX = Math.max(Math.max(this.startX, this.endX), Math.max(area.startX, area.endX));</span>
-<span class="fc" id="L62">		final double minY = Math.min(Math.min(this.startY, this.endY), Math.min(area.startY, area.endY));</span>
-<span class="fc" id="L63">		final double maxY = Math.max(Math.max(this.startY, this.endY), Math.max(area.startY, area.endY));</span>
-<span class="fc" id="L64">		return new Area(minX, minY, maxX, maxY);</span>
+<span class="fc" id="L82">		final double minX = Math.min(Math.min(this.startX, this.endX), Math.min(area.startX, area.endX));</span>
+<span class="fc" id="L83">		final double maxX = Math.max(Math.max(this.startX, this.endX), Math.max(area.startX, area.endX));</span>
+<span class="fc" id="L84">		final double minY = Math.min(Math.min(this.startY, this.endY), Math.min(area.startY, area.endY));</span>
+<span class="fc" id="L85">		final double maxY = Math.max(Math.max(this.startY, this.endY), Math.max(area.startY, area.endY));</span>
+<span class="fc" id="L86">		return new Area(minX, minY, maxX, maxY);</span>
 	}
 
 	/**
@@ -73,7 +95,7 @@ public class Area {
 	 */
 
 	public boolean containsPoint(double x, double y) {
-<span class="pc bpc" id="L76" title="2 of 8 branches missed.">		return this.startX &lt;= x &amp;&amp; x &lt;= this.endX &amp;&amp; this.startY &lt;= y &amp;&amp; y &lt;= this.endY;</span>
+<span class="pc bpc" id="L98" title="2 of 8 branches missed.">		return this.startX &lt;= x &amp;&amp; x &lt;= this.endX &amp;&amp; this.startY &lt;= y &amp;&amp; y &lt;= this.endY;</span>
 	}
 
 	/**
@@ -84,67 +106,67 @@ public class Area {
 	 */
 
 	public void move(double xIncrement, double yIncrement) {
-<span class="fc" id="L87">		this.startX += xIncrement;</span>
-<span class="fc" id="L88">		this.startY += yIncrement;</span>
-<span class="fc" id="L89">		this.endX += xIncrement;</span>
-<span class="fc" id="L90">		this.endY += yIncrement;</span>
-<span class="fc" id="L91">	}</span>
+<span class="fc" id="L109">		this.startX += xIncrement;</span>
+<span class="fc" id="L110">		this.startY += yIncrement;</span>
+<span class="fc" id="L111">		this.endX += xIncrement;</span>
+<span class="fc" id="L112">		this.endY += yIncrement;</span>
+<span class="fc" id="L113">	}</span>
 
 	public double getEndX() {
-<span class="fc" id="L94">		return this.endX;</span>
+<span class="fc" id="L116">		return this.endX;</span>
 	}
 
 	public Area endX(double newEndX) {
-<span class="fc" id="L98">		setEndX(newEndX);</span>
-<span class="fc" id="L99">		return this;</span>
+<span class="fc" id="L120">		setEndX(newEndX);</span>
+<span class="fc" id="L121">		return this;</span>
 	}
 
 	public void setEndX(double endX) {
-<span class="fc" id="L103">		this.endX = endX;</span>
-<span class="fc" id="L104">	}</span>
+<span class="fc" id="L125">		this.endX = endX;</span>
+<span class="fc" id="L126">	}</span>
 
 	public double getEndY() {
-<span class="fc" id="L107">		return this.endY;</span>
+<span class="fc" id="L129">		return this.endY;</span>
 	}
 
 	public Area endY(double newEndY) {
-<span class="fc" id="L111">		setEndY(newEndY);</span>
-<span class="fc" id="L112">		return this;</span>
+<span class="fc" id="L133">		setEndY(newEndY);</span>
+<span class="fc" id="L134">		return this;</span>
 	}
 
 	public void setEndY(double endY) {
-<span class="fc" id="L116">		this.endY = endY;</span>
-<span class="fc" id="L117">	}</span>
+<span class="fc" id="L138">		this.endY = endY;</span>
+<span class="fc" id="L139">	}</span>
 
 	public double getStartX() {
-<span class="fc" id="L120">		return this.startX;</span>
+<span class="fc" id="L142">		return this.startX;</span>
 	}
 
 	public Area startX(double newStartX) {
-<span class="fc" id="L124">		setStartX(newStartX);</span>
-<span class="fc" id="L125">		return this;</span>
+<span class="fc" id="L146">		setStartX(newStartX);</span>
+<span class="fc" id="L147">		return this;</span>
 	}
 
 	public void setStartX(double startX) {
-<span class="fc" id="L129">		this.startX = startX;</span>
-<span class="fc" id="L130">	}</span>
+<span class="fc" id="L151">		this.startX = startX;</span>
+<span class="fc" id="L152">	}</span>
 
 	public double getStartY() {
-<span class="fc" id="L133">		return this.startY;</span>
+<span class="fc" id="L155">		return this.startY;</span>
 	}
 
 	public Area startY(double newStartY) {
-<span class="fc" id="L137">		setStartY(newStartY);</span>
-<span class="fc" id="L138">		return this;</span>
+<span class="fc" id="L159">		setStartY(newStartY);</span>
+<span class="fc" id="L160">		return this;</span>
 	}
 
 	public void setStartY(double startY) {
-<span class="fc" id="L142">		this.startY = startY;</span>
-<span class="fc" id="L143">	}</span>
+<span class="fc" id="L164">		this.startY = startY;</span>
+<span class="fc" id="L165">	}</span>
 
 	@Override
 	public String toString() {
-<span class="fc" id="L147">		return &quot;Area [startX=&quot; + this.startX + &quot;, startY=&quot; + this.startY + &quot;, endX=&quot; + this.endX + &quot;, endY=&quot; + this.endY</span>
+<span class="fc" id="L169">		return &quot;Area [startX=&quot; + this.startX + &quot;, startY=&quot; + this.startY + &quot;, endX=&quot; + this.endX + &quot;, endY=&quot; + this.endY</span>
 				+ &quot;]&quot;;
 	}
 
@@ -155,25 +177,25 @@ public class Area {
 	 */
 
 	public Area copy() {
-<span class="fc" id="L158">		return new Area(this.startX, this.startY, this.endX, this.endY);</span>
+<span class="fc" id="L180">		return new Area(this.startX, this.startY, this.endX, this.endY);</span>
 	}
 
 	@Override
 	public int hashCode() {
-<span class="fc" id="L163">		return (int) ((((this.startX * 3 + this.startY) * 5 + this.endX) * 7 + this.endY) * 13);</span>
+<span class="fc" id="L185">		return (int) ((((this.startX * 3 + this.startY) * 5 + this.endX) * 7 + this.endY) * 13);</span>
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="pc bpc" id="L168" title="1 of 2 branches missed.">		if (this == obj) return true;</span>
-<span class="fc bfc" id="L169" title="All 2 branches covered.">		if (obj == null) return false;</span>
-<span class="pc bpc" id="L170" title="1 of 2 branches missed.">		if (getClass() != obj.getClass()) return false;</span>
-<span class="fc" id="L171">		final Area that = (Area) obj;</span>
-<span class="fc bfc" id="L172" title="All 2 branches covered.">		if (this.startX != that.startX) return false;</span>
-<span class="fc bfc" id="L173" title="All 2 branches covered.">		if (this.startY != that.startY) return false;</span>
-<span class="fc bfc" id="L174" title="All 2 branches covered.">		if (this.endX != that.endX) return false;</span>
-<span class="fc bfc" id="L175" title="All 2 branches covered.">		if (this.endY != that.endY) return false;</span>
-<span class="fc" id="L176">		return true;</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">		if (this == obj) return true;</span>
+<span class="fc bfc" id="L191" title="All 2 branches covered.">		if (obj == null) return false;</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">		if (getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L193">		final Area that = (Area) obj;</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">		if (this.startX != that.startX) return false;</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">		if (this.startY != that.startY) return false;</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">		if (this.endX != that.endX) return false;</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">		if (this.endY != that.endY) return false;</span>
+<span class="fc" id="L198">		return true;</span>
 	}
 
 }

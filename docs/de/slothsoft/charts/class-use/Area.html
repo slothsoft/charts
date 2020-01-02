@@ -99,6 +99,10 @@
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#de.slothsoft.charts.swing">de.slothsoft.charts.swing</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#de.slothsoft.charts.swt">de.slothsoft.charts.swt</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -194,30 +198,36 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>default void</code></td>
+<td class="colLast"><span class="typeNameLabel">GraphicContext.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/GraphicContext.html#drawRectangle-de.slothsoft.charts.Area-">drawRectangle</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;rect)</code>
+<div class="block">Paints a outline of a rectangle.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <td class="colLast"><span class="typeNameLabel">TextAlignment.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/TextAlignment.html#drawText-de.slothsoft.charts.GraphicContext-de.slothsoft.charts.Area-java.lang.String-">drawText</a></span>(<a href="../../../../de/slothsoft/charts/GraphicContext.html" title="interface in de.slothsoft.charts">GraphicContext</a>&nbsp;gc,
         <a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;area,
         <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><span class="typeNameLabel">GraphicContext.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/GraphicContext.html#fillRectangle-de.slothsoft.charts.Area-">fillRectangle</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;rect)</code>
 <div class="block">Paints a filled rectangle.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">PaintInstructions.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/PaintInstructions.html#setArea-de.slothsoft.charts.Area-">setArea</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;area)</code>
 <div class="block">Sets the area to draw on.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>default <a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ChartPart.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/ChartPart.html#snipNecessarySpace-de.slothsoft.charts.Area-">snipNecessarySpace</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;existingArea)</code>
 <div class="block">This method removes space from the existing area to make room for this part.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Area.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/Area.html#unite-de.slothsoft.charts.Area-">unite</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;area)</code>
 <div class="block">Returns an area surrounding this area and the one coming in.</div>
@@ -330,11 +340,17 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
+<td class="colLast"><span class="typeNameLabel">LineChart.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#calculateDisplayedArea--">calculateDisplayedArea</a></span>()</code>
+<div class="block">Calculates the displayed area via <a href="../../../../de/slothsoft/charts/linechart/LineChart.html#getDisplayedArea--"><code>LineChart.getDisplayedArea()</code></a> or the added lines.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
 <td class="colLast"><span class="typeNameLabel">LineChart.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/LineChart.html#getDisplayedArea--">getDisplayedArea</a></span>()</code>
 <div class="block">Returns the displayed area of this chart, i.e.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FunctionLine.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/FunctionLine.html#getPreferredArea--">getPreferredArea</a></span>()</code>
 <div class="block">Returns the area this line would like to display.</div>
@@ -372,6 +388,37 @@
 <td class="colLast"><span class="typeNameLabel">FunctionLine.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/linechart/FunctionLine.html#setPreferredArea-de.slothsoft.charts.Area-">setPreferredArea</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;preferredArea)</code>
 <div class="block">Sets the area this line would like to display.</div>
 </td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="de.slothsoft.charts.swing">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a> in <a href="../../../../de/slothsoft/charts/swing/package-summary.html">de.slothsoft.charts.swing</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../de/slothsoft/charts/swing/package-summary.html">de.slothsoft.charts.swing</a> that return <a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Graphics2DGraphicContext.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swing/Graphics2DGraphicContext.html#calculateTextSize-java.lang.String-">calculateTextSize</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../de/slothsoft/charts/swing/package-summary.html">de.slothsoft.charts.swing</a> with parameters of type <a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">Graphics2DGraphicContext.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/charts/swing/Graphics2DGraphicContext.html#clip-de.slothsoft.charts.Area-">clip</a></span>(<a href="../../../../de/slothsoft/charts/Area.html" title="class in de.slothsoft.charts">Area</a>&nbsp;rect)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -458,6 +505,6 @@
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2019. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2020. All rights reserved.</small></p>
 </body>
 </html>
