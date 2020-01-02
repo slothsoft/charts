@@ -22,6 +22,7 @@ A framework for creating charts. For my musings before even starting to code see
      - [Chart](#chart)
      - [LineChart](#linechart)
      - [PieChart](#piechart)
+     - [BarChart](#barchart)
  - [License](#license)
 
 
@@ -65,7 +66,14 @@ For other build tools and the JAR take a look at [Maven Central](https://search.
 
 Examples for how to use this framework are located [here](examples/src/main/java/).
 
-You usually start by creating the chart you wish to display.
+You usually start by creating the chart you wish to display.3
+
+**BarChart:**
+
+```java
+BarChart chart = new BarChart();
+chart.addBars(13, 5, 10, 15);
+```
 
 **LineChart:**
 
@@ -100,6 +108,7 @@ ChartControl chartControl = new ChartControl(chart);
 There are more extensive examples [here](examples/src/main/java/), for instance:
 
  - **Chart types**
+    - [BarChart](examples/src/main/java/barchart)
     - [LineChart](examples/src/main/java/linechart)
     - [PieChart](examples/src/main/java/piechart)
  - **GUI Frameworks**
@@ -116,6 +125,7 @@ There are more extensive examples [here](examples/src/main/java/), for instance:
 | Version       | Changes       |
 | ------------- | ------------- |
 | [Future](https://github.com/slothsoft/charts/milestone/2) |  |
+| [0.3.0](https://github.com/slothsoft/charts/milestone/4?closed=1) | ... |
 | [0.2.0](https://github.com/slothsoft/charts/milestone/3?closed=1) | Swing GUI & bar chart |
 | [0.1.0](https://github.com/slothsoft/charts/milestone/1?closed=1) | first draft of the API |
 
@@ -142,6 +152,23 @@ All charts have these features:
  - configure `Title` ([JavaDoc](https://slothsoft.github.io/charts/de/slothsoft/charts/common/Title))
      - change general display information (displayed text, color, font, size, position, text alignment)
  - change general display information (background color)
+ 
+
+<img align="right" src="https://raw.githubusercontent.com/wiki/slothsoft/charts/images/bar-chart-structure.png">
+
+### BarChart
+
+ - **JavaDoc:** [BarChart](https://slothsoft.github.io/charts/de/slothsoft/charts/barchart/BarChart)
+
+
+Bar charts have these features:
+
+ - all the features of `Chart`
+ - manage the bars of the chart (add, remove)
+     - change general display information (value, color)
+ - change general display information (default bar color)
+     
+<br clear="right"/>
  
  
 
@@ -178,24 +205,6 @@ Pie charts have these features:
  - manage the slices of the chart (add, remove)
      - change general display information (percentage value, color)
  - change general display information (start angle, pie color, pie border)
-     
-<br clear="right"/>
-
-
-
-<img align="right" src="https://raw.githubusercontent.com/wiki/slothsoft/charts/images/bar-chart-structure.png">
-
-### BarChart
-
- - **JavaDoc:** [BarChart](https://slothsoft.github.io/charts/de/slothsoft/charts/barchart/BarChart)
-
-
-Bar charts have these features:
-
- - all the features of `Chart`
- - manage the bars of the chart (add, remove)
-     - change general display information (value, color)
- - change general display information (default bar color)
      
 <br clear="right"/>
 
