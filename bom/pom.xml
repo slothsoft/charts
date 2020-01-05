@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>Slothsoft Charts BOM</name>
+	<description>A framework for creating charts.</description>
+	<url>https://github.com/slothsoft/charts</url>
+
+	<groupId>de.slothsoft.charts</groupId>
+	<artifactId>bom</artifactId>
+	<version>0.3.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>de.slothsoft.charts</groupId>
+				<artifactId>charts</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.slothsoft.charts</groupId>
+				<artifactId>swing-charts</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.slothsoft.charts</groupId>
+				<artifactId>swt-charts</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>sschulz</id>
+			<name>Stef Schulz</name>
+			<email>s.schulz@slothsoft.de</email>
+		</developer>
+	</developers>
+</project>

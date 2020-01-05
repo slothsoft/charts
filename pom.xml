@@ -10,6 +10,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>bom</module>
 		<module>charts</module>
 		<module>examples</module>
 		<module>examples-generator</module>
