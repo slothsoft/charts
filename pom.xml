@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<name>Slothsoft Charts</name>
 	<description>A framework for creating charts.</description>
@@ -83,8 +85,8 @@
 			</dependency>
 
 			<dependency>
-			    <groupId>org.apache.xmlgraphics</groupId>
-			    <artifactId>batik-codec</artifactId>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-codec</artifactId>
 				<version>${batik.version}</version>
 			</dependency>
 			<dependency>
@@ -199,6 +201,9 @@
 					<groupId>org.sonatype.plugins</groupId>
 					<artifactId>nexus-staging-maven-plugin</artifactId>
 					<version>1.6.7</version>
+					<configuration>
+						<skipNexusStagingDeployMojo>false</skipNexusStagingDeployMojo>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
