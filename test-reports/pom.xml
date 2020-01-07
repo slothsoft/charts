@@ -70,7 +70,7 @@
 					<artifactId>nexus-staging-maven-plugin</artifactId>
 					<extensions>true</extensions>
 					<configuration>
-						<skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+						<skipNexusStagingDeployMojo>false</skipNexusStagingDeployMojo>
 					</configuration>
 				</plugin>
 			</plugins>
