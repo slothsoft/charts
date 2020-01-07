@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>swt-charts</artifactId>
 	<name>Charts SWT</name>
@@ -22,7 +24,7 @@
 
 		<dependency>
 			<groupId>org.eclipse.swt</groupId>
-			<artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
+			<artifactId>org.eclipse.swt.win32.win32.x86</artifactId>
 		</dependency>
 
 		<dependency>
@@ -54,7 +56,6 @@
 					<instructions>
 						<Bundle-SymbolicName>de.slothsoft.charts.swt</Bundle-SymbolicName>
 						<Export-Package>de.slothsoft.charts.swt</Export-Package>
-						<Import-Package>org.eclipse.swt;version="[${swt.version},5.0.0)",*</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
