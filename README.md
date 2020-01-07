@@ -43,19 +43,19 @@ This library is in Maven Central, so you can easily add it like this:
 <dependency>
 	<groupId>de.slothsoft.charts</groupId>
 	<artifactId>charts</artifactId>
-	<version>0.2.0</version>
+	<version>0.2.1</version>
 </dependency>
 
 <dependency>
 	<groupId>de.slothsoft.charts</groupId>
 	<artifactId>swt-charts</artifactId>
-	<version>0.2.0</version>
+	<version>0.2.1</version>
 </dependency>
 
 <dependency>
 	<groupId>de.slothsoft.charts</groupId>
 	<artifactId>swing-charts</artifactId>
-	<version>0.2.0</version>
+	<version>0.2.1</version>
 </dependency>
 ```
 
@@ -125,7 +125,7 @@ There are more extensive examples [here](examples/src/main/java/), for instance:
 | Version       | Changes       |
 | ------------- | ------------- |
 | [Future](https://github.com/slothsoft/charts/milestone/2) |  |
-| [0.3.0](https://github.com/slothsoft/charts/milestone/4?closed=1) | ... |
+| [0.2.1](https://github.com/slothsoft/charts/milestone/4?closed=1) | Hotfix |
 | [0.2.0](https://github.com/slothsoft/charts/milestone/3?closed=1) | Swing GUI & bar chart |
 | [0.1.0](https://github.com/slothsoft/charts/milestone/1?closed=1) | first draft of the API |
 
