@@ -27,7 +27,7 @@
 		<manifest.location>${project.build.directory}/META-INF</manifest.location>
 
 		<swt.version>4.3</swt.version>
-		<batik.version>1.12</batik.version>
+		<batik.version>1.17</batik.version>
 	</properties>
 
 	<repositories>
